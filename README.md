@@ -44,6 +44,9 @@ hard \(k\ge 1\) version.
   `notes/09_cf_tail_347_k2.md`.
 - The same method now closes \(\{3,4,7\}, k=3\): the largest missing integer
   is 166025260.  See `notes/10_347_k3_certificate.md`.
+- It also closes another exact-critical set, \(\{3,4,9,25\}, k=2\): the
+  largest missing integer is 452099.  See
+  `notes/11_34925_k2_certificate.md`.
 
 ## Source pointers
 

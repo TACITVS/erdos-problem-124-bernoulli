@@ -1,0 +1,17 @@
+Command:
+  cpp\erdos124_fast.exe --mode=central --bases=3,4,9,25 --k=2 --seed-limit=10000000
+
+Output:
+  {'mode': 'central', 'bases': (3, 4, 9, 25), 'k': 2, 'seed_limit': 10000000, 'terms': 33, 'seed_sum': 28320179, 'half': 14160089, 'missing_count_to_half': 5298, 'conductor_to_half': 452099, 'central_interval': (452100, 27868079), 'tail': (253725, 253796, 254107, 254188, 255623, 256352, 448813, 449470, 449542, 452099)}
+
+Command:
+  python scripts/cf_near_collision.py --gap 21701880
+
+Output:
+  {'gap': 21701880, 'legendre_threshold': 19, 'legendre_threshold_check': True, 'mw_threshold': 293903, 'cf_prefix': [0, 1, 3, 1, 4, 1, 1, 11, 1, 46, 1, 5, 112], 'relevant_convergents_b_over_a': [(19, 24), (23, 29), (42, 53), (485, 612), (527, 665), (24727, 31202), (25254, 31867), (150997, 190537)], 'next_convergent_b_over_a': (16936918, 21372011), 'all_relevant_gaps_exceed_B': True, 'gap_checks': [(19, 24, True), (23, 29, True), (42, 53, True), (485, 612, True), (527, 665, True), (24727, 31202, True), (25254, 31867, True), (150997, 190537, True)]}
+
+Command:
+  python scripts/exact_critical_tail.py --bases 3,4,9,25 --k 2 --seed-limit 10000000 --conductor 452099 --target-base 3 --target-exp 19
+
+Output:
+  {'bases': (3, 4, 9, 25), 'k': 2, 'seed_limit': 10000000, 'conductor': 452099, 'denominator': 24, 'weights': (12, 8, 3, 1), 'obstruction_bound': 21701880, 'start_exponents': (15, 12, 8, 6), 'target_base': 3, 'target_exponent': 19, 'margins': [((15, 12, 8, 6), 313609752), ((16, 12, 8, 6), 599704104), ((16, 13, 8, 6), 371889168), ((17, 13, 9, 6), 1860640344), ((17, 14, 9, 6), 1982501904), ((18, 14, 9, 6), 2321854728), ((18, 14, 9, 7), 7598153784), ((18, 15, 9, 7), 11184963936)]}

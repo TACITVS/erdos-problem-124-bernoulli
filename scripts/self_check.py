@@ -5,6 +5,11 @@ from __future__ import annotations
 from cas_checks import exact_critical_sets
 from cf_near_collision import DEFAULT_B, convergents, interval_cf, log_interval_int
 from erdos124 import conductor_by_search, reciprocal_sum, strict_interval_certificate
+from exact_critical_tail import (
+    denominator_and_weights,
+    first_exponents_above,
+    obstruction_bound,
+)
 
 
 def main() -> None:
@@ -40,6 +45,9 @@ def main() -> None:
         (25254, 31867),
         (150997, 190537),
     ]
+    assert denominator_and_weights((3, 4, 9, 25)) == (24, (12, 8, 3, 1))
+    assert obstruction_bound((3, 4, 9, 25), 2, 452_099) == 21_701_880
+    assert first_exponents_above((3, 4, 9, 25), 2, 10_000_000) == (15, 12, 8, 6)
 
     print("self-checks passed")
 
