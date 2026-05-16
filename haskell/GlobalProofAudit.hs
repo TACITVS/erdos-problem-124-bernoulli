@@ -66,6 +66,10 @@ obligations =
       Certified
       "Finite seeds cover every residue modulo the exact-critical denominator for the current small exact-critical profiles.",
     Obligation
+      "residue-gate vocabulary"
+      Certified
+      "ResidueGate.hs records complete and gcd-normalized quasi-complete finite residue predicates for the next saturation theorem.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",

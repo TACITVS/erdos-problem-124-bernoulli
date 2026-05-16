@@ -28,6 +28,10 @@ small exact-critical and strict cases.
 `ResidueBridgeProfiles.hs` independently checks finite residue-complete seed
 profiles modulo the exact-critical denominator.
 
+`ResidueGate.hs` defines shared complete and quasi-complete residue predicates.
+`ResidueGateCertificate.hs` smoke-tests that API against small literature-style
+witnesses and current local exact-critical seed profiles.
+
 Run:
 
 ```text
@@ -38,6 +42,7 @@ runghc haskell/MultiplicativeClasses.hs
 runghc haskell/PairCFTailCertificate.hs
 runghc -ihaskell haskell/SeedBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueBridgeProfiles.hs
+runghc -ihaskell haskell/ResidueGateCertificate.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

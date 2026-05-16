@@ -1,0 +1,32 @@
+Complete-sequence extraction pass
+Date: 2026-05-16
+
+Sources:
+  - Chen, Fang, Hegyvari, "On the subset sums of exponential type sequences",
+    Acta Arithmetica 173 (2016), 141-150.
+  - Xue, Fang, Ma, "On exponential type sequences", Discrete Applied
+    Mathematics 338 (2023), 187-189.
+
+Extracted usable input:
+  - Chen-Fang-Hegyvari Lemma 2.1 gives a bounded-gap criterion for subset sums:
+    eventual domination of each next term by the previous partial sum plus a
+    fixed buffer implies bounded gaps in P(B).
+  - The 2016 density theorem for S_p A_t warns that positive density is weaker
+    than completeness.
+  - The 2016 Fibonacci proof gives a residue-to-completeness template:
+    finite residue representatives, periodicity modulo d, base-p expansion.
+  - The accessible 2023 preview defines a quasi-complete residue witness as a
+    p-element finite set whose gcd-normalization is a complete residue system
+    modulo p. Exact theorem imports beyond the exposed statements still require
+    the full article.
+
+Code added:
+  - haskell/ResidueGate.hs
+  - haskell/ResidueGateCertificate.hs
+
+Verification commands:
+  runghc -ihaskell haskell\ResidueGateCertificate.hs
+  ghc -Wall -Werror -fforce-recomp -ihaskell haskell\ResidueGateCertificate.hs -o haskell\ResidueGateCertificate.exe
+
+Status:
+  This is a proof-design advance, not a completed global theorem.

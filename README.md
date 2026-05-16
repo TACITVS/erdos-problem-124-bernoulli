@@ -106,12 +106,18 @@ runghc haskell\MultiplicativeClasses.hs
 runghc haskell\PairCFTailCertificate.hs
 runghc -ihaskell haskell\SeedBridgeProfiles.hs
 runghc -ihaskell haskell\ResidueBridgeProfiles.hs
+runghc -ihaskell haskell\ResidueGateCertificate.hs
 ```
 
 A first bibliography map for the remaining global proof obligations is in
 `notes/22_bibliography.md`.  It is a working source map, not a completed proof:
 its immediate use is to align the next residue-saturation and interval lemmas
 with the existing complete-sequence literature.
+
+The first extraction from that literature is in
+`notes/23_complete_sequence_lemma_extraction.md`.  Its main reusable input is a
+bounded-gap lemma for subset sums and the finite vocabulary of complete versus
+quasi-complete residue witnesses.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
