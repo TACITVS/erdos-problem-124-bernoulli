@@ -18,6 +18,9 @@ used before applying Baker-type bounds in the exact-critical case.
 `PairCFTailCertificate.hs` checks finite continued-fraction windows for an
 arbitrary independent base pair once an external analytic threshold is supplied.
 
+`SeedBridgeProfiles.hs` verifies recorded finite seed central-interval profiles
+for small exact-critical and strict cases.
+
 Run:
 
 ```text
@@ -26,6 +29,7 @@ runghc haskell/CFTailCertificate.hs
 runghc haskell/GlobalProofAudit.hs
 runghc haskell/MultiplicativeClasses.hs
 runghc haskell/PairCFTailCertificate.hs
+runghc haskell/SeedBridgeProfiles.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

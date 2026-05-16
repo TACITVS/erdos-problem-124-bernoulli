@@ -11,6 +11,7 @@ from exact_critical_tail import (
     obstruction_bound,
 )
 from hypothesis_minimal import is_hypothesis_minimal
+from seed_bridge import central_profile
 
 
 def main() -> None:
@@ -52,6 +53,10 @@ def main() -> None:
     assert is_hypothesis_minimal((3, 4, 7))
     assert is_hypothesis_minimal((3, 4, 9, 25))
     assert not is_hypothesis_minimal((3, 4, 7, 13))
+    bridge = central_profile((3, 4, 7), 1, 1000)
+    assert bridge.conductor_to_half == 581
+    assert bridge.central_interval == (582, 1249)
+    assert bridge.frontier == (2187, 1024, 2401)
 
     print("self-checks passed")
 

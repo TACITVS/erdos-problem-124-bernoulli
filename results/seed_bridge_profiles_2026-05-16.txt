@@ -1,0 +1,15 @@
+Commands:
+  python scripts\seed_bridge.py --bases 3,4,7 --k 1 --seed-limit 1000
+  python scripts\seed_bridge.py --bases 3,4,5 --k 1 --seed-limit 1000
+  python scripts\seed_bridge.py --batch-exact --max-base 30 --max-size 5 --k 1 --seed-limit 1000 --limit 20
+  runghc haskell\SeedBridgeProfiles.hs
+
+Summary:
+  The central interval for {3,4,7}, k=1, seed_limit=1000 is (582, 1249).
+  The central interval for {3,4,5}, k=1, seed_limit=1000 is (80, 2132).
+  All fourteen exact-critical sets with max_base=30 and max_size=5 have
+  nonempty central seed intervals at k=1 and seed_limit=1000.
+
+Strict compile:
+  ghc -Wall -Werror -fforce-recomp haskell\SeedBridgeProfiles.hs -o haskell\SeedBridgeProfiles.exe
+  passed

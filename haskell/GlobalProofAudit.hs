@@ -58,6 +58,10 @@ obligations =
       Certified
       "Given an imported analytic threshold for an independent pair, finite near-collision windows are checked exactly.",
     Obligation
+      "local seed-bridge profiles"
+      Certified
+      "Finite central seed intervals are reproducible for the current small exact-critical and strict profiles.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",
