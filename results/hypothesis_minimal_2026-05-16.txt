@@ -1,0 +1,19 @@
+Command:
+  python scripts/hypothesis_minimal.py --max-base 30 --max-size 5 --limit 80
+
+Summary:
+  The script found 1175 hypothesis-minimal sets with max base 30 and size at
+  most 5.  The first exact-critical examples in this range include:
+
+  (3, 4, 7)
+  (3, 4, 9, 25)
+  (3, 4, 10, 19)
+  (3, 4, 11, 16)
+  (3, 5, 6, 21)
+  (3, 5, 7, 13)
+
+Purpose:
+  This is not evidence for the theorem by itself.  It is a sanity check for
+  the reduction lemma: any counterexample has a hypothesis-minimal
+  sub-counterexample, so these are the right objects to classify.
+

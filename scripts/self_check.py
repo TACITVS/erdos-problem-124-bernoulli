@@ -10,6 +10,7 @@ from exact_critical_tail import (
     first_exponents_above,
     obstruction_bound,
 )
+from hypothesis_minimal import is_hypothesis_minimal
 
 
 def main() -> None:
@@ -48,6 +49,9 @@ def main() -> None:
     assert denominator_and_weights((3, 4, 9, 25)) == (24, (12, 8, 3, 1))
     assert obstruction_bound((3, 4, 9, 25), 2, 452_099) == 21_701_880
     assert first_exponents_above((3, 4, 9, 25), 2, 10_000_000) == (15, 12, 8, 6)
+    assert is_hypothesis_minimal((3, 4, 7))
+    assert is_hypothesis_minimal((3, 4, 9, 25))
+    assert not is_hypothesis_minimal((3, 4, 7, 13))
 
     print("self-checks passed")
 
