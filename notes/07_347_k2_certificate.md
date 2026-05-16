@@ -99,6 +99,7 @@ Mignotte-Waldschmidt tail exclusion certifies that every integer
 \(n\ge3982889\) is represented.  Since 3982888 is missing, it is the largest
 missing integer.
 
-To turn this into a cleaner proof, the finite frontier scan should be replaced
-by an algebraic lemma, for example using continued fractions or a sharper
-linear-forms estimate to rule out the finite range without enumerating states.
+The large frontier scan is replaced by a smaller continued-fraction argument in
+`notes/09_cf_tail_347_k2.md`.  The remaining computational input is then the
+finite central interval and a small rational-arithmetic continued-fraction
+certificate.

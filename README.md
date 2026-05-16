@@ -39,8 +39,9 @@ hard \(k\ge 1\) version.
 - For \(\{3,4,7\}, k=2\), there is a computer-assisted certificate, combining
   exact finite verification with the Mignotte-Waldschmidt lower bound, that the
   largest missing integer is 3982888.  This is not a clean algebraic proof of
-  the full Erdos-124 problem.  See
-  `notes/07_347_k2_certificate.md`.
+  the full Erdos-124 problem.  The tail scan has now been reduced to a
+  continued-fraction lemma; see `notes/07_347_k2_certificate.md` and
+  `notes/09_cf_tail_347_k2.md`.
 
 ## Source pointers
 
