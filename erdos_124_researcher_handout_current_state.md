@@ -2,10 +2,10 @@
 
 Tracked note: this handout is an imported project-state snapshot.  Subsequent
 updates are in `notes/22_bibliography.md` through
-`notes/32_multilanguage_certificate_architecture.md`, especially the \(S\)-unit
-exact-critical tail route, the power-saving central conductor target, the
-residue-lift bridge, the unit-base residue-frame construction, the Raku residue
-DSL, and the manifest-based certificate architecture.
+`notes/33_modular_conductor_lift.md`, especially the \(S\)-unit exact-critical
+tail route, the power-saving central conductor target, the residue-lift bridge,
+the unit-base residue-frame construction, the Raku residue DSL, the
+manifest-based certificate architecture, and the modular conductor lift.
 
 ## 0. Purpose of this handout
 

@@ -42,6 +42,10 @@ ray or interval of multiples to an ordinary ray or interval.
 `ResidueLiftCertificate.hs` checks the bridge against current denominator
 residue frames.
 
+`ConductorLift.hs` turns a residue frame plus a scaled central block into an
+explicit finite-seed conductor bound.  `ConductorLiftCertificate.hs` checks the
+arithmetic transfer examples.
+
 `UnitResidueFrame.hs` constructs complete residue frames from powers of a single
 base that is a unit modulo the chosen modulus.  `UnitResidueFrameCertificate.hs`
 checks denominator examples and a nontrivial-order sample.
@@ -64,6 +68,7 @@ runghc -ihaskell haskell/ResidueBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueGateCertificate.hs
 runghc -ihaskell haskell/GapBridgeCertificate.hs
 runghc -ihaskell haskell/ResidueLiftCertificate.hs
+runghc -ihaskell haskell/ConductorLiftCertificate.hs
 runghc -ihaskell haskell/UnitResidueFrameCertificate.hs
 runghc -ihaskell haskell/CFHTailCertificate.hs
 ```

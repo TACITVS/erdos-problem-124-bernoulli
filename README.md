@@ -142,6 +142,8 @@ right-by-construction Raku certificate DSL for the residue-lift lemmas.
 `notes/32_multilanguage_certificate_architecture.md` defines the manifest-based
 certificate architecture that keeps the Python, Haskell, Raku, C++ and prover
 artifacts in one coherent body.
+`notes/33_modular_conductor_lift.md` turns residue lifting into an explicit
+finite-seed conductor bound for modular induction.
 
 ## Certificate runner
 

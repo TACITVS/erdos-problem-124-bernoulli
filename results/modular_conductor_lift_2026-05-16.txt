@@ -1,0 +1,33 @@
+Modular conductor lift
+Date: 2026-05-16
+
+Artifacts:
+  notes/33_modular_conductor_lift.md
+  haskell/ConductorLift.hs
+  haskell/ConductorLiftCertificate.hs
+
+Mathematical advance:
+  Converted the residue-lift bridge into a direct finite-seed conductor bound.
+
+Statement:
+  A residue frame of width R modulo m plus a divisible block G = mG' whose
+  quotient has conductor c' gives
+
+    c(F union G) <= m(c' + 1) + R - 1
+
+  whenever the lifted interval reaches the half-sum of the whole finite seed.
+
+Proof route impact:
+  Power-saving conductor bounds now transfer across a fixed residue frame:
+
+    c(G') = O(T^(1-epsilon))  =>  c(F union mG') = O(T^(1-epsilon))
+
+  up to constants, provided the half-sum reach condition holds.
+
+Status:
+  This is not the global conductor theorem.  It is a reusable algebraic transfer
+  lemma for any modular-induction attack on the remaining bottleneck.
+
+Verification:
+  The focused haskell-conductor-lift manifest entry passed.  The full default
+  manifest suite then passed 15/15 entries after adding this certificate.

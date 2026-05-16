@@ -102,6 +102,15 @@
       "purpose": "Check residue-frame lifting for rays and intervals."
     },
     {
+      "id": "haskell-conductor-lift",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ConductorLiftCertificate.hs"],
+      "artifacts": ["haskell/ConductorLift.hs", "haskell/ConductorLiftCertificate.hs"],
+      "purpose": "Check modular conductor transfer from residue frames and scaled central blocks."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",
