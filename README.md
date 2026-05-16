@@ -80,3 +80,11 @@ cleared bounds, and margins.
 ghc -Wall -Werror -fforce-recomp haskell\TailCertificate.hs -o haskell\TailCertificate.exe
 runghc haskell\TailCertificate.hs
 ```
+
+Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
+domain certificate checker; they independently certify exact algebraic
+obligations such as Legendre-threshold inequalities.
+
+```text
+cabal run prover-int -- C:\Users\baian\Math_Research\Knuth_124\prover\legendre_thresholds.euclid
+```

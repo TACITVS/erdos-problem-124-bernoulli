@@ -1,0 +1,22 @@
+Command:
+  cabal run prover-int -- C:\Users\baian\Math_Research\Knuth_124\prover\legendre_thresholds.euclid
+
+Output:
+  > :prove (> (- (^ 3 20) 47794770) (* 2 20 47794770))
+  RESULT: PROVED
+  Proved
+  > :prove (> (- (^ 3 23) 1992303678) (* 2 23 1992303678))
+  RESULT: PROVED
+  Proved
+  > :prove (> (- (^ 3 19) 21701880) (* 2 19 21701880))
+  RESULT: PROVED
+  Proved
+  > :assume (> bound 0)
+  Assumed: (> bound 0)
+  > :assume (>= a 1)
+  Assumed: (>= a 1)
+  > :assume (> (- p bound) (* 2 a bound))
+  Assumed: (> (- p bound) (* (* 2 a) bound))
+  > :prove (> (- (* 3 p) bound) (* 2 (+ a 1) bound))
+  RESULT: PROVED
+  Proved

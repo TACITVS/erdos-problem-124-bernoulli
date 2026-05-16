@@ -1,0 +1,29 @@
+; Hasclid side checks for the continued-fraction tail reductions.
+;
+; Each theorem proves the exact arithmetic threshold
+;
+;     2*a*B < 3^a - B.
+;
+; Once this holds at the displayed exponent a, it propagates by the elementary
+; induction step
+;
+;     3^(a+1) - B - 2*(a+1)*B
+;       = 3*(3^a - B - 2*a*B) + 4*a*B.
+;
+; The final theorem proves the abstract linear propagation step from
+; p - B > 2*a*B to 3*p - B > 2*(a+1)*B, under a >= 1 and B > 0.
+
+; {3,4,7}, k=2.  B = 47794770 and the Legendre range starts at a = 20.
+:prove (> (- (^ 3 20) 47794770) (* 2 20 47794770))
+
+; {3,4,7}, k=3.  B = 1992303678 and the Legendre range starts at a = 23.
+:prove (> (- (^ 3 23) 1992303678) (* 2 23 1992303678))
+
+; {3,4,9,25}, k=2.  B = 21701880 and the Legendre range starts at a = 19.
+:prove (> (- (^ 3 19) 21701880) (* 2 19 21701880))
+
+; Abstract induction step, with p standing for 3^a.
+:assume (> bound 0)
+:assume (>= a 1)
+:assume (> (- p bound) (* 2 a bound))
+:prove (> (- (* 3 p) bound) (* 2 (+ a 1) bound))
