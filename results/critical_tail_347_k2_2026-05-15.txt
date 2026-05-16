@@ -1,0 +1,6 @@
+Command:
+  python scripts/critical_tail_sim.py --bases 3,4,7 --k 2 --seed-limit 50000000 --steps 1000
+
+Output:
+  {'bases': (3, 4, 7), 'k': 2, 'seed_limit': 50000000, 'seed_sum': 134018893, 'conductor_to_half': 3982888, 'initial_interval': (3982889, 130036004), 'initial_span': 126053115, 'invariant': '7965795', 'steps': 1000, 'min_margin': (2, 268435456, 53866687, (387420489, 268435456, 282475249))}
+
