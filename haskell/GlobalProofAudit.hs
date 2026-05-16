@@ -50,6 +50,10 @@ obligations =
       Certified
       "Failure forces all frontier powers into bounded pairwise gaps.",
     Obligation
+      "multiplicative class reduction"
+      Certified
+      "Every gcd-one base set has at least two multiplicative classes, giving an independent pair.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",
@@ -64,7 +68,7 @@ obligations =
     Obligation
       "global exact-critical analytic bound"
       Open
-      "Need an explicit, checkable Baker-type bound for arbitrary multiplicatively independent base pairs/classes."
+      "Need explicit thresholds for arbitrary certified independent base pairs/classes."
   ]
 
 formatObligation :: Obligation -> String

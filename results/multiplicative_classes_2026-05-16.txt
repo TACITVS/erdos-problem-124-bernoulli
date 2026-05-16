@@ -1,0 +1,13 @@
+Command:
+  runghc haskell\MultiplicativeClasses.hs
+
+Summary:
+  Checked fourteen exact-critical sets with max_base=30 and max_size=5.
+  Checked dependent sanity cases {4,8,16}, {9,27,81}, {8,27}, and {12,72}.
+  Every gcd-one case has at least two multiplicative classes.
+  The checker corrected one hand transcription: {3,5,9,13,25} has three
+  classes, since 3 and 9 share one class and 5 and 25 share another.
+
+Strict compile:
+  ghc -Wall -Werror -fforce-recomp haskell\MultiplicativeClasses.hs -o haskell\MultiplicativeClasses.exe
+  passed

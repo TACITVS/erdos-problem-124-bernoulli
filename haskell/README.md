@@ -12,12 +12,16 @@ near-collision gaps.
 `GlobalProofAudit.hs` records which parts of the full Erdos-124 proof are
 certified, imported, or still open.
 
+`MultiplicativeClasses.hs` checks the primitive prime-exponent class reduction
+used before applying Baker-type bounds in the exact-critical case.
+
 Run:
 
 ```text
 runghc haskell/TailCertificate.hs
 runghc haskell/CFTailCertificate.hs
 runghc haskell/GlobalProofAudit.hs
+runghc haskell/MultiplicativeClasses.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

@@ -25,6 +25,9 @@ Output:
   - exact-critical near-collision reduction
     status: Certified
     note: Failure forces all frontier powers into bounded pairwise gaps.
+  - multiplicative class reduction
+    status: Certified
+    note: Every gcd-one base set has at least two multiplicative classes, giving an independent pair.
   - local {3,4,7} and {3,4,9,25} certificates
     status: Certified
     note: Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.
@@ -36,7 +39,7 @@ Output:
     note: Need a proof that every admissible finite A,k admits a seed interval large enough to enter the tail argument.
   - global exact-critical analytic bound
     status: Open
-    note: Need an explicit, checkable Baker-type bound for arbitrary multiplicatively independent base pairs/classes.
+    note: Need explicit thresholds for arbitrary certified independent base pairs/classes.
 
   open obligations: 2
 
