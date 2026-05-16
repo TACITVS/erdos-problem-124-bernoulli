@@ -37,6 +37,16 @@ class SeedBridgeProfile:
     reciprocal_sum: Fraction
 
 
+@dataclass(frozen=True)
+class SeedBridgeSearch:
+    bases: tuple[int, ...]
+    k: int
+    min_span: int
+    max_seed_limit: int
+    attempts: int
+    found: SeedBridgeProfile | None
+
+
 def parse_bases(text: str) -> tuple[int, ...]:
     return tuple(int(part) for part in text.split(",") if part)
 
@@ -68,6 +78,30 @@ def central_profile(bases: tuple[int, ...], k: int, seed_limit: int) -> SeedBrid
     )
 
 
+def initial_seed_limit(bases: tuple[int, ...], k: int) -> int:
+    return max(base**k for base in bases)
+
+
+def find_seed_bridge(
+    bases: tuple[int, ...],
+    k: int,
+    start_limit: int,
+    max_seed_limit: int,
+    min_span: int,
+) -> SeedBridgeSearch:
+    if start_limit <= 0:
+        start_limit = initial_seed_limit(bases, k)
+    seed_limit = start_limit
+    attempts = 0
+    while seed_limit <= max_seed_limit:
+        attempts += 1
+        profile = central_profile(bases, k, seed_limit)
+        if profile.central_span >= min_span:
+            return SeedBridgeSearch(bases, k, min_span, max_seed_limit, attempts, profile)
+        seed_limit *= 2
+    return SeedBridgeSearch(bases, k, min_span, max_seed_limit, attempts, None)
+
+
 def exact_critical_sets(max_base: int, max_size: int) -> list[tuple[int, ...]]:
     out: list[tuple[int, ...]] = []
     for size in range(2, max_size + 1):
@@ -87,6 +121,17 @@ def printable(profile: SeedBridgeProfile) -> dict[str, object]:
     return out
 
 
+def printable_search(search: SeedBridgeSearch) -> dict[str, object]:
+    return {
+        "bases": search.bases,
+        "k": search.k,
+        "min_span": search.min_span,
+        "max_seed_limit": search.max_seed_limit,
+        "attempts": search.attempts,
+        "found": None if search.found is None else printable(search.found),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--bases")
@@ -96,6 +141,9 @@ def main() -> None:
     parser.add_argument("--max-base", type=int, default=30)
     parser.add_argument("--max-size", type=int, default=5)
     parser.add_argument("--limit", type=int, default=20)
+    parser.add_argument("--search", action="store_true")
+    parser.add_argument("--max-seed-limit", type=int, default=1_000_000)
+    parser.add_argument("--min-span", type=int, default=0)
     args = parser.parse_args()
 
     if args.batch_exact:
@@ -106,7 +154,20 @@ def main() -> None:
         cases = [parse_bases(args.bases)]
 
     for bases in cases:
-        print(printable(central_profile(bases, args.k, args.seed_limit)))
+        if args.search:
+            print(
+                printable_search(
+                    find_seed_bridge(
+                        bases,
+                        args.k,
+                        args.seed_limit,
+                        args.max_seed_limit,
+                        args.min_span,
+                    )
+                )
+            )
+        else:
+            print(printable(central_profile(bases, args.k, args.seed_limit)))
 
 
 if __name__ == "__main__":
