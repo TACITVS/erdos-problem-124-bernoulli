@@ -32,6 +32,10 @@ profiles modulo the exact-critical denominator.
 `ResidueGateCertificate.hs` smoke-tests that API against small literature-style
 witnesses and current local exact-critical seed profiles.
 
+`GapBridge.hs` defines the arithmetic bridge from a finite seed interval and a
+bounded-gap tail to a cofinite ray.  `GapBridgeCertificate.hs` checks the bridge
+against small and current local seed-interval profiles.
+
 Run:
 
 ```text
@@ -43,6 +47,7 @@ runghc haskell/PairCFTailCertificate.hs
 runghc -ihaskell haskell/SeedBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueGateCertificate.hs
+runghc -ihaskell haskell/GapBridgeCertificate.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

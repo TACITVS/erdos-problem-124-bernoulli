@@ -70,6 +70,10 @@ obligations =
       Certified
       "ResidueGate.hs records complete and gcd-normalized quasi-complete finite residue predicates for the next saturation theorem.",
     Obligation
+      "bounded-gap bridge"
+      Certified
+      "GapBridge.hs proves the arithmetic reduction from a seed interval and bounded tail gaps to a cofinite ray.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",

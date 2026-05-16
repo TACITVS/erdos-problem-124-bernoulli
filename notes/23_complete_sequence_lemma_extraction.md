@@ -67,9 +67,9 @@ then \(P(B)\), when listed increasingly, has gaps bounded by \(b_{n_0}\).
 
 This is not yet the central interval theorem needed for Erdos 124, but it is a
 real candidate engine.  It turns a tail-domination inequality into a uniform
-gap bound for subset sums.  The project should now try to combine this with
-finite residue representatives: bounded gaps plus complete residues modulo a
-compatible modulus is the natural route to actual intervals.
+gap bound for subset sums.  The next bridge is not residue coverage alone:
+bounded gaps must be combined with an actual finite seed interval long enough
+to absorb the gaps.  See `notes/24_bounded_gap_bridge.md`.
 
 ### Density threshold for \(S_pA_t\)
 
@@ -134,10 +134,9 @@ First, a residue-saturation lemma:
 
 Second, an interval-from-gaps lemma:
 
-> If a residue-complete finite seed has representatives with maximum \(R\), and
-> an ordered tail satisfies a Chen-Fang-Hegyvari style bounded-gap inequality
-> with gap bound \(G\), prove an explicit interval or cofinite ray once the
-> residue period is no larger than the interval/gap structure can absorb.
+> If a finite seed contains an interval \([M,M+H]\), and an ordered tail
+> satisfies a Chen-Fang-Hegyvari style bounded-gap inequality with gap bound
+> \(G\le H+1\), prove the cofinite ray \([M,\infty)\).
 
 The first lemma is still open.  The second is now less vague: Lemma 2.1 gives a
 concrete bounded-gap hypothesis to formalize and test.

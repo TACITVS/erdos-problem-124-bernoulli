@@ -1,0 +1,38 @@
+Bounded-gap bridge
+Date: 2026-05-16
+
+Artifact:
+  notes/24_bounded_gap_bridge.md
+  haskell/GapBridge.hs
+  haskell/GapBridgeCertificate.hs
+
+Mathematical advance:
+  Proved and encoded the bridge:
+
+    seed interval [M, M + H]
+    + unbounded tail subset sums with consecutive gaps <= G
+    + G <= H + 1
+    => all integers >= M are represented.
+
+Correction:
+  Bounded tail gaps plus complete residue representatives is not enough as a
+  theorem target.  The bridge needs either an actual seed interval of sufficient
+  length or a stronger tail theorem such as a full arithmetic progression.
+
+Verification commands:
+  runghc -ihaskell haskell\GapBridgeCertificate.hs
+  ghc -Wall -Werror -fforce-recomp -ihaskell haskell\GapBridgeCertificate.hs -o haskell\GapBridgeCertificate.exe
+
+Capacity rows:
+  - binary powers: seed interval [0, 0], required gap bound 1, ray starts at 0.
+  - {3,4,5}, k=1: seed interval [80, 2132], required gap bound 2053.
+  - {3,4,7}, k=1: seed interval [582, 1249], required gap bound 668.
+  - {3,4,7}, k=2: seed interval [1415, 1426], required gap bound 12.
+
+Status:
+  The bridge is certified as an arithmetic reduction.  Except for the binary
+  powers smoke test, the executable rows are conditional capacity checks: they
+  record how small a tail gap bound would need to be for the current seed
+  interval to imply a ray.  The global proof still needs a theorem that
+  produces seed intervals and Chen-Fang-Hegyvari style tail gap bounds for
+  arbitrary admissible base sets.

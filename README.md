@@ -107,6 +107,7 @@ runghc haskell\PairCFTailCertificate.hs
 runghc -ihaskell haskell\SeedBridgeProfiles.hs
 runghc -ihaskell haskell\ResidueBridgeProfiles.hs
 runghc -ihaskell haskell\ResidueGateCertificate.hs
+runghc -ihaskell haskell\GapBridgeCertificate.hs
 ```
 
 A first bibliography map for the remaining global proof obligations is in
@@ -118,6 +119,10 @@ The first extraction from that literature is in
 `notes/23_complete_sequence_lemma_extraction.md`.  Its main reusable input is a
 bounded-gap lemma for subset sums and the finite vocabulary of complete versus
 quasi-complete residue witnesses.
+
+The bounded-gap bridge itself is isolated in
+`notes/24_bounded_gap_bridge.md`: a seed interval of span \(H\) plus a tail
+subset-sum gap bound \(G\le H+1\) implies a cofinite ray.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
