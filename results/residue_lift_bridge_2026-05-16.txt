@@ -1,0 +1,30 @@
+Residue-lift bridge
+Date: 2026-05-16
+
+Artifact:
+  notes/29_residue_lift_bridge.md
+  haskell/ResidueLift.hs
+  haskell/ResidueLiftCertificate.hs
+
+Mathematical advance:
+  Added an interval version of the residue bridge.
+
+Statement:
+  If a finite frame F has subset-sum representatives rho_r for every residue
+  modulo m, with R = max rho_r, and a disjoint block G represents every
+  multiple of m in [M0,M1], then F union G represents every integer in
+
+    [M0 + R, M1].
+
+Conductor route:
+  If G = m G' and G' has conductor c', the lifted interval starts at
+
+    m(c' + 1) + R.
+
+  Therefore the power-saving central conductor theorem can be attacked by
+  proving power-saving bounds for residue-frame width R and for the scaled
+  conductor c' in a suitable divisible block.
+
+Status:
+  This does not prove the global theorem.  It creates a typed modular-induction
+  bridge for the remaining conductor-growth problem.

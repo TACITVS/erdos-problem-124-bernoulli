@@ -37,6 +37,11 @@ bounded-gap tail to a cofinite ray, allowing a finite prefix to be absorbed by
 ordinary interval extension first.  `GapBridgeCertificate.hs` checks the bridge
 against small and current local seed-interval profiles.
 
+`ResidueLift.hs` defines the modular lift from residue representatives plus a
+ray or interval of multiples to an ordinary ray or interval.
+`ResidueLiftCertificate.hs` checks the bridge against current denominator
+residue frames.
+
 `CFHTail.hs` defines a Chen-Fang-Hegyvari tail-domination checker.
 `CFHTailCertificate.hs` proves the `{3,4,5}, k=1` strict local sample by
 combining finite prefix absorption, CFH bounded gaps, and strict reciprocal
@@ -54,6 +59,7 @@ runghc -ihaskell haskell/SeedBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueGateCertificate.hs
 runghc -ihaskell haskell/GapBridgeCertificate.hs
+runghc -ihaskell haskell/ResidueLiftCertificate.hs
 runghc -ihaskell haskell/CFHTailCertificate.hs
 ```
 

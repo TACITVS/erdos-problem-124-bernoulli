@@ -132,6 +132,9 @@ replacement for explicit Baker bounds in exact-critical tails: \(S\)-unit
 finiteness rules out infinitely many bounded independent near-collisions.
 `notes/28_power_saving_central_interval_target.md` sharpens the remaining
 central-interval obligation to a power-saving bound on finite seed conductors.
+`notes/29_residue_lift_bridge.md` adds a typed modular lifting lemma: a small
+residue frame plus an interval or ray of multiples gives an ordinary interval
+or ray with explicit additive loss.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic

@@ -2,8 +2,9 @@
 
 Tracked note: this handout is an imported project-state snapshot.  Subsequent
 updates are in `notes/22_bibliography.md` through
-`notes/28_power_saving_central_interval_target.md`, especially the \(S\)-unit
-exact-critical tail route and the power-saving central conductor target.
+`notes/29_residue_lift_bridge.md`, especially the \(S\)-unit exact-critical
+tail route, the power-saving central conductor target, and the residue-lift
+bridge.
 
 ## 0. Purpose of this handout
 

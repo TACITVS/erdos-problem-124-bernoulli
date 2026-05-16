@@ -75,6 +75,10 @@ obligations =
       Certified
       "GapBridge.hs proves the arithmetic reduction from a seed interval, finite prefix absorption, and bounded tail gaps to a cofinite ray.",
     Obligation
+      "residue-lift bridge"
+      Certified
+      "ResidueLift.hs proves that small residue representatives lift multiple rays and intervals with explicit additive loss.",
+    Obligation
       "local strict Chen-Fang-Hegyvari tail"
       Certified
       "CFHTailCertificate.hs proves the {3,4,5}, k=1 strict sample through CFH bounded gaps and strict slack.",
