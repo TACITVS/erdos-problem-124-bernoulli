@@ -79,6 +79,10 @@ obligations =
       Certified
       "ResidueLift.hs proves that small residue representatives lift multiple rays and intervals with explicit additive loss.",
     Obligation
+      "unit-base residue frame"
+      Certified
+      "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",
+    Obligation
       "local strict Chen-Fang-Hegyvari tail"
       Certified
       "CFHTailCertificate.hs proves the {3,4,5}, k=1 strict sample through CFH bounded gaps and strict slack.",

@@ -2,9 +2,9 @@
 
 Tracked note: this handout is an imported project-state snapshot.  Subsequent
 updates are in `notes/22_bibliography.md` through
-`notes/29_residue_lift_bridge.md`, especially the \(S\)-unit exact-critical
-tail route, the power-saving central conductor target, and the residue-lift
-bridge.
+`notes/30_unit_residue_frame.md`, especially the \(S\)-unit exact-critical
+tail route, the power-saving central conductor target, the residue-lift bridge,
+and the unit-base residue-frame construction.
 
 ## 0. Purpose of this handout
 

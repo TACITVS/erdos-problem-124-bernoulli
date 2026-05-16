@@ -135,6 +135,8 @@ central-interval obligation to a power-saving bound on finite seed conductors.
 `notes/29_residue_lift_bridge.md` adds a typed modular lifting lemma: a small
 residue frame plus an interval or ray of multiples gives an ordinary interval
 or ray with explicit additive loss.
+`notes/30_unit_residue_frame.md` proves an algebraic residue-frame construction
+from powers of any base that is a unit modulo the chosen modulus.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic

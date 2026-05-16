@@ -1,0 +1,29 @@
+Unit-base residue frame
+Date: 2026-05-16
+
+Artifact:
+  notes/30_unit_residue_frame.md
+  haskell/UnitResidueFrame.hs
+  haskell/UnitResidueFrameCertificate.hs
+
+Mathematical advance:
+  Proved an algebraic residue-saturation lemma.
+
+Statement:
+  If gcd(a,m)=1, then the powers
+
+    a^k, a^(k+h), ..., a^(k+(m-2)h)
+
+  where h is the multiplicative order of a modulo m, form a complete residue
+  frame modulo m.  They are all congruent to the same unit a^k mod m, so their
+  subset sums cover 0, u, 2u, ..., (m-1)u.
+
+Conductor route:
+  In any modulus where one available base is a unit, residue saturation is not
+  a serious obstruction.  The remaining task is to prove a conductor or ray
+  theorem for the divisible block and then lift it through the residue frame.
+
+Status:
+  This is a genuine algebraic lemma, but it does not prove Erdős 124.  It
+  removes one class of residue-search obligations and sharpens the modular
+  induction route toward the power-saving central conductor theorem.
