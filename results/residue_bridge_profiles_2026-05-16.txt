@@ -1,0 +1,30 @@
+Commands:
+  python scripts\residue_bridge.py --bases 3,4,7 --k 1 --seed-limit 1000 --modulus-denominator
+  python scripts\residue_bridge.py --bases 3,4,9,25 --k 1 --seed-limit 1000 --modulus-denominator
+  python scripts\residue_bridge.py --batch-exact --max-base 30 --max-size 5 --k 1 --seed-limit 1000 --modulus-denominator --limit 20
+  python scripts\residue_bridge.py --batch-exact --max-base 30 --max-size 5 --k 2 --seed-limit 4000 --modulus-denominator --limit 20
+  runghc haskell\ResidueBridgeProfiles.hs
+
+Summary:
+  The residue bridge works modulo D = lcm(d-1), the denominator used in the
+  exact-critical tail reduction.
+
+  {3,4,7}, k=1, seed_limit=1000:
+    D=6, first completion=(3,7), max residue representative R=14.
+
+  {3,4,9,25}, k=1, seed_limit=1000:
+    D=24, first completion=(6,25), max residue representative R=59.
+
+  All fourteen exact-critical sets with max_base=30 and max_size=5 are
+  residue-complete modulo D at k=1 with seed_limit=1000.
+
+  All fourteen exact-critical sets with max_base=30 and max_size=5 are
+  residue-complete modulo D at k=2 with seed_limit=4000.
+
+  The Haskell checker recomputes the powers, exact-critical denominator,
+  residue bitset closure, first completion point, and minimal residue
+  representative maximum.
+
+Strict compile:
+  ghc -Wall -Werror -fforce-recomp haskell\ResidueBridgeProfiles.hs -o haskell\ResidueBridgeProfiles.exe
+  passed

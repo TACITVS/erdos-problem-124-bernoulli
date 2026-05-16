@@ -11,6 +11,7 @@ from exact_critical_tail import (
     obstruction_bound,
 )
 from hypothesis_minimal import is_hypothesis_minimal
+from residue_bridge import residue_profile
 from seed_bridge import central_profile, find_seed_bridge
 
 
@@ -62,6 +63,16 @@ def main() -> None:
     assert bridge_search.attempts == 2
     assert bridge_search.found.seed_limit == 2000
     assert bridge_search.found.central_interval == (1415, 1426)
+    residue = residue_profile((3, 4, 7), 1, 1000, 6, True)
+    assert residue.complete
+    assert residue.first_completion_index == 3
+    assert residue.first_completion_term == 7
+    assert residue.max_residue_representative == 14
+    exact_residue = residue_profile((3, 4, 9, 25), 1, 1000, 24, True)
+    assert exact_residue.complete
+    assert exact_residue.first_completion_index == 6
+    assert exact_residue.first_completion_term == 25
+    assert exact_residue.max_residue_representative == 59
 
     print("self-checks passed")
 

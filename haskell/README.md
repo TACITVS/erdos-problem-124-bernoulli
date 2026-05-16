@@ -21,6 +21,9 @@ arbitrary independent base pair once an external analytic threshold is supplied.
 `SeedBridgeProfiles.hs` verifies recorded finite seed central-interval profiles
 for small exact-critical and strict cases.
 
+`ResidueBridgeProfiles.hs` independently checks finite residue-complete seed
+profiles modulo the exact-critical denominator.
+
 Run:
 
 ```text
@@ -30,6 +33,7 @@ runghc haskell/GlobalProofAudit.hs
 runghc haskell/MultiplicativeClasses.hs
 runghc haskell/PairCFTailCertificate.hs
 runghc haskell/SeedBridgeProfiles.hs
+runghc haskell/ResidueBridgeProfiles.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

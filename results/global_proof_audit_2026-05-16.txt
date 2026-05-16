@@ -34,6 +34,9 @@ Output:
   - local seed-bridge profiles
     status: Certified
     note: Finite central seed intervals are reproducible for the current small exact-critical and strict profiles.
+  - local residue-bridge profiles
+    status: Certified
+    note: Finite seeds cover every residue modulo the exact-critical denominator for the current small exact-critical profiles.
   - local {3,4,7} and {3,4,9,25} certificates
     status: Certified
     note: Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.

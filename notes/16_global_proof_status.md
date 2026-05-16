@@ -26,6 +26,7 @@ The following pieces are in the repository and have been checked:
 - frontier invariant \(K=C(E)-1-H\);
 - strict-tail takeover after a finite bridge;
 - exact-critical near-collision reduction;
+- local residue-complete seed profiles modulo the exact-critical denominator;
 - local certificates for \(\{3,4,7\},k=2\), \(\{3,4,7\},k=3\), and
   \(\{3,4,9,25\},k=2\);
 - Hasclid checks for the Legendre threshold inequalities;

@@ -62,6 +62,10 @@ obligations =
       Certified
       "Finite central seed intervals are reproducible for the current small exact-critical and strict profiles.",
     Obligation
+      "local residue-bridge profiles"
+      Certified
+      "Finite seeds cover every residue modulo the exact-critical denominator for the current small exact-critical profiles.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",

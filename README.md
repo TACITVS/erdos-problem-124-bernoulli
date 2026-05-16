@@ -47,6 +47,11 @@ hard \(k\ge 1\) version.
 - It also closes another exact-critical set, \(\{3,4,9,25\}, k=2\): the
   largest missing integer is 452099.  See
   `notes/11_34925_k2_certificate.md`.
+- The seed-bridge work now has a separate residue-completeness layer:
+  all fourteen exact-critical sets with maximum base at most 30 and size at
+  most 5 are residue-complete modulo their exact-critical denominator at
+  \(k=1,L=1000\) and at \(k=2,L=4000\).  See
+  `notes/20_residue_bridge_profiles.md`.
 
 ## Source pointers
 
@@ -98,6 +103,7 @@ runghc haskell\GlobalProofAudit.hs
 runghc haskell\MultiplicativeClasses.hs
 runghc haskell\PairCFTailCertificate.hs
 runghc haskell\SeedBridgeProfiles.hs
+runghc haskell\ResidueBridgeProfiles.hs
 ```
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
