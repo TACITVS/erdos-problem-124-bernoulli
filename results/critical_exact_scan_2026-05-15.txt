@@ -1,0 +1,33 @@
+Command:
+  python - <<'PY'
+  from scripts.erdos124 import conductor_by_search, powers_upto
+  from scripts.cas_checks import exact_critical_sets
+
+  for combo in exact_critical_sets(30, 5):
+      stats = conductor_by_search(combo, 1, 1_000_000)
+      print(combo, 'terms', len(powers_upto(combo, 1, 1_000_000)), 'last', stats.last, 'count', stats.count, 'tail', stats.tail)
+  PY
+
+Output:
+  (3, 4, 7) terms 28 last 581 count 37 tail (236, 238, 239, 242, 245, 258, 261, 264, 521, 581)
+  (3, 4, 9, 25) terms 31 last 658 count 28 tail (69, 78, 79, 159, 160, 240, 241, 577, 578, 658)
+  (3, 4, 10, 19) terms 31 last 251 count 13 tail (6, 8, 11, 15, 18, 21, 24, 70, 82, 251)
+  (3, 4, 11, 16) terms 30 last 69 count 17 tail (21, 22, 26, 33, 37, 49, 53, 60, 65, 69)
+  (3, 5, 6, 21) terms 31 last 22 count 9 tail (1, 2, 4, 7, 10, 13, 16, 19, 22)
+  (3, 5, 7, 13) terms 32 last 112 count 9 tail (1, 2, 4, 6, 11, 26, 31, 107, 112)
+  (3, 4, 13, 22, 29) terms 34 last 37 count 13 tail (6, 8, 10, 11, 14, 15, 18, 21, 24, 37)
+  (3, 5, 7, 22, 29) terms 35 last 26 count 10 tail (1, 2, 4, 6, 11, 13, 18, 20, 23, 26)
+  (3, 5, 8, 15, 29) terms 35 last 21 count 8 tail (1, 2, 4, 6, 7, 10, 19, 21)
+  (3, 5, 9, 13, 25) terms 35 last 110 count 18 tail (19, 20, 24, 29, 87, 92, 96, 101, 105, 110)
+  (3, 5, 10, 13, 19) terms 35 last 20 count 7 tail (1, 2, 4, 6, 7, 11, 20)
+  (3, 5, 11, 13, 16) terms 34 last 112 count 13 tail (6, 7, 10, 15, 26, 31, 78, 83, 107, 112)
+  (3, 6, 7, 13, 21) terms 35 last 17 count 8 tail (1, 2, 4, 5, 8, 11, 14, 17)
+  (4, 5, 6, 7, 21) terms 35 last 24 count 7 tail (1, 2, 3, 8, 14, 19, 24)
+
+Command:
+  same scan with k=2 and limit 10000000.
+
+Output summary:
+  Hardest in this window is (3, 4, 7), with last missing <=10000000 equal to
+  3982888.  The next largest last-missing value is 452099 for (3, 4, 9, 25).
+
