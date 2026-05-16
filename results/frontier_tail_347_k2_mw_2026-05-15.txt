@@ -1,0 +1,14 @@
+Command:
+  python scripts/mw_threshold.py
+
+Output:
+  {'gap': 47794770, 'first_p': 293904, 'log_lower_bound': 18.43880848360796}
+  {'previous_p': 293903, 'log_lower_bound': 17.44689823719861}
+  {'derivative_positive_at_first_p': True}
+
+Command:
+  cpp\frontier_tail.exe --bases=3,4,7 --k=2 --seed-limit=50000000 --conductor=3982888 --steps=1000000 --target-base=3 --target-exp=293904 --top=10
+
+Output:
+  {'bases': (3, 4, 7), 'k': 2, 'seed_limit': 50000000, 'conductor': 3982888, 'denominator': 6, 'invariant_num': '47794770', 'requested_steps': 1000000, 'actual_steps': 692710, 'stopped_by_target': True, 'failed': False, 'fail_step': None, 'min_step': 2, 'min_margin': '53866687', 'min_state': '[3^18, 4^14, 7^10]', 'final_state': '[3^293905, 4^232914, 7^165931]', 'near_misses': [{'step': 2, 'margin': '53866687', 'state': '[3^18, 4^14, 7^10]'}, {'step': 0, 'margin': '58944252', 'state': '[3^17, 4^13, 7^10]'}, {'step': 1, 'margin': '64021817', 'state': '[3^17, 4^14, 7^10]'}, {'step': 5, 'margin': '186891513', 'state': '[3^19, 4^15, 7^11]'}, {'step': 3, 'margin': '308262350', 'state': '[3^18, 4^15, 7^10]'}, {'step': 4, 'margin': '485792359', 'state': '[3^18, 4^15, 7^11]'}, {'step': 6, 'margin': '1172113694', 'state': '[3^19, 4^16, 7^11]'}, {'step': 7, 'margin': '1519309885', 'state': '[3^20, 4^16, 7^11]'}, {'step': 8, 'margin': '1987178970', 'state': '[3^20, 4^16, 7^12]'}, {'step': 10, 'margin': '2795361865', 'state': '[3^21, 4^17, 7^12]'}]}
+

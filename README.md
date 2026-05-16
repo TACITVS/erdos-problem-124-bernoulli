@@ -36,8 +36,9 @@ hard \(k\ge 1\) version.
   - \(\{3,5,7,13\}, k=1\): last missing 112 in the local computation.
   - \(\{3,6,7,13,21\}, k=1\): last missing 17.
   - \(\{3,4,5\}, k=1\): last missing 79.
-- For \(\{3,4,7\}, k=2\), bounded search up to 50000000 found last missing
-  3982888.  This is evidence only, not yet a proof of global cofiniteness.
+- For \(\{3,4,7\}, k=2\), a computer-assisted proof certificate now shows
+  the largest missing integer is 3982888.  See
+  `notes/07_347_k2_certificate.md`.
 
 ## Source pointers
 
