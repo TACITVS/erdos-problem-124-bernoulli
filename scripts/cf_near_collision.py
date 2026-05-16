@@ -9,11 +9,11 @@ with a rational geometric tail bound.
 
 from __future__ import annotations
 
+import argparse
 from fractions import Fraction
 
 
-B = 47_794_770
-MW_THRESHOLD_A = 293_904
+DEFAULT_B = 47_794_770
 
 
 def log_interval_int(x: int, terms: int) -> tuple[Fraction, Fraction]:
@@ -59,26 +59,46 @@ def convergents(cf: list[int]) -> list[tuple[int, int]]:
     return out
 
 
-def small_frontier_margins() -> list[tuple[tuple[int, int, int], int]]:
-    states = [
-        (17, 13, 10),
-        (17, 14, 10),
-        (18, 14, 10),
-        (18, 15, 10),
-        (18, 15, 11),
-        (19, 15, 11),
-        (19, 16, 11),
-    ]
-    out: list[tuple[tuple[int, int, int], int]] = []
-    for a, b, c in states:
-        e3, e4, e7 = 3**a, 4**b, 7**c
-        t = min(e3, e4, e7)
-        g = 3 * (e3 - t) + 2 * (e4 - t) + (e7 - t)
-        out.append(((a, b, c), g - B))
-    return out
+def first_legendre_threshold(gap: int) -> int:
+    a = 1
+    while 2 * a * gap >= 3**a - gap:
+        a += 1
+    return a
+
+
+def mw_log_lower_bound(p: int) -> float:
+    import math
+
+    return math.log(3) * (p - 500 * math.log(4) * (8 + math.log(p)) ** 2)
+
+
+def first_mw_threshold(gap: int) -> int:
+    import math
+
+    target = math.log(gap)
+    lo = 1
+    hi = 2
+    while mw_log_lower_bound(hi) <= target:
+        lo = hi
+        hi *= 2
+    while lo + 1 < hi:
+        mid = (lo + hi) // 2
+        if mw_log_lower_bound(mid) > target:
+            hi = mid
+        else:
+            lo = mid
+    return hi
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--gap", type=int, default=DEFAULT_B)
+    args = parser.parse_args()
+
+    gap = args.gap
+    legendre_threshold = first_legendre_threshold(gap)
+    mw_threshold = first_mw_threshold(gap)
+
     log3_lower, log3_upper = log_interval_int(3, 80)
     log4_lower, log4_upper = log_interval_int(4, 80)
     alpha_lower = log3_lower / log4_upper
@@ -86,25 +106,25 @@ def main() -> None:
     cf = interval_cf(alpha_lower, alpha_upper, 13)
     conv = convergents(cf)
 
-    relevant = [(p, q) for p, q in conv if 20 <= q < MW_THRESHOLD_A]
-    next_after_threshold = next((p, q) for p, q in conv if q >= MW_THRESHOLD_A)
-    gap_checks = [(p, q, abs(3**q - 4**p) > B) for p, q in relevant]
+    relevant = [(p, q) for p, q in conv if legendre_threshold <= q < mw_threshold]
+    next_after_threshold = next((p, q) for p, q in conv if q >= mw_threshold)
+    gap_checks = [(p, q, abs(3**q - 4**p) > gap) for p, q in relevant]
 
     print(
         {
-            "B": B,
-            "large_a_threshold": 20,
-            "large_a_threshold_check": 2 * 20 * B < 3**20 - B,
+            "gap": gap,
+            "legendre_threshold": legendre_threshold,
+            "legendre_threshold_check": 2 * legendre_threshold * gap
+            < 3**legendre_threshold - gap,
+            "mw_threshold": mw_threshold,
             "cf_prefix": cf,
             "relevant_convergents_b_over_a": relevant,
             "next_convergent_b_over_a": next_after_threshold,
             "all_relevant_gaps_exceed_B": all(ok for _, _, ok in gap_checks),
             "gap_checks": gap_checks,
-            "small_frontier_margins_G_minus_B": small_frontier_margins(),
         }
     )
 
 
 if __name__ == "__main__":
     main()
-

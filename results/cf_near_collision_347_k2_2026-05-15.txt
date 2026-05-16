@@ -1,6 +1,5 @@
 Command:
-  python scripts/cf_near_collision.py
+  python scripts/cf_near_collision.py --gap 47794770
 
 Output:
-  {'B': 47794770, 'large_a_threshold': 20, 'large_a_threshold_check': True, 'cf_prefix': [0, 1, 3, 1, 4, 1, 1, 11, 1, 46, 1, 5, 112], 'relevant_convergents_b_over_a': [(19, 24), (23, 29), (42, 53), (485, 612), (527, 665), (24727, 31202), (25254, 31867), (150997, 190537)], 'next_convergent_b_over_a': (16936918, 21372011), 'all_relevant_gaps_exceed_B': True, 'gap_checks': [(19, 24, True), (23, 29, True), (42, 53, True), (485, 612, True), (527, 665, True), (24727, 31202, True), (25254, 31867, True), (150997, 190537, True)], 'small_frontier_margins_G_minus_B': [((17, 13, 10), 353665512), ((17, 14, 10), 384130902), ((18, 14, 10), 323200122), ((18, 15, 10), 1849574100), ((18, 15, 11), 2914754154), ((19, 15, 11), 1121349078), ((19, 16, 11), 7032682164)]}
-
+  {'gap': 47794770, 'legendre_threshold': 20, 'legendre_threshold_check': True, 'mw_threshold': 293904, 'cf_prefix': [0, 1, 3, 1, 4, 1, 1, 11, 1, 46, 1, 5, 112], 'relevant_convergents_b_over_a': [(19, 24), (23, 29), (42, 53), (485, 612), (527, 665), (24727, 31202), (25254, 31867), (150997, 190537)], 'next_convergent_b_over_a': (16936918, 21372011), 'all_relevant_gaps_exceed_B': True, 'gap_checks': [(19, 24, True), (23, 29, True), (42, 53, True), (485, 612, True), (527, 665, True), (24727, 31202, True), (25254, 31867, True), (150997, 190537, True)]}

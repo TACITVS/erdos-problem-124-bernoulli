@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from cas_checks import exact_critical_sets
-from cf_near_collision import B, convergents, interval_cf, log_interval_int
+from cf_near_collision import DEFAULT_B, convergents, interval_cf, log_interval_int
 from erdos124 import conductor_by_search, reciprocal_sum, strict_interval_certificate
 
 
@@ -29,7 +29,7 @@ def main() -> None:
     cf = interval_cf(log3_lower / log4_upper, log3_upper / log4_lower, 13)
     conv = convergents(cf)
     relevant = [(p, q) for p, q in conv if 20 <= q < 293_904]
-    assert B == 47_794_770
+    assert DEFAULT_B == 47_794_770
     assert relevant == [
         (19, 24),
         (23, 29),

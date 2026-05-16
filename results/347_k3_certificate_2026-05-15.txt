@@ -1,0 +1,18 @@
+Command:
+  cpp\erdos124_fast.exe --mode=central --bases=3,4,7 --k=3 --seed-limit=5000000000
+
+Output:
+  {'mode': 'central', 'bases': (3, 4, 7), 'k': 3, 'seed_limit': 5000000000, 'terms': 41, 'seed_sum': 13263680771, 'half': 6631840385, 'missing_count_to_half': 391070, 'conductor_to_half': 166025260, 'central_interval': (166025261, 13097655510), 'tail': (165816069, 165818370, 165821173, 165824283, 165824526, 165841010, 165842403, 165842659, 166021488, 166025260)}
+
+Command:
+  python scripts/cf_near_collision.py --gap 1992303678
+
+Output:
+  {'gap': 1992303678, 'legendre_threshold': 23, 'legendre_threshold_check': True, 'mw_threshold': 293907, 'cf_prefix': [0, 1, 3, 1, 4, 1, 1, 11, 1, 46, 1, 5, 112], 'relevant_convergents_b_over_a': [(19, 24), (23, 29), (42, 53), (485, 612), (527, 665), (24727, 31202), (25254, 31867), (150997, 190537)], 'next_convergent_b_over_a': (16936918, 21372011), 'all_relevant_gaps_exceed_B': True, 'gap_checks': [(19, 24, True), (23, 29, True), (42, 53, True), (485, 612, True), (527, 665, True), (24727, 31202, True), (25254, 31867, True), (150997, 190537, True)]}
+
+Command:
+  cpp\frontier_tail.exe --bases=3,4,7 --k=3 --seed-limit=5000000000 --conductor=166025260 --steps=1000000 --target-base=3 --target-exp=293907 --top=10
+
+Output:
+  {'bases': (3, 4, 7), 'k': 3, 'seed_limit': 5000000000, 'conductor': 166025260, 'denominator': 6, 'invariant_num': '1992303678', 'requested_steps': 1000000, 'actual_steps': 692707, 'stopped_by_target': True, 'failed': False, 'fail_step': None, 'min_step': 0, 'min_margin': '2471277047', 'min_state': '[3^21, 4^17, 7^12]', 'final_state': '[3^293908, 4^232916, 7^165933]'}
+

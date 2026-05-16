@@ -42,6 +42,8 @@ hard \(k\ge 1\) version.
   the full Erdos-124 problem.  The tail scan has now been reduced to a
   continued-fraction lemma; see `notes/07_347_k2_certificate.md` and
   `notes/09_cf_tail_347_k2.md`.
+- The same method now closes \(\{3,4,7\}, k=3\): the largest missing integer
+  is 166025260.  See `notes/10_347_k3_certificate.md`.
 
 ## Source pointers
 
