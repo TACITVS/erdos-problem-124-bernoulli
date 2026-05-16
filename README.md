@@ -24,6 +24,10 @@ hard \(k\ge 1\) version.
 ## Current local results
 
 - Implemented exact subset-sum bitset computations for bounded verification.
+- Added a C++ accelerator for large exact bitset conductor and central-interval
+  scans.  On this machine, the `{3,4,7}, k=2, limit=50000000` conductor scan
+  took about 0.13 seconds in C++ versus about 7.08 seconds through the Python
+  prototype.
 - Reproduced the published benchmark for \(\{3,4,7\}, k=1\): the largest
   missing integer is 581 in searches up to 100000.
 - Found bounded-search conductors for several examples from Burr, Erdos,
@@ -42,3 +46,17 @@ hard \(k\ge 1\) version.
   integer powers", Acta Arithmetica 77 (1996), 133-138.
 - G. Melfi, "On certain positive integer sequences", arXiv:math/0404555.
 
+## Fast scans
+
+Build the C++ accelerator with:
+
+```text
+g++ -O3 -std=c++20 -march=native cpp/erdos124_fast.cpp -o cpp/erdos124_fast.exe
+```
+
+Example checks:
+
+```text
+cpp/erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
+cpp/erdos124_fast.exe --mode=central --bases=3,4,7 --k=2 --seed-limit=50000000
+```

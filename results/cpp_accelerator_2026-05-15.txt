@@ -1,0 +1,22 @@
+Build:
+  g++ -O3 -std=c++20 -march=native cpp/erdos124_fast.cpp -o cpp/erdos124_fast.exe
+
+Correctness spot checks:
+  cpp\erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
+
+Output:
+  {'mode': 'conductor', 'bases': (3, 4, 7), 'k': 1, 'limit': 100000, 'terms': 23, 'missing_count': 37, 'last_missing': 581, 'tail': (236, 238, 239, 242, 245, 258, 261, 264, 521, 581)}
+
+Command:
+  cpp\erdos124_fast.exe --mode=central --bases=3,4,7 --k=2 --seed-limit=50000000
+
+Output:
+  {'mode': 'central', 'bases': (3, 4, 7), 'k': 2, 'seed_limit': 50000000, 'terms': 34, 'seed_sum': 134018893, 'half': 67009446, 'missing_count_to_half': 5207, 'conductor_to_half': 3982888, 'central_interval': (3982889, 130036004), 'tail': (236039, 254302, 316703, 435782, 498183, 516446, 767480, 785743, 3964625, 3982888)}
+
+Timing comparison:
+  Measure-Command { cpp\erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=2 --limit=50000000 | Out-Null }
+    TotalSeconds: 0.13
+
+  Measure-Command { python -c "from scripts.erdos124 import conductor_by_search; print(conductor_by_search((3,4,7),2,50000000).last)" | Out-Null }
+    TotalSeconds: 7.08
+
