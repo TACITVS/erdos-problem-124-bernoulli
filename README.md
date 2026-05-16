@@ -69,3 +69,14 @@ Example checks:
 cpp/erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
 cpp/erdos124_fast.exe --mode=central --bases=3,4,7 --k=2 --seed-limit=50000000
 ```
+
+## Typed certificate checks
+
+The Haskell checker in `haskell/TailCertificate.hs` verifies small exact-critical
+tail arithmetic with separate types for bases, exponents, weights, conductors,
+cleared bounds, and margins.
+
+```text
+ghc -Wall -Werror -fforce-recomp haskell\TailCertificate.hs -o haskell\TailCertificate.exe
+runghc haskell\TailCertificate.hs
+```
