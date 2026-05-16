@@ -1,0 +1,28 @@
+Raku residue DSL
+Date: 2026-05-16
+
+External project inspected:
+  C:\Users\baian\Math_Research\Knuth_Problem\formal_raku
+
+Artifact:
+  raku/lib/Erdos124/ResidueDSL.rakumod
+  raku/residue_dsl_certificate.raku
+  raku/README.md
+  notes/31_raku_dsl_fit.md
+
+Mathematical/proof-engineering advance:
+  Added a Raku DSL layer for the residue-lift and unit-base residue-frame
+  lemmas.  The DSL validates moduli, residue representatives, multiple
+  intervals/rays, lifted intervals/rays, and unit-base frames.
+
+Custom operator:
+  x ≡ₘ modulo(r, m)
+
+Status:
+  This is not an RFLK kernel proof.  It is an executable right-by-construction
+  certificate layer and an independent cross-check of the current Haskell
+  residue lemmas.
+
+Next RFLK target:
+  Build a small arithmetic theory for congruence, finite subset sums, and
+  intervals before attempting a kernel-checked RFLK proof of these lemmas.

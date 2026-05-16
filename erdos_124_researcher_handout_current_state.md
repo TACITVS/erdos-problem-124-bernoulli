@@ -2,9 +2,9 @@
 
 Tracked note: this handout is an imported project-state snapshot.  Subsequent
 updates are in `notes/22_bibliography.md` through
-`notes/30_unit_residue_frame.md`, especially the \(S\)-unit exact-critical
-tail route, the power-saving central conductor target, the residue-lift bridge,
-and the unit-base residue-frame construction.
+`notes/31_raku_dsl_fit.md`, especially the \(S\)-unit exact-critical tail
+route, the power-saving central conductor target, the residue-lift bridge, the
+unit-base residue-frame construction, and the Raku residue DSL.
 
 ## 0. Purpose of this handout
 

@@ -137,6 +137,8 @@ residue frame plus an interval or ray of multiples gives an ordinary interval
 or ray with explicit additive loss.
 `notes/30_unit_residue_frame.md` proves an algebraic residue-frame construction
 from powers of any base that is a unit modulo the chosen modulus.
+`notes/31_raku_dsl_fit.md` records the Raku/RFLK fit and adds a small
+right-by-construction Raku certificate DSL for the residue-lift lemmas.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
@@ -144,4 +146,10 @@ obligations such as Legendre-threshold inequalities.
 
 ```text
 cabal run prover-int -- C:\Users\baian\Math_Research\Knuth_124\prover\legendre_thresholds.euclid
+```
+
+Raku-side proof engineering lives in `raku/`:
+
+```text
+raku raku\residue_dsl_certificate.raku
 ```
