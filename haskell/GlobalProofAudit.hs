@@ -72,7 +72,7 @@ obligations =
     Obligation
       "bounded-gap bridge"
       Certified
-      "GapBridge.hs proves the arithmetic reduction from a seed interval and bounded tail gaps to a cofinite ray.",
+      "GapBridge.hs proves the arithmetic reduction from a seed interval, finite prefix absorption, and bounded tail gaps to a cofinite ray.",
     Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified

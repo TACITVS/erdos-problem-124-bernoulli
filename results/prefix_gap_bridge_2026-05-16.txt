@@ -1,0 +1,26 @@
+Prefix gap bridge
+Date: 2026-05-16
+
+Artifact:
+  notes/25_prefix_gap_bridge.md
+  haskell/GapBridge.hs
+  haskell/GapBridgeCertificate.hs
+
+Mathematical advance:
+  Extended the bounded-gap bridge to allow a finite tail prefix to be absorbed
+  by ordinary interval extension before applying a tail gap theorem.
+
+Checked capacity rows:
+  - binary powers: prefix [], gap bound 1, ray start 0.
+  - {3,4,5}, k=1: seed interval [80,2132], prefix [1024], gap bound target
+    2187, ray start 80.
+  - {3,4,7}, k=2 with seed_limit=50000000: seed interval
+    [3982889,130036004], prefix [67108864,129140163], gap bound target
+    268435456, ray start 3982889.
+  - {3,4,9,25}, k=2 with seed_limit=10000000: seed interval
+    [452100,27868079], prefix [], gap bound target 14348907, ray start 452100.
+
+Status:
+  These are capacity checks.  Except for binary powers, they do not certify the
+  required tail gap theorem.  The next proof target is a typed
+  Chen-Fang-Hegyvari domination certificate that supplies these bounds.

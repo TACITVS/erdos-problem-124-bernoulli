@@ -123,6 +123,8 @@ quasi-complete residue witnesses.
 The bounded-gap bridge itself is isolated in
 `notes/24_bounded_gap_bridge.md`: a seed interval of span \(H\) plus a tail
 subset-sum gap bound \(G\le H+1\) implies a cofinite ray.
+`notes/25_prefix_gap_bridge.md` adds the finite-prefix version used by the
+current local capacity checks.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic

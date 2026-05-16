@@ -33,7 +33,8 @@ profiles modulo the exact-critical denominator.
 witnesses and current local exact-critical seed profiles.
 
 `GapBridge.hs` defines the arithmetic bridge from a finite seed interval and a
-bounded-gap tail to a cofinite ray.  `GapBridgeCertificate.hs` checks the bridge
+bounded-gap tail to a cofinite ray, allowing a finite prefix to be absorbed by
+ordinary interval extension first.  `GapBridgeCertificate.hs` checks the bridge
 against small and current local seed-interval profiles.
 
 Run:

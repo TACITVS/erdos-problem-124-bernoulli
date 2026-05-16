@@ -7,8 +7,12 @@ import GapBridge
   ( Ray (..),
     SeedInterval,
     TailGapBound (..),
+    absorbPrefix,
+    bridgeAfterPrefix,
     bridgeToRay,
+    intervalEnd,
     intervalSpan,
+    intervalStart,
     mkSeedInterval,
     mkTailGapBound,
     requiredGapBound,
@@ -18,6 +22,7 @@ data BridgeCase = BridgeCase
   { label :: String,
     seedStart :: Integer,
     seedEnd :: Integer,
+    absorbedPrefix :: [Integer],
     checkedGapBound :: Integer,
     source :: String
   }
@@ -29,31 +34,36 @@ bridgeCases =
       "binary powers"
       0
       0
+      []
       1
       "Known tail fact: P({1,2,4,...}) has consecutive gaps 1.",
     BridgeCase
-      "{3,4,5}, k=1 strict seed interval"
+      "{3,4,5}, k=1 after absorbing first tail term"
       80
       2132
-      2053
-      "Capacity row only: this is the gap bound needed from a tail theorem.",
+      [1024]
+      2187
+      "Conditional row: needs tail subset-sum gaps <= 2187 after the prefix.",
     BridgeCase
-      "{3,4,7}, k=1 exact-critical seed interval"
-      582
-      1249
-      668
-      "Capacity row only: this is the gap bound needed from a tail theorem.",
+      "{3,4,7}, k=2 large seed after two prefix terms"
+      3982889
+      130036004
+      [67108864, 129140163]
+      268435456
+      "Conditional row: needs tail subset-sum gaps <= 268435456 after the prefix.",
     BridgeCase
-      "{3,4,7}, k=2 small seed interval"
-      1415
-      1426
-      12
-      "Capacity row only: this is the gap bound needed from a tail theorem."
+      "{3,4,9,25}, k=2 large seed without prefix"
+      452100
+      27868079
+      []
+      14348907
+      "Conditional row: needs tail subset-sum gaps <= 14348907."
   ]
 
-formatCase :: BridgeCase -> SeedInterval -> TailGapBound -> Ray -> String
-formatCase bridge interval gapBound ray =
+formatCase :: BridgeCase -> SeedInterval -> SeedInterval -> TailGapBound -> Ray -> String
+formatCase bridge interval extended gapBound ray =
   let TailGapBound required = requiredGapBound interval
+      TailGapBound extendedRequired = requiredGapBound extended
       TailGapBound checked = gapBound
       Ray rayStart = ray
    in
@@ -62,7 +72,10 @@ formatCase bridge interval gapBound ray =
     [ "case: " <> label bridge,
       "seed interval: " <> show (seedStart bridge, seedEnd bridge),
       "span: " <> show (intervalSpan interval),
-      "required tail gap bound: " <> show required,
+      "absorbed prefix: " <> show (absorbedPrefix bridge),
+      "initial interval capacity: " <> show required,
+      "extended interval: " <> show (intervalStart extended, intervalEnd extended),
+      "extended interval capacity: " <> show extendedRequired,
       "checked tail gap bound: " <> show checked,
       "conditional ray start: " <> show rayStart,
       "source: " <> source bridge
@@ -72,8 +85,12 @@ runCase :: BridgeCase -> Either String String
 runCase bridge = do
   interval <- mkSeedInterval (seedStart bridge) (seedEnd bridge)
   gapBound <- mkTailGapBound (checkedGapBound bridge)
-  ray <- bridgeToRay interval gapBound
-  pure (formatCase bridge interval gapBound ray)
+  extended <- absorbPrefix interval (absorbedPrefix bridge)
+  ray <-
+    if null (absorbedPrefix bridge)
+      then bridgeToRay interval gapBound
+      else bridgeAfterPrefix interval (absorbedPrefix bridge) gapBound
+  pure (formatCase bridge interval extended gapBound ray)
 
 main :: IO ()
 main =
