@@ -36,8 +36,10 @@ hard \(k\ge 1\) version.
   - \(\{3,5,7,13\}, k=1\): last missing 112 in the local computation.
   - \(\{3,6,7,13,21\}, k=1\): last missing 17.
   - \(\{3,4,5\}, k=1\): last missing 79.
-- For \(\{3,4,7\}, k=2\), a computer-assisted proof certificate now shows
-  the largest missing integer is 3982888.  See
+- For \(\{3,4,7\}, k=2\), there is a computer-assisted certificate, combining
+  exact finite verification with the Mignotte-Waldschmidt lower bound, that the
+  largest missing integer is 3982888.  This is not a clean algebraic proof of
+  the full Erdos-124 problem.  See
   `notes/07_347_k2_certificate.md`.
 
 ## Source pointers

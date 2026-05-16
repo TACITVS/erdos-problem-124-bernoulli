@@ -1,7 +1,9 @@
-# Certificate for \(\{3,4,7\}, k=2\)
+# Computer-assisted certificate for \(\{3,4,7\}, k=2\)
 
-This note records a computer-assisted proof that the largest missing integer in
-\(\Sigma(S(\{3,4,7\},2))\) is 3982888.
+This note records a computer-assisted certificate that the largest missing
+integer in \(\Sigma(S(\{3,4,7\},2))\) is 3982888.  It is mathematically useful,
+but it is not the same thing as a clean algebraic proof of Erdos-124.  The
+finite verification should be treated as an exact finite lemma.
 
 ## Finite central interval
 
@@ -93,7 +95,10 @@ exceeds 47794770 at \(p=293904\), and the inner expression is increasing there.
 Therefore no failure is possible after the finite scan.
 
 Combining the finite central interval, the exact frontier scan, and the
-Mignotte-Waldschmidt tail exclusion proves every integer
+Mignotte-Waldschmidt tail exclusion certifies that every integer
 \(n\ge3982889\) is represented.  Since 3982888 is missing, it is the largest
 missing integer.
 
+To turn this into a cleaner proof, the finite frontier scan should be replaced
+by an algebraic lemma, for example using continued fractions or a sharper
+linear-forms estimate to rule out the finite range without enumerating states.
