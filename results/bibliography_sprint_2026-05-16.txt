@@ -1,0 +1,42 @@
+Bibliography sprint for Erdos 124
+Date: 2026-05-16
+
+Artifact:
+  notes/22_bibliography.md
+
+Purpose:
+  Answer whether deeper bibliographical work is worthwhile before building the
+  next proof certificate layer.
+
+Conclusion:
+  Yes.  The current proof audit has three open obligations:
+    1. global residue saturation;
+    2. post-saturation central interval formation;
+    3. global explicit analytic bounds for independent base pairs/classes.
+
+  The bibliography identifies modern complete-sequence, exponential-sequence,
+  subset-sum, and Diophantine-approximation sources that plausibly attack those
+  obligations.  The next proof-design step should use those sources before
+  committing to a bespoke ResidueGateCertificate API.
+
+Highest-priority sources:
+  - Burr, Erdos, Graham, Li, "Complete sequences of sets of integer powers",
+    Acta Arithmetica 77 (1996), 133-138.
+  - Bergelson and Simmons, "A note on a theorem of Erdos and Graham",
+    arXiv:1507.02208.
+  - Chen, Fang, and Hegyvari, "On complete sequences", 2016.
+  - Xue, Fang, and Ma, "On exponential type sequences", Discrete Applied
+    Mathematics 338 (2023), 86-98.
+  - Yu, Chen, and Chen, "A generalization of the Erdos-Birch theorem",
+    European Journal of Combinatorics 128 (2025), Article 104187.
+  - Mignotte-Waldschmidt and Laurent linear-forms sources for explicit
+    independent-pair tail thresholds.
+
+Immediate plan change:
+  Read and extract the residue/interval lemmas from Chen-Fang-Hegyvari and
+  Xue-Fang-Ma before implementing a general residue-gate checker.  Then design
+  the Haskell API around the mathematical vocabulary that survives that read,
+  especially quasi-complete residue sets.
+
+Status:
+  Bibliography map added.  No theorem is claimed complete by this artifact.

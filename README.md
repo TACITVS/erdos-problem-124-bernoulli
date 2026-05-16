@@ -108,6 +108,11 @@ runghc -ihaskell haskell\SeedBridgeProfiles.hs
 runghc -ihaskell haskell\ResidueBridgeProfiles.hs
 ```
 
+A first bibliography map for the remaining global proof obligations is in
+`notes/22_bibliography.md`.  It is a working source map, not a completed proof:
+its immediate use is to align the next residue-saturation and interval lemmas
+with the existing complete-sequence literature.
+
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
 obligations such as Legendre-threshold inequalities.
