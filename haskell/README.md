@@ -9,11 +9,15 @@ silently interchangeable.
 `log(3)/log(4)` using exact rational log intervals and exact integer
 near-collision gaps.
 
+`GlobalProofAudit.hs` records which parts of the full Erdos-124 proof are
+certified, imported, or still open.
+
 Run:
 
 ```text
 runghc haskell/TailCertificate.hs
 runghc haskell/CFTailCertificate.hs
+runghc haskell/GlobalProofAudit.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

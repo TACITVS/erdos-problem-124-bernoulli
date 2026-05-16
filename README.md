@@ -90,6 +90,13 @@ ghc -Wall -Werror -fforce-recomp haskell\CFTailCertificate.hs -o haskell\CFTailC
 runghc haskell\CFTailCertificate.hs
 ```
 
+The global proof audit is intentionally not marked complete yet.  It tracks the
+remaining open obligations for the full theorem.
+
+```text
+runghc haskell\GlobalProofAudit.hs
+```
+
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
 obligations such as Legendre-threshold inequalities.

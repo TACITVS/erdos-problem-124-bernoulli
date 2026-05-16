@@ -1,0 +1,49 @@
+Command:
+  runghc haskell\GlobalProofAudit.hs
+
+Output:
+  Global Erdos-124 proof audit
+
+  - theorem statement
+    status: Certified
+    note: Finite base sets, k >= 1, gcd 1, reciprocal sum >= 1.
+  - monotonicity reduction
+    status: Certified
+    note: Recorded in notes/13_reduction_lemmas.md.
+  - hypothesis-minimal reduction
+    status: Certified
+    note: A minimal counterexample may be assumed hypothesis-minimal.
+  - interval extension
+    status: Certified
+    note: A seed interval extends if each next term touches the current interval.
+  - frontier invariant
+    status: Certified
+    note: K = C(E) - 1 - H is invariant along absorbed tail powers.
+  - strict reciprocal-sum tail
+    status: Certified
+    note: Strict slack gives eventual takeover after a finite bridge.
+  - exact-critical near-collision reduction
+    status: Certified
+    note: Failure forces all frontier powers into bounded pairwise gaps.
+  - local {3,4,7} and {3,4,9,25} certificates
+    status: Certified
+    note: Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.
+  - Mignotte-Waldschmidt input for 3 versus 4
+    status: Imported
+    note: Used as an external analytic theorem in the current local certificates.
+  - global seed-bridge theorem
+    status: Open
+    note: Need a proof that every admissible finite A,k admits a seed interval large enough to enter the tail argument.
+  - global exact-critical analytic bound
+    status: Open
+    note: Need an explicit, checkable Baker-type bound for arbitrary multiplicatively independent base pairs/classes.
+
+  open obligations: 2
+
+Strict compile:
+  ghc -Wall -Werror -fforce-recomp haskell\GlobalProofAudit.hs -o haskell\GlobalProofAudit.exe
+  passed
+
+Completeness guard:
+  runghc haskell\GlobalProofAudit.hs --require-complete
+  failed as expected because the global proof still has open obligations
