@@ -4,6 +4,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 _paper_cache/
+raku/lib/.precomp/
 *.exe
 *.hi
 *.o
