@@ -139,6 +139,24 @@ or ray with explicit additive loss.
 from powers of any base that is a unit modulo the chosen modulus.
 `notes/31_raku_dsl_fit.md` records the Raku/RFLK fit and adds a small
 right-by-construction Raku certificate DSL for the residue-lift lemmas.
+`notes/32_multilanguage_certificate_architecture.md` defines the manifest-based
+certificate architecture that keeps the Python, Haskell, Raku, C++ and prover
+artifacts in one coherent body.
+
+## Certificate runner
+
+The default certificate suite is listed in `certificates/manifest.json` and run
+by:
+
+```text
+python scripts\run_certificates.py
+```
+
+Optional external checks can be included with:
+
+```text
+python scripts\run_certificates.py --all
+```
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic

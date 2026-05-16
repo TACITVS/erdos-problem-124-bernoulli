@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "description": "Executable certificate manifest for the Erdős 124 research repository.",
+  "entries": [
+    {
+      "id": "python-finite-seed-smoke",
+      "language": "Python",
+      "trust": "empirical finite check",
+      "default": true,
+      "command": ["python", "scripts/self_check.py"],
+      "artifacts": ["scripts/finite_seed.py", "scripts/erdos124.py"],
+      "purpose": "Smoke-test finite subset-sum, conductor, and residue-profile helpers."
+    },
+    {
+      "id": "haskell-tail-certificate",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "haskell/TailCertificate.hs"],
+      "artifacts": ["haskell/TailCertificate.hs"],
+      "purpose": "Check small exact-critical tail arithmetic certificates."
+    },
+    {
+      "id": "haskell-cf-tail-certificate",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "haskell/CFTailCertificate.hs"],
+      "artifacts": ["haskell/CFTailCertificate.hs"],
+      "purpose": "Check the continued-fraction tail gate for log(3)/log(4)."
+    },
+    {
+      "id": "haskell-global-proof-audit",
+      "language": "Haskell",
+      "trust": "proof-obligation audit",
+      "default": true,
+      "command": ["runghc", "haskell/GlobalProofAudit.hs"],
+      "artifacts": ["haskell/GlobalProofAudit.hs"],
+      "purpose": "Report certified, imported, optional, and open proof obligations."
+    },
+    {
+      "id": "haskell-multiplicative-classes",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "haskell/MultiplicativeClasses.hs"],
+      "artifacts": ["haskell/MultiplicativeClasses.hs"],
+      "purpose": "Check multiplicative-class reduction examples."
+    },
+    {
+      "id": "haskell-pair-cf-tail",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "haskell/PairCFTailCertificate.hs"],
+      "artifacts": ["haskell/PairCFTailCertificate.hs"],
+      "purpose": "Check generic independent-pair continued-fraction windows."
+    },
+    {
+      "id": "haskell-seed-bridge-profiles",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/SeedBridgeProfiles.hs"],
+      "artifacts": ["haskell/SeedBridgeProfiles.hs", "haskell/FiniteSeed.hs"],
+      "purpose": "Recompute finite central seed profiles."
+    },
+    {
+      "id": "haskell-residue-bridge-profiles",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ResidueBridgeProfiles.hs"],
+      "artifacts": ["haskell/ResidueBridgeProfiles.hs", "haskell/FiniteSeed.hs"],
+      "purpose": "Recompute exact-critical denominator residue profiles."
+    },
+    {
+      "id": "haskell-residue-gate",
+      "language": "Haskell",
+      "trust": "typed finite certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ResidueGateCertificate.hs"],
+      "artifacts": ["haskell/ResidueGate.hs", "haskell/ResidueGateCertificate.hs"],
+      "purpose": "Check complete and quasi-complete residue predicates."
+    },
+    {
+      "id": "haskell-gap-bridge",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/GapBridgeCertificate.hs"],
+      "artifacts": ["haskell/GapBridge.hs", "haskell/GapBridgeCertificate.hs"],
+      "purpose": "Check interval plus bounded-gap bridge examples."
+    },
+    {
+      "id": "haskell-residue-lift",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ResidueLiftCertificate.hs"],
+      "artifacts": ["haskell/ResidueLift.hs", "haskell/ResidueLiftCertificate.hs"],
+      "purpose": "Check residue-frame lifting for rays and intervals."
+    },
+    {
+      "id": "haskell-unit-residue-frame",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/UnitResidueFrameCertificate.hs"],
+      "artifacts": ["haskell/UnitResidueFrame.hs", "haskell/UnitResidueFrameCertificate.hs"],
+      "purpose": "Check unit-base residue-frame construction."
+    },
+    {
+      "id": "haskell-cfh-tail",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/CFHTailCertificate.hs"],
+      "artifacts": ["haskell/CFHTail.hs", "haskell/CFHTailCertificate.hs"],
+      "purpose": "Check the Chen-Fang-Hegyvari strict-tail sample."
+    },
+    {
+      "id": "raku-residue-dsl",
+      "language": "Raku",
+      "trust": "executable certificate DSL",
+      "default": true,
+      "command": ["raku", "raku/residue_dsl_certificate.raku"],
+      "artifacts": ["raku/lib/Erdos124/ResidueDSL.rakumod", "raku/residue_dsl_certificate.raku"],
+      "purpose": "Cross-check residue-lift and unit-base frame objects through Raku constructors."
+    },
+    {
+      "id": "hasclid-legendre-thresholds",
+      "language": "Haskell/Hasclid",
+      "trust": "external theorem-prover check",
+      "default": false,
+      "command": [
+        "cabal",
+        "run",
+        "prover-int",
+        "--",
+        "C:/Users/baian/Math_Research/Knuth_124/prover/legendre_thresholds.euclid"
+      ],
+      "artifacts": ["prover/legendre_thresholds.euclid"],
+      "purpose": "Check exact algebraic Legendre-threshold side obligations."
+    }
+  ]
+}

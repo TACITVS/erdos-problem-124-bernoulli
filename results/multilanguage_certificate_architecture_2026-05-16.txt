@@ -1,0 +1,29 @@
+Multilanguage certificate architecture
+Date: 2026-05-16
+
+Artifacts:
+  certificates/manifest.json
+  scripts/run_certificates.py
+  notes/32_multilanguage_certificate_architecture.md
+
+Advance:
+  Consolidated the Python, Haskell, Raku, C++/Hasclid-facing pieces under one
+  executable certificate manifest and runner.
+
+Default command:
+  python scripts/run_certificates.py
+
+Policy:
+  Every new executable proof artifact should have a mathematical note, a typed
+  or validated implementation, a manifest entry, and a result note when it
+  changes proof state.
+
+Status:
+  This is proof-engineering infrastructure, not a proof of Erdős 124.  It
+  prevents the multi-language codebase from drifting into disconnected one-off
+  scripts while the power-saving central conductor theorem remains open.
+
+Verification:
+  The default manifest suite passed 14/14 entries on 2026-05-16.  Focused
+  reruns of the Raku residue DSL and Haskell global proof audit also passed
+  after the runner output was made line-buffer friendly.
