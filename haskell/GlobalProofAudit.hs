@@ -9,6 +9,7 @@ import System.Exit (exitFailure)
 data Status
   = Certified
   | Imported
+  | Optional
   | Open
   deriving stock (Eq, Show)
 
@@ -82,6 +83,14 @@ obligations =
       Imported
       "S-unit finiteness rules out infinitely many bounded near-collisions for multiplicatively independent frontier pairs.",
     Obligation
+      "Subspace-Theorem power-saving S-unit gap"
+      Imported
+      "A power-saving S-unit approximation theorem upgrades bounded near-collisions to sublinear near-collision exclusions.",
+    Obligation
+      "global power-saving central conductor theorem"
+      Open
+      "The remaining qualitative bottleneck: prove c(E) = o(T(E)) in the strict case and c(E) = O(T(E)^(1-epsilon)) in the exact-critical case.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",
@@ -91,16 +100,16 @@ obligations =
       "Used as an external analytic theorem in the current local certificates.",
     Obligation
       "global residue-saturation theorem"
-      Open
-      "Need a proof characterizing the relevant moduli and showing that admissible finite A,k eventually saturate the required residue classes.",
+      Optional
+      "An older route through residue gates.  The power-saving central conductor theorem would subsume this for the qualitative proof.",
     Obligation
       "global post-saturation central interval theorem"
-      Open
-      "Need a proof that residue-saturated finite seeds eventually contain a central interval large enough to enter the tail argument.",
+      Optional
+      "An older route after residue saturation.  The current target asks directly for the needed central conductor growth.",
     Obligation
       "global exact-critical analytic bound"
-      Open
-      "Need explicit thresholds for arbitrary certified independent base pairs/classes."
+      Optional
+      "Still needed for effective largest-missing-number certificates, but not for the qualitative proof if the S-unit/Subspace input is imported."
   ]
 
 formatObligation :: Obligation -> String

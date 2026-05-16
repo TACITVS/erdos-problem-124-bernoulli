@@ -1,0 +1,39 @@
+Power-saving central-interval target
+Date: 2026-05-16
+
+Artifact:
+  notes/28_power_saving_central_interval_target.md
+
+Mathematical advance:
+  Replaced the vague "central interval theorem" with a sharper conductor-growth
+  target.
+
+Key identity:
+  For a frontier E and finite seed conductor c(E),
+
+    K(E) = C(E) - 1 - H(E) = kappa(A,k) + 2 c(E) + 1.
+
+  Thus the tail obstruction is controlled exactly by finite seed conductor
+  growth, up to a fixed constant.
+
+Strict case target:
+  c(E) = o(T(E)), where T(E) is the minimum frontier term.
+
+Exact-critical target:
+  c(E) = O(T(E)^(1-epsilon)) for some epsilon > 0.
+
+Reason:
+  Strict slack dominates sublinear conductor growth.  In the exact-critical
+  case, a power-saving conductor bound turns near-collision failures into
+  S-unit/Subspace-Theorem forbidden approximations.
+
+Status:
+  This does not prove Erdős 124.  It gives a concrete noncomputational theorem
+  target that would finish the qualitative proof within the current
+  architecture.
+
+Audit effect:
+  The qualitative global audit now has one open mathematical bottleneck:
+  prove the power-saving central conductor theorem.  Residue saturation and
+  explicit Baker bounds are retained as optional/effective routes, not as
+  separate blockers for the qualitative proof.

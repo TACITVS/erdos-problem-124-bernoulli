@@ -35,34 +35,41 @@ The following pieces are in the repository and have been checked:
 
 ## Corrections to the implementation plan
 
-The plan's global proof route has three open mathematical obligations.
+The plan's qualitative route has been sharpened to one open mathematical
+obligation.  The older residue-saturation and post-saturation central-interval
+route remains useful as a possible attack, but it is no longer the cleanest
+statement of what must be proved.
 
-First, residue saturation is not automatic.  A full proof needs a theorem
-characterizing the relevant obstruction moduli and proving that every
-admissible finite \(A,k\) eventually saturates the required residue classes.
-The local residue certificates cover small exact-critical profiles, but no
-general theorem is proved here.
+For a frontier \(E\), let \(c(E)\) be the finite seed conductor and
+\(T(E)=\min_i E_i\).  The identity proved in
+`notes/28_power_saving_central_interval_target.md`,
 
-Second, after residue gates open, a full proof still needs a theorem saying
-that the resulting finite seed subset sums contain a central interval large
-enough to enter the tail argument.  The current Haskell certificate now
-recomputes these intervals for specific examples, but no general theorem is
-proved here.
+\[
+K(E)=\kappa(A,k)+2c(E)+1,
+\]
 
-Third, the exact-critical Baker step is not fully instantiated.  The current
-local certificates import the Mignotte-Waldschmidt lower bound for \(3^a\) and
-\(4^b\).  The full theorem needs an explicit bound for arbitrary
-multiplicatively independent base classes, with hypotheses and constants
-auditable enough that the finite pre-bound window is checkable.
+shows that the tail obstruction is controlled exactly by finite seed conductor
+growth, up to a fixed constant.
 
-Therefore the global proof is not finished.  The honest next theorem targets
-are:
+Therefore the remaining qualitative target is the power-saving central
+conductor theorem:
 
-1. prove the global residue-saturation theorem, or find a structural
-   counterexample to it;
-2. prove the post-saturation central interval theorem;
-3. instantiate an explicit Baker-type bound for arbitrary base pairs/classes;
-4. connect those ingredients to the already certified tail invariant.
+1. in the strict case \(\sum_i1/(d_i-1)>1\), prove \(c(E)=o(T(E))\) along
+   frontiers with \(T(E)\to\infty\);
+2. in the exact-critical case \(\sum_i1/(d_i-1)=1\), prove
+   \(c(E)=O(T(E)^{1-\epsilon})\) for some \(\epsilon>0\).
+
+The exact-critical Baker step now has two versions.  For effective largest
+missing claims, one still needs explicit bounds for arbitrary multiplicatively
+independent base classes.  For a qualitative proof,
+`notes/27_s_unit_exact_critical_tail.md` and
+`notes/28_power_saving_central_interval_target.md` show that an imported
+\(S\)-unit/Subspace-Theorem power-saving gap theorem can replace explicit
+constants once the central conductor has this power saving.
+
+Therefore the global proof is not finished.  The honest next task is to prove
+the power-saving central conductor theorem, or find a structural counterexample
+to it.
 
 ## Machine-readable audit
 
@@ -79,5 +86,5 @@ For release-style checking, run:
 runghc haskell\GlobalProofAudit.hs --require-complete
 ```
 
-That command is expected to fail until the three open obligations above are
-actually proved.
+That command is expected to fail until the open power-saving central conductor
+obligation is actually proved.
