@@ -83,6 +83,10 @@ obligations =
       Certified
       "ConductorLift.hs turns a residue frame plus a scaled central block into an explicit finite-seed conductor bound.",
     Obligation
+      "conductor boss lemma tree"
+      Certified
+      "ConductorBossTree.hs checks the dependency tree for the remaining conductor theorem and reports the next open cuts.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",

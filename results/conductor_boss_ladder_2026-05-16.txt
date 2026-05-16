@@ -1,0 +1,33 @@
+Conductor boss lemma ladder
+Date: 2026-05-16
+
+Artifacts:
+  notes/34_conductor_boss_lemma_ladder.md
+  haskell/ConductorBossTree.hs
+
+Mathematical advance:
+  Broke the remaining power-saving central conductor theorem into a dependency
+  ladder and proved the fixed-frame asymptotic transfer corollary.
+
+New proven cut:
+  A fixed residue frame preserves conductor quality across the modular
+  conductor lift:
+
+    c'(T') = o(T')                  => c(F union mG') = o(mT')
+    c'(T') = O(T'^(1-epsilon))      => c(F union mG') = O((mT')^(1-epsilon))
+
+Current next cuts:
+  1. Prove a middle interval theorem for scaled power blocks q*d^n.
+  2. Prove a quotient block selection lemma that produces such useful blocks
+     from every admissible A,k.
+
+Status:
+  This does not prove Erdős 124.  It turns the final conductor boss into a
+  checked dependency tree with two explicit next mathematical targets.
+
+Verification:
+  runghc haskell/ConductorBossTree.hs passes and reports:
+
+    next cuts: scaled-power-middle-interval, quotient-block-selection
+
+  The full default certificate manifest passed 16/16 after adding the tree.

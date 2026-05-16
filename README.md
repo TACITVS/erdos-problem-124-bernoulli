@@ -144,6 +144,8 @@ certificate architecture that keeps the Python, Haskell, Raku, C++ and prover
 artifacts in one coherent body.
 `notes/33_modular_conductor_lift.md` turns residue lifting into an explicit
 finite-seed conductor bound for modular induction.
+`notes/34_conductor_boss_lemma_ladder.md` decomposes the remaining conductor
+theorem into checked dependencies and names the next open cuts.
 
 ## Certificate runner
 

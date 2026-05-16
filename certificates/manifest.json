@@ -111,6 +111,15 @@
       "purpose": "Check modular conductor transfer from residue frames and scaled central blocks."
     },
     {
+      "id": "haskell-conductor-boss-tree",
+      "language": "Haskell",
+      "trust": "proof-obligation audit",
+      "default": true,
+      "command": ["runghc", "haskell/ConductorBossTree.hs"],
+      "artifacts": ["haskell/ConductorBossTree.hs"],
+      "purpose": "Check the conductor proof dependency tree and report next open cuts."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

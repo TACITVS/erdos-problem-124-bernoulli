@@ -46,6 +46,9 @@ residue frames.
 explicit finite-seed conductor bound.  `ConductorLiftCertificate.hs` checks the
 arithmetic transfer examples.
 
+`ConductorBossTree.hs` records the dependency tree for the remaining conductor
+theorem and reports the current next open cuts.
+
 `UnitResidueFrame.hs` constructs complete residue frames from powers of a single
 base that is a unit modulo the chosen modulus.  `UnitResidueFrameCertificate.hs`
 checks denominator examples and a nontrivial-order sample.
@@ -69,6 +72,7 @@ runghc -ihaskell haskell/ResidueGateCertificate.hs
 runghc -ihaskell haskell/GapBridgeCertificate.hs
 runghc -ihaskell haskell/ResidueLiftCertificate.hs
 runghc -ihaskell haskell/ConductorLiftCertificate.hs
+runghc haskell/ConductorBossTree.hs
 runghc -ihaskell haskell/UnitResidueFrameCertificate.hs
 runghc -ihaskell haskell/CFHTailCertificate.hs
 ```
