@@ -81,6 +81,15 @@ ghc -Wall -Werror -fforce-recomp haskell\TailCertificate.hs -o haskell\TailCerti
 runghc haskell\TailCertificate.hs
 ```
 
+The Haskell checker in `haskell/CFTailCertificate.hs` verifies the exact
+continued-fraction window for \(\log 3/\log 4\) used by the current tail
+certificates.
+
+```text
+ghc -Wall -Werror -fforce-recomp haskell\CFTailCertificate.hs -o haskell\CFTailCertificate.exe
+runghc haskell\CFTailCertificate.hs
+```
+
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
 obligations such as Legendre-threshold inequalities.
