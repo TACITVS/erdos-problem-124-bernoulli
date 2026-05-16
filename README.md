@@ -127,6 +127,9 @@ subset-sum gap bound \(G\le H+1\) implies a cofinite ray.
 current local capacity checks.
 `notes/26_cfh_strict_tail.md` turns the `{3,4,5}, k=1` capacity row into an
 actual Chen-Fang-Hegyvari strict-tail proof.
+`notes/27_s_unit_exact_critical_tail.md` records the qualitative algebraic
+replacement for explicit Baker bounds in exact-critical tails: \(S\)-unit
+finiteness rules out infinitely many bounded independent near-collisions.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic

@@ -1,0 +1,28 @@
+S-unit exact-critical tail route
+Date: 2026-05-16
+
+Artifact:
+  notes/27_s_unit_exact_critical_tail.md
+
+Mathematical advance:
+  Introduced a qualitative algebraic replacement for explicit Baker thresholds.
+
+Key lemma:
+  If x,y > 1 are multiplicatively independent integers, then for every fixed
+  B the set of exponent pairs (m,n) with |x^m - y^n| <= B is finite.
+
+Reason:
+  For each nonzero c with |c| <= B, x^m - y^n = c is an S-unit equation in the
+  finitely generated group of rational S-units, where S contains the primes
+  dividing xy.  The case c = 0 is excluded by multiplicative independence.
+
+Consequence:
+  In an exact-critical tail, the existing near-collision reduction says that
+  any infinite sequence of interval-extension failures would force infinitely
+  many bounded near-collisions between a multiplicatively independent pair of
+  base classes.  S-unit finiteness forbids that.
+
+Status:
+  This is non-effective.  It removes the conceptual need for explicit
+  Mignotte-Waldschmidt/Baker constants in a qualitative proof, but it does not
+  solve the global seed central-interval theorem.

@@ -78,6 +78,10 @@ obligations =
       Certified
       "CFHTailCertificate.hs proves the {3,4,5}, k=1 strict sample through CFH bounded gaps and strict slack.",
     Obligation
+      "qualitative S-unit exact-critical tail"
+      Imported
+      "S-unit finiteness rules out infinitely many bounded near-collisions for multiplicatively independent frontier pairs.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",
