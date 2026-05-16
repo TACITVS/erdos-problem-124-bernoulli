@@ -28,6 +28,9 @@ Output:
   - multiplicative class reduction
     status: Certified
     note: Every gcd-one base set has at least two multiplicative classes, giving an independent pair.
+  - generic pair continued-fraction window
+    status: Certified
+    note: Given an imported analytic threshold for an independent pair, finite near-collision windows are checked exactly.
   - local {3,4,7} and {3,4,9,25} certificates
     status: Certified
     note: Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.

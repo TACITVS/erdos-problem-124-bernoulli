@@ -96,6 +96,7 @@ remaining open obligations for the full theorem.
 ```text
 runghc haskell\GlobalProofAudit.hs
 runghc haskell\MultiplicativeClasses.hs
+runghc haskell\PairCFTailCertificate.hs
 ```
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the

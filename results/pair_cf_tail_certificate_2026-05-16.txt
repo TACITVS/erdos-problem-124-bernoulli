@@ -1,0 +1,49 @@
+Command:
+  runghc haskell\PairCFTailCertificate.hs
+
+Summary:
+  Rechecked the three imported 3/4 finite windows used by the current local
+  tail certificates.
+  Checked a pair-parametric sanity window for 5/13 with gap 1000000 and
+  analytic threshold 1000.
+
+Output:
+  case: {3,4,7}, k=2 imported 3/4 window
+  pair: BasePair {xBase = Base 3, yBase = Base 4}
+  gap: Gap 47794770
+  legendre start: Exponent 20
+  analytic start: Exponent 293904
+  relevant convergents: 8
+  minimum exact gap: 7551629537
+  next x-exponent: Exponent 21372011
+
+  case: {3,4,7}, k=3 imported 3/4 window
+  pair: BasePair {xBase = Base 3, yBase = Base 4}
+  gap: Gap 1992303678
+  legendre start: Exponent 23
+  analytic start: Exponent 293907
+  relevant convergents: 8
+  minimum exact gap: 7551629537
+  next x-exponent: Exponent 21372011
+
+  case: {3,4,9,25}, k=2 imported 3/4 window
+  pair: BasePair {xBase = Base 3, yBase = Base 4}
+  gap: Gap 21701880
+  legendre start: Exponent 19
+  analytic start: Exponent 293903
+  relevant convergents: 8
+  minimum exact gap: 7551629537
+  next x-exponent: Exponent 21372011
+
+  case: sanity finite window for 5/13
+  pair: BasePair {xBase = Base 5, yBase = Base 13}
+  gap: Gap 1000000
+  legendre start: Exponent 11
+  analytic start: Exponent 1000
+  relevant convergents: 3
+  minimum exact gap: 55664915296331719165396179992
+  next x-exponent: Exponent 4346
+
+Strict compile:
+  ghc -Wall -Werror -fforce-recomp haskell\PairCFTailCertificate.hs -o haskell\PairCFTailCertificate.exe
+  passed
