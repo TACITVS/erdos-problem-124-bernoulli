@@ -1,0 +1,36 @@
+Chen-Fang-Hegyvari strict tail certificate
+Date: 2026-05-16
+
+Artifact:
+  notes/26_cfh_strict_tail.md
+  haskell/CFHTail.hs
+  haskell/CFHTailCertificate.hs
+
+Certified row:
+  {3,4,5}, k=1
+
+Seed/prefix:
+  seed interval: [80, 2132]
+  absorbed prefix: [1024]
+  extended interval: [80, 3156]
+
+Tail:
+  bases: [3,4,5]
+  frontier after prefix: [2187,4096,3125]
+  CFH gap bound: 2187
+  invariant C0 - G: 12637/12
+
+Finite rows:
+  step 0: next 2187, margin 0
+  step 1: next 3125, margin 1249
+  step 2: next 4096, margin 3403
+  step 3: next 6561, margin 5034
+  step 4: next 15625, strict takeover holds
+
+Conclusion:
+  Chen-Fang-Hegyvari gives tail subset-sum gaps <= 2187.  The prefix-gap bridge
+  then proves all n >= 80 are represented for {3,4,5}, k=1.
+
+Status:
+  This proves the strict local sample through the CFH route.  Exact-critical
+  cases still require a no-failure theorem, likely Diophantine.

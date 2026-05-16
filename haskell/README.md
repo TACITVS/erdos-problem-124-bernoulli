@@ -37,6 +37,11 @@ bounded-gap tail to a cofinite ray, allowing a finite prefix to be absorbed by
 ordinary interval extension first.  `GapBridgeCertificate.hs` checks the bridge
 against small and current local seed-interval profiles.
 
+`CFHTail.hs` defines a Chen-Fang-Hegyvari tail-domination checker.
+`CFHTailCertificate.hs` proves the `{3,4,5}, k=1` strict local sample by
+combining finite prefix absorption, CFH bounded gaps, and strict reciprocal
+slack.
+
 Run:
 
 ```text
@@ -49,6 +54,7 @@ runghc -ihaskell haskell/SeedBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueBridgeProfiles.hs
 runghc -ihaskell haskell/ResidueGateCertificate.hs
 runghc -ihaskell haskell/GapBridgeCertificate.hs
+runghc -ihaskell haskell/CFHTailCertificate.hs
 ```
 
 This is not a replacement for C++ bitset scans.  Its job is to make the small

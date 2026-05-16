@@ -74,6 +74,10 @@ obligations =
       Certified
       "GapBridge.hs proves the arithmetic reduction from a seed interval, finite prefix absorption, and bounded tail gaps to a cofinite ray.",
     Obligation
+      "local strict Chen-Fang-Hegyvari tail"
+      Certified
+      "CFHTailCertificate.hs proves the {3,4,5}, k=1 strict sample through CFH bounded gaps and strict slack.",
+    Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
       "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",

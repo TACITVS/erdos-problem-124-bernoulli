@@ -125,6 +125,8 @@ The bounded-gap bridge itself is isolated in
 subset-sum gap bound \(G\le H+1\) implies a cofinite ray.
 `notes/25_prefix_gap_bridge.md` adds the finite-prefix version used by the
 current local capacity checks.
+`notes/26_cfh_strict_tail.md` turns the `{3,4,5}, k=1` capacity row into an
+actual Chen-Fang-Hegyvari strict-tail proof.
 
 Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
 domain certificate checker; they independently certify exact algebraic
