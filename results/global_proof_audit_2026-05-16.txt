@@ -33,7 +33,7 @@ Output:
     note: Given an imported analytic threshold for an independent pair, finite near-collision windows are checked exactly.
   - local seed-bridge profiles
     status: Certified
-    note: Finite central seed intervals are reproducible for the current small exact-critical and strict profiles.
+    note: Finite central seed intervals are recomputed from seed powers and subset-sum conductors for the current small exact-critical and strict profiles.
   - local residue-bridge profiles
     status: Certified
     note: Finite seeds cover every residue modulo the exact-critical denominator for the current small exact-critical profiles.
@@ -43,14 +43,17 @@ Output:
   - Mignotte-Waldschmidt input for 3 versus 4
     status: Imported
     note: Used as an external analytic theorem in the current local certificates.
-  - global seed-bridge theorem
+  - global residue-saturation theorem
     status: Open
-    note: Need a proof that every admissible finite A,k admits a seed interval large enough to enter the tail argument.
+    note: Need a proof characterizing the relevant moduli and showing that admissible finite A,k eventually saturate the required residue classes.
+  - global post-saturation central interval theorem
+    status: Open
+    note: Need a proof that residue-saturated finite seeds eventually contain a central interval large enough to enter the tail argument.
   - global exact-critical analytic bound
     status: Open
     note: Need explicit thresholds for arbitrary certified independent base pairs/classes.
 
-  open obligations: 2
+  open obligations: 3
 
 Strict compile:
   ghc -Wall -Werror -fforce-recomp haskell\GlobalProofAudit.hs -o haskell\GlobalProofAudit.exe

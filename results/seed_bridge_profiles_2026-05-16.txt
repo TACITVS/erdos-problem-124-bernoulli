@@ -3,7 +3,7 @@ Commands:
   python scripts\seed_bridge.py --bases 3,4,5 --k 1 --seed-limit 1000
   python scripts\seed_bridge.py --batch-exact --max-base 30 --max-size 5 --k 1 --seed-limit 1000 --limit 20
   python scripts\seed_bridge.py --batch-exact --max-base 30 --max-size 5 --k 2 --seed-limit 1000 --search --max-seed-limit 64000 --min-span 0 --limit 14
-  runghc haskell\SeedBridgeProfiles.hs
+  runghc -ihaskell haskell\SeedBridgeProfiles.hs
 
 Summary:
   The central interval for {3,4,7}, k=1, seed_limit=1000 is (582, 1249).
@@ -13,7 +13,10 @@ Summary:
   The same fourteen exact-critical sets have nonempty central seed intervals at
   k=2 with first successful seed limits at most 4000 under the bounded doubling
   search.
+  The Haskell checker now independently regenerates seed powers, preserves
+  multiplicity, computes the subset-sum bitset up to half-sum, and verifies the
+  recorded conductor before deriving the central interval.
 
 Strict compile:
-  ghc -Wall -Werror -fforce-recomp haskell\SeedBridgeProfiles.hs -o haskell\SeedBridgeProfiles.exe
+  ghc -Wall -Werror -fforce-recomp -ihaskell haskell\SeedBridgeProfiles.hs -o haskell\SeedBridgeProfiles.exe
   passed

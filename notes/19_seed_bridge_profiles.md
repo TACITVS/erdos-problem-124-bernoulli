@@ -19,17 +19,21 @@ is represented, then complementing subsets proves the central interval
 \]
 
 The script `scripts/seed_bridge.py` computes these profiles.  The Haskell file
-`haskell/SeedBridgeProfiles.hs` verifies the arithmetic shape of the recorded
-profiles:
+`haskell/SeedBridgeProfiles.hs`, using shared helpers from
+`haskell/FiniteSeed.hs`, now independently recomputes the finite seed facts:
 
+- seed powers, preserving multiplicity;
+- total seed sum;
 - half-sum;
+- subset-sum bitset up to the half-sum;
+- last missing value up to the half-sum;
 - central interval endpoints;
 - central span;
-- frontier length.
+- frontier powers.
 
-It does not replace the subset-sum bitset computation.  It records the finite
-seed facts in a typed, auditable form after the bitset computation has produced
-them.
+This closes the previous weak point where the Haskell layer only checked
+recorded endpoint arithmetic after an external bitset computation had produced
+the conductor.
 
 ## Checked profiles
 

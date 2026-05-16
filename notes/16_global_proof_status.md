@@ -35,15 +35,21 @@ The following pieces are in the repository and have been checked:
 
 ## Corrections to the implementation plan
 
-The plan's global proof route has two open mathematical obligations.
+The plan's global proof route has three open mathematical obligations.
 
-First, the seed-bridge step is not merely an implementation detail.  A full
-proof needs a theorem saying that every admissible finite \(A,k\) has a finite
-set of allowed powers whose subset sums contain an interval large enough to
-enter the tail argument.  The current certificates produce such intervals for
-specific examples, but no general theorem is proved here.
+First, residue saturation is not automatic.  A full proof needs a theorem
+characterizing the relevant obstruction moduli and proving that every
+admissible finite \(A,k\) eventually saturates the required residue classes.
+The local residue certificates cover small exact-critical profiles, but no
+general theorem is proved here.
 
-Second, the exact-critical Baker step is not fully instantiated.  The current
+Second, after residue gates open, a full proof still needs a theorem saying
+that the resulting finite seed subset sums contain a central interval large
+enough to enter the tail argument.  The current Haskell certificate now
+recomputes these intervals for specific examples, but no general theorem is
+proved here.
+
+Third, the exact-critical Baker step is not fully instantiated.  The current
 local certificates import the Mignotte-Waldschmidt lower bound for \(3^a\) and
 \(4^b\).  The full theorem needs an explicit bound for arbitrary
 multiplicatively independent base classes, with hypotheses and constants
@@ -52,10 +58,11 @@ auditable enough that the finite pre-bound window is checkable.
 Therefore the global proof is not finished.  The honest next theorem targets
 are:
 
-1. prove the global seed-bridge theorem, or find a structural counterexample to
-   it;
-2. instantiate an explicit Baker-type bound for arbitrary base pairs/classes;
-3. connect those two ingredients to the already certified tail invariant.
+1. prove the global residue-saturation theorem, or find a structural
+   counterexample to it;
+2. prove the post-saturation central interval theorem;
+3. instantiate an explicit Baker-type bound for arbitrary base pairs/classes;
+4. connect those ingredients to the already certified tail invariant.
 
 ## Machine-readable audit
 
@@ -72,5 +79,5 @@ For release-style checking, run:
 runghc haskell\GlobalProofAudit.hs --require-complete
 ```
 
-That command is expected to fail until the two open obligations above are
+That command is expected to fail until the three open obligations above are
 actually proved.

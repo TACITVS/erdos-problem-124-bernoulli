@@ -15,6 +15,8 @@ Summary:
     - residue_bridge_start(profile, multiple_start).
 
   scripts\seed_bridge.py and scripts\residue_bridge.py are thin CLI frontends.
+  haskell\FiniteSeed.hs now provides the same shared finite-seed layer for
+  Haskell certificate programs.
 
 Bridge API smoke check:
   For {3,4,7}, k=1, seed_limit=1000, D=6, R=14.

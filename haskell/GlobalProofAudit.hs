@@ -60,7 +60,7 @@ obligations =
     Obligation
       "local seed-bridge profiles"
       Certified
-      "Finite central seed intervals are reproducible for the current small exact-critical and strict profiles.",
+      "Finite central seed intervals are recomputed from seed powers and subset-sum conductors for the current small exact-critical and strict profiles.",
     Obligation
       "local residue-bridge profiles"
       Certified
@@ -74,9 +74,13 @@ obligations =
       Imported
       "Used as an external analytic theorem in the current local certificates.",
     Obligation
-      "global seed-bridge theorem"
+      "global residue-saturation theorem"
       Open
-      "Need a proof that every admissible finite A,k admits a seed interval large enough to enter the tail argument.",
+      "Need a proof characterizing the relevant moduli and showing that admissible finite A,k eventually saturate the required residue classes.",
+    Obligation
+      "global post-saturation central interval theorem"
+      Open
+      "Need a proof that residue-saturated finite seeds eventually contain a central interval large enough to enter the tail argument.",
     Obligation
       "global exact-critical analytic bound"
       Open

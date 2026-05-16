@@ -40,3 +40,14 @@ counterexample for the tail-multiple premise in the residue-bridge lemma from
 future code should consume `FiniteSeed`, `ResidueProfile`, and
 `residue_bridge_start` instead of rebuilding powers, frontiers, or denominator
 logic locally.
+
+## Haskell certificate companion
+
+The same consolidation now exists in the Haskell certificate layer:
+`haskell/FiniteSeed.hs` supplies shared finite-seed operations for
+`SeedBridgeProfiles.hs` and `ResidueBridgeProfiles.hs`.
+
+The seed-profile checker now recomputes the subset-sum conductor up to half the
+seed sum.  This means the recorded central intervals are no longer accepted from
+Python output alone; they are independently checked by Haskell from the base
+set, exponent cutoff, and seed limit.

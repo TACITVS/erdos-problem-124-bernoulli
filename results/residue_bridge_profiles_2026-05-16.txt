@@ -3,7 +3,7 @@ Commands:
   python scripts\residue_bridge.py --bases 3,4,9,25 --k 1 --seed-limit 1000 --modulus-denominator
   python scripts\residue_bridge.py --batch-exact --max-base 30 --max-size 5 --k 1 --seed-limit 1000 --modulus-denominator --limit 20
   python scripts\residue_bridge.py --batch-exact --max-base 30 --max-size 5 --k 2 --seed-limit 4000 --modulus-denominator --limit 20
-  runghc haskell\ResidueBridgeProfiles.hs
+  runghc -ihaskell haskell\ResidueBridgeProfiles.hs
 
 Summary:
   The residue bridge works modulo D = lcm(d-1), the denominator used in the
@@ -24,8 +24,8 @@ Summary:
 
   The Haskell checker recomputes the powers, exact-critical denominator,
   residue bitset closure, first completion point, and minimal residue
-  representative maximum.
+  representative maximum through shared haskell\FiniteSeed.hs helpers.
 
 Strict compile:
-  ghc -Wall -Werror -fforce-recomp haskell\ResidueBridgeProfiles.hs -o haskell\ResidueBridgeProfiles.exe
+  ghc -Wall -Werror -fforce-recomp -ihaskell haskell\ResidueBridgeProfiles.hs -o haskell\ResidueBridgeProfiles.exe
   passed

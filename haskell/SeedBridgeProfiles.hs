@@ -3,6 +3,7 @@
 module Main where
 
 import Data.List (intercalate)
+import FiniteSeed (firstPowersAbove, lastMissingUpTo, powersUpTo, subsetSumBitsUpTo)
 
 data SeedProfile = SeedProfile
   { label :: String,
@@ -56,8 +57,24 @@ profiles =
 
 verifyProfile :: SeedProfile -> Either String [(String, String)]
 verifyProfile profile = do
-  if halfSum profile /= seedSum profile `div` 2
+  let seed = powersUpTo (bases profile) (firstExponent profile) (seedLimit profile)
+      computedSeedSum = sum seed
+      computedHalfSum = computedSeedSum `div` 2
+      computedBits = subsetSumBitsUpTo computedHalfSum seed
+      computedConductor = lastMissingUpTo computedHalfSum computedBits
+      computedFrontier = firstPowersAbove (bases profile) (firstExponent profile) (seedLimit profile)
+
+  if toInteger (length seed) /= termCount profile
+    then Left "term count mismatch"
+    else Right ()
+  if computedSeedSum /= seedSum profile
+    then Left "seed sum mismatch"
+    else Right ()
+  if computedHalfSum /= halfSum profile
     then Left "half sum mismatch"
+    else Right ()
+  if computedConductor /= Just (conductorToHalf profile)
+    then Left ("conductor mismatch: " <> show computedConductor)
     else Right ()
   if centralStart profile /= conductorToHalf profile + 1
     then Left "central start mismatch"
@@ -68,16 +85,14 @@ verifyProfile profile = do
   if centralSpan profile /= centralEnd profile - centralStart profile
     then Left "central span mismatch"
     else Right ()
-  if termCount profile <= 0
-    then Left "empty seed profile"
-    else Right ()
-  if length (frontier profile) /= length (bases profile)
-    then Left "frontier length mismatch"
+  if computedFrontier /= frontier profile
+    then Left "frontier mismatch"
     else
       Right
         [ ("case", label profile),
           ("seed limit", show (seedLimit profile)),
           ("terms", show (termCount profile)),
+          ("conductor to half", show (conductorToHalf profile)),
           ("central interval", show (centralStart profile, centralEnd profile)),
           ("span", show (centralSpan profile)),
           ("frontier", show (frontier profile)),
