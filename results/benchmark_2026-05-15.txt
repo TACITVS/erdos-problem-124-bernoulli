@@ -1,0 +1,9 @@
+Command:
+  python scripts/benchmarks.py
+
+Expected local output:
+  {'bases': (3, 4, 7), 'k': 1, 'limit': 100000, 'reciprocal_sum': '1', 'terms': 23, 'missing_count': 37, 'last_missing': 581, 'tail': (236, 238, 239, 242, 245, 258, 261, 264, 521, 581)}
+  {'bases': (3, 5, 7, 13), 'k': 1, 'limit': 100000, 'reciprocal_sum': '1', 'terms': 26, 'missing_count': 9, 'last_missing': 112, 'tail': (1, 2, 4, 6, 11, 26, 31, 107, 112)}
+  {'bases': (3, 6, 7, 13, 21), 'k': 1, 'limit': 100000, 'reciprocal_sum': '1', 'terms': 28, 'missing_count': 8, 'last_missing': 17, 'tail': (1, 2, 4, 5, 8, 11, 14, 17)}
+  {'bases': (3, 4, 5), 'k': 1, 'limit': 100000, 'reciprocal_sum': '13/12', 'terms': 25, 'missing_count': 11, 'last_missing': 79, 'tail': (2, 6, 10, 11, 15, 22, 26, 63, 74, 79)}
+  {'bases': (3, 4, 7), 'k': 2, 'limit': 50000000, 'reciprocal_sum': '1', 'terms': 34, 'missing_count': 5207, 'last_missing': 3982888, 'tail': (236039, 254302, 316703, 435782, 498183, 516446, 767480, 785743, 3964625, 3982888)}
