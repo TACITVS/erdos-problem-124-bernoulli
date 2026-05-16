@@ -52,6 +52,8 @@ hard \(k\ge 1\) version.
   most 5 are residue-complete modulo their exact-critical denominator at
   \(k=1,L=1000\) and at \(k=2,L=4000\).  See
   `notes/20_residue_bridge_profiles.md`.
+- Finite seed tooling has been consolidated behind `scripts/finite_seed.py`;
+  the central-interval and residue CLIs are thin frontends over that shared API.
 
 ## Source pointers
 

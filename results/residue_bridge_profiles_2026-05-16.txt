@@ -7,7 +7,8 @@ Commands:
 
 Summary:
   The residue bridge works modulo D = lcm(d-1), the denominator used in the
-  exact-critical tail reduction.
+  exact-critical tail reduction.  The Python implementation now runs through
+  the shared scripts\finite_seed.py API.
 
   {3,4,7}, k=1, seed_limit=1000:
     D=6, first completion=(3,7), max residue representative R=14.

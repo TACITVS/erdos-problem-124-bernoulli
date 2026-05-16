@@ -50,8 +50,9 @@ with an explicit additive loss \(R\).
 
 ## Checked profiles
 
-The script `scripts/residue_bridge.py` computes residue completeness and the
-least representative sum for each residue.  The Haskell checker
+The shared library `scripts/finite_seed.py` computes residue completeness and
+the least representative sum for each residue; `scripts/residue_bridge.py` is
+only the command-line frontend.  The Haskell checker
 `haskell/ResidueBridgeProfiles.hs` independently recomputes the same finite
 facts using a base-only integer bitset and verifies that the modulus is exactly
 the exact-critical denominator.

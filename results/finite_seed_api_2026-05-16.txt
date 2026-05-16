@@ -1,0 +1,22 @@
+Commands:
+  python scripts\self_check.py
+  python scripts\seed_bridge.py --bases 3,4,7 --k 1 --seed-limit 1000
+  python scripts\residue_bridge.py --bases 3,4,7 --k 1 --seed-limit 1000 --modulus-denominator --multiple-start 600
+  python scripts\residue_bridge.py --batch-exact --max-base 30 --max-size 5 --k 1 --seed-limit 1000 --modulus-denominator --limit 14
+
+Summary:
+  scripts\finite_seed.py is now the shared library surface for finite-seed
+  work.  It owns:
+    - FiniteSeed construction;
+    - exact-critical denominator and enumeration helpers;
+    - central interval profiles;
+    - residue-complete profiles;
+    - doubling searches;
+    - residue_bridge_start(profile, multiple_start).
+
+  scripts\seed_bridge.py and scripts\residue_bridge.py are thin CLI frontends.
+
+Bridge API smoke check:
+  For {3,4,7}, k=1, seed_limit=1000, D=6, R=14.
+  If a future disjoint tail theorem proves every multiple of 6 from 600 onward,
+  residue_bridge_start returns 614.

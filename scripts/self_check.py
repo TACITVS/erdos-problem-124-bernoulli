@@ -10,9 +10,8 @@ from exact_critical_tail import (
     first_exponents_above,
     obstruction_bound,
 )
+from finite_seed import central_profile, find_seed_bridge, residue_profile
 from hypothesis_minimal import is_hypothesis_minimal
-from residue_bridge import residue_profile
-from seed_bridge import central_profile, find_seed_bridge
 
 
 def main() -> None:
