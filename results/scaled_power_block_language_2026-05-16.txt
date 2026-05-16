@@ -1,0 +1,35 @@
+Scaled power block language
+Date: 2026-05-16
+
+Artifacts:
+  notes/35_scaled_power_block_language.md
+  haskell/ScaledPowerBlock.hs
+  haskell/ScaledPowerBlockCertificate.hs
+
+Mathematical advance:
+  Made quotient blocks precise as finite unions of scaled progressions q*d^n.
+
+Core normalization:
+  If m divides d^k, then
+
+    d^(k+j) / m = (d^k / m) * d^j.
+
+  Thus an m-divisible pure-power tail becomes a scaled progression after
+  quotienting.
+
+Proof route impact:
+  The next middle-interval theorem should be stated for scaled power blocks.
+  The quotient-block selection cut now has a precise target language.
+
+Status:
+  This does not prove the scaled middle interval theorem.  It makes the theorem
+  statement and future certificates typeable.
+
+Verification:
+  runghc -ihaskell haskell/ScaledPowerBlockCertificate.hs passed.
+  ghc -Wall -Werror -fforce-recomp -ihaskell
+  haskell/ScaledPowerBlockCertificate.hs also passed.
+  python scripts\run_certificates.py passed the default manifest:
+    checked: 17
+    passed:  17
+    failed:  0

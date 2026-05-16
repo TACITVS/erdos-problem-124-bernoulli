@@ -120,6 +120,15 @@
       "purpose": "Check the conductor proof dependency tree and report next open cuts."
     },
     {
+      "id": "haskell-scaled-power-block",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ScaledPowerBlockCertificate.hs"],
+      "artifacts": ["haskell/ScaledPowerBlock.hs", "haskell/ScaledPowerBlockCertificate.hs"],
+      "purpose": "Check scaled power progression constructors and quotient normalization."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

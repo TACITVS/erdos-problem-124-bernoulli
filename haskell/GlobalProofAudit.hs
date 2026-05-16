@@ -87,6 +87,10 @@ obligations =
       Certified
       "ConductorBossTree.hs checks the dependency tree for the remaining conductor theorem and reports the next open cuts.",
     Obligation
+      "scaled power block language"
+      Certified
+      "ScaledPowerBlock.hs defines quotient-block progressions q*d^n and checks pure-power quotient normalization.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",

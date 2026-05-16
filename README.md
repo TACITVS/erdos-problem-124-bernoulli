@@ -146,6 +146,8 @@ artifacts in one coherent body.
 finite-seed conductor bound for modular induction.
 `notes/34_conductor_boss_lemma_ladder.md` decomposes the remaining conductor
 theorem into checked dependencies and names the next open cuts.
+`notes/35_scaled_power_block_language.md` makes quotient blocks precise as
+scaled progressions \(q d^n\) and records the quotient-normalization lemma.
 
 ## Certificate runner
 
