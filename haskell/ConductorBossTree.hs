@@ -89,11 +89,17 @@ nodes =
       ["p-adic-quotient-selection", "scaled-power-language"]
       "R of the scaled quotient block at modulus m equals sum 1/(d-1) over the divisible subset D(m,A), classifying each (m,A) as recursive or deficit one-shot.",
     Node
+      "modulus-search-reduction"
+      "Finite modulus-search reduction"
+      Done
+      ["quotient-reciprocal-identity"]
+      "ModulusSearch.hs reduces the modular-bridge selection to enumerating squarefree divisors of rad(prod(A)); every local hypothesis-minimal case lands in the deficit one-shot regime.",
+    Node
       "quotient-block-selection"
       "Choose useful modular quotient blocks"
       Open
-      ["unit-frame", "scaled-power-language", "p-adic-quotient-selection", "quotient-reciprocal-identity"]
-      "Find moduli and finite frames leaving quotient blocks with enough admissible structure.  All local hypothesis-minimal cases now fall in the deficit one-shot regime, so the cut splits into recursive-regime moduli and a direct attack for deficit cases.",
+      ["unit-frame", "scaled-power-language", "p-adic-quotient-selection", "quotient-reciprocal-identity", "modulus-search-reduction"]
+      "Find moduli and finite frames leaving quotient blocks with enough admissible structure.  Modulus search is finite; the remaining work is either tuning the valuation profile within a chosen radical, or accepting the deficit one-shot regime and attacking the conductor on A directly.",
     Node
       "asymptotic-half-sum-reach"
       "Algebraic half-sum reach threshold"

@@ -167,6 +167,10 @@ identity \(R(\text{quotient block at }m,A)=\sum_{d\in D(m,A)}1/(d-1)\),
 classifies each \((m,A)\) into the recursive or deficit one-shot regime, and
 records that all local hypothesis-minimal cases are deficit one-shot at every
 nontrivial modulus.
+`notes/41_modulus_search_reduction.md` reduces the modular-bridge selection
+to a finite enumeration over squarefree divisors of \(\operatorname{rad}(\prod
+A)\), confirming algorithmically that every local hypothesis-minimal case
+falls in the deficit one-shot regime.
 
 ## Certificate runner
 

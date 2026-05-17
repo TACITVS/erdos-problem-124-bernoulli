@@ -1,0 +1,124 @@
+case: {3,4,7}
+primes: [2,3,7]
+radical divisors: [1,2,3,6,7,14,21,42]
+best:   m=3  regime=deficit one-shot  slack=-1/2
+all verdicts:
+  m=2  regime=deficit one-shot  slack=-2/3
+  m=3  regime=deficit one-shot  slack=-1/2
+  m=6  regime=deficit one-shot  slack=-1/1
+  m=7  regime=deficit one-shot  slack=-5/6
+  m=14  regime=deficit one-shot  slack=-1/1
+  m=21  regime=deficit one-shot  slack=-1/1
+  m=42  regime=deficit one-shot  slack=-1/1
+
+case: {3,4,9,25}
+primes: [2,3,5]
+radical divisors: [1,2,3,5,6,10,15,30]
+best:   m=3  regime=deficit one-shot  slack=-3/8
+all verdicts:
+  m=2  regime=deficit one-shot  slack=-2/3
+  m=3  regime=deficit one-shot  slack=-3/8
+  m=5  regime=deficit one-shot  slack=-23/24
+  m=6  regime=deficit one-shot  slack=-1/1
+  m=10  regime=deficit one-shot  slack=-1/1
+  m=15  regime=deficit one-shot  slack=-1/1
+  m=30  regime=deficit one-shot  slack=-1/1
+
+case: {3,4,5}
+primes: [2,3,5]
+radical divisors: [1,2,3,5,6,10,15,30]
+best:   m=3  regime=deficit one-shot  slack=-1/2
+all verdicts:
+  m=2  regime=deficit one-shot  slack=-2/3
+  m=3  regime=deficit one-shot  slack=-1/2
+  m=5  regime=deficit one-shot  slack=-3/4
+  m=6  regime=deficit one-shot  slack=-1/1
+  m=10  regime=deficit one-shot  slack=-1/1
+  m=15  regime=deficit one-shot  slack=-1/1
+  m=30  regime=deficit one-shot  slack=-1/1
+
+case: {3,5,7,13}
+primes: [3,5,7,13]
+radical divisors: [1,3,5,7,13,15,21,35,39,65,91,105,195,273,455,1365]
+best:   m=3  regime=deficit one-shot  slack=-1/2
+all verdicts:
+  m=3  regime=deficit one-shot  slack=-1/2
+  m=5  regime=deficit one-shot  slack=-3/4
+  m=7  regime=deficit one-shot  slack=-5/6
+  m=13  regime=deficit one-shot  slack=-11/12
+  m=15  regime=deficit one-shot  slack=-1/1
+  m=21  regime=deficit one-shot  slack=-1/1
+  m=35  regime=deficit one-shot  slack=-1/1
+  m=39  regime=deficit one-shot  slack=-1/1
+  m=65  regime=deficit one-shot  slack=-1/1
+  m=91  regime=deficit one-shot  slack=-1/1
+  m=105  regime=deficit one-shot  slack=-1/1
+  m=195  regime=deficit one-shot  slack=-1/1
+  m=273  regime=deficit one-shot  slack=-1/1
+  m=455  regime=deficit one-shot  slack=-1/1
+  m=1365  regime=deficit one-shot  slack=-1/1
+
+case: modular-gate {3,6,9,12,21,45,89}
+primes: [2,3,5,7,89]
+radical divisors: [1,2,3,5,6,7,10,14,15,21,30,35,42,70,89,105,178,210,267,445,534,623,890,1246,1335,1869,2670,3115,3738,6230,9345,18690]
+best:   m=3  regime=deficit one-shot  slack=-1/88
+all verdicts:
+  m=2  regime=deficit one-shot  slack=-39/55
+  m=3  regime=deficit one-shot  slack=-1/88
+  m=5  regime=deficit one-shot  slack=-43/44
+  m=6  regime=deficit one-shot  slack=-39/55
+  m=7  regime=deficit one-shot  slack=-19/20
+  m=10  regime=deficit one-shot  slack=-1/1
+  m=14  regime=deficit one-shot  slack=-1/1
+  m=15  regime=deficit one-shot  slack=-43/44
+  m=21  regime=deficit one-shot  slack=-19/20
+  m=30  regime=deficit one-shot  slack=-1/1
+  m=35  regime=deficit one-shot  slack=-1/1
+  m=42  regime=deficit one-shot  slack=-1/1
+  m=70  regime=deficit one-shot  slack=-1/1
+  m=89  regime=deficit one-shot  slack=-87/88
+  m=105  regime=deficit one-shot  slack=-1/1
+  m=178  regime=deficit one-shot  slack=-1/1
+  m=210  regime=deficit one-shot  slack=-1/1
+  m=267  regime=deficit one-shot  slack=-1/1
+  m=445  regime=deficit one-shot  slack=-1/1
+  m=534  regime=deficit one-shot  slack=-1/1
+  m=623  regime=deficit one-shot  slack=-1/1
+  m=890  regime=deficit one-shot  slack=-1/1
+  m=1246  regime=deficit one-shot  slack=-1/1
+  m=1335  regime=deficit one-shot  slack=-1/1
+  m=1869  regime=deficit one-shot  slack=-1/1
+  m=2670  regime=deficit one-shot  slack=-1/1
+  m=3115  regime=deficit one-shot  slack=-1/1
+  m=3738  regime=deficit one-shot  slack=-1/1
+  m=6230  regime=deficit one-shot  slack=-1/1
+  m=9345  regime=deficit one-shot  slack=-1/1
+  m=18690  regime=deficit one-shot  slack=-1/1
+
+case: synthetic recursive {3,5,6,9,12,15,18,21}
+primes: [2,3,5,7]
+radical divisors: [1,2,3,5,6,7,10,14,15,21,30,35,42,70,105,210]
+best:   m=3  regime=recursive strict  slack=1007/10472
+all verdicts:
+  m=2  regime=deficit one-shot  slack=-608/935
+  m=3  regime=recursive strict  slack=1007/10472
+  m=5  regime=deficit one-shot  slack=-19/28
+  m=6  regime=deficit one-shot  slack=-608/935
+  m=7  regime=deficit one-shot  slack=-19/20
+  m=10  regime=deficit one-shot  slack=-1/1
+  m=14  regime=deficit one-shot  slack=-1/1
+  m=15  regime=deficit one-shot  slack=-13/14
+  m=21  regime=deficit one-shot  slack=-19/20
+  m=30  regime=deficit one-shot  slack=-1/1
+  m=35  regime=deficit one-shot  slack=-1/1
+  m=42  regime=deficit one-shot  slack=-1/1
+  m=70  regime=deficit one-shot  slack=-1/1
+  m=105  regime=deficit one-shot  slack=-1/1
+  m=210  regime=deficit one-shot  slack=-1/1
+
+case: empty base set rejected
+  rejected: modulus search needs at least one base
+
+case: base below 2 rejected
+  rejected: bases must be at least 2, got [1,3,4]
+

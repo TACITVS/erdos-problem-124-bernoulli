@@ -111,6 +111,10 @@ obligations =
       Certified
       "QuotientReciprocalSum.hs proves R(quotient block at m,A) = sum_{d in D(m,A)} 1/(d-1) and classifies each (m,A) into recursive strict, recursive critical, or deficit one-shot regime.",
     Obligation
+      "modulus search reduction"
+      Certified
+      "ModulusSearch.hs reduces the modular-bridge selection to a finite enumeration of squarefree divisors of rad(prod(A)) and certifies that every local hypothesis-minimal case lands in the deficit one-shot regime.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",
