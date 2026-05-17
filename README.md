@@ -184,6 +184,20 @@ machinery now plugs into scaled-block conductor inputs directly.
 the scaled middle-interval theorem by reducing it to numerical-semigroup
 analysis: same-base scaled blocks with \(\gcd(\mathbf q)=1\) have central
 conductor at most \(F(\mathbf q)\cdot d^{e_{\min}}+O(1)\).
+`notes/45_strategy_revision.md` records the strategic pivot: the modular
+bridge is one-shot for every local hypothesis-minimal case, so the
+remaining work is the mixed-base scaled middle-interval theorem and the
+analytic input.
+`notes/46_347_k1_certificate.md` upgrades the \(\{3,4,7\}, k=1\) case from
+an empirical claim to a typed CF/MW certificate using the same template as
+\(k=2\) and \(k=3\).
+`notes/47_generating_function_density.md` opens a new research direction:
+\(F_A(x)=\prod_{a,n}(1+x^{a^n})\) satisfies a Mahler functional equation,
+and the algebraic identity \(\sum_a 1/\log_2 a\ge R(A)\ge 1\) (verified
+mechanically in `scripts/cas_density_check.py`) gives the local-limit
+density heuristic for free.  The remaining analytic input is a single
+uniform characteristic-function bound, related to but distinct from the
+existing Mignotte–Waldschmidt input.
 
 ## Certificate runner
 
