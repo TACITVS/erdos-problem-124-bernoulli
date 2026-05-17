@@ -129,6 +129,15 @@
       "purpose": "Check scaled power progression constructors and quotient normalization."
     },
     {
+      "id": "haskell-scaled-complete-sequence",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ScaledCompleteSequenceCertificate.hs"],
+      "artifacts": ["haskell/CompleteSequence.hs", "haskell/ScaledPowerBlock.hs", "haskell/ScaledCompleteSequenceCertificate.hs"],
+      "purpose": "Check complete-sequence absorption and central-conductor preservation for scaled blocks."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

@@ -59,10 +59,16 @@ nodes =
       ["fixed-frame-asymptotic-transfer"]
       "Quotient blocks should be treated as finite unions of q*d^n progressions.",
     Node
+      "complete-sequence-absorption"
+      "Complete-sequence absorption criterion"
+      Done
+      ["scaled-power-language"]
+      "Brown-style ordered-term absorption preserves an existing central conductor bound.",
+    Node
       "scaled-power-middle-interval"
       "Middle interval theorem for scaled power blocks"
       Open
-      ["scaled-power-language"]
+      ["scaled-power-language", "complete-sequence-absorption"]
       "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.",
     Node
       "quotient-block-selection"

@@ -148,6 +148,9 @@ finite-seed conductor bound for modular induction.
 theorem into checked dependencies and names the next open cuts.
 `notes/35_scaled_power_block_language.md` makes quotient blocks precise as
 scaled progressions \(q d^n\) and records the quotient-normalization lemma.
+`notes/36_complete_sequence_scaled_absorption.md` imports the Brown-style
+complete-sequence criterion into the scaled-block route: ordered scaled terms
+that keep touching a central interval preserve its conductor bound.
 
 ## Certificate runner
 

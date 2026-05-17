@@ -53,6 +53,11 @@ theorem and reports the current next open cuts.
 progressions `q*d^n`.  `ScaledPowerBlockCertificate.hs` checks finite term
 generation and pure-power quotient normalization.
 
+`CompleteSequence.hs` records the Brown-style ordered-term absorption criterion
+and the resulting central-conductor preservation lemma.
+`ScaledCompleteSequenceCertificate.hs` checks this criterion on finite scaled
+blocks, including a sparse-block rejection case.
+
 `UnitResidueFrame.hs` constructs complete residue frames from powers of a single
 base that is a unit modulo the chosen modulus.  `UnitResidueFrameCertificate.hs`
 checks denominator examples and a nontrivial-order sample.
@@ -78,6 +83,7 @@ runghc -ihaskell haskell/ResidueLiftCertificate.hs
 runghc -ihaskell haskell/ConductorLiftCertificate.hs
 runghc haskell/ConductorBossTree.hs
 runghc -ihaskell haskell/ScaledPowerBlockCertificate.hs
+runghc -ihaskell haskell/ScaledCompleteSequenceCertificate.hs
 runghc -ihaskell haskell/UnitResidueFrameCertificate.hs
 runghc -ihaskell haskell/CFHTailCertificate.hs
 ```

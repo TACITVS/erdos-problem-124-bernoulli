@@ -2,10 +2,15 @@
 
 module ScaledPowerBlock
   ( ScaledProgression (..),
+    ScaledBlock (..),
     mkScaledProgression,
+    mkScaledBlock,
     scaledTermAt,
     scaledTermsByCount,
     scaledTermsUpTo,
+    scaledBlockTermsByCounts,
+    scaledBlockTermsUpTo,
+    scaledBlockTotal,
     quotientPurePowerProgression,
     quotientPurePowerTerms,
     progressionTotal,
@@ -13,10 +18,18 @@ module ScaledPowerBlock
   )
 where
 
+import Control.Monad (zipWithM)
+import Data.List (sort)
+
 data ScaledProgression = ScaledProgression
   { coefficient :: Integer,
     base :: Integer,
     exponentStart :: Integer
+  }
+  deriving stock (Eq, Show)
+
+newtype ScaledBlock = ScaledBlock
+  { blockProgressions :: [ScaledProgression]
   }
   deriving stock (Eq, Show)
 
@@ -32,6 +45,11 @@ mkScaledProgression coeff baseValue start
             base = baseValue,
             exponentStart = start
           }
+
+mkScaledBlock :: [ScaledProgression] -> Either String ScaledBlock
+mkScaledBlock progressions
+  | null progressions = Left "scaled block must contain at least one progression"
+  | otherwise = Right (ScaledBlock progressions)
 
 scaledTermAt :: ScaledProgression -> Integer -> Either String Integer
 scaledTermAt progression offset
@@ -54,6 +72,27 @@ scaledTermsUpTo progression limit =
     [ coefficient progression * base progression ^ powerIndex
       | powerIndex <- [exponentStart progression ..]
     ]
+
+scaledBlockTermsByCounts :: ScaledBlock -> [Int] -> Either String [Integer]
+scaledBlockTermsByCounts block counts
+  | length progressions /= length counts =
+      Left
+        ( "progression/count length mismatch: "
+            <> show (length progressions, length counts)
+        )
+  | otherwise = do
+      termsByProgression <- zipWithM scaledTermsByCount progressions counts
+      Right (sort (concat termsByProgression))
+  where
+    progressions = blockProgressions block
+
+scaledBlockTermsUpTo :: ScaledBlock -> Integer -> [Integer]
+scaledBlockTermsUpTo block limit =
+  sort (concatMap (`scaledTermsUpTo` limit) (blockProgressions block))
+
+scaledBlockTotal :: ScaledBlock -> [Int] -> Either String Integer
+scaledBlockTotal block counts =
+  sum <$> scaledBlockTermsByCounts block counts
 
 quotientPurePowerProgression ::
   Integer ->

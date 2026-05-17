@@ -125,6 +125,11 @@ sublinear or power-saving central conductors.
 This is the current sharp additive-combinatorial target.  It is the main open
 cut.
 
+The complete-sequence absorption subcut in
+`notes/36_complete_sequence_scaled_absorption.md` gives a reusable sufficient
+criterion: once scaled quotient terms can be ordered so that each term touches
+the current central interval, the old conductor bound is preserved.
+
 ### 3. Quotient block selection
 
 Find a modulus \(m\), a residue frame \(F\), and a divisible block \(G=mG'\)

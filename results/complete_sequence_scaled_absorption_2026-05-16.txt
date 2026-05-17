@@ -1,0 +1,47 @@
+Complete-sequence absorption for scaled blocks
+Date: 2026-05-16
+
+Artifacts:
+  notes/36_complete_sequence_scaled_absorption.md
+  haskell/CompleteSequence.hs
+  haskell/ScaledCompleteSequenceCertificate.hs
+
+Mathematical advance:
+  Isolated the Brown/complete-sequence interval criterion in the form needed
+  by the scaled-power conductor route.
+
+Core lemma:
+  If a seed represents [L,U] and ordered positive terms b_i satisfy
+
+    b_i <= U - L + 1 + sum_{j<i} b_j,
+
+  then after adjoining those terms the represented interval is
+
+    [L, U + sum_i b_i].
+
+Central-conductor consequence:
+  If the seed total is S0 and its central conductor is c, then the seed
+  interval is [c+1, S0-c-1].  A complete finite scaled block extends this to
+
+    [c+1, S1-c-1]
+
+  where S1 is the new total.  Thus the conductor bound c is preserved.
+
+Proof route impact:
+  The scaled middle-interval theorem now has a smaller sufficient-condition
+  target: choose quotient-block terms whose increasing order is complete over
+  an existing central interval.
+
+Status:
+  This does not prove the global scaled middle-interval theorem.  It certifies
+  a reusable algebraic sublemma and turns part of the theorem into an ordered
+  inequality problem on scaled terms.
+
+Verification:
+  runghc -ihaskell haskell/ScaledCompleteSequenceCertificate.hs passed.
+  ghc -Wall -Werror -fforce-recomp -ihaskell
+  haskell/ScaledCompleteSequenceCertificate.hs also passed.
+  python scripts\run_certificates.py passed the default manifest:
+    checked: 18
+    passed:  18
+    failed:  0

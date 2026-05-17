@@ -91,6 +91,10 @@ obligations =
       Certified
       "ScaledPowerBlock.hs defines quotient-block progressions q*d^n and checks pure-power quotient normalization.",
     Obligation
+      "complete-sequence absorption"
+      Certified
+      "CompleteSequence.hs proves Brown-style ordered-term absorption and central-conductor preservation for scaled blocks.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",
