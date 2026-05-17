@@ -162,6 +162,11 @@ bridge with explicit failure modes.
 interval reaches the whole half-sum, closing the reach side of the modular
 conductor lift along every sublinear or power-saving quotient conductor
 sequence.
+`notes/40_quotient_reciprocal_sum.md` proves the quotient reciprocal-sum
+identity \(R(\text{quotient block at }m,A)=\sum_{d\in D(m,A)}1/(d-1)\),
+classifies each \((m,A)\) into the recursive or deficit one-shot regime, and
+records that all local hypothesis-minimal cases are deficit one-shot at every
+nontrivial modulus.
 
 ## Certificate runner
 

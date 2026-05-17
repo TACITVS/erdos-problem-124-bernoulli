@@ -165,6 +165,15 @@
       "purpose": "Check the half-sum reach threshold for the modular conductor lift."
     },
     {
+      "id": "haskell-quotient-reciprocal-sum",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/QuotientReciprocalSumCertificate.hs"],
+      "artifacts": ["haskell/QuotientReciprocalSum.hs", "haskell/QuotientReciprocalSumCertificate.hs"],
+      "purpose": "Check the quotient reciprocal-sum identity and the modular-bridge selection regime."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

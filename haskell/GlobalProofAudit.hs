@@ -107,6 +107,10 @@ obligations =
       Certified
       "HalfSumReach.hs proves S' >= 2(c'+1) + ceil(F_tot/m) implies the lifted central interval reaches the whole half-sum, finishing the reach side of the modular conductor lift along any sublinear or power-saving quotient conductor sequence.",
     Obligation
+      "quotient reciprocal-sum identity"
+      Certified
+      "QuotientReciprocalSum.hs proves R(quotient block at m,A) = sum_{d in D(m,A)} 1/(d-1) and classifies each (m,A) into recursive strict, recursive critical, or deficit one-shot regime.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",

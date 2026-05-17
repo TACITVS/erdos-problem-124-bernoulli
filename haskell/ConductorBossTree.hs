@@ -83,11 +83,17 @@ nodes =
       ["scaled-power-language", "complete-sequence-absorption"]
       "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.",
     Node
+      "quotient-reciprocal-identity"
+      "Quotient reciprocal-sum identity"
+      Done
+      ["p-adic-quotient-selection", "scaled-power-language"]
+      "R of the scaled quotient block at modulus m equals sum 1/(d-1) over the divisible subset D(m,A), classifying each (m,A) as recursive or deficit one-shot.",
+    Node
       "quotient-block-selection"
       "Choose useful modular quotient blocks"
       Open
-      ["unit-frame", "scaled-power-language", "p-adic-quotient-selection"]
-      "Find moduli and finite frames leaving quotient blocks with enough admissible structure.",
+      ["unit-frame", "scaled-power-language", "p-adic-quotient-selection", "quotient-reciprocal-identity"]
+      "Find moduli and finite frames leaving quotient blocks with enough admissible structure.  All local hypothesis-minimal cases now fall in the deficit one-shot regime, so the cut splits into recursive-regime moduli and a direct attack for deficit cases.",
     Node
       "asymptotic-half-sum-reach"
       "Algebraic half-sum reach threshold"
