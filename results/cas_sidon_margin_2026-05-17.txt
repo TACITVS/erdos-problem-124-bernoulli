@@ -1,0 +1,32 @@
+== 1. Density-exponent margins ==
+  set                       R(A)          sum 1/log_2 a     margin    
+  {3,4,7}                   1             1.487137          0.487137  
+  {3,4,9,25}                1             1.661733          0.661733  
+  {3,4,5}                   13/12         1.561606          0.561606  
+  {3,5,7,13}                1             1.688052          0.688052  
+  {3,6,9,12,21,45,89}       1             2.176371          1.176371  
+
+== 2. Sidon constant upper bound C(q) <= pi/arcsin(1/q) ==
+  q     C(q) upper bound  C(q)^2            
+  3     9.2444            85.4592           
+  4     12.4331           154.5814          
+  5     15.6020           243.4234          
+  6     18.7616           351.9974          
+  7     21.9159           480.3072          
+  9     28.2160           796.1399          
+  11    34.5098           1190.9268         
+  13    40.8004           1664.6694         
+  25    78.5189           6165.2118         
+
+== 3. Naive Sidon-bound closure ==
+  set                       C_max^2       (margin)^2/(2e)   passes?   
+  {3,4,7}                   480.3072      0.043649          no        
+  {3,4,9,25}                6165.2118     0.080545          no        
+  {3,4,5}                   243.4234      0.058015          no        
+  {3,5,7,13}                1664.6694     0.087080          no        
+  {3,6,9,12,21,45,89}       78173.8465    0.254545          no        
+
+Note: the naive Sidon constants are not sharp enough for any local
+case to pass.  This is the analytic gap discussed in section 7 of
+note 53.  Sharper constants or the S-unit fourth-moment route are
+needed to close.
