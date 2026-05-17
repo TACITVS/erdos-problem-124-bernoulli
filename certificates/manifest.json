@@ -183,6 +183,15 @@
       "purpose": "Enumerate the finite squarefree modulus search and pick best modular-bridge regime."
     },
     {
+      "id": "haskell-single-progression-absorption",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/SingleProgressionAbsorptionCertificate.hs"],
+      "artifacts": ["haskell/SingleProgressionAbsorption.hs", "haskell/SingleProgressionAbsorptionCertificate.hs"],
+      "purpose": "Check the closed-form absorbable prefix length for a single scaled progression onto a seed interval."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

@@ -65,6 +65,12 @@ nodes =
       ["scaled-power-language"]
       "Brown-style ordered-term absorption preserves an existing central conductor bound.",
     Node
+      "single-progression-absorption-count"
+      "Closed-form absorbable prefix count"
+      Done
+      ["complete-sequence-absorption", "scaled-power-language"]
+      "Closed form q d^(n0+i-1)(d-2) <= (d-1)(H0+1) - q d^n0 for the i-th absorbable term, with dyadic dichotomy and span growth factor 2(d-1)/(d-2).",
+    Node
       "p-adic-quotient-selection"
       "P-adic quotient-block selection"
       Done
@@ -80,8 +86,8 @@ nodes =
       "scaled-power-middle-interval"
       "Middle interval theorem for scaled power blocks"
       Open
-      ["scaled-power-language", "complete-sequence-absorption"]
-      "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.",
+      ["scaled-power-language", "complete-sequence-absorption", "single-progression-absorption-count"]
+      "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.  The single-progression count gives the per-round absorption budget; the remaining work is iterating across multiple progressions while preserving the conductor identity.",
     Node
       "quotient-reciprocal-identity"
       "Quotient reciprocal-sum identity"

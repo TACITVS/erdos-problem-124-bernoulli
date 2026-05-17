@@ -171,6 +171,10 @@ nontrivial modulus.
 to a finite enumeration over squarefree divisors of \(\operatorname{rad}(\prod
 A)\), confirming algorithmically that every local hypothesis-minimal case
 falls in the deficit one-shot regime.
+`notes/42_single_progression_absorption.md` records the closed-form
+absorbable prefix length for a single scaled progression \(q d^n\) onto a
+seed interval, with the dyadic dichotomy and the constant span growth factor
+\(2(d-1)/(d-2)\) that bounds each absorption round.
 
 ## Certificate runner
 

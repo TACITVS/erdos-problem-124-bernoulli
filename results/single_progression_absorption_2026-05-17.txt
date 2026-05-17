@@ -1,0 +1,61 @@
+case: dyadic full absorption with H0=7, q=1, n0=0
+initial span: 7
+first term q * 2^n0: 1
+absorbable prefix length: "infinite"
+
+case: dyadic no absorption when H0 below first term
+initial span: 6
+first term q * 2^n0: 8
+absorbable prefix length: "0"
+
+case: dyadic ignition exactly at threshold q=3, n0=2
+initial span: 11
+first term q * 2^n0: 12
+absorbable prefix length: "infinite"
+
+case: ternary q=1 n0=0 with span 1
+initial span: 1
+scaled progression: q=1, d=3, n0=0
+absorbable prefix length: Just 2
+post-absorption span: Just 5
+structural growth factor 2(d-1)/(d-2): 4/1
+
+case: ternary q=1 n0=0 with large span
+initial span: 100
+scaled progression: q=1, d=3, n0=0
+absorbable prefix length: Just 5
+post-absorption span: Just 221
+structural growth factor 2(d-1)/(d-2): 4/1
+
+case: ternary q=2 n0=1 with span 12
+initial span: 12
+scaled progression: q=2, d=3, n0=1
+absorbable prefix length: Just 2
+post-absorption span: Just 36
+structural growth factor 2(d-1)/(d-2): 4/1
+
+case: quaternary q=1 n0=0 with span 4
+initial span: 4
+scaled progression: q=1, d=4, n0=0
+absorbable prefix length: Just 2
+post-absorption span: Just 9
+structural growth factor 2(d-1)/(d-2): 6/2
+
+case: quinary q=1 n0=0 with span 100
+initial span: 100
+scaled progression: q=1, d=5, n0=0
+absorbable prefix length: Just 4
+post-absorption span: Just 256
+structural growth factor 2(d-1)/(d-2): 8/3
+
+case: base 1 rejected
+  rejected: base must be at least 2, got 1
+
+case: negative span rejected
+  rejected: seed span must be nonnegative, got -1
+
+case: zero coefficient rejected
+  rejected: coefficient must be positive, got 0
+
+growth check: base 2 reports DyadicFullAbsorption
+

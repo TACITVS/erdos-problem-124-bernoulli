@@ -115,6 +115,10 @@ obligations =
       Certified
       "ModulusSearch.hs reduces the modular-bridge selection to a finite enumeration of squarefree divisors of rad(prod(A)) and certifies that every local hypothesis-minimal case lands in the deficit one-shot regime.",
     Obligation
+      "single progression absorption count"
+      Certified
+      "SingleProgressionAbsorption.hs proves the closed-form criterion q d^(n0+i-1)(d-2) <= (d-1)(H0+1) - q d^n0 for absorption of a scaled progression's i-th term, with the dyadic dichotomy and span growth factor 2(d-1)/(d-2).",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",
