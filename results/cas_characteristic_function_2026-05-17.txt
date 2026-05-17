@@ -1,0 +1,180 @@
+
+== {3,4,7}, k=1, seed limit 100 ==
+  base counts: {3: 4, 4: 3, 7: 2}
+  total terms: 9
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            1.275372e-89     yes     
+    1/3      1/32                         3.125000e-02     yes     
+    2/3      1/32                         3.125000e-02     yes     
+    1/4      1/8                          1.250000e-01     yes     
+    3/4      1/8                          1.250000e-01     yes     
+    1/5      1/256 + sqrt(5)/512          8.273570e-03     yes     
+    2/5      -1/256 + sqrt(5)/512         4.610703e-04     yes     
+    3/5      -1/256 + sqrt(5)/512         4.610703e-04     yes     
+    4/5      1/256 + sqrt(5)/512          8.273570e-03     yes     
+    1/6      0                            8.417468e-63     yes     
+    5/6      0                            4.134168e-61     yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 1.598818e-01
+
+== {3,4,7}, k=1, seed limit 1000 ==
+  base counts: {3: 6, 4: 4, 7: 3}
+  total terms: 13
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            1.017360e-130    yes     
+    1/3      1/128                        7.812500e-03     yes     
+    2/3      1/128                        7.812500e-03     yes     
+    1/4      sqrt(2)/32                   4.419417e-02     yes     
+    3/4      sqrt(2)/32                   4.419417e-02     yes     
+    1/5      5.170981e-04                 5.170981e-04     yes     
+    2/5      2.881689e-05                 2.881689e-05     yes     
+    3/5      2.881689e-05                 2.881689e-05     yes     
+    4/5      5.170981e-04                 5.170981e-04     yes     
+    1/6      0                            2.223413e-90     yes     
+    5/6      0                            7.623194e-88     yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 1.426080e-01
+
+== {3,4,7}, k=1, seed limit 10000 ==
+  base counts: {3: 8, 4: 6, 7: 4}
+  total terms: 18
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            9.918364e-170    yes     
+    1/3      1/1024                       9.765625e-04     yes     
+    2/3      1/1024                       9.765625e-04     yes     
+    1/4      1/64                         1.562500e-02     yes     
+    3/4      1/64                         1.562500e-02     yes     
+    1/5      (1/256 + sqrt(5)/512)**2     6.845196e-05     yes     
+    2/5      (-1/256 + sqrt(5)/512)**2    2.125858e-07     yes     
+    3/5      (-1/256 + sqrt(5)/512)**2    2.125858e-07     yes     
+    4/5      (1/256 + sqrt(5)/512)**2     6.845196e-05     yes     
+    1/6      0                            5.341204e-117    yes     
+    5/6      0                            5.743554e-113    yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 1.206488e-01
+
+== Gaussian density target 1/sigma for {3,4,7}, k=1 ==
+  limit      1/sigma       
+  100        1.678481e-02  
+  1000       2.253211e-03  
+  10000      2.353623e-04  
+
+== {3,4,9,25}, k=2, seed limit 100 ==
+  base counts: {3: 3, 4: 2, 9: 1, 25: 0}
+  total terms: 6
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            2.000818e-58     yes     
+    1/3      1/4                          2.500000e-01     yes     
+    2/3      1/4                          2.500000e-01     yes     
+    1/4      1/4                          2.500000e-01     yes     
+    3/4      1/4                          2.500000e-01     yes     
+    1/5      3*sqrt(5)/128 + 7/128        1.070953e-01     yes     
+    2/5      7/128 - 3*sqrt(5)/128        2.279657e-03     yes     
+    3/5      7/128 - 3*sqrt(5)/128        2.279657e-03     yes     
+    4/5      3*sqrt(5)/128 + 7/128        1.070953e-01     yes     
+    1/6      0                            1.257235e-60     yes     
+    5/6      0                            6.174806e-59     yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 7.216954e-01
+
+== {3,4,9,25}, k=2, seed limit 1000 ==
+  base counts: {3: 5, 4: 3, 9: 2, 25: 1}
+  total terms: 11
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            1.087448e-112    yes     
+    1/3      1/16                         6.250000e-02     yes     
+    2/3      1/16                         6.250000e-02     yes     
+    1/4      1/16                         6.250000e-02     yes     
+    3/4      1/16                         6.250000e-02     yes     
+    1/5      (1/16 + sqrt(5)/32)**2       1.752370e-02     yes     
+    2/5      (-1/16 + sqrt(5)/32)**2      5.442196e-05     yes     
+    3/5      (-1/16 + sqrt(5)/32)**2      5.442196e-05     yes     
+    4/5      (1/16 + sqrt(5)/32)**2       1.752370e-02     yes     
+    1/6      0                            1.968906e-101    yes     
+    5/6      0                            1.433633e-98     yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 2.534705e-01
+
+== {3,4,9,25}, k=2, seed limit 10000 ==
+  base counts: {3: 7, 4: 5, 9: 3, 25: 1}
+  total terms: 16
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            7.542339e-151    yes     
+    1/3      1/64                         1.562500e-02     yes     
+    2/3      1/64                         1.562500e-02     yes     
+    1/4      sqrt(2)/64                   2.209709e-02     yes     
+    3/4      sqrt(2)/64                   2.209709e-02     yes     
+    1/5      2.319737e-03                 2.319737e-03     yes     
+    2/5      4.014776e-07                 4.014776e-07     yes     
+    3/5      4.014776e-07                 4.014776e-07     yes     
+    4/5      2.319737e-03                 2.319737e-03     yes     
+    1/6      0                            5.007238e-141    yes     
+    5/6      0                            5.717499e-136    yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 2.120865e-01
+
+== Gaussian density target 1/sigma for {3,4,9,25}, k=2 ==
+  limit      1/sigma       
+  100        1.479089e-02  
+  1000       1.582933e-03  
+  10000      1.904342e-04  
+
+== {3,4,5}, k=1, seed limit 100 ==
+  base counts: {3: 4, 4: 3, 5: 2}
+  total terms: 9
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            2.685525e-91     yes     
+    1/3      1/32                         3.125000e-02     yes     
+    2/3      1/32                         3.125000e-02     yes     
+    1/4      1/8                          1.250000e-01     yes     
+    3/4      1/8                          1.250000e-01     yes     
+    1/5      1/64 + sqrt(5)/128           3.309428e-02     yes     
+    2/5      -1/64 + sqrt(5)/128          1.844281e-03     yes     
+    3/5      -1/64 + sqrt(5)/128          1.844281e-03     yes     
+    4/5      1/64 + sqrt(5)/128           3.309428e-02     yes     
+    1/6      0                            8.417468e-63     yes     
+    5/6      0                            4.134168e-61     yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 1.759181e-01
+
+== {3,4,5}, k=1, seed limit 1000 ==
+  base counts: {3: 6, 4: 4, 5: 4}
+  total terms: 14
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            2.422786e-146    yes     
+    1/3      1/256                        3.906250e-03     yes     
+    2/3      1/256                        3.906250e-03     yes     
+    1/4      1/32                         3.125000e-02     yes     
+    3/4      1/32                         3.125000e-02     yes     
+    1/5      (sqrt(5)/64 + 3/64)**2       6.693459e-03     yes     
+    2/5      (3/64 - sqrt(5)/64)**2       1.424785e-04     yes     
+    3/5      (3/64 - sqrt(5)/64)**2       1.424785e-04     yes     
+    4/5      (sqrt(5)/64 + 3/64)**2       6.693459e-03     yes     
+    1/6      0                            1.925533e-90     yes     
+    5/6      0                            6.601880e-88     yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 6.937605e-02
+
+== {3,4,5}, k=1, seed limit 10000 ==
+  base counts: {3: 8, 4: 6, 5: 5}
+  total terms: 19
+  resonances with q <= 6:
+    p/q      closed form                  numeric          match?  
+    1/2      0                            3.241921e-184    yes     
+    1/3      1/2048                       4.882813e-04     yes     
+    2/3      1/2048                       4.882812e-04     yes     
+    1/4      sqrt(2)/128                  1.104854e-02     yes     
+    3/4      sqrt(2)/128                  1.104854e-02     yes     
+    1/5      (1/64 + sqrt(5)/128)**2      1.095231e-03     yes     
+    2/5      (-1/64 + sqrt(5)/128)**2     3.401373e-06     yes     
+    3/5      (-1/64 + sqrt(5)/128)**2     3.401373e-06     yes     
+    4/5      (1/64 + sqrt(5)/128)**2      1.095231e-03     yes     
+    1/6      0                            4.625618e-117    yes     
+    5/6      0                            4.974064e-113    yes     
+  empirical max |phi| on [0.011, 0.499] (4000-pt grid): 1.932375e-02
+
+== Gaussian density target 1/sigma for {3,4,5}, k=1 ==
+  limit      1/sigma       
+  100        1.796198e-02  
+  1000       1.929264e-03  
+  10000      2.286711e-04  
