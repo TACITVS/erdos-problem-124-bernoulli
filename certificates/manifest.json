@@ -147,6 +147,15 @@
       "purpose": "Check p-adic quotient-block selection and invalid-choice rejection."
     },
     {
+      "id": "haskell-quotient-conductor-bridge",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/QuotientConductorBridgeCertificate.hs"],
+      "artifacts": ["haskell/QuotientConductorBridge.hs", "haskell/QuotientConductorBridgeCertificate.hs"],
+      "purpose": "Check selected quotient conductor transfer and expose bridge failure modes."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

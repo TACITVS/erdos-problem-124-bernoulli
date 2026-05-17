@@ -99,6 +99,8 @@ sublemma toward that theorem: ordered scaled terms satisfying the
 complete-sequence inequalities preserve an existing central conductor bound.
 `notes/37_p_adic_quotient_block_selection.md` records the p-adic criterion for
 constructing valid scaled quotient blocks from a modulus.
+`notes/38_quotient_conductor_bridge.md` composes those scaled quotient blocks
+with complete-sequence absorption and modular conductor lifting.
 
 ## Typed artifact
 

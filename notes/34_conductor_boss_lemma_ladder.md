@@ -145,6 +145,11 @@ solves the well-formedness part of that choice: a quotient base \(d\) is
 eventually \(m\)-divisible exactly when every prime divisor of \(m\) divides
 \(d\), with the first valid exponent given by a valuation maximum.
 
+The bridge in `notes/38_quotient_conductor_bridge.md` composes this p-adic
+choice with complete-sequence absorption and modular conductor lift.  It does
+not choose the right \(m\), but it turns any proposed choice into either a
+certified conductor bound or a precise failed inequality.
+
 ### 4. Half-sum reach
 
 The modular conductor lift requires

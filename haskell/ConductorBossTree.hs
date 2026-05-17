@@ -71,6 +71,12 @@ nodes =
       ["unit-frame", "scaled-power-language"]
       "Valuation criteria choose valid unit residue frames and m-divisible quotient progressions.",
     Node
+      "quotient-conductor-bridge"
+      "Selected quotient block gives lift input"
+      Done
+      ["p-adic-quotient-selection", "complete-sequence-absorption", "modular-conductor-lift"]
+      "A selected complete quotient block becomes a scaled central block and either lifts or exposes the exact failed inequality.",
+    Node
       "scaled-power-middle-interval"
       "Middle interval theorem for scaled power blocks"
       Open
@@ -86,7 +92,7 @@ nodes =
       "half-sum-reach"
       "Lifted interval reaches the whole half-sum"
       Open
-      ["modular-conductor-lift", "quotient-block-selection", "scaled-power-middle-interval"]
+      ["modular-conductor-lift", "quotient-conductor-bridge", "quotient-block-selection", "scaled-power-middle-interval"]
       "Show the lifted interval endpoint reaches floor(S/2) for the chosen decomposition.",
     Node
       "strict-conductor"

@@ -99,6 +99,10 @@ obligations =
       Certified
       "QuotientBlockSelection.hs proves the valuation criterion for valid unit frames and m-divisible scaled quotient tails.",
     Obligation
+      "quotient conductor bridge"
+      Certified
+      "QuotientConductorBridge.hs composes quotient selection, complete-sequence absorption, and modular conductor lift.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",

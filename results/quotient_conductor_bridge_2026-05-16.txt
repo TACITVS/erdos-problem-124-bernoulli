@@ -1,0 +1,40 @@
+Quotient conductor bridge
+Date: 2026-05-16
+
+Artifacts:
+  notes/38_quotient_conductor_bridge.md
+  haskell/QuotientConductorBridge.hs
+  haskell/QuotientConductorBridgeCertificate.hs
+
+Mathematical advance:
+  Composed p-adic quotient selection, complete-sequence absorption, and modular
+  conductor lift into one typed bridge.
+
+Core statement:
+  Given a valid quotient selection modulo m, an existing quotient central
+  conductor c', and selected quotient terms satisfying the complete-sequence
+  inequalities, the quotient interval becomes a ScaledCentralBlock with the
+  same conductor c'.  If residue lifting reaches the whole half-sum, the
+  ordinary conductor bound is
+
+    m(c' + 1) + R - 1
+
+  where R is the residue-frame width.
+
+Proof route impact:
+  The bridge exposes two exact remaining failure modes:
+    - selected quotient terms do not touch the current quotient interval;
+    - the lifted interval does not reach the whole half-sum.
+
+Status:
+  This does not solve the global quotient-block-selection or half-sum-reach
+  theorems.  It makes their interface executable and algebraic.
+
+Verification:
+  runghc -ihaskell haskell/QuotientConductorBridgeCertificate.hs passed.
+  ghc -Wall -Werror -fforce-recomp -ihaskell
+  haskell/QuotientConductorBridgeCertificate.hs also passed.
+  python scripts\run_certificates.py passed the default manifest:
+    checked: 20
+    passed:  20
+    failed:  0

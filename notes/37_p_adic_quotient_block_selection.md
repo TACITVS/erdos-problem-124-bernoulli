@@ -112,3 +112,7 @@ The remaining hard part of quotient-block selection is now sharper:
   modulus valuation;
 - rejection when the frame base is not a unit;
 - rejection when a quotient base is missing a prime divisor of the modulus.
+
+The next composition layer is `notes/38_quotient_conductor_bridge.md`, which
+takes a valid p-adic selection and tests whether complete-sequence absorption
+and residue lifting actually produce a conductor bound.

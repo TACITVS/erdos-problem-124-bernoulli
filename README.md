@@ -154,6 +154,9 @@ that keep touching a central interval preserve its conductor bound.
 `notes/37_p_adic_quotient_block_selection.md` proves the p-adic front end for
 quotient-block selection: a base contributes to an \(m\)-divisible quotient
 tail exactly when it contains every prime divisor of \(m\).
+`notes/38_quotient_conductor_bridge.md` composes quotient selection,
+complete-sequence absorption, and modular conductor lift into one checked
+bridge with explicit failure modes.
 
 ## Certificate runner
 
