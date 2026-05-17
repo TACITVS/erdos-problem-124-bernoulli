@@ -95,6 +95,10 @@ obligations =
       Certified
       "CompleteSequence.hs proves Brown-style ordered-term absorption and central-conductor preservation for scaled blocks.",
     Obligation
+      "p-adic quotient-block selection"
+      Certified
+      "QuotientBlockSelection.hs proves the valuation criterion for valid unit frames and m-divisible scaled quotient tails.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",

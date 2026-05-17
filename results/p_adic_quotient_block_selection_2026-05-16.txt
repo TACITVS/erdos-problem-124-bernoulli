@@ -1,0 +1,43 @@
+P-adic quotient-block selection
+Date: 2026-05-16
+
+Artifacts:
+  notes/37_p_adic_quotient_block_selection.md
+  haskell/QuotientBlockSelection.hs
+  haskell/QuotientBlockSelectionCertificate.hs
+
+Mathematical advance:
+  Isolated the exact p-adic condition for a base to contribute to an
+  m-divisible quotient block.
+
+Core criterion:
+  If m = product p^alpha_p, then m divides d^e if and only if
+
+    e * v_p(d) >= alpha_p
+
+  for every p dividing m.
+
+  Hence d has an eventually m-divisible tail if and only if every prime
+  divisor of m divides d.  The first exponent at floor k is
+
+    max(k, max_p ceil(alpha_p / v_p(d))).
+
+Proof route impact:
+  Quotient-block selection now has a typed arithmetic front end.  Invalid
+  choices are rejected for precise reasons:
+    - the frame base is not a unit modulo m;
+    - a quotient base is missing a modulus prime.
+
+Status:
+  This does not solve quotient-block selection globally.  It proves the
+  p-adic well-formedness criterion and leaves the additive-strength choice of
+  m,u,d_i as the next hard step.
+
+Verification:
+  runghc -ihaskell haskell/QuotientBlockSelectionCertificate.hs passed.
+  ghc -Wall -Werror -fforce-recomp -ihaskell
+  haskell/QuotientBlockSelectionCertificate.hs also passed.
+  python scripts\run_certificates.py passed the default manifest:
+    checked: 19
+    passed:  19
+    failed:  0

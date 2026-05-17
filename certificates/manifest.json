@@ -138,6 +138,15 @@
       "purpose": "Check complete-sequence absorption and central-conductor preservation for scaled blocks."
     },
     {
+      "id": "haskell-quotient-block-selection",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/QuotientBlockSelectionCertificate.hs"],
+      "artifacts": ["haskell/QuotientBlockSelection.hs", "haskell/QuotientBlockSelectionCertificate.hs"],
+      "purpose": "Check p-adic quotient-block selection and invalid-choice rejection."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

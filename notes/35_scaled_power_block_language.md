@@ -97,6 +97,8 @@ that theorem must discuss.
 `notes/36_complete_sequence_scaled_absorption.md` records the first reusable
 sublemma toward that theorem: ordered scaled terms satisfying the
 complete-sequence inequalities preserve an existing central conductor bound.
+`notes/37_p_adic_quotient_block_selection.md` records the p-adic criterion for
+constructing valid scaled quotient blocks from a modulus.
 
 ## Typed artifact
 

@@ -151,6 +151,9 @@ scaled progressions \(q d^n\) and records the quotient-normalization lemma.
 `notes/36_complete_sequence_scaled_absorption.md` imports the Brown-style
 complete-sequence criterion into the scaled-block route: ordered scaled terms
 that keep touching a central interval preserve its conductor bound.
+`notes/37_p_adic_quotient_block_selection.md` proves the p-adic front end for
+quotient-block selection: a base contributes to an \(m\)-divisible quotient
+tail exactly when it contains every prime divisor of \(m\).
 
 ## Certificate runner
 

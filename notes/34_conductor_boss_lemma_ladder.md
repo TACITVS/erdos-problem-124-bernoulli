@@ -140,6 +140,11 @@ The unit-base frame lemma in `notes/30_unit_residue_frame.md` solves the
 residue-frame part whenever some base is a unit modulo \(m\).  It does not
 solve the quotient block choice.
 
+The p-adic front end in `notes/37_p_adic_quotient_block_selection.md` now
+solves the well-formedness part of that choice: a quotient base \(d\) is
+eventually \(m\)-divisible exactly when every prime divisor of \(m\) divides
+\(d\), with the first valid exponent given by a valuation maximum.
+
 ### 4. Half-sum reach
 
 The modular conductor lift requires

@@ -2,12 +2,13 @@
 
 Tracked note: this handout is an imported project-state snapshot.  Subsequent
 updates are in `notes/22_bibliography.md` through
-`notes/36_complete_sequence_scaled_absorption.md`, especially the \(S\)-unit
+`notes/37_p_adic_quotient_block_selection.md`, especially the \(S\)-unit
 exact-critical tail route, the power-saving central conductor target, the
 residue-lift bridge, the unit-base residue-frame construction, the Raku residue
 DSL, the manifest-based certificate architecture, the modular conductor lift,
 the conductor boss lemma ladder, the scaled power block language, and the
-complete-sequence absorption cut for scaled blocks.
+complete-sequence absorption and p-adic quotient-selection cuts for scaled
+blocks.
 
 ## 0. Purpose of this handout
 

@@ -58,6 +58,11 @@ and the resulting central-conductor preservation lemma.
 `ScaledCompleteSequenceCertificate.hs` checks this criterion on finite scaled
 blocks, including a sparse-block rejection case.
 
+`QuotientBlockSelection.hs` implements the p-adic criterion for choosing valid
+unit residue frames and `m`-divisible quotient tails.
+`QuotientBlockSelectionCertificate.hs` checks successful selections and
+invalid-choice rejections.
+
 `UnitResidueFrame.hs` constructs complete residue frames from powers of a single
 base that is a unit modulo the chosen modulus.  `UnitResidueFrameCertificate.hs`
 checks denominator examples and a nontrivial-order sample.
@@ -84,6 +89,7 @@ runghc -ihaskell haskell/ConductorLiftCertificate.hs
 runghc haskell/ConductorBossTree.hs
 runghc -ihaskell haskell/ScaledPowerBlockCertificate.hs
 runghc -ihaskell haskell/ScaledCompleteSequenceCertificate.hs
+runghc -ihaskell haskell/QuotientBlockSelectionCertificate.hs
 runghc -ihaskell haskell/UnitResidueFrameCertificate.hs
 runghc -ihaskell haskell/CFHTailCertificate.hs
 ```

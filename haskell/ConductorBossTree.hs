@@ -65,6 +65,12 @@ nodes =
       ["scaled-power-language"]
       "Brown-style ordered-term absorption preserves an existing central conductor bound.",
     Node
+      "p-adic-quotient-selection"
+      "P-adic quotient-block selection"
+      Done
+      ["unit-frame", "scaled-power-language"]
+      "Valuation criteria choose valid unit residue frames and m-divisible quotient progressions.",
+    Node
       "scaled-power-middle-interval"
       "Middle interval theorem for scaled power blocks"
       Open
@@ -74,7 +80,7 @@ nodes =
       "quotient-block-selection"
       "Choose useful modular quotient blocks"
       Open
-      ["unit-frame", "scaled-power-language"]
+      ["unit-frame", "scaled-power-language", "p-adic-quotient-selection"]
       "Find moduli and finite frames leaving quotient blocks with enough admissible structure.",
     Node
       "half-sum-reach"
