@@ -192,11 +192,20 @@ case34925k2 =
       mwStart = Exponent 293903
     }
 
+case347k1 :: TailGate
+case347k1 =
+  TailGate
+    { label = "{3,4,7}, k=1",
+      gap = Gap 7002,
+      legendreStart = Exponent 11,
+      mwStart = Exponent 293895
+    }
+
 main :: IO ()
 main = do
   let cfPrefix = alphaCfPrefix
       convs = convergents cfPrefix
-      cases = [case347k2, case347k3, case34925k2]
+      cases = [case347k1, case347k2, case347k3, case34925k2]
   if cfPrefix /= expectedCfPrefix
     then error ("continued-fraction prefix mismatch: " <> show cfPrefix)
     else putStrLn ("cf prefix: " <> show cfPrefix <> "\n")

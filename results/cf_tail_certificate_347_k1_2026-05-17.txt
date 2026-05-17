@@ -1,0 +1,34 @@
+cf prefix: [CfTerm 0,CfTerm 1,CfTerm 3,CfTerm 1,CfTerm 4,CfTerm 1,CfTerm 1,CfTerm 11,CfTerm 1,CfTerm 46,CfTerm 1,CfTerm 5,CfTerm 112]
+
+case: {3,4,7}, k=1
+gap: Gap 7002
+legendre start: Exponent 11
+mw start: Exponent 293895
+relevant convergents: 8
+minimum exact gap: 7551629537
+next denominator: Exponent 21372011
+
+case: {3,4,7}, k=2
+gap: Gap 47794770
+legendre start: Exponent 20
+mw start: Exponent 293904
+relevant convergents: 8
+minimum exact gap: 7551629537
+next denominator: Exponent 21372011
+
+case: {3,4,7}, k=3
+gap: Gap 1992303678
+legendre start: Exponent 23
+mw start: Exponent 293907
+relevant convergents: 8
+minimum exact gap: 7551629537
+next denominator: Exponent 21372011
+
+case: {3,4,9,25}, k=2
+gap: Gap 21701880
+legendre start: Exponent 19
+mw start: Exponent 293903
+relevant convergents: 8
+minimum exact gap: 7551629537
+next denominator: Exponent 21372011
+

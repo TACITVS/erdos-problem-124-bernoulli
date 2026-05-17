@@ -184,6 +184,20 @@ case34925k2 =
       checkedUntilExponent = Exponent 19
     }
 
+case347k1 :: TailCase
+case347k1 =
+  TailCase
+    { label = "{3,4,7}, k=1",
+      baseSet = map Base [3, 4, 7],
+      firstPower = Exponent 1,
+      seedLimit = 100000,
+      conductor = Conductor 581,
+      expectedBound = ClearedBound 7002,
+      startExponents = map Exponent [11, 9, 6],
+      checkedUntilBase = Base 3,
+      checkedUntilExponent = Exponent 12
+    }
+
 case347k2 :: TailCase
 case347k2 =
   TailCase
@@ -214,7 +228,7 @@ case347k3 =
 
 main :: IO ()
 main = do
-  let cases = [case347k2, case347k3, case34925k2]
+  let cases = [case347k1, case347k2, case347k3, case34925k2]
   mapM_ run cases
   where
     run tc =

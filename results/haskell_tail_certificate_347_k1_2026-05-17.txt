@@ -1,0 +1,32 @@
+case: {3,4,7}, k=1
+denominator: Denominator 6
+weights: [Weight 3,Weight 2,Weight 1]
+bound: ClearedBound 7002
+start: [Exponent 11,Exponent 9,Exponent 6]
+states checked: 2
+minimum margin: Margin 460482
+
+case: {3,4,7}, k=2
+denominator: Denominator 6
+weights: [Weight 3,Weight 2,Weight 1]
+bound: ClearedBound 47794770
+start: [Exponent 17,Exponent 13,Exponent 10]
+states checked: 7
+minimum margin: Margin 323200122
+
+case: {3,4,7}, k=3
+denominator: Denominator 6
+weights: [Weight 3,Weight 2,Weight 1]
+bound: ClearedBound 1992303678
+start: [Exponent 21,Exponent 17,Exponent 12]
+states checked: 4
+minimum margin: Margin 14827662282
+
+case: {3,4,9,25}, k=2
+denominator: Denominator 24
+weights: [Weight 12,Weight 8,Weight 3,Weight 1]
+bound: ClearedBound 21701880
+start: [Exponent 15,Exponent 12,Exponent 8,Exponent 6]
+states checked: 8
+minimum margin: Margin 313609752
+

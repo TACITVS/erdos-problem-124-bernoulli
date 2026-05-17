@@ -149,7 +149,7 @@ obligations =
     Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
-      "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.",
+      "Checked by TailCertificate.hs, CFTailCertificate.hs, and Hasclid scripts.  Covers {3,4,7} at k=1,2,3 (conductors 581, 3982888, 166025260) and {3,4,9,25} at k=2 (conductor 452099).",
     Obligation
       "Mignotte-Waldschmidt input for 3 versus 4"
       Imported
