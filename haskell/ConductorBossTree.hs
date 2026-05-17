@@ -77,6 +77,12 @@ nodes =
       ["complete-sequence-absorption", "scaled-power-language"]
       "Closed form q d^(n0+i-1)(d-2) <= (d-1)(H0+1) - q d^n0 for the i-th absorbable term, with dyadic dichotomy and span growth factor 2(d-1)/(d-2).",
     Node
+      "same-base-frobenius-reduction"
+      "Same-base scaled block Frobenius reduction"
+      Done
+      ["scaled-power-language", "scaled-conductor-identity"]
+      "Same-base scaled blocks reduce to numerical-semigroup analysis of the coefficient tuple, bounding the central conductor by Frobenius(q1,...,qr) * d^e_min.",
+    Node
       "p-adic-quotient-selection"
       "P-adic quotient-block selection"
       Done
@@ -92,8 +98,8 @@ nodes =
       "scaled-power-middle-interval"
       "Middle interval theorem for scaled power blocks"
       Open
-      ["scaled-power-language", "complete-sequence-absorption", "single-progression-absorption-count", "scaled-conductor-identity"]
-      "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.  The single-progression count gives the per-round absorption budget; the conductor identity reduces the bound to controlling K(B,E); the remaining work is iterating across multiple progressions while preserving K.",
+      ["scaled-power-language", "complete-sequence-absorption", "single-progression-absorption-count", "scaled-conductor-identity", "same-base-frobenius-reduction"]
+      "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.  The same-base sub-cut is now reduced to numerical semigroups; the remaining open work is the mixed-base case, which requires either the modular bridge in its recursive regime or direct analytic input.",
     Node
       "quotient-reciprocal-identity"
       "Quotient reciprocal-sum identity"

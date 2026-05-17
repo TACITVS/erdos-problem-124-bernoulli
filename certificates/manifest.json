@@ -201,6 +201,15 @@
       "purpose": "Check the scaled conductor identity C(B,E) - S(B,E) = kappa_scaled(B) and the tail invariant K(B,E) = kappa_scaled + 2c + 1."
     },
     {
+      "id": "haskell-same-base-frobenius",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/SameBaseFrobeniusCertificate.hs"],
+      "artifacts": ["haskell/SameBaseFrobenius.hs", "haskell/SameBaseFrobeniusCertificate.hs"],
+      "purpose": "Check the Frobenius / numerical-semigroup reduction for same-base scaled blocks."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

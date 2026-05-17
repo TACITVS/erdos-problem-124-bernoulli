@@ -179,6 +179,10 @@ seed interval, with the dyadic dichotomy and the constant span growth factor
 \(K=\kappa+2c+1\) from pure-power to scaled blocks, with
 \(C(B,E)-S(B,E)=\kappa_{\rm scaled}(B)\), so that the strict and S-unit tail
 machinery now plugs into scaled-block conductor inputs directly.
+`notes/44_same_base_frobenius_reduction.md` closes the same-base sub-cut of
+the scaled middle-interval theorem by reducing it to numerical-semigroup
+analysis: same-base scaled blocks with \(\gcd(\mathbf q)=1\) have central
+conductor at most \(F(\mathbf q)\cdot d^{e_{\min}}+O(1)\).
 
 ## Certificate runner
 
