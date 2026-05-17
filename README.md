@@ -157,6 +157,11 @@ tail exactly when it contains every prime divisor of \(m\).
 `notes/38_quotient_conductor_bridge.md` composes quotient selection,
 complete-sequence absorption, and modular conductor lift into one checked
 bridge with explicit failure modes.
+`notes/39_asymptotic_half_sum_reach.md` records the explicit threshold
+\(S'\ge 2(c'+1)+\lceil F_{\rm tot}/m\rceil\) under which the lifted central
+interval reaches the whole half-sum, closing the reach side of the modular
+conductor lift along every sublinear or power-saving quotient conductor
+sequence.
 
 ## Certificate runner
 

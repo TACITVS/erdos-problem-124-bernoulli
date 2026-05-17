@@ -1,0 +1,58 @@
+case: large quotient total well above threshold
+frame: base 7 modulo 6, exponent start 1
+modulus m: 6
+frame total F_tot: 19607
+quotient conductor c': -1
+quotient total S': 100000
+threshold S'*: 3268
+lifted endpoint m(S' - c' - 1): 600000
+whole seed F_tot + mS': 619607
+half-sum floor((F_tot + mS')/2): 309803
+reach margin end - half-sum: 290197
+
+case: quotient total exactly at threshold
+frame: base 7 modulo 6, exponent start 1
+modulus m: 6
+frame total F_tot: 19607
+quotient conductor c': 0
+quotient total S': 3270
+threshold S'*: 3270
+lifted endpoint m(S' - c' - 1): 19614
+whole seed F_tot + mS': 39227
+half-sum floor((F_tot + mS')/2): 19613
+reach margin end - half-sum: 1
+
+case: positive quotient conductor with base 3 mod 5
+frame: base 3 modulo 5, exponent start 1
+modulus m: 5
+frame total F_tot: 1614252
+quotient conductor c': 10
+quotient total S': 400000
+threshold S'*: 322873
+lifted endpoint m(S' - c' - 1): 1999945
+whole seed F_tot + mS': 3614252
+half-sum floor((F_tot + mS')/2): 1807126
+reach margin end - half-sum: 192819
+
+case: tiny quotient total below threshold rejects
+frame: base 7 modulo 6, exponent start 1
+quotient conductor c': -1
+quotient total S': 100
+threshold S'*: 3268
+reach margin: -9503
+rejected: half-sum reach fails: lifted endpoint 600 is below half-sum 10103 (margin -9503); sufficient threshold S'* is 3268
+
+case: boundary check for base 7 modulo 6, exponent start 1
+quotient conductor: 0
+modulus m: 6
+threshold S'*: 3270
+margin at S'*: 1
+margin at S'* - 1: -2
+
+case: boundary check for base 3 modulo 5, exponent start 1
+quotient conductor: 5
+modulus m: 5
+threshold S'*: 322863
+margin at S'*: 2
+margin at S'* - 1: -1
+

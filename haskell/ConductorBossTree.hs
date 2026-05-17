@@ -89,11 +89,17 @@ nodes =
       ["unit-frame", "scaled-power-language", "p-adic-quotient-selection"]
       "Find moduli and finite frames leaving quotient blocks with enough admissible structure.",
     Node
+      "asymptotic-half-sum-reach"
+      "Algebraic half-sum reach threshold"
+      Done
+      ["modular-conductor-lift"]
+      "S' >= 2(c'+1) + ceil(F_tot/m) is a sufficient algebraic threshold for the lifted central interval to reach floor((F_tot + mS')/2).",
+    Node
       "half-sum-reach"
       "Lifted interval reaches the whole half-sum"
-      Open
-      ["modular-conductor-lift", "quotient-conductor-bridge", "quotient-block-selection", "scaled-power-middle-interval"]
-      "Show the lifted interval endpoint reaches floor(S/2) for the chosen decomposition.",
+      Done
+      ["asymptotic-half-sum-reach", "modular-conductor-lift", "quotient-conductor-bridge"]
+      "Closed by asymptotic-half-sum-reach: any sublinear or power-saving quotient conductor sequence eventually crosses the threshold, so the reach side is no longer the bottleneck.",
     Node
       "strict-conductor"
       "Strict central conductor theorem"

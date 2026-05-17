@@ -156,6 +156,15 @@
       "purpose": "Check selected quotient conductor transfer and expose bridge failure modes."
     },
     {
+      "id": "haskell-half-sum-reach",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/HalfSumReachCertificate.hs"],
+      "artifacts": ["haskell/HalfSumReach.hs", "haskell/HalfSumReachCertificate.hs"],
+      "purpose": "Check the half-sum reach threshold for the modular conductor lift."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

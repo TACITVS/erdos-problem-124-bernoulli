@@ -103,6 +103,10 @@ obligations =
       Certified
       "QuotientConductorBridge.hs composes quotient selection, complete-sequence absorption, and modular conductor lift.",
     Obligation
+      "asymptotic half-sum reach"
+      Certified
+      "HalfSumReach.hs proves S' >= 2(c'+1) + ceil(F_tot/m) implies the lifted central interval reaches the whole half-sum, finishing the reach side of the modular conductor lift along any sublinear or power-saving quotient conductor sequence.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",
