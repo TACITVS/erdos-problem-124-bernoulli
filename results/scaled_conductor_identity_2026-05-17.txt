@@ -1,0 +1,42 @@
+case: single dyadic block 2^0..2^3
+seed total S(B,E): 15
+capacity C(B,E): 16
+kappa_scaled(B): 1
+difference C - S: 1
+sample conductor c: -1
+central interval span H: 15
+tail invariant K: 0
+
+case: single ternary block 3^0..3^3
+seed total S(B,E): 40
+capacity C(B,E): 40
+kappa_scaled(B): 0
+difference C - S: 0
+sample conductor c: 5
+central interval span H: 28
+tail invariant K: 11
+
+case: scaled ternary 3 * 3^(1..3)
+seed total S(B,E): 117
+capacity C(B,E): 121
+kappa_scaled(B): 4
+difference C - S: 4
+sample conductor c: 0
+central interval span H: 115
+tail invariant K: 5
+
+case: mixed dyadic 2^0..2^3 and ternary 3^0..3^2
+seed total S(B,E): 28
+capacity C(B,E): 29
+kappa_scaled(B): 1
+difference C - S: 1
+sample conductor c: 0
+central interval span H: 26
+tail invariant K: 2
+
+case: pure-power kappa for {3,4,7}, k=1
+  pure-power kappa(A,k): 3
+
+case: pure-power kappa for {3,4,7}, k=2
+  pure-power kappa(A,k): 17
+

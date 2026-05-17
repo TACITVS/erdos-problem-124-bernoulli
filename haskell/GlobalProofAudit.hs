@@ -119,6 +119,10 @@ obligations =
       Certified
       "SingleProgressionAbsorption.hs proves the closed-form criterion q d^(n0+i-1)(d-2) <= (d-1)(H0+1) - q d^n0 for absorption of a scaled progression's i-th term, with the dyadic dichotomy and span growth factor 2(d-1)/(d-2).",
     Obligation
+      "scaled conductor identity"
+      Certified
+      "ScaledConductorIdentity.hs generalizes the tail invariant K = kappa + 2c + 1 from pure-power to scaled blocks, with C(B,E) - S(B,E) = kappa_scaled(B), and verifies consistency with the pure-power case in note 28.",
+    Obligation
       "unit-base residue frame"
       Certified
       "UnitResidueFrame.hs constructs complete residue frames from one base that is a unit modulo the chosen modulus.",

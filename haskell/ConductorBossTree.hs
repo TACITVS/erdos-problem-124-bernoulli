@@ -29,6 +29,12 @@ nodes =
       []
       "K(E) = kappa(A,k) + 2c(E) + 1.",
     Node
+      "scaled-conductor-identity"
+      "Scaled conductor identity"
+      Done
+      ["conductor-identity", "scaled-power-language"]
+      "K(B,E) = kappa_scaled(B) + 2c(B,E) + 1, with C(B,E) - S(B,E) = kappa_scaled(B) for scaled blocks.",
+    Node
       "residue-lift"
       "Residue frame lifts multiple intervals"
       Done
@@ -86,8 +92,8 @@ nodes =
       "scaled-power-middle-interval"
       "Middle interval theorem for scaled power blocks"
       Open
-      ["scaled-power-language", "complete-sequence-absorption", "single-progression-absorption-count"]
-      "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.  The single-progression count gives the per-round absorption budget; the remaining work is iterating across multiple progressions while preserving the conductor identity.",
+      ["scaled-power-language", "complete-sequence-absorption", "single-progression-absorption-count", "scaled-conductor-identity"]
+      "Prove central intervals with sublinear or power-saving conductor for q*d^n blocks.  The single-progression count gives the per-round absorption budget; the conductor identity reduces the bound to controlling K(B,E); the remaining work is iterating across multiple progressions while preserving K.",
     Node
       "quotient-reciprocal-identity"
       "Quotient reciprocal-sum identity"

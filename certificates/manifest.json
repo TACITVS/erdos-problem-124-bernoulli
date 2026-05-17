@@ -192,6 +192,15 @@
       "purpose": "Check the closed-form absorbable prefix length for a single scaled progression onto a seed interval."
     },
     {
+      "id": "haskell-scaled-conductor-identity",
+      "language": "Haskell",
+      "trust": "typed algebraic certificate",
+      "default": true,
+      "command": ["runghc", "-ihaskell", "haskell/ScaledConductorIdentityCertificate.hs"],
+      "artifacts": ["haskell/ScaledConductorIdentity.hs", "haskell/ScaledConductorIdentityCertificate.hs"],
+      "purpose": "Check the scaled conductor identity C(B,E) - S(B,E) = kappa_scaled(B) and the tail invariant K(B,E) = kappa_scaled + 2c + 1."
+    },
+    {
       "id": "haskell-unit-residue-frame",
       "language": "Haskell",
       "trust": "typed algebraic certificate",

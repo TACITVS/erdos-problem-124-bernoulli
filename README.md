@@ -175,6 +175,10 @@ falls in the deficit one-shot regime.
 absorbable prefix length for a single scaled progression \(q d^n\) onto a
 seed interval, with the dyadic dichotomy and the constant span growth factor
 \(2(d-1)/(d-2)\) that bounds each absorption round.
+`notes/43_scaled_conductor_identity.md` extends the tail invariant
+\(K=\kappa+2c+1\) from pure-power to scaled blocks, with
+\(C(B,E)-S(B,E)=\kappa_{\rm scaled}(B)\), so that the strict and S-unit tail
+machinery now plugs into scaled-block conductor inputs directly.
 
 ## Certificate runner
 
