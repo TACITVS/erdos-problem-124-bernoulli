@@ -80,7 +80,8 @@ reduction in the timebox.
 
 ## 4. Honest conclusion
 
-After the timeboxed attempts on three disparate areas:
+After the timeboxed attempts on six disparate areas (three primary,
+three extended in §5):
 
 - **None** gives an immediate concrete reduction for Erdős 124.
 - **Alon's polynomial method** has the cleanest framework but stops at
@@ -90,28 +91,84 @@ After the timeboxed attempts on three disparate areas:
   MW-style per-pair Diophantine input.
 - **Algebraic geometry of monomial schemes** is too vague to instantiate
   for this specific problem.
+- **Cobham / decidability** doesn't apply (\(R\) is not jointly
+  recognizable; theory is undecidable).
+- **Modern additive combinatorics** (Conlon–Fox–Pham) solves Ramsey
+  completeness and coloring variants, not the Erdős 124 hypothesis form.
+- **Sieve theory** recovers the residue-gate analysis already present.
 
 This is consistent with the literature-dive verdict in note 54: the
 analytic obligation for Erdős 124 is genuinely at the current frontier
 of multiple subfields, and no "off-the-shelf" tool quickly resolves it.
 
-## 5. Other disparate areas worth flagging but not attempted
+## 5. Further timeboxed attempts (extended)
 
-For completeness, other disparate areas that *could* be tried in
-extended sessions, with low expected probability of success:
+The following additional areas were also probed after the initial three:
 
-- **Sieve theory** (Selberg, Vaughan, Heath–Brown).  Would give upper
-  bounds on \(|\{N<X:\text{missing}\}|\) but probably not strong enough.
-- **Model theory** of \((\mathbb Z,+,\cdot,P_a)\) where \(P_a\) is the
-  predicate "is a power of \(a\)".  Decidability of relevant fragments
-  is unclear.
-- **Random matrix and free probability** for sums of independent
-  bounded random variables with arithmetic-coefficient constraints.
-  Potentially relevant but speculative.
-- **Tropical / additive geometry** of subset-sum semigroups.
-  Mainly classical-Frobenius style, already covered by note 44.
+### 5.1 Cobham's theorem and (\(\mathbb Z, +, P_a, P_b\))
 
-None of these has an obvious quick connection.
+Cobham (1969): \(S\subseteq\mathbb N\) is recognizable in both base \(a\)
+and base \(b\) (multiplicatively independent) iff \(S\) is ultimately
+periodic.
+
+**Application attempt.**  Is the subset-sum set
+\(R=\{\sum_i\epsilon_i a_i^{e_i}\}\) jointly recognizable for two bases
+\(a, b \in A\)?
+
+**No.** For \(A=\{a\}\) (single base), \(R\) consists of integers with
+base-\(a\) digits in \(\{0,1\}\) — \(a\)-recognizable but not \(b\)-recognizable
+for multiplicatively independent \(b\) (by Cobham, since \(R\) is not
+periodic).  For \(|A|\ge 2\) with multiplicatively independent bases,
+\(R\) contains the set \(\{b^e:e\ge k\}\) which is not \(a\)-recognizable
+in general, so \(R\) is not \(a\)-recognizable.  Cobham doesn't apply.
+
+**Theory undecidability.** Villemaire 1992 / Bès 2002: \((\mathbb Z,+,P_a,P_b)\)
+for multiplicatively independent \(a,b\) is undecidable.  So no
+algorithmic decidability result for Erdős 124 from this angle.
+
+**Verdict.**  Negative: no quick reduction.
+
+### 5.2 Additive combinatorics (Conlon–Fox–Pham 2021 and successors)
+
+Conlon–Fox–Pham "Subset sums, completeness and colorings"
+(arXiv:2104.14766) develops techniques for *Ramsey* completeness and
+chromatic restrictions on subset sums — a different problem from
+ours.  Their main results (resolution of three Burr–Erdős Ramsey
+completeness problems, Alon–Erdős coloring conjecture, Szemerédi–Vu
+strengthening) don't directly apply: they assume the sequence has
+*linear* growth rate, while our integer-power sequences are
+*exponential*.
+
+The companion paper on upper logarithmic density of monochromatic
+subset sums (arXiv:2105.15195) gives the tight bound \((2+\sqrt3)/4\)
+for Ramsey colorings — again, not about hypothesis-driven completeness.
+
+**Verdict.**  Recent additive-combinatorics literature on subset sums
+solves *different* problems than ours.  Tools are not directly portable.
+
+### 5.3 Sieve theory (Selberg, Vaughan, Heath–Brown)
+
+For \(|\{N<X:N\notin R\}|\): a sieve sieves out forbidden residue
+classes mod each prime \(p\).  For exact-critical hypothesis-meeting
+sets, residue classes mod the exact-critical denominator are
+saturated (note 13), and at other primes the forbidden set is
+typically empty.
+
+Selberg sieve thus gives no non-trivial bound: the sift conditions are
+empty for almost every prime, so the sieve does no work.
+
+**Verdict.**  Sieve theory recovers the residue-gate analysis already
+present (note 13) and gives no new content.
+
+### 5.4 Areas not attempted (low-probability remaining)
+
+- **Random matrix / free probability**: matrix-valued, not
+  scalar; not obviously relevant.
+- **Tropical geometry**: covered by Frobenius / numerical
+  semigroups in note 44.
+- **Combinatorial Hopf algebras / quasisymmetric functions**:
+  occasionally surface in subset-sum / partition theory but no
+  specific application visible.
 
 ## Recommendation
 
