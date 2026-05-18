@@ -3,6 +3,9 @@
 This repository is a working notebook for a computational and proof-oriented
 attack on Erdos problem 124.
 
+**See [`PROOF_STATE.md`](PROOF_STATE.md) for the consolidated, audited
+summary of what is proved, imported, conjectural, and open.**
+
 ## Problem statement used here
 
 Let \(A=\{d_1,\ldots,d_r\}\) be a finite set of distinct integers with
