@@ -108,51 +108,101 @@ This is *exactly* the kind of uniform effective bound needed.  See
 Waldschmidt's lecture notes and Stewart–Yu (Math. Ann. 2001) for the
 explicit constants in this reduction.
 
-### 2.3 Effective Pillai closes Erdős 124 in our framework
+### 2.3 What effective Pillai closes — and what it does *not*
 
 Substituting the uniform effective Pillai bound for per-pair MW in the
 local certificate template (notes 07, 09, 46) gives a uniform CF/MW
-certificate for every multiplicatively independent pair.  Combined with
-the existing global framework:
+certificate for every multiplicatively independent pair.
 
-1. notes 28, 43 — conductor identity (algebraic, certified);
-2. notes 47 — density growth from \(R(A)\ge 1\) (algebraic, certified);
-3. notes 49 — resonance lattice obstruction = \(\gcd(A)=1\) (algebraic);
-4. notes 30, 33, 39 — modular bridge plumbing (algebraic, certified);
-5. *uniform effective Pillai* (assumed via ABC) — replaces per-pair MW;
-6. existing strict and S-unit tail closures (CFHTail, sunit-tail in boss
-   tree).
+**What this closes.**  In `haskell/GlobalProofAudit.hs`, the three
+*Imported* obligations are:
 
-This combination would close Erdős 124 in both the strict
-\((R>1)\) and exact-critical \((R=1)\) cases, conditional on ABC.
+- "qualitative S-unit exact-critical tail",
+- "Subspace-Theorem power-saving S-unit gap",
+- "Mignotte–Waldschmidt input for 3 versus 4".
 
-## 3. So what wall did we hit, exactly?
+All three are analytic Diophantine inputs.  ABC → effective Pillai
+replaces all three with a single effective theorem.  So **ABC closes the
+project's Imported analytic obligations**.
 
-Eleven independent disparate-area attempts all hit the same gap.  The
-ABC reduction explains why:
+**What this does *not* close.**  `GlobalProofAudit.hs` also lists one
+*Open* obligation:
 
-- **ABC** is conjecturally true but unproven (Mochizuki's IUTeich proof
-  remains disputed; the math community has not accepted it).
-- Effective Pillai is a known consequence of ABC.
-- Every disparate area we tried either:
-  - Used effective Diophantine input that is itself ABC-strength
-    (Sidon, MW, S-unit theory).
-  - Sidestepped the analytic question with weaker bounds (Alon's
-    Nullstellensatz: modular only; sieve: residue gates).
-  - Recovered the same algebraic identity as our note 47
-    (entropy method).
+- "global power-saving central conductor theorem: prove
+  \(c(E)=o(T(E))\) in the strict case and
+  \(c(E)=O(T(E)^{1-\epsilon})\) in the exact-critical case."
 
-**The wall is ABC**.  This is not an arbitrary wall; it is one of the
-big open problems of modern mathematics.
+This is a *combinatorial* obligation about the size of the finite seed
+conductor.  ABC has no obvious bearing on it.  The boss tree
+(`haskell/ConductorBossTree.hs`) corroborates this: the Open nodes
+`scaled-power-middle-interval`, `quotient-block-selection`,
+`strict-conductor`, `exact-conductor`, and `erdos-124` are all about
+the conductor side, not the analytic side.
+
+**The honest reduction.**  Erdős 124 reduces, in this project's
+framework, to:
+
+> **(α)** The ABC conjecture (closes the three Imported analytic
+> obligations via effective Pillai), AND
+>
+> **(β)** The power-saving central conductor theorem (the remaining
+> Open combinatorial obligation in `GlobalProofAudit.hs`).
+
+Both (α) and (β) are independently open.  Neither implies the other in
+any way I have been able to verify.
+
+## 3. So what walls did we hit, exactly?
+
+The eleven disparate-area attempts hit *two* different walls,
+corresponding to (α) and (β).
+
+**Wall (α): the analytic Diophantine wall.**  Every attempt that
+addressed the near-collision \(|a^p-b^q|\) input — Sidon, MW, S-unit
+theory, Aistleitner lacunary MGF — ended at effective Pillai-type
+bounds.  This is one of the principal open problems of modern number
+theory (ABC).
+
+**Wall (β): the combinatorial conductor wall.**  Every attempt that
+addressed the finite seed conductor — modular bridge, scaled power
+blocks, complete-sequence absorption, polynomial method — left the
+power-saving conductor theorem open.  No published theorem closes it
+(under any assumption I can find), even conditionally.
+
+Wall (β) is structurally *independent* of ABC and is, in this sense,
+the harder of the two.  ABC has been studied for decades and has many
+consequences; the power-saving conductor theorem for subset sums of
+integer powers does not appear in the literature in the form we need it.
+
+So the project did not hit *one* wall named ABC.  It hit *two* walls,
+of which ABC is the better-known.
 
 ## 4. Strategic implication for the project
 
-What we have, restated:
+What we have, restated *honestly*:
 
-> **Theorem (conditional).** Assume the ABC conjecture.  Then for every
-> finite set \(A\subseteq\mathbb Z_{\ge3}\) with \(\gcd(A)=1\) and
-> \(\sum_{a\in A}1/(a-1)\ge1\), and every \(k\ge1\), every sufficiently
-> large integer is a subset sum of \(\{a^e:a\in A,e\ge k\}\).
+> **Theorem (conditional, corrected).** Assume both
+>
+> **(α)** the ABC conjecture, *and*
+>
+> **(β)** the power-saving central conductor theorem (open obligation
+> in `GlobalProofAudit.hs`).
+>
+> Then for every finite set \(A\subseteq\mathbb Z_{\ge3}\) with
+> \(\gcd(A)=1\) and \(\sum_{a\in A}1/(a-1)\ge1\), and every \(k\ge1\),
+> every sufficiently large integer is a subset sum of
+> \(\{a^e:a\in A,e\ge k\}\).
+
+The earlier draft of this note claimed reduction to ABC alone.  That was
+*overstated*: ABC closes the three Imported analytic obligations but does
+not close the Open combinatorial conductor obligation.  The corrected
+statement requires both (α) and (β).
+
+For the **specific local cases** \(\{3,4,7\}\) at \(k\in\{1,2,3\}\) and
+\(\{3,4,9,25\}\) at \(k=2\), obligation (β) is replaced by a finite
+direct computation (the bitset conductor scan).  So for these specific
+cases the project does give an unconditional proof using only an MW
+input — already what notes 07, 09, 46 do.  Generalising to *all*
+hypothesis-meeting \(A\) requires both (α) and (β).
 
 This is a real conditional result.  The project has:
 
