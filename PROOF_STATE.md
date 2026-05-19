@@ -130,12 +130,14 @@ The boss tree's Open nodes (`scaled-power-middle-interval`,
 `quotient-block-selection`, `strict-conductor`, `exact-conductor`,
 `erdos-124`) all flow from this single combinatorial obligation.
 
-## 5. Conditional reduction
+## 5. Conditional reductions
 
-After the disparate-area exploration (notes 53–56), the project's status
-admits a precise conditional statement:
+The project admits two distinct conditional reductions.  The second
+(post-note 59) is sharper.
 
-> **Conditional theorem (this project).**  Assume both:
+### 5.1 First reduction (notes 53–56)
+
+> **Conditional theorem (ABC + conductor).**  Assume both:
 >
 > **(α)** the ABC conjecture (which by Stewart–Yu 2001 implies effective
 > Pillai, replacing the three Imported analytic obligations with a
@@ -149,12 +151,42 @@ admits a precise conditional statement:
 > every sufficiently large integer is a subset sum of
 > \(\{a^e:a\in A,\ e\ge k\}\).
 
-(α) and (β) are **independent** open problems.  ABC has no obvious
-bearing on the combinatorial conductor obligation, and the conductor
-obligation has no obvious bearing on ABC.  Neither implies the other in
-any way that has been verified for this project.
+(α) and (β) are **independent** open problems.  See note 56 (corrected
+form after audit) for the full chain.
 
-Note 56 (in its corrected form after audit) records the chain in full.
+### 5.2 Second reduction (notes 58–59)
+
+Notes 58 and 59 identify a *different* conditional reduction, via
+fractal-geometric analysis of Bernoulli convolutions:
+
+> **Conditional theorem (multi-base Bernoulli AC).**  Assume the
+> **Multi-base Bernoulli AC Conjecture** (note 58 §4): for every
+> hypothesis-meeting finite \(A\subseteq\mathbb{Z}_{\ge3}\), the
+> multi-base Bernoulli convolution \(\mu_A = *_{a\in A} B_{1/a}\) is
+> absolutely continuous on \(\mathbb{R}\).
+>
+> Then Erdős 124 holds for every hypothesis-meeting \(A,k\).
+
+The reduction chain (note 59 Theorem 7) is: AC of \(\mu_A\) implies
+Fourier convergence of \(\hat X_T(\xi/T)\to\hat\mu_A(\xi)\) (Lemma 3.1)
+implies support density of \(X_T\) tends to 1 (Lemma 4.1) implies
+conductor \(c(T)=o(T)\) (Lemma 5.1) implies Erdős 124 (Theorem 6.1).
+
+**Why 5.2 is sharper than 5.1.**
+
+- 5.1 needs *two* independently-open conjectures from two different
+  research areas.
+- 5.2 needs *one* conjecture, in a different research area than 5.1
+  (fractal geometry / Bernoulli convolutions, with active progress:
+  Hochman 2014, Shmerkin 2014, Varjú 2019).
+- The dimension-sum condition \(\sum 1/\log_2 a > 1\) is *exactly*
+  the hypothesis condition (note 47), giving the necessary condition
+  for AC for free.
+- Empirical evidence (`scripts/cas_bernoulli_density.py`) supports the
+  AC conjecture for every hypothesis-meeting case tested.
+
+5.1 and 5.2 are *parallel* reductions, not nested.  Either would close
+Erdős 124 independently.
 
 ## 6. Disparate areas attempted
 
