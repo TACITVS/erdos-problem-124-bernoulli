@@ -154,9 +154,9 @@ The project admits two distinct conditional reductions.  The second
 (α) and (β) are **independent** open problems.  See note 56 (corrected
 form after audit) for the full chain.
 
-### 5.2 Second reduction (notes 58–59)
+### 5.2 Second reduction (notes 58–60)
 
-Notes 58 and 59 identify a *different* conditional reduction, via
+Notes 58, 59, 60 identify a *different* conditional reduction, via
 fractal-geometric analysis of Bernoulli convolutions:
 
 > **Conditional theorem (multi-base Bernoulli AC).**  Assume the
@@ -172,21 +172,44 @@ Fourier convergence of \(\hat X_T(\xi/T)\to\hat\mu_A(\xi)\) (Lemma 3.1)
 implies support density of \(X_T\) tends to 1 (Lemma 4.1) implies
 conductor \(c(T)=o(T)\) (Lemma 5.1) implies Erdős 124 (Theorem 6.1).
 
+**Note 60 sharpens the conjecture** to the stronger:
+
+> **L² Conjecture.**  For hypothesis-meeting \(A\),
+> \(\hat\mu_A\in L^2(\mathbb R)\), equivalently \(\mu_A\) has density
+> in \(L^2\).
+
+This is strictly stronger than AC.  Empirical Fourier-side test
+(`scripts/cas_bernoulli_AC_deep.py`): the integral \(\int_{-T}^T
+|\hat\mu_A|^2\,d\xi\) **saturates** as \(T\to\infty\) for every
+hypothesis-meeting case tested, signature of L².  Single-base
+\(B_{1/a}\) for integer \(a\) gives linearly growing integral
+(signature of singular Cantor measure).
+
+**Rigorous partial result (note 60 §2):** For hypothesis-meeting
+\(A\) with multiplicatively independent bases,
+\(\dim_H(\mu_A) = 1\), by Marstrand-Mattila.  This is the necessary
+condition for AC; sufficiency is open.
+
 **Why 5.2 is sharper than 5.1.**
 
 - 5.1 needs *two* independently-open conjectures from two different
   research areas.
 - 5.2 needs *one* conjecture, in a different research area than 5.1
   (fractal geometry / Bernoulli convolutions, with active progress:
-  Hochman 2014, Shmerkin 2014, Varjú 2019).
+  Solomyak 1995, Hochman 2014, Shmerkin 2014, Varjú 2019).
 - The dimension-sum condition \(\sum 1/\log_2 a > 1\) is *exactly*
   the hypothesis condition (note 47), giving the necessary condition
-  for AC for free.
-- Empirical evidence (`scripts/cas_bernoulli_density.py`) supports the
-  AC conjecture for every hypothesis-meeting case tested.
+  for AC for free.  Marstrand-Mattila is the rigorous form (note 60 §2).
+- Empirical evidence supports both the AC and the stronger L²
+  conjecture for every hypothesis-meeting case tested.
 
 5.1 and 5.2 are *parallel* reductions, not nested.  Either would close
 Erdős 124 independently.
+
+**The cleanest sub-problem (note 60 §7):** is \(B_{1/3} * B_{1/4}\)
+absolutely continuous?  This is the smallest non-trivial case
+(\(\dim = 1.13\)) and is directly attackable by Solomyak transversality,
+Marstrand projection, Hochman entropy, or direct Fourier estimate.
 
 ## 6. Disparate areas attempted
 
