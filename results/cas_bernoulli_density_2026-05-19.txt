@@ -1,0 +1,19 @@
+Empirical AC test of multi-base Bernoulli convolutions
+
+case                          support             density min   density max   ratio     zero-bin frac 
+---------------------------------------------------------------------------------------------------------
+singular 1-base {3}           [ 0.00, 1.50]      0.5367        4.2273        7.88      0.730         
+singular 1-base {4}           [ 0.00, 1.33]      0.0015        9.3998        6266.50   0.855         
+multi {3,4}                   [ 0.00, 2.83]      0.1338        1.2851        9.61      0.110         
+hypothesis {3,4,7}            [ 0.00, 4.00]      0.0190        0.6520        34.30     0.000         
+multi {3,5}                   [ 0.00, 2.75]      0.0836        1.4906        17.82     0.170         
+hypothesis {3,4,5}            [ 0.00, 4.08]      0.0223        0.6338        28.42     0.000         
+hypothesis {3,4,9,25}         [ 0.00, 5.00]      0.0080        0.7368        91.97     0.000         
+hypothesis {3,5,7,13}         [ 0.00, 4.99]      0.0070        0.6214        88.63     0.000         
+
+Indicators:
+  - High zero-bin fraction + huge density ratio = singular (Cantor-like)
+  - Low (zero) zero-bin fraction + bounded density ratio = consistent with AC
+
+Empirical conclusion: hypothesis-meeting multi-base sets show full-support
+bounded-density behavior, consistent with the AC conjecture in note 58.
