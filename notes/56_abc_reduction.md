@@ -20,25 +20,25 @@ ABC, one of the principal open problems of modern number theory.  Erdős
 
 The most surprising omission from earlier notes is the *named*
 circle-method framework.  In fact our existing notes 47–48 *are* the
-circle method — applied to \(F_A(x)=\prod(1+x^{a^e})\) on the unit
-circle.  The "major arcs" (rationals \(p/q\) with small \(q\)) are the
+circle method — applied to $F_A(x)=\prod(1+x^{a^e})$ on the unit
+circle.  The "major arcs" (rationals $p/q$ with small $q$) are the
 resonances of note 49; the "minor arcs" are the off-resonance regime of
 note 50.
 
 So this is not a new tool; we have been doing circle-method analysis
 under different terminology.  Standard tools used in Hardy–Littlewood
 applications (Weyl inequality, Vinogradov mean-value theorem) apply to
-polynomial frequencies \(\alpha n + \beta n^2 + \cdots\), not to
-exponential frequencies \(a^n\).  No quick win here.
+polynomial frequencies $\alpha n + \beta n^2 + \cdots$, not to
+exponential frequencies $a^n$.  No quick win here.
 
 ### 1.2 Higher-order Fourier / Gowers norms
 
-The \(U^s\) norms detect arithmetic-progression-of-length-\(s\) structure.
-For subset-sum sets containing many APs (which our \(R\) does — once
-hypothesis-meeting), \(\|1_R\|_{U^s}\) is large; conversely,
-sets with small \(U^s\) norm look pseudo-random.
+The $U^s$ norms detect arithmetic-progression-of-length-$s$ structure.
+For subset-sum sets containing many APs (which our $R$ does — once
+hypothesis-meeting), $\|1_R\|_{U^s}$ is large; conversely,
+sets with small $U^s$ norm look pseudo-random.
 
-But the gap analysis we need is "\(R\) covers all sufficiently large
+But the gap analysis we need is "$R$ covers all sufficiently large
 integers", which is about cofiniteness rather than arithmetic-progression
 density.  Gowers norms control AP densities, not gap distributions.
 No reduction.
@@ -46,20 +46,16 @@ No reduction.
 ### 1.3 Tao–Vu entropy method
 
 Tao–Vu 2009 reformulated Plünnecke–Ruzsa via Shannon entropy.  Applied
-to our \(S=\sum_i\xi_i a^{e_i}\) with independent Bernoullis \(\xi_i\):
+to our $S=\sum_i\xi_i a^{e_i}$ with independent Bernoullis $\xi_i$:
 
-\[
-H(S)\le\sum_iH(\xi_i)=T\log 2,
-\]
+$$H(S)\le\sum_iH(\xi_i)=T\log 2,$$
 
 with equality iff the seed terms are additively independent.  For
-hypothesis-meeting \(A\), the entropy of the subset-sum random variable is
+hypothesis-meeting $A$, the entropy of the subset-sum random variable is
 
-\[
-H(S)\sim(\log T)\sum_{a\in A}\frac{1}{\log a}\cdot\log 2
+$$H(S)\sim(\log T)\sum_{a\in A}\frac{1}{\log a}\cdot\log 2
 =
-(\log T)\cdot\sum_{a\in A}\frac{1}{\log_2 a}.
-\]
+(\log T)\cdot\sum_{a\in A}\frac{1}{\log_2 a}.$$
 
 This is **exactly the same algebraic quantity** as note 47's density
 exponent.  The entropy method recovers our existing identity in entropy
@@ -72,37 +68,33 @@ The genuine finding: Erdős 124's analytic obligation reduces to ABC.
 ### 2.1 The reduction chain
 
 The local certificates (notes 07, 09, 46) use per-pair
-Mignotte–Waldschmidt input for \(|3^p-4^q|\).  For the *global* theorem,
+Mignotte–Waldschmidt input for $|3^p-4^q|$.  For the *global* theorem,
 we need an analogous bound for **every** multiplicatively independent
-base pair \((a, b)\), uniformly in \(a, b\).
+base pair $(a, b)$, uniformly in $a, b$.
 
 That uniform bound is exactly:
 
 > **Effective Pillai (quantitative form).**  For multiplicatively
-> independent integers \(a, b\ge 2\) and \(C>0\), every solution
-> \((p, q)\) of \(|a^p-b^q|\le C\) satisfies \(\max(a^p, b^q)\le f(a,b,C)\)
-> for an explicit function \(f\).
+> independent integers $a, b\ge 2$ and $C>0$, every solution
+> $(p, q)$ of $|a^p-b^q|\le C$ satisfies $\max(a^p, b^q)\le f(a,b,C)$
+> for an explicit function $f$.
 
 ### 2.2 ABC implies effective Pillai
 
 Apply ABC (with explicit constants in the quantitative form) to the
-relation \(a^p = b^q + (a^p - b^q)\): writing \(c=|a^p-b^q|\),
+relation $a^p = b^q + (a^p - b^q)$: writing $c=|a^p-b^q|$,
 
-\[
-\max(a^p,b^q)
+$$\max(a^p,b^q)
 \le K\cdot\bigl(\mathrm{rad}(a^pb^qc)\bigr)^{1+\epsilon}
 =
 K\cdot\bigl(\mathrm{rad}(a)\,\mathrm{rad}(b)\,\mathrm{rad}(c)\bigr)^{1+\epsilon}
-\le K\cdot(ab\,c)^{1+\epsilon}.
-\]
+\le K\cdot(ab\,c)^{1+\epsilon}.$$
 
-For fixed bound \(c\le C\), this gives
+For fixed bound $c\le C$, this gives
 
-\[
-\max(a^p,b^q)\le K(abC)^{1+\epsilon},
+$$\max(a^p,b^q)\le K(abC)^{1+\epsilon},
 \qquad
-p\le\frac{(1+\epsilon)\log(K(abC)^{1+\epsilon})}{\log a}.
-\]
+p\le\frac{(1+\epsilon)\log(K(abC)^{1+\epsilon})}{\log a}.$$
 
 This is *exactly* the kind of uniform effective bound needed.  See
 Waldschmidt's lecture notes and Stewart–Yu (Math. Ann. 2001) for the
@@ -129,8 +121,8 @@ project's Imported analytic obligations**.
 *Open* obligation:
 
 - "global power-saving central conductor theorem: prove
-  \(c(E)=o(T(E))\) in the strict case and
-  \(c(E)=O(T(E)^{1-\epsilon})\) in the exact-critical case."
+  $c(E)=o(T(E))$ in the strict case and
+  $c(E)=O(T(E)^{1-\epsilon})$ in the exact-critical case."
 
 This is a *combinatorial* obligation about the size of the finite seed
 conductor.  ABC has no obvious bearing on it.  The boss tree
@@ -157,7 +149,7 @@ The eleven disparate-area attempts hit *two* different walls,
 corresponding to (α) and (β).
 
 **Wall (α): the analytic Diophantine wall.**  Every attempt that
-addressed the near-collision \(|a^p-b^q|\) input — Sidon, MW, S-unit
+addressed the near-collision $|a^p-b^q|$ input — Sidon, MW, S-unit
 theory, Aistleitner lacunary MGF — ended at effective Pillai-type
 bounds.  This is one of the principal open problems of modern number
 theory (ABC).
@@ -187,29 +179,29 @@ What we have, restated *honestly*:
 > **(β)** the power-saving central conductor theorem (open obligation
 > in `GlobalProofAudit.hs`).
 >
-> Then for every finite set \(A\subseteq\mathbb Z_{\ge3}\) with
-> \(\gcd(A)=1\) and \(\sum_{a\in A}1/(a-1)\ge1\), and every \(k\ge1\),
+> Then for every finite set $A\subseteq\mathbb Z_{\ge3}$ with
+> $\gcd(A)=1$ and $\sum_{a\in A}1/(a-1)\ge1$, and every $k\ge1$,
 > every sufficiently large integer is a subset sum of
-> \(\{a^e:a\in A,e\ge k\}\).
+> $\{a^e:a\in A,e\ge k\}$.
 
 The earlier draft of this note claimed reduction to ABC alone.  That was
 *overstated*: ABC closes the three Imported analytic obligations but does
 not close the Open combinatorial conductor obligation.  The corrected
 statement requires both (α) and (β).
 
-For the **specific local cases** \(\{3,4,7\}\) at \(k\in\{1,2,3\}\) and
-\(\{3,4,9,25\}\) at \(k=2\), obligation (β) is replaced by a finite
+For the **specific local cases** $\{3,4,7\}$ at $k\in\{1,2,3\}$ and
+$\{3,4,9,25\}$ at $k=2$, obligation (β) is replaced by a finite
 direct computation (the bitset conductor scan).  So for these specific
 cases the project does give an unconditional proof using only an MW
 input — already what notes 07, 09, 46 do.  Generalising to *all*
-hypothesis-meeting \(A\) requires both (α) and (β).
+hypothesis-meeting $A$ requires both (α) and (β).
 
 This is a real conditional result.  The project has:
 
 - an algebraic framework that reduces the problem cleanly to a uniform
   Diophantine input;
 - typed certificates for four exact-critical local cases via the existing
-  CF/MW route (\(\{3,4,7\}\) at \(k=1,2,3\); \(\{3,4,9,25\}\) at \(k=2\));
+  CF/MW route ($\{3,4,7\}$ at $k=1,2,3$; $\{3,4,9,25\}$ at $k=2$);
 - explicit identification of the analytic obstacle as effective Pillai /
   ABC.
 
@@ -247,12 +239,12 @@ Areas where I genuinely don't have insight into whether they could help:
   alternative routes to effective Pillai.  Probably equivalent to ABC in
   the regime we care about.
 - **Modular forms / Galois representations**.  Frey-style approaches:
-  if \(a^p-b^q=c\) had infinitely many solutions, could one construct a
+  if $a^p-b^q=c$ had infinitely many solutions, could one construct a
   Galois-representation obstruction?  Speculative.
 
 But these are all attempts to *prove ABC*, not to bypass it.  The path is
 clear: bypassing ABC entirely would require a genuinely new approach to
-\(|a^p-b^q|\) bounds.
+$|a^p-b^q|$ bounds.
 
 ## Status
 

@@ -24,13 +24,13 @@ for certificate code.
 
 The checker currently verifies the small exact-critical tail arithmetic for:
 
-- \(\{3,4,7\}, k=2\);
-- \(\{3,4,9,25\}, k=2\);
-- \(\{3,4,7\}, k=3\).
+- $\{3,4,7\}, k=2$;
+- $\{3,4,9,25\}, k=2$;
+- $\{3,4,7\}, k=3$.
 
 The CF checker recomputes the exact rational continued-fraction prefix for
-\(\log 3/\log 4\), verifies the relevant convergents below the external
-Mignotte-Waldschmidt cutoff, and checks the gaps \(|3^a-4^b|>B\) by exact
+$\log 3/\log 4$, verifies the relevant convergents below the external
+Mignotte-Waldschmidt cutoff, and checks the gaps $|3^a-4^b|>B$ by exact
 integer arithmetic.
 
 This does not replace the mathematical proof or the cited analytic lower bound,

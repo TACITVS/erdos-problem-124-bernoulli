@@ -22,32 +22,30 @@ symbol-level use of the 2023 theorems still needs the full article.
 
 ## Extracted definitions
 
-For a sequence \(A\) of positive integers, \(P(A)\) is the set of finite sums
-of distinct terms of \(A\), with \(0\in P(A)\).  A sequence is complete when
-\(P(A)\) contains all sufficiently large integers.
+For a sequence $A$ of positive integers, $P(A)$ is the set of finite sums
+of distinct terms of $A$, with $0\in P(A)$.  A sequence is complete when
+$P(A)$ contains all sufficiently large integers.
 
-The 2016 paper also uses subcomplete for the weaker condition that \(P(A)\)
+The 2016 paper also uses subcomplete for the weaker condition that $P(A)$
 contains an infinite arithmetic progression.  This matters because some finite
 residue gates give density or arithmetic progressions before they give full
 cofiniteness.
 
 The 2023 paper introduces quasi-complete residue witnesses.  The accessible
 ScienceDirect text gives the exact definition: a set
-\(\{c_1,\ldots,c_p\}\) is quasi-complete modulo \(p\) if, after division by
-\(d=\gcd(c_1,\ldots,c_p)\), the set
-\(\{c_1/d,\ldots,c_p/d\}\) is a complete residue system modulo \(p\).  The new
+$\{c_1,\ldots,c_p\}$ is quasi-complete modulo $p$ if, after division by
+$d=\gcd(c_1,\ldots,c_p)$, the set
+$\{c_1/d,\ldots,c_p/d\}$ is a complete residue system modulo $p$.  The new
 Haskell module encodes this finite predicate directly:
 
-\[
-\{c_i\}_{i=1}^p\text{ is quasi-complete mod }p
+$$\{c_i\}_{i=1}^p\text{ is quasi-complete mod }p
 \quad\Longleftrightarrow\quad
-\{c_i/\gcd(c_1,\ldots,c_p)\}\text{ covers every residue mod }p.
-\]
+\{c_i/\gcd(c_1,\ldots,c_p)\}\text{ covers every residue mod }p.$$
 
 This is stronger and more structured than merely adjoining the empty residue.
 It matters because Xue-Fang-Ma use quasi-complete witnesses to prove positive
-lower asymptotic density for \(P(S_pA)\).  The checker therefore requires a
-quasi-complete witness to contain exactly \(p\) integers.
+lower asymptotic density for $P(S_pA)$.  The checker therefore requires a
+quasi-complete witness to contain exactly $p$ integers.
 
 ## Extracted lemmas and proof patterns
 
@@ -55,15 +53,13 @@ quasi-complete witness to contain exactly \(p\) integers.
 
 The useful interval lemma is Lemma 2.1 of the 2016 paper.  In project language:
 
-Let \(B=\{b_1\le b_2\le\cdots\}\) be a sequence of positive integers.  If some
-fixed \(n_0\) satisfies
+Let $B=\{b_1\le b_2\le\cdots\}$ be a sequence of positive integers.  If some
+fixed $n_0$ satisfies
 
-\[
-b_n\le b_1+\cdots+b_{n-1}+b_{n_0}
-\quad(n\ge n_0),
-\]
+$$b_n\le b_1+\cdots+b_{n-1}+b_{n_0}
+\quad(n\ge n_0),$$
 
-then \(P(B)\), when listed increasingly, has gaps bounded by \(b_{n_0}\).
+then $P(B)$, when listed increasingly, has gaps bounded by $b_{n_0}$.
 
 This is not yet the central interval theorem needed for Erdos 124, but it is a
 real candidate engine.  It turns a tail-domination inequality into a uniform
@@ -71,19 +67,17 @@ gap bound for subset sums.  The next bridge is not residue coverage alone:
 bounded gaps must be combined with an actual finite seed interval long enough
 to absorb the gaps.  See `notes/24_bounded_gap_bridge.md`.
 
-### Density threshold for \(S_pA_t\)
+### Density threshold for $S_pA_t$
 
 Theorem 1.1 of the 2016 paper proves sharp density facts for
 
-\[
-S_pA_t=\{p^i a_j:i\ge0,\ 1\le j\le t\}.
-\]
+$$S_pA_t=\{p^i a_j:i\ge0,\ 1\le j\le t\}.$$
 
 The parts relevant here are qualitative:
 
-- \(t\ge p-1\) forces positive lower asymptotic density for \(P(S_pA_t)\);
-- \(2^t<p\) forces asymptotic density zero;
-- the middle range \(t<p-1\) and \(2^t\ge p\) admits both behaviors.
+- $t\ge p-1$ forces positive lower asymptotic density for $P(S_pA_t)$;
+- $2^t<p$ forces asymptotic density zero;
+- the middle range $t<p-1$ and $2^t\ge p$ admits both behaviors.
 
 This is a warning against using counting density as a substitute for
 cofiniteness.  It also shows why a finite residue gate has to be paired with an
@@ -92,14 +86,14 @@ interval or bounded-gap mechanism.
 ### Fibonacci proof pattern
 
 Theorem 1.2 of the 2016 paper proves completeness for a finite Fibonacci
-multiplier block \(S_pF_k(n)\).  The proof has a residue-to-completeness
+multiplier block $S_pF_k(n)$.  The proof has a residue-to-completeness
 template worth preserving:
 
 1. construct finite subset sums that cover a full residue system modulo a
-   carefully chosen \(d\);
-2. use periodicity modulo \(d\) to move small residue representatives above the
+   carefully chosen $d$;
+2. use periodicity modulo $d$ to move small residue representatives above the
    forbidden early indices;
-3. write the remaining quotient in base \(p\);
+3. write the remaining quotient in base $p$;
 4. replace each digit by a finite subset-sum representative.
 
 This is close to the shape wanted for the post-saturation bridge in Erdos 124,
@@ -109,13 +103,13 @@ one scaled multiplier sequence.
 ### Xue-Fang-Ma residue gates
 
 The ScienceDirect preview of the 2023 note says that it further studies lower
-asymptotic density and completeness for \(S_pA_t\).  The preview exposes three
+asymptotic density and completeness for $S_pA_t$.  The preview exposes three
 important qualitative statements:
 
-- a quasi-complete residue condition on \(P(A_t)\) implies positive lower
+- a quasi-complete residue condition on $P(A_t)$ implies positive lower
   asymptotic density;
-- completeness of \(S_pA_t\) forces \(P(A_t)\) to contain a complete residue
-  system modulo \(p\);
+- completeness of $S_pA_t$ forces $P(A_t)$ to contain a complete residue
+  system modulo $p$;
 - a special sufficient condition gives completeness.
 
 These statements justify the API vocabulary only.  Any proof step depending on
@@ -128,15 +122,15 @@ The next mathematical target should be split into two formal lemmas.
 
 First, a residue-saturation lemma:
 
-> Find a finite seed, depending on \(A\) and \(k\), whose subset sums cover the
+> Find a finite seed, depending on $A$ and $k$, whose subset sums cover the
 > required residue system modulo the exact-critical denominator or another
 > analytically justified modulus.
 
 Second, an interval-from-gaps lemma:
 
-> If a finite seed contains an interval \([M,M+H]\), and an ordered tail
+> If a finite seed contains an interval $[M,M+H]$, and an ordered tail
 > satisfies a Chen-Fang-Hegyvari style bounded-gap inequality with gap bound
-> \(G\le H+1\), prove the cofinite ray \([M,\infty)\).
+> $G\le H+1$, prove the cofinite ray $[M,\infty)$.
 
 The first lemma is still open.  The second is now less vague: Lemma 2.1 gives a
 concrete bounded-gap hypothesis to formalize and test.
@@ -151,8 +145,8 @@ concrete bounded-gap hypothesis to formalize and test.
 - missing residues relative to a chosen coverage target.
 
 `haskell/ResidueGateCertificate.hs` is an executable smoke test for that API.
-It checks the quasi-complete witness \(\{2,4,6\}\) modulo \(3\), the binary
-seed \(P(\{1\})\) modulo \(2\), and two local exact-critical seed residue
+It checks the quasi-complete witness $\{2,4,6\}$ modulo $3$, the binary
+seed $P(\{1\})$ modulo $2$, and two local exact-critical seed residue
 profiles.
 
 This code proves no global theorem.  Its purpose is to stop the next residue

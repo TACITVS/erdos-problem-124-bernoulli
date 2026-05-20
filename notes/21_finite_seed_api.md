@@ -16,7 +16,7 @@ new bridge experiments from growing as isolated one-off scripts.
 
 `FiniteSeed.from_limit(bases, k, seed_limit)` records:
 
-- the sorted absorbed powers \(d^j\), \(k\le j\), \(d^j\le L\);
+- the sorted absorbed powers $d^j$, $k\le j$, $d^j\le L$;
 - the total seed sum;
 - the first unabsorbed frontier power for each base;
 - the reciprocal sum of the bases.

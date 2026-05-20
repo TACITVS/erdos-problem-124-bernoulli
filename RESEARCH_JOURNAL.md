@@ -28,12 +28,12 @@ Three layers of result:
 ## 2. The single most important new conjecture
 
 > **Multi-base Bernoulli Absolute Continuity Conjecture** (note 58 §4).
-> Let \(A\subseteq\mathbb{Z}_{\ge3}\) be finite with \(\gcd(A)=1\) and
-> \(\sum_{a\in A}1/(a-1)\ge1\).  Then the multi-base Bernoulli
+> Let $A\subseteq\mathbb{Z}_{\ge3}$ be finite with $\gcd(A)=1$ and
+> $\sum_{a\in A}1/(a-1)\ge1$.  Then the multi-base Bernoulli
 > convolution
-> \[\mu_A = *_{a\in A} B_{1/a}\]
+> $$\mu_A = *_{a\in A} B_{1/a}$$
 > is absolutely continuous with respect to Lebesgue measure on
-> \(\mathbb{R}\).
+> $\mathbb{R}$.
 
 This conjecture:
 - Is posable independently of Erdős 124.
@@ -41,9 +41,9 @@ This conjecture:
 - Has empirical support: hypothesis-meeting multi-base BCs show
   full-support bounded-density behaviour (see
   `scripts/cas_bernoulli_density.py`).
-- The dimension sum condition \(\sum 1/\log_2 a > 1\) matches the
-  hypothesis exactly via the elementary inequality \(\log_2 a < a-1\)
-  for \(a\ge3\).
+- The dimension sum condition $\sum 1/\log_2 a > 1$ matches the
+  hypothesis exactly via the elementary inequality $\log_2 a < a-1$
+  for $a\ge3$.
 
 **If you do nothing else with this project: investigate this conjecture.**
 
@@ -54,19 +54,19 @@ This conjecture:
 Note 59 (next note to be written) should make the §2 equivalence in
 note 58 rigorous:
 
-> **Equivalence.**  Along synchronised frontiers \(E_M\) with \(e_a=M\)
-> for all \(a\in A\), \(c(E_M) = o(T(E_M))\) iff the multi-base BC
-> \(\mu_A\) is absolutely continuous on \(\mathbb{R}\).
+> **Equivalence.**  Along synchronised frontiers $E_M$ with $e_a=M$
+> for all $a\in A$, $c(E_M) = o(T(E_M))$ iff the multi-base BC
+> $\mu_A$ is absolutely continuous on $\mathbb{R}$.
 
-The "if" direction is the easier one: AC of \(\mu_A\) plus weak
+The "if" direction is the easier one: AC of $\mu_A$ plus weak
 convergence of finite subset-sum distributions implies the discrete
-support density tends to 1, giving conductor \(o(T)\).
+support density tends to 1, giving conductor $o(T)$.
 
 The "only if" is harder: derive AC from the discrete conductor bound.
 The argument should go through Fourier characterisation of AC
-(\(\hat\mu_A\) in \(L^2\)), with the finite-N characteristic functions
-\(\hat X_E\) (= our note 48 \(\varphi_A\)) approximating
-\(\hat\mu_A\) under rescaling.
+($\hat\mu_A$ in $L^2$), with the finite-N characteristic functions
+$\hat X_E$ (= our note 48 $\varphi_A$) approximating
+$\hat\mu_A$ under rescaling.
 
 ### Session N+2 — Empirical AC sharpening
 
@@ -76,19 +76,19 @@ Extend `scripts/cas_bernoulli_density.py`:
   behaviour at fine scales.
 - Compute the *modulus of absolute continuity*: how does
   density(x + h) - density(x) scale with h?  AC implies
-  \(\int |\text{density}(x+h) - \text{density}(x)|\,dx \to 0\) as
-  \(h\to 0\), with rate depending on regularity.
-- Compute Fourier-side bounds: estimate \(\int_{|\xi|\le T}
-  |\hat\mu_A(\xi)|^2\,d\xi\) as \(T\to\infty\).  AC iff this is
+  $\int |\text{density}(x+h) - \text{density}(x)|\,dx \to 0$ as
+  $h\to 0$, with rate depending on regularity.
+- Compute Fourier-side bounds: estimate $\int_{|\xi|\le T}
+  |\hat\mu_A(\xi)|^2\,d\xi$ as $T\to\infty$.  AC iff this is
   uniformly bounded.
 
 ### Session N+3 — Translate Hochman / Varjú machinery
 
 The Hochman 2014 entropy framework for self-similar measures and Varjú
 2019 algebraic-parameter machinery were designed for single-base
-\(B_\lambda\) with \(\lambda\) algebraic in \((1/2,1)\).  Our setting is
-*multi-base* with \(\lambda_a = 1/a\) *outside* \((1/2,1)\) for each
-individual base \(a\ge3\).
+$B_\lambda$ with $\lambda$ algebraic in $(1/2,1)$.  Our setting is
+*multi-base* with $\lambda_a = 1/a$ *outside* $(1/2,1)$ for each
+individual base $a\ge3$.
 
 Key technical questions:
 
@@ -97,8 +97,8 @@ Key technical questions:
   IFS with weighted convolution.  The relevant entropy is the *joint*
   entropy of the multi-base system.
 - Varjú's argument uses transcendence-style bounds on the Mahler
-  measure of \(\lambda\).  For our rational \(1/a\), Mahler measure is
-  trivial (\(=a\)).  Does the multi-base version replace single Mahler
+  measure of $\lambda$.  For our rational $1/a$, Mahler measure is
+  trivial ($=a$).  Does the multi-base version replace single Mahler
   measure with something joint?
 - The relevant active researchers are: Mike Hochman (HUJI), Pablo
   Shmerkin (Univ. British Columbia), Péter Varjú (Cambridge), Tom
@@ -109,14 +109,14 @@ Key technical questions:
 ### Session N+4 — Counterexample hunt
 
 Run a systematic empirical search for hypothesis-meeting
-\(A\) where the empirical density shows clear singular structure
+$A$ where the empirical density shows clear singular structure
 (fractal gaps, high density ratio).  If found: the conjecture is *false*
 and the failure mode needs analysis.  If not found across many cases:
 strengthens the conjecture.
 
-Suggested test grid: all hypothesis-meeting \(A\) with maximum base
-\(\le 30\) and \(|A| \le 5\) (14 known cases per BEGL).  Plus
-multiplicative-class variations (\(\{3,9,27\}\) etc.).
+Suggested test grid: all hypothesis-meeting $A$ with maximum base
+$\le 30$ and $|A| \le 5$ (14 known cases per BEGL).  Plus
+multiplicative-class variations ($\{3,9,27\}$ etc.).
 
 ### Session N+5 — Formalisation in Lean
 
@@ -124,9 +124,9 @@ The algebraic framework (notes 28, 39, 40, 43, 47, 49) is largely
 ready for Lean 4 / Mathlib formalisation.  Key obligations to formalise
 first:
 
-- conductor identity \(K(E) = \kappa + 2c + 1\).
-- density growth identity \(\log_2 a \le a-1 \Rightarrow
-  \sum 1/\log_2 a \ge R(A)\).
+- conductor identity $K(E) = \kappa + 2c + 1$.
+- density growth identity $\log_2 a \le a-1 \Rightarrow
+  \sum 1/\log_2 a \ge R(A)$.
 - half-sum reach threshold.
 
 This is the most "Tao-style next move" (he's been formalizing PFR and
@@ -175,20 +175,20 @@ explained:
 
 ### 5.1 Conductor ratio for local cases
 
-| set | \(k\) | conductor \(c\) | half-sum \(S/2\) | ratio \(c / (S/2)\) |
+| set | $k$ | conductor $c$ | half-sum $S/2$ | ratio $c / (S/2)$ |
 |-----|-------|----------------:|-----------------:|--------------------:|
-| \(\{3,4,7\}\) | 1 | 581 | ~97k | 0.006 |
-| \(\{3,4,7\}\) | 2 | 3.98M | ~67M | 0.06 |
-| \(\{3,4,7\}\) | 3 | 166M | ~6.5G | 0.025 |
-| \(\{3,4,9,25\}\) | 2 | 452k | ~14M | 0.032 |
+| $\{3,4,7\}$ | 1 | 581 | ~97k | 0.006 |
+| $\{3,4,7\}$ | 2 | 3.98M | ~67M | 0.06 |
+| $\{3,4,7\}$ | 3 | 166M | ~6.5G | 0.025 |
+| $\{3,4,9,25\}$ | 2 | 452k | ~14M | 0.032 |
 
-Ratios are all in the 0.5–6% range; no obvious pattern with \(k\).
-The smallest ratio is \(\{3,4,7\}\) k=1 at 0.6%.  Why?
+Ratios are all in the 0.5–6% range; no obvious pattern with $k$.
+The smallest ratio is $\{3,4,7\}$ k=1 at 0.6%.  Why?
 
 ### 5.2 S-unit equation density
 
-For \(\{3,4\}\), \(\{3,4,7\}\), \(\{3,4,9,25\}\): non-trivial four-term
-S-unit solutions count grows *sub-linearly* in \(n_{\max}\).  See
+For $\{3,4\}$, $\{3,4,7\}$, $\{3,4,9,25\}$: non-trivial four-term
+S-unit solutions count grows *sub-linearly* in $n_{\max}$.  See
 `scripts/cas_fourth_moment_sunit.py`.  Theoretically, Evertse–Schlickewei
 predicts polynomial growth (with possibly large constants); empirically
 the growth is much slower than the proven bound.  This sub-linear
@@ -199,16 +199,16 @@ theorem proves it.
 
 | case | zero-bin fraction (200 bins, 200k samples) |
 |------|-------------------------------------------:|
-| \(\{3\}\) | 0.73 |
-| \(\{4\}\) | 0.86 |
-| \(\{3,4\}\) | 0.11 |
-| \(\{3,4,7\}\) | 0.00 |
-| \(\{3,4,5\}\) | 0.00 |
-| \(\{3,4,9,25\}\) | 0.00 |
+| $\{3\}$ | 0.73 |
+| $\{4\}$ | 0.86 |
+| $\{3,4\}$ | 0.11 |
+| $\{3,4,7\}$ | 0.00 |
+| $\{3,4,5\}$ | 0.00 |
+| $\{3,4,9,25\}$ | 0.00 |
 
 Sharp transition between single-base (Cantor-singular) and
 hypothesis-meeting multi-base (full support).  The transition appears
-to happen at the *dimension threshold* \(\sum 1/\log_2 a > 1\), exactly
+to happen at the *dimension threshold* $\sum 1/\log_2 a > 1$, exactly
 where note 58's conjecture predicts.
 
 ## 6. Repository navigation
@@ -254,16 +254,16 @@ community:
 1. Has the multi-base BC AC conjecture (note 58 §4) been posed?
    Searching arxiv and MathOverflow turned up no direct hits.
 
-2. For \(\{3, 4\}\) specifically: is \(B_{1/3} * B_{1/4}\) known to be
+2. For $\{3, 4\}$ specifically: is $B_{1/3} * B_{1/4}$ known to be
    absolutely continuous?  Single bases are clearly Cantor (Pisot);
-   convolution dimension is \(\log_3 2 + \log_4 2 \approx 0.63 + 0.5 =
-   1.13 > 1\), satisfying Marstrand's condition.
+   convolution dimension is $\log_3 2 + \log_4 2 \approx 0.63 + 0.5 =
+   1.13 > 1$, satisfying Marstrand's condition.
 
 3. Does the Hochman 2014 entropy framework extend to multi-base
    convolutions where individual measures are Pisot-singular?
 
 4. What is the best current bound on Fourier decay
-   \(|\hat\mu_A(\xi)|\) as \(|\xi|\to\infty\) for multi-base BC with
+   $|\hat\mu_A(\xi)|$ as $|\xi|\to\infty$ for multi-base BC with
    integer-Pisot parameters?
 
 A MathOverflow post titled e.g. "Absolute continuity of convolutions

@@ -34,8 +34,8 @@ Status for this project: core primary source.
 Relevance:
 
 - states the pure-power conjecture used here;
-- proves the \(\{3,4,7\}\) case;
-- imports Mignotte-Waldschmidt for the \(3^p\) versus \(4^q\) tail;
+- proves the $\{3,4,7\}$ case;
+- imports Mignotte-Waldschmidt for the $3^p$ versus $4^q$ tail;
 - explicitly distinguishes the pure-power problem from Birch-type mixed-product
   sequences.
 
@@ -44,7 +44,7 @@ Proof hooks:
 - exact-critical tail obstruction;
 - local certificate targets;
 - necessity of reciprocal-sum and gcd hypotheses;
-- benchmark for our \(\{3,4,7\}\) conductor.
+- benchmark for our $\{3,4,7\}$ conductor.
 
 Action:
 
@@ -66,7 +66,7 @@ Status for this project: live problem index and caution label.
 Relevance:
 
 - records that the second question was conjectured by BEGL96 and proved there
-  for \(\{3,4,7\}\);
+  for $\{3,4,7\}$;
 - points out the site owner's warning that relevant literature may be missing;
 - references Erdős 1997 problem statements and Melfi 2004;
 - notes Pomerance's necessity observation and Tao's comment sketch.
@@ -87,23 +87,23 @@ Link:
 
 - <https://www.erdosproblems.com/latex/125>
 
-Status for this project: adjacent problem, especially for \(\{3,4\}\).
+Status for this project: adjacent problem, especially for $\{3,4\}$.
 
 Relevance:
 
-- documents the related \(\{3,4\}\) density problem;
+- documents the related $\{3,4\}$ density problem;
 - cites Melfi 2001 and Hasler-Melfi 2024;
-- states that recent arguments show the lower density of the \(\{3,4\}\) sumset
+- states that recent arguments show the lower density of the $\{3,4\}$ sumset
   is zero.
 
 Proof hook:
 
-- warns that positive density or local density estimates for \(\{3,4\}\) do not
+- warns that positive density or local density estimates for $\{3,4\}$ do not
   automatically imply cofiniteness after adding a third base.
 
 Action:
 
-- treat \(\{3,4\}\) as a density/barrier test case for residue and gap
+- treat $\{3,4\}$ as a density/barrier test case for residue and gap
   heuristics.
 
 ### Melfi, 2001 and 2004
@@ -124,8 +124,8 @@ Status for this project: adjacent density and construction literature.
 
 Relevance:
 
-- Melfi 2001 gives the older lower-bound estimate for sums of powers of \(3\)
-  and \(4\);
+- Melfi 2001 gives the older lower-bound estimate for sums of powers of $3$
+  and $4$;
 - Melfi 2004 gives constructions showing reciprocal-sum intuition can fail for
   infinite base sets.
 
@@ -138,7 +138,7 @@ Proof hooks:
 Action:
 
 - read Melfi 2001 together with Hasler-Melfi 2024 to understand large gaps in
-  \(\Sigma(\operatorname{Pow}(\{3,4\}))\).
+  $\Sigma(\operatorname{Pow}(\{3,4\}))$.
 
 ### Hasler and Melfi, 2024
 
@@ -157,14 +157,14 @@ Status for this project: important adjacent density/gap source.
 
 Relevance:
 
-- improves Melfi's lower estimate for the \(\{3,4\}\) counting function;
-- studies structural properties of sums of distinct powers of \(3\) and \(4\);
-- explicitly connects the \(k=0\) and \(k=1\) counting functions up to a constant
+- improves Melfi's lower estimate for the $\{3,4\}$ counting function;
+- studies structural properties of sums of distinct powers of $3$ and $4$;
+- explicitly connects the $k=0$ and $k=1$ counting functions up to a constant
   factor.
 
 Proof hooks:
 
-- helps calibrate why adding \(7\) in \(\{3,4,7\}\) is essential;
+- helps calibrate why adding $7$ in $\{3,4,7\}$ is essential;
 - may contain gap data useful for modular-gate classifiers.
 
 Action:
@@ -183,7 +183,7 @@ Status for this project: baseline criterion.
 
 Relevance:
 
-- supplies the complete-sequence criterion used for the easy \(k=0\) style
+- supplies the complete-sequence criterion used for the easy $k=0$ style
   argument;
 - current interval-extension lemma is a finite-seed analogue.
 
@@ -240,7 +240,7 @@ Status for this project: product-sequence analogue.
 
 Relevance:
 
-- Birch proves completeness for mixed products \(p^a q^b\), \(p,q\) coprime;
+- Birch proves completeness for mixed products $p^a q^b$, $p,q$ coprime;
 - Zannier revisits Birch and records the bounded-exponent strengthening;
 - this is not the pure-power problem, but BEGL96 explicitly frames its problem
   as an analogue of this mixed-product theorem.
@@ -299,7 +299,7 @@ Action:
 
 - read Chen-Fang-Hegyvári first, then trace its references backward;
 - identify their residue/interval lemmas and test whether they can be adapted
-  from \(S_pA\)-type sequences to unions of pure powers.
+  from $S_pA$-type sequences to unions of pure powers.
 
 ### Bergelson and Simmons, 2017
 
@@ -319,7 +319,7 @@ Relevance:
 
 - the abstract says the method improves results of Cassels, Zannier, BEGL96,
   and Hegyvári;
-- Yu-Chen-Chen 2025 records a bound \(K_0(s_1,s_2)\le 4s_1-5\) attributed to
+- Yu-Chen-Chen 2025 records a bound $K_0(s_1,s_2)\le 4s_1-5$ attributed to
   Bergelson-Simmons for the bounded-exponent mixed-product problem.
 
 Proof hooks:
@@ -350,11 +350,11 @@ Status for this project: directly relevant to residue-saturation language.
 
 Relevance:
 
-- introduces a "quasi complete set of residues modulo \(p\)" criterion;
+- introduces a "quasi complete set of residues modulo $p$" criterion;
 - proves implications between residue completeness and lower density or
-  completeness properties for sequences of the form \(S_pA\);
+  completeness properties for sequences of the form $S_pA$;
 - gives an explicit theorem that if a finite seed block has the right interval
-  subset-sum property, then \(P(S_pA)\) is all nonnegative integers.
+  subset-sum property, then $P(S_pA)$ is all nonnegative integers.
 
 Proof hooks:
 
@@ -387,8 +387,8 @@ Status for this project: high-priority but not directly the same theorem.
 Relevance:
 
 - proves that the mixed-product set
-  \(\{s_1^{x_1}\cdots s_k^{x_k}: x_i\ge0\}\) is complete exactly when
-  \(\gcd(s_1,\ldots,s_k)\le2\);
+  $\{s_1^{x_1}\cdots s_k^{x_k}: x_i\ge0\}$ is complete exactly when
+  $\gcd(s_1,\ldots,s_k)\le2$;
 - this is much stronger than Birch for product monoids, but the terms are
   products, not pure powers.
 
@@ -420,7 +420,7 @@ Relevance:
 - Liu sharpens representation size/large-term features for product-monoid
   exponential sequences;
 - useful if we need representations where every selected term lies beyond a
-  threshold, which resembles our \(k\ge1\) cutoff.
+  threshold, which resembles our $k\ge1$ cutoff.
 
 Proof hooks:
 
@@ -459,7 +459,7 @@ replacement.
 
 Relevance:
 
-- BEGL96 cites a specific Mignotte-Waldschmidt inequality for \(3^p-4^q\);
+- BEGL96 cites a specific Mignotte-Waldschmidt inequality for $3^p-4^q$;
 - our local certificates currently import this as an external theorem.
 
 Proof hooks:
@@ -530,7 +530,7 @@ Action:
 
 - survey Olson constants and subset-sum covering theorems before attempting a
   custom residue-saturation proof;
-- specialize first to cyclic groups \(\mathbb Z/q\mathbb Z\).
+- specialize first to cyclic groups $\mathbb Z/q\mathbb Z$.
 
 ## Local modern discussions and data
 
@@ -544,12 +544,12 @@ Status for this project: useful informal discussion, not a primary theorem.
 
 Relevance:
 
-- asks for a rigorous proof of the BEGL96 \(\{3,4,7\}\) largest-missing claim;
+- asks for a rigorous proof of the BEGL96 $\{3,4,7\}$ largest-missing claim;
 - quotes the exact Mignotte-Waldschmidt inequality used in BEGL96.
 
 Proof hooks:
 
-- local \(\{3,4,7\}\) certificate explanation;
+- local $\{3,4,7\}$ certificate explanation;
 - communication-quality proof writeup.
 
 Action:
@@ -567,7 +567,7 @@ Status for this project: empirical data source only.
 
 Relevance:
 
-- records sums of distinct powers of \(3\) and \(4\) greater than \(1\);
+- records sums of distinct powers of $3$ and $4$ greater than $1$;
 - links BEGL96, Melfi 2001, Hasler-Melfi 2024;
 - includes record-gap comments.
 
@@ -591,7 +591,7 @@ Action:
 7. Cassels 1960.
 8. Mignotte-Waldschmidt II and Laurent 1994.
 9. finite abelian group subset-sum covering literature.
-10. Hasler-Melfi 2024 and Melfi 2001 for \(\{3,4\}\) gap/density context.
+10. Hasler-Melfi 2024 and Melfi 2001 for $\{3,4\}$ gap/density context.
 
 ## Immediate impact on the project plan
 

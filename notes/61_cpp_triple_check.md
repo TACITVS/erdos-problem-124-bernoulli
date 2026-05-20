@@ -8,20 +8,18 @@ the L² saturation finding from note 60.
 
 `cpp/bernoulli_fourier.cpp` is a focused C++ accelerator that computes
 
-\[
-I(T) = \int_{-T}^{T}|\hat\mu_A(\xi)|^2\,d\xi,
+$$I(T) = \int_{-T}^{T}|\hat\mu_A(\xi)|^2\,d\xi,
 \qquad
-\hat\mu_A(\xi)=\prod_{a\in A}\prod_{n\ge0}\cos(\pi\xi\,a^{-n-1}).
-\]
+\hat\mu_A(\xi)=\prod_{a\in A}\prod_{n\ge0}\cos(\pi\xi\,a^{-n-1}).$$
 
 Three independent methods, each verifying the others:
 
-1. **Trapezoidal** on \([-T, T]\) with adaptive sampling rate
-   (4 points per unit \(\xi\), capturing fastest oscillation period
-   \(2\cdot\min A\)).
-2. **Per-scale**: \(I_k = \int_{2^k\le|\xi|<2^{k+1}}|\hat\mu_A|^2\)
+1. **Trapezoidal** on $[-T, T]$ with adaptive sampling rate
+   (4 points per unit $\xi$, capturing fastest oscillation period
+   $2\cdot\min A$).
+2. **Per-scale**: $I_k = \int_{2^k\le|\xi|<2^{k+1}}|\hat\mu_A|^2$
    integrated separately on each dyadic shell, then summed.
-3. **Monte Carlo**: uniform random sampling on \([-T, T]\) with
+3. **Monte Carlo**: uniform random sampling on $[-T, T]$ with
    millions of samples (independent of grid effects).
 
 Build:
@@ -56,15 +54,15 @@ Pattern: linear growth → not L², singular Cantor measure. **Expected.**
 | {3,4} | 1.57 | 2.07 | **1.03 (saturating)** |
 | {3,5} | 1.91 | 2.93 | **1.05 (saturating)** |
 
-For {3,4}: \(\sum 1/(a-1) = 5/6 < 1\) (not Erdős hypothesis), but
-\(\sum 1/\log_2 a = 1.13 > 1\) (Marstrand dim sum > 1).
-For {3,5}: same — \(R=3/4\), dim sum \(\approx 1.06\).
+For {3,4}: $\sum 1/(a-1) = 5/6 < 1$ (not Erdős hypothesis), but
+$\sum 1/\log_2 a = 1.13 > 1$ (Marstrand dim sum > 1).
+For {3,5}: same — $R=3/4$, dim sum $\approx 1.06$.
 
 Both **saturate** despite not satisfying Erdős hypothesis.  This is
 new data: AC may hold whenever the Marstrand dim condition holds,
 which is *strictly weaker* than the Erdős reciprocal-sum hypothesis.
 
-### Hypothesis-meeting multi-base (Erdős hypothesis \(R\ge 1\)):
+### Hypothesis-meeting multi-base (Erdős hypothesis $R\ge 1$):
 
 | set | I(10²) | I(10³) | I(10⁴) | I(10⁵) | I(10⁶) | ratio I(10⁶)/I(10⁵) |
 |-----|-------:|-------:|-------:|-------:|-------:|--------------------:|
@@ -79,17 +77,17 @@ T=10⁶.**  The 7-base modular-gate case stabilized by T=10² already to
 its final value 1.2857.
 
 This is **overwhelming evidence** that for hypothesis-meeting
-\(A\), \(\hat\mu_A\in L^2(\mathbb R)\) — hence \(\mu_A\) has L²
+$A$, $\hat\mu_A\in L^2(\mathbb R)$ — hence $\mu_A$ has L²
 density — hence absolutely continuous — hence Erdős 124 closes by
 note 59 Theorem 7.
 
 ## 3. Per-scale verification
 
-For the same cases, \(I_k = 2\int_{2^k}^{2^{k+1}}|\hat\mu_A|^2\) at
-\(k = 0, 1, \dots, 21\) (so total range \([1, 2^{22}]\approx 4\cdot 10^6\)).
-The sum \(\sum_k I_k\) should match \(I(2^{22})\) from method 1.
+For the same cases, $I_k = 2\int_{2^k}^{2^{k+1}}|\hat\mu_A|^2$ at
+$k = 0, 1, \dots, 21$ (so total range $[1, 2^{22}]\approx 4\cdot 10^6$).
+The sum $\sum_k I_k$ should match $I(2^{22})$ from method 1.
 
-| set | sum \(I_k\) (k=0..21) | I(2²²)≈I(4·10⁶) trapezoidal | agreement |
+| set | sum $I_k$ (k=0..21) | I(2²²)≈I(4·10⁶) trapezoidal | agreement |
 |-----|---------------------:|------------------------------:|-----------|
 | {3} | 334.28 | ~280 | linear growth |
 | {4} | 3261.25 | ~2500 | linear growth |
@@ -99,19 +97,19 @@ The sum \(\sum_k I_k\) should match \(I(2^{22})\) from method 1.
 | {3,5,7,13} | **0.0464** | **1.23** | bounded |
 | {3,6,9,12,21,45,89} | **0.0559** | **1.29** | bounded |
 
-For hypothesis-meeting cases: \(\sum I_k\) is small (sub-1), confirming
+For hypothesis-meeting cases: $\sum I_k$ is small (sub-1), confirming
 the per-scale contributions decay quickly.  Sum doesn't equal full
-\(I(T)\) because Method-1 includes \([-1, 1]\) which is not in
-\(\sum_k I_k\) (which starts at \(k=0\), i.e., \([1, 2]\)).
+$I(T)$ because Method-1 includes $[-1, 1]$ which is not in
+$\sum_k I_k$ (which starts at $k=0$, i.e., $[1, 2]$).
 
 The per-scale I_k values for hypothesis-meeting cases drop by orders
-of magnitude (e.g., {3,5,7,13} from 3·10⁻² at \(k=0\) to 1·10⁻⁸ at
-\(k=21\)).  For {3,6,9,12,21,45,89}: from 4·10⁻² to 10⁻⁹ — eight
+of magnitude (e.g., {3,5,7,13} from 3·10⁻² at $k=0$ to 1·10⁻⁸ at
+$k=21$).  For {3,6,9,12,21,45,89}: from 4·10⁻² to 10⁻⁹ — eight
 orders of magnitude decay across the dyadic scales.
 
 ## 4. Monte Carlo verification
 
-On \([-10⁶, 10⁶]\) with 10 million uniform random samples:
+On $[-10⁶, 10⁶]$ with 10 million uniform random samples:
 
 | set | I_MC | I_trap | rel diff |
 |-----|-----:|-------:|---------:|
@@ -131,18 +129,18 @@ sample density.  **Crucially, both methods agree on the bounded
 (O(1)) vs unbounded distinction.**
 
 For tighter MC agreement, would need adaptive sampling concentrated
-near low-denominator rationals where \(\hat\mu_A\) peaks.
+near low-denominator rationals where $\hat\mu_A$ peaks.
 
 ## 5. Triple-check verdict
 
 Three independent computational methods (trapezoidal at high
 resolution, per-scale summation, uniform Monte Carlo) all agree that:
 
-- Single-base \(B_{1/a}\) for integer \(a \ge 3\): \(I(T)\) grows
+- Single-base $B_{1/a}$ for integer $a \ge 3$: $I(T)$ grows
   linearly. **Confirms Cantor-singular (Erdős 1939).**
 
-- Multi-base for sets with \(\sum 1/\log_2 a > 1\): \(I(T)\) is
-  bounded as \(T \to \infty\). **Confirms L² density, hence AC.**
+- Multi-base for sets with $\sum 1/\log_2 a > 1$: $I(T)$ is
+  bounded as $T \to \infty$. **Confirms L² density, hence AC.**
 
 The numerical saturation is robust: trapezoidal at T=10⁶ matches T=10⁵
 to 4+ decimal places for every hypothesis-meeting case tested.
@@ -173,12 +171,12 @@ This suggests the AC conjecture should be stated in its **Marstrand
 form**:
 
 > **Marstrand-AC Conjecture (revised note 58).**  For finite
-> \(A\subseteq\mathbb{Z}_{\ge2}\) with \(\gcd(A)=1\) and \(\sum_a
-> 1/\log_2 a > 1\), the multi-base Bernoulli convolution
-> \(\mu_A = *_{a\in A} B_{1/a}\) is absolutely continuous.
+> $A\subseteq\mathbb{Z}_{\ge2}$ with $\gcd(A)=1$ and $\sum_a
+> 1/\log_2 a > 1$, the multi-base Bernoulli convolution
+> $\mu_A = *_{a\in A} B_{1/a}$ is absolutely continuous.
 
 This is *strictly weaker* than the Erdős hypothesis (which requires
-\(\sum 1/(a-1) \ge 1\), implying \(\sum 1/\log_2 a > R(A) \ge 1\)).
+$\sum 1/(a-1) \ge 1$, implying $\sum 1/\log_2 a > R(A) \ge 1$).
 
 The Marstrand condition is the *natural* fractal-geometric condition:
 sum of individual dimensions exceeds 1.  Empirically it appears
@@ -218,6 +216,6 @@ For follow-up work:
   decay rate separately to localize where the AC mechanism happens.
 - **Quad precision** (\_\_float128 or libquadmath) for very large T
   where double precision loses cosine-product accuracy.
-- **Direct density estimation** by inverse Fourier on \(\hat\mu_A\)
+- **Direct density estimation** by inverse Fourier on $\hat\mu_A$
   truncated, comparing to Monte Carlo histogram from
   `scripts/cas_bernoulli_density.py`.

@@ -87,9 +87,7 @@ prove Erdős 124 unless the global audit has no open obligations.
 
 The architecture does not change the remaining mathematical bottleneck:
 
-\[
-c(E)=o(T(E)) \quad\text{or}\quad c(E)=O(T(E)^{1-\epsilon}).
-\]
+$$c(E)=o(T(E)) \quad\text{or}\quad c(E)=O(T(E)^{1-\epsilon}).$$
 
 It does make future work harder to silo.  A new conductor lemma should now land
 as a note, a typed or DSL implementation, and a manifest entry that runs in the

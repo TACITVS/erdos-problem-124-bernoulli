@@ -1,232 +1,321 @@
-# Erdos Problem 124 research log
+<div align="center">
 
-This repository is a working notebook for a computational and proof-oriented
-attack on Erdos problem 124.
+# Erdős Problem 124
 
-**See [`PROOF_STATE.md`](PROOF_STATE.md) for the consolidated, audited
-summary of what is proved, imported, conjectural, and open.**
+### Computational research notebook & the multi-base Bernoulli convolution path
 
-## Problem statement used here
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status: open research](https://img.shields.io/badge/Status-open%20research-blue.svg)](PROOF_STATE.md)
+[![Certificates](https://img.shields.io/badge/Certificates-26%2F26%20passing-brightgreen.svg)](certificates/manifest.json)
+[![Sessions](https://img.shields.io/badge/Sessions-25%2B-informational.svg)](RESEARCH_JOURNAL.md)
 
-Let \(A=\{d_1,\ldots,d_r\}\) be a finite set of distinct integers with
-\(d_i\ge 3\).  For \(k\ge 1\), let \(P(d,k)\) be the set of finite sums of
-distinct powers \(d^j\), \(j\ge k\).  The hard form of the problem asks whether
+</div>
 
-\[
-\gcd(d_1,\ldots,d_r)=1,\qquad
-\sum_{i=1}^r {1\over d_i-1}\ge 1
-\]
+---
 
-imply that every sufficiently large integer lies in
-\(P(d_1,k)+\cdots+P(d_r,k)\), for every \(k\ge 1\).
+## Headline
 
-The nearby version with \(k=0\), where every base contributes a copy of
-\(1=d^0\), has a short Brown-criterion proof.  This repository focuses on the
-hard \(k\ge 1\) version.
+After ~25 sessions of computational exploration, this project identifies a **new conditional reduction** of Erdős Problem 124 to a single conjecture in fractal geometry:
 
-## Current local results
+> **Multi-base Bernoulli AC Conjecture.** &nbsp; For finite $A \subseteq \mathbb{Z}_{\ge 3}$ with $\gcd(A) = 1$ and $\sum_{a \in A} \tfrac{1}{a-1} \ge 1$, the multi-base Bernoulli convolution
+> $$\mu_A \;=\; \underset{a \in A}{*}\, B_{1/a}$$
+> is absolutely continuous on $\mathbb{R}$.
 
-- Implemented exact subset-sum bitset computations for bounded verification.
-- Added a C++ accelerator for large exact bitset conductor and central-interval
-  scans.  On this machine, the `{3,4,7}, k=2, limit=50000000` conductor scan
-  took about 0.13 seconds in C++ versus about 7.08 seconds through the Python
-  prototype.
-- Closed \(\{3,4,7\}, k=1\) with a typed CF/MW certificate: the largest
-  missing integer is 581, verified by `TailCertificate.hs` and
-  `CFTailCertificate.hs` (`notes/46_347_k1_certificate.md`).
-- Found bounded-search conductors for several examples from Burr, Erdos,
-  Graham, and Li:
-  - \(\{3,4,7\}, k=1\): last missing 581.
-  - \(\{3,5,7,13\}, k=1\): last missing 112 in the local computation.
-  - \(\{3,6,7,13,21\}, k=1\): last missing 17.
-  - \(\{3,4,5\}, k=1\): last missing 79.
-- For \(\{3,4,7\}, k=2\), there is a computer-assisted certificate, combining
-  exact finite verification with the Mignotte-Waldschmidt lower bound, that the
-  largest missing integer is 3982888.  This is not a clean algebraic proof of
-  the full Erdos-124 problem.  The tail scan has now been reduced to a
-  continued-fraction lemma; see `notes/07_347_k2_certificate.md` and
-  `notes/09_cf_tail_347_k2.md`.
-- The same method now closes \(\{3,4,7\}, k=3\): the largest missing integer
-  is 166025260.  See `notes/10_347_k3_certificate.md`.
-- It also closes another exact-critical set, \(\{3,4,9,25\}, k=2\): the
-  largest missing integer is 452099.  See
-  `notes/11_34925_k2_certificate.md`.
-- The seed-bridge work now has a separate residue-completeness layer:
-  all fourteen exact-critical sets with maximum base at most 30 and size at
-  most 5 are residue-complete modulo their exact-critical denominator at
-  \(k=1,L=1000\) and at \(k=2,L=4000\).  See
-  `notes/20_residue_bridge_profiles.md`.
-- Finite seed tooling has been consolidated behind `scripts/finite_seed.py`;
-  the central-interval and residue CLIs are thin frontends over that shared API.
+A rigorous chain (Note 59 Theorem 7) shows that **this conjecture implies Erdős 124**. The empirical evidence from a C++ triple-check at $T = 10^7$ is strikingly supportive — see [the result table](#triple-checked-empirical-evidence).
 
-## Source pointers
+📚 **For the audited state:** [`PROOF_STATE.md`](PROOF_STATE.md) — what is proved, imported, conjectural, open.
+🧭 **For the next sessions:** [`RESEARCH_JOURNAL.md`](RESEARCH_JOURNAL.md) — forward-looking handoff.
 
-- Erdos problem page: https://www.erdosproblems.com/124
-- R. Burr, P. Erdos, R. Graham, and W. Li, "Complete sequences of sets of
-  integer powers", Acta Arithmetica 77 (1996), 133-138.
-- G. Melfi, "On certain positive integer sequences", arXiv:math/0404555.
+---
 
-## Fast scans
+## Table of contents
 
-Build the C++ accelerator with:
+1. [The problem](#the-problem)
+2. [What this project actually proves](#what-this-project-actually-proves)
+3. [The new conditional reduction](#the-new-conditional-reduction)
+4. [Triple-checked empirical evidence](#triple-checked-empirical-evidence)
+5. [Quickstart](#quickstart)
+6. [Documentation map](#documentation-map)
+7. [Citing](#citing)
+8. [References](#references)
 
-```text
+---
+
+## The problem
+
+Let $A = \{d_1, \ldots, d_r\}$ be a finite set of distinct integers with $d_i \ge 3$.
+For $k \ge 1$, let $P(d, k)$ be the set of finite sums of distinct powers $d^j$ with $j \ge k$.
+
+The hard form of Erdős Problem 124 asks whether
+
+$$\gcd(d_1, \ldots, d_r) = 1 \qquad \text{and} \qquad \sum_{i=1}^{r} \frac{1}{d_i - 1} \;\ge\; 1$$
+
+imply that **every sufficiently large integer** lies in $P(d_1, k) + \cdots + P(d_r, k)$, for every $k \ge 1$.
+
+The $k = 0$ case (each base contributes $1 = d^0$) has a short Brown-criterion proof. This repository focuses on the hard $k \ge 1$ version, open since [Burr–Erdős–Graham–Li 1996](https://www.math.ucsd.edu/~ronspubs/96_05_integer_powers.pdf).
+
+---
+
+## What this project actually proves
+
+### Five local cases proved (computer-assisted)
+
+The CF/MW + finite-bitset-scan template closes the following exact-critical and strict cases:
+
+| set | $k$ | $R(A) = \sum \frac{1}{a-1}$ | largest missing integer | certificate |
+|-----|----:|:---:|------------------------:|-------------|
+| $\{3,4,5\}$  | 1 | $\tfrac{13}{12}$ | 79 (CFH, *unconditional*) | [Note 26](notes/26_cfh_strict_tail.md) |
+| $\{3,4,7\}$  | 1 | 1 | 581 | [Note 46](notes/46_347_k1_certificate.md) |
+| $\{3,4,7\}$  | 2 | 1 | 3,982,888 | [Note 07](notes/07_347_k2_certificate.md), [Note 09](notes/09_cf_tail_347_k2.md) |
+| $\{3,4,7\}$  | 3 | 1 | 166,025,260 | [Note 10](notes/10_347_k3_certificate.md) |
+| $\{3,4,9,25\}$ | 2 | 1 | 452,099 | [Note 11](notes/11_34925_k2_certificate.md) |
+
+All five are checked by the typed Haskell verifiers (`haskell/TailCertificate.hs`, `haskell/CFTailCertificate.hs`). The first uses no imported analytic input; the others depend on the Mignotte–Waldschmidt bound for $\log 3 / \log 4$.
+
+### Algebraic framework (problem-independent, certified)
+
+The project develops a complete algebraic framework. Highlights:
+
+| obligation | content | reference |
+|------------|---------|-----------|
+| Conductor identity | $K(E) = \kappa(A, k) + 2c(E) + 1$ | [Note 28](notes/28_power_saving_central_interval_target.md) |
+| Density growth | $\sum_a \tfrac{1}{\log_2 a} \ge R(A) \ge 1$, from $\log_2 a \le a-1$ | [Note 47](notes/47_generating_function_density.md) |
+| Resonance lattice | $\Delta(A, p, q) > 0$ iff $\gcd(A) = 1$ | [Note 49](notes/49_resonance_decay.md) |
+| Quotient reciprocal sum | $R$ of scaled quotient block = $R(D(m, A))$ | [Note 40](notes/40_quotient_reciprocal_sum.md) |
+| Modular conductor lift | $c(F \cup mG') \le m(c'+1) + R - 1$ | [Note 33](notes/33_modular_conductor_lift.md) |
+| Half-sum reach threshold | $S' \ge 2(c'+1) + \lceil F_{\text{tot}}/m \rceil$ | [Note 39](notes/39_asymptotic_half_sum_reach.md) |
+| Same-base Frobenius reduction | $c \le F(\mathbf{q}) \cdot d^{e_{\min}} + O(1)$ | [Note 44](notes/44_same_base_frobenius_reduction.md) |
+| Single-progression absorption | closed-form prefix length | [Note 42](notes/42_single_progression_absorption.md) |
+
+26 certificates, all passing — run `python scripts/run_certificates.py`.
+
+### Open obligation
+
+Exactly **one** Open obligation remains in `haskell/GlobalProofAudit.hs`:
+
+> **Global power-saving central conductor theorem.** Prove $c(E) = o(T(E))$ in the strict case $R > 1$, and $c(E) = O\!\bigl(T(E)^{1-\epsilon}\bigr)$ in the exact-critical case $R = 1$.
+
+Three Imported analytic obligations: Mignotte–Waldschmidt for $\log 3/\log 4$; S-unit finiteness; Subspace-Theorem power-saving S-unit gap.
+
+---
+
+## The new conditional reduction
+
+After eleven timeboxed disparate-area attempts (notes 50–57), the project identified a single conjecture in fractal geometry that, if true, closes Erdős 124.
+
+### The reduction chain (Note 59, Theorem 7)
+
+For each base $a \in A$, define the single-base Bernoulli measure
+
+$$B_{1/a} \;=\; \mathrm{Law}\!\left(\sum_{n=0}^{\infty} \zeta_n\, a^{-n-1}\right),\qquad \zeta_n \stackrel{\text{iid}}{\sim} \operatorname{Unif}\{0, 1\}.$$
+
+By Erdős (1939), since every integer $a \ge 2$ is Pisot, **each $B_{1/a}$ is singular** (Cantor-like, dimension $1/\log_2 a$).
+
+The multi-base convolution $\mu_A = *_{a \in A} B_{1/a}$ may nevertheless be **absolutely continuous** — and the empirics say it is, exactly when Erdős's hypothesis holds.
+
+```
+   Multi-base Bernoulli AC Conjecture (open)
+     ⟹ μ_A has L¹ density
+     ⟹ (Note 59 §3-§4) Fourier convergence ĥX_T(ξ/T) → ĥμ_A(ξ),
+        weak-* convergence, support density ρ_T → 1
+     ⟹ (Note 59 §5) conductor c(T) = o(T)
+     ⟹ (Note 59 §6) Erdős 124 for hypothesis-meeting A
+```
+
+### Necessary condition is automatic
+
+By Marstrand–Mattila ([Note 60 §2](notes/60_bernoulli_AC_deep_dive.md)),
+
+$$\dim_H(\mu_A) \;=\; \min\!\Bigl(1,\; \sum_{a \in A} \tfrac{1}{\log_2 a}\Bigr).$$
+
+The elementary inequality $\log_2 a < a - 1$ for $a \ge 3$ gives $\sum \tfrac{1}{\log_2 a} > R(A) \ge 1$ **strictly** under the Erdős hypothesis, so $\dim_H(\mu_A) = 1$.
+
+The remaining gap — dimension 1 versus absolute continuity — is exactly the gap that recent breakthroughs by [Hochman](https://annals.math.princeton.edu/2014/180-2/p03), [Shmerkin](https://link.springer.com/article/10.1007/s00039-014-0285-4), and [Varjú](https://www.ams.org/journals/jams/2019-32-02/S0894-0347-2019-00916-1/) attacked for single-base $B_\lambda$ with $\lambda \in (1/2, 1)$. Our setting (multi-base, integer-Pisot $\lambda = 1/a$ for $a \ge 3$) is **not yet covered** by any published theorem.
+
+---
+
+## Triple-checked empirical evidence
+
+The L² conjecture (stronger than AC): $\hat\mu_A \in L^2(\mathbb{R})$, equivalently $\mu_A$ has L² density.
+
+This is equivalent to saturation of
+
+$$I(T) \;:=\; \int_{-T}^{T} \bigl|\hat\mu_A(\xi)\bigr|^2\, d\xi \quad\text{as }T \to \infty.$$
+
+The C++ binary [`cpp/bernoulli_fourier.cpp`](cpp/bernoulli_fourier.cpp) computes $I(T)$ by **three independent methods** (trapezoidal, per-scale summation, Monte Carlo) with OpenMP parallelism.
+
+### Hypothesis-meeting cases — saturating (L² signature)
+
+| set | $R(A)$ | $I(10^4)$ | $I(10^5)$ | $I(10^6)$ | $I(10^7)$ | $\frac{I(10^7)}{I(10^6)}$ |
+|-----|:---:|---:|---:|---:|---:|:---:|
+| $\{3,4,5\}$         | $\tfrac{13}{12}$ | 1.1585 | 1.1628 | 1.1628 | **1.1628** | **1.0000** |
+| $\{3,4,7\}$         | $1$ | 1.2325 | 1.2346 | 1.2348 | **1.2351** | 1.0002 |
+| $\{3,4,9,25\}$      | $1$ | 1.2538 | 1.2599 | 1.2600 | **1.2601** | 1.0001 |
+| $\{3,5,7,13\}$      | $1$ | 1.2341 | 1.2342 | 1.2342 | **1.2342** | **1.0000** |
+| $\{3,6,9,12,21,45,89\}$ | $1$ | 1.2857 | 1.2857 | 1.2857 | **1.2857** | **1.0000** |
+
+The seven-base modular-gate case is **frozen at 1.2857 across six orders of magnitude in $T$** (from $T = 10^2$ to $T = 10^7$).
+
+### Single-base controls — growing linearly (Cantor singular)
+
+| set | $I(10^4)$ | $I(10^5)$ | $I(10^6)$ | growth/decade |
+|-----|---:|---:|---:|:---:|
+| $\{3\}$ | 36.86 | 83.14 | 188.25 | **2.26×** |
+| $\{4\}$ | 126.34 | 497.02 | 1470.68 | **2.99×** |
+| $\{7\}$ | 531.80 | 2491.10 | 15605.06 | **4.50×** |
+
+Three independent integration methods all agree on the **bounded vs unbounded** distinction. The L² saturation is robust.
+
+---
+
+## Quickstart
+
+### Reproduce the full certificate suite (~2 min)
+
+```bash
+python scripts/run_certificates.py
+# Expected: 26 checked, 26 passed, 0 failed
+```
+
+### Reproduce the C++ Bernoulli triple-check (~10 min)
+
+```bash
+g++ -O3 -fopenmp -std=c++20 -march=native \
+    cpp/bernoulli_fourier.cpp -o cpp/bernoulli_fourier.exe
+
+cpp/bernoulli_fourier.exe default     # T up to 10^6, all cases
+cpp/bernoulli_fourier.exe verify      # T up to 10^7, hypothesis-meeting only
+cpp/bernoulli_fourier.exe per-scale   # dyadic-shell decomposition
+cpp/bernoulli_fourier.exe monte-carlo # uniform MC cross-check
+```
+
+### Reproduce the empirical density signature (~30 s)
+
+```bash
+python scripts/cas_bernoulli_density.py
+# Single-base: Cantor signature (high zero-bin fraction, huge density ratio).
+# Hypothesis-meeting multi-base: full support, bounded density ratio.
+```
+
+### Inspect the proof audit and boss tree
+
+```bash
+runghc haskell/GlobalProofAudit.hs    # 1 open obligation, 3 imported, rest certified
+runghc haskell/ConductorBossTree.hs   # 23 nodes: 17 Done, 5 Open, 1 Imported
+```
+
+### Build the exact-arithmetic fast scanner
+
+```bash
 g++ -O3 -std=c++20 -march=native cpp/erdos124_fast.cpp -o cpp/erdos124_fast.exe
-```
-
-Example checks:
-
-```text
 cpp/erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
-cpp/erdos124_fast.exe --mode=central --bases=3,4,7 --k=2 --seed-limit=50000000
+# Largest missing = 581
 ```
 
-## Typed certificate checks
+---
 
-The Haskell checker in `haskell/TailCertificate.hs` verifies small exact-critical
-tail arithmetic with separate types for bases, exponents, weights, conductors,
-cleared bounds, and margins.
+## Documentation map
 
-```text
-ghc -Wall -Werror -fforce-recomp haskell\TailCertificate.hs -o haskell\TailCertificate.exe
-runghc haskell\TailCertificate.hs
+### Read first
+
+- [**`PROOF_STATE.md`**](PROOF_STATE.md) — audited summary: what is proved, imported, conjectural, open.
+- [**`RESEARCH_JOURNAL.md`**](RESEARCH_JOURNAL.md) — forward-looking handoff for next sessions, AI models, collaborators.
+
+### The Bernoulli convolution direction (the headline finding)
+
+- [Note 58](notes/58_bernoulli_convolution_path.md) — proposes the conjecture and identifies the new community connection.
+- [Note 59](notes/59_rigorous_equivalence.md) — rigorous chain: AC ⟹ Erdős 124.
+- [Note 60](notes/60_bernoulli_AC_deep_dive.md) — deep dive: L² strengthening, per-scale reduction, attack lines.
+- [Note 61](notes/61_cpp_triple_check.md) — C++ triple-check methodology and findings.
+
+### Local certificates (five proved cases)
+
+- [Note 26](notes/26_cfh_strict_tail.md) — $\{3,4,5\}$ k=1 via CFH (unconditional).
+- [Note 46](notes/46_347_k1_certificate.md) — $\{3,4,7\}$ k=1 via CF/MW.
+- [Note 07](notes/07_347_k2_certificate.md), [Note 09](notes/09_cf_tail_347_k2.md) — $\{3,4,7\}$ k=2.
+- [Note 10](notes/10_347_k3_certificate.md) — $\{3,4,7\}$ k=3.
+- [Note 11](notes/11_34925_k2_certificate.md) — $\{3,4,9,25\}$ k=2.
+
+### Algebraic framework
+
+- [Note 28](notes/28_power_saving_central_interval_target.md) — conductor identity & power-saving target.
+- [Note 33](notes/33_modular_conductor_lift.md) — modular conductor lift.
+- [Note 39](notes/39_asymptotic_half_sum_reach.md) — half-sum reach threshold.
+- [Note 40](notes/40_quotient_reciprocal_sum.md) — quotient reciprocal-sum identity.
+- [Note 47](notes/47_generating_function_density.md) — density growth & Mahler equation.
+- [Note 49](notes/49_resonance_decay.md) — resonance lattice obstruction.
+
+### Strategic / meta
+
+- [Note 45](notes/45_strategy_revision.md) — strategy revision after the modular bridge limitation.
+- [Note 55](notes/55_disparate_area_attempts.md) — eleven timeboxed disparate-area attempts.
+- [Note 56](notes/56_abc_reduction.md) — alternative ABC + conductor reduction (notes 54–56).
+- [Note 57](notes/57_energy_attempt_honest.md) — falsified optimistic claim, lessons.
+
+### Repository structure
+
+```
+.
+├── PROOF_STATE.md         Audited summary (read first)
+├── RESEARCH_JOURNAL.md    Forward-looking handoff
+├── README.md              This file
+├── LICENSE                MIT
+├── notes/                 60+ mathematical research notes
+├── scripts/               Python CAS verification (SymPy/numpy)
+├── haskell/               Typed certificates and proof-tree audit
+├── cpp/                   C++ accelerators (bitset scans, Fourier triple-check)
+├── results/               Timestamped output transcripts
+├── certificates/          Manifest of default certificate suite
+├── prover/                Hasclid side-lemmas
+└── raku/                  Raku certificate DSL
 ```
 
-The Haskell checker in `haskell/CFTailCertificate.hs` verifies the exact
-continued-fraction window for \(\log 3/\log 4\) used by the current tail
-certificates.
+---
 
-```text
-ghc -Wall -Werror -fforce-recomp haskell\CFTailCertificate.hs -o haskell\CFTailCertificate.exe
-runghc haskell\CFTailCertificate.hs
+## Citing
+
+This is a working research notebook; reuse and citation are welcome but not required.
+
+```bibtex
+@misc{erdos124bernoulli,
+  title  = {{Erd\H{o}s} Problem 124: a computational notebook and the
+            multi-base {Bernoulli} convolution path},
+  year   = {2026},
+  url    = {https://github.com/TACITVS/erdos-problem-124-bernoulli},
+  note   = {Conditional reduction to a fractal-geometry conjecture
+            with computational evidence.}
+}
 ```
 
-The global proof audit is intentionally not marked complete yet.  It tracks the
-remaining open obligations for the full theorem.
+---
 
-```text
-runghc haskell\GlobalProofAudit.hs
-runghc haskell\MultiplicativeClasses.hs
-runghc haskell\PairCFTailCertificate.hs
-runghc -ihaskell haskell\SeedBridgeProfiles.hs
-runghc -ihaskell haskell\ResidueBridgeProfiles.hs
-runghc -ihaskell haskell\ResidueGateCertificate.hs
-runghc -ihaskell haskell\GapBridgeCertificate.hs
-```
+## References
 
-A first bibliography map for the remaining global proof obligations is in
-`notes/22_bibliography.md`.  It is a working source map, not a completed proof:
-its immediate use is to align the next residue-saturation and interval lemmas
-with the existing complete-sequence literature.
+**Erdős Problem 124 itself:**
 
-The first extraction from that literature is in
-`notes/23_complete_sequence_lemma_extraction.md`.  Its main reusable input is a
-bounded-gap lemma for subset sums and the finite vocabulary of complete versus
-quasi-complete residue witnesses.
+- S. A. Burr, P. Erdős, R. L. Graham, W.-C. Li. *Complete sequences of sets of integer powers*. Acta Arithmetica 77 (1996), 133–138. [[pdf]](https://www.math.ucsd.edu/~ronspubs/96_05_integer_powers.pdf)
+- G. Melfi. *On certain positive integer sequences*. arXiv:[math/0404555](https://arxiv.org/abs/math/0404555).
+- Erdős Problems site: [erdosproblems.com/124](https://www.erdosproblems.com/124).
 
-The bounded-gap bridge itself is isolated in
-`notes/24_bounded_gap_bridge.md`: a seed interval of span \(H\) plus a tail
-subset-sum gap bound \(G\le H+1\) implies a cofinite ray.
-`notes/25_prefix_gap_bridge.md` adds the finite-prefix version used by the
-current local capacity checks.
-`notes/26_cfh_strict_tail.md` turns the `{3,4,5}, k=1` capacity row into an
-actual Chen-Fang-Hegyvari strict-tail proof.
-`notes/27_s_unit_exact_critical_tail.md` records the qualitative algebraic
-replacement for explicit Baker bounds in exact-critical tails: \(S\)-unit
-finiteness rules out infinitely many bounded independent near-collisions.
-`notes/28_power_saving_central_interval_target.md` sharpens the remaining
-central-interval obligation to a power-saving bound on finite seed conductors.
-`notes/29_residue_lift_bridge.md` adds a typed modular lifting lemma: a small
-residue frame plus an interval or ray of multiples gives an ordinary interval
-or ray with explicit additive loss.
-`notes/30_unit_residue_frame.md` proves an algebraic residue-frame construction
-from powers of any base that is a unit modulo the chosen modulus.
-`notes/31_raku_dsl_fit.md` records the Raku/RFLK fit and adds a small
-right-by-construction Raku certificate DSL for the residue-lift lemmas.
-`notes/32_multilanguage_certificate_architecture.md` defines the manifest-based
-certificate architecture that keeps the Python, Haskell, Raku, C++ and prover
-artifacts in one coherent body.
-`notes/33_modular_conductor_lift.md` turns residue lifting into an explicit
-finite-seed conductor bound for modular induction.
-`notes/34_conductor_boss_lemma_ladder.md` decomposes the remaining conductor
-theorem into checked dependencies and names the next open cuts.
-`notes/35_scaled_power_block_language.md` makes quotient blocks precise as
-scaled progressions \(q d^n\) and records the quotient-normalization lemma.
-`notes/36_complete_sequence_scaled_absorption.md` imports the Brown-style
-complete-sequence criterion into the scaled-block route: ordered scaled terms
-that keep touching a central interval preserve its conductor bound.
-`notes/37_p_adic_quotient_block_selection.md` proves the p-adic front end for
-quotient-block selection: a base contributes to an \(m\)-divisible quotient
-tail exactly when it contains every prime divisor of \(m\).
-`notes/38_quotient_conductor_bridge.md` composes quotient selection,
-complete-sequence absorption, and modular conductor lift into one checked
-bridge with explicit failure modes.
-`notes/39_asymptotic_half_sum_reach.md` records the explicit threshold
-\(S'\ge 2(c'+1)+\lceil F_{\rm tot}/m\rceil\) under which the lifted central
-interval reaches the whole half-sum, closing the reach side of the modular
-conductor lift along every sublinear or power-saving quotient conductor
-sequence.
-`notes/40_quotient_reciprocal_sum.md` proves the quotient reciprocal-sum
-identity \(R(\text{quotient block at }m,A)=\sum_{d\in D(m,A)}1/(d-1)\),
-classifies each \((m,A)\) into the recursive or deficit one-shot regime, and
-records that all local hypothesis-minimal cases are deficit one-shot at every
-nontrivial modulus.
-`notes/41_modulus_search_reduction.md` reduces the modular-bridge selection
-to a finite enumeration over squarefree divisors of \(\operatorname{rad}(\prod
-A)\), confirming algorithmically that every local hypothesis-minimal case
-falls in the deficit one-shot regime.
-`notes/42_single_progression_absorption.md` records the closed-form
-absorbable prefix length for a single scaled progression \(q d^n\) onto a
-seed interval, with the dyadic dichotomy and the constant span growth factor
-\(2(d-1)/(d-2)\) that bounds each absorption round.
-`notes/43_scaled_conductor_identity.md` extends the tail invariant
-\(K=\kappa+2c+1\) from pure-power to scaled blocks, with
-\(C(B,E)-S(B,E)=\kappa_{\rm scaled}(B)\), so that the strict and S-unit tail
-machinery now plugs into scaled-block conductor inputs directly.
-`notes/44_same_base_frobenius_reduction.md` closes the same-base sub-cut of
-the scaled middle-interval theorem by reducing it to numerical-semigroup
-analysis: same-base scaled blocks with \(\gcd(\mathbf q)=1\) have central
-conductor at most \(F(\mathbf q)\cdot d^{e_{\min}}+O(1)\).
-`notes/45_strategy_revision.md` records the strategic pivot: the modular
-bridge is one-shot for every local hypothesis-minimal case, so the
-remaining work is the mixed-base scaled middle-interval theorem and the
-analytic input.
-`notes/46_347_k1_certificate.md` upgrades the \(\{3,4,7\}, k=1\) case from
-an empirical claim to a typed CF/MW certificate using the same template as
-\(k=2\) and \(k=3\).
-`notes/47_generating_function_density.md` opens a new research direction:
-\(F_A(x)=\prod_{a,n}(1+x^{a^n})\) satisfies a Mahler functional equation,
-and the algebraic identity \(\sum_a 1/\log_2 a\ge R(A)\ge 1\) (verified
-mechanically in `scripts/cas_density_check.py`) gives the local-limit
-density heuristic for free.  The remaining analytic input is a single
-uniform characteristic-function bound, related to but distinct from the
-existing Mignotte–Waldschmidt input.
+**Bernoulli convolutions (the new connection):**
 
-## Certificate runner
+- P. Erdős. *On a family of symmetric Bernoulli convolutions*. Amer. J. Math. 61 (1939).
+- B. Solomyak. *On the random series $\sum \pm \lambda^n$*. Ann. Math. 142 (1995).
+- M. Hochman. *On self-similar sets with overlaps and inverse theorems for entropy*. Ann. Math. 180 (2014). [[link]](https://annals.math.princeton.edu/2014/180-2/p03)
+- P. Shmerkin. *On the exceptional set for absolute continuity of Bernoulli convolutions*. GAFA 24 (2014). [[link]](https://link.springer.com/article/10.1007/s00039-014-0285-4)
+- P. Varjú. *Absolute continuity of Bernoulli convolutions for algebraic parameters*. J. AMS 32 (2019). [[pdf]](https://www.ams.org/journals/jams/2019-32-02/S0894-0347-2019-00916-1/S0894-0347-2019-00916-1.pdf)
 
-The default certificate suite is listed in `certificates/manifest.json` and run
-by:
+**ABC and related Diophantine input (alternative path):**
 
-```text
-python scripts\run_certificates.py
-```
+- Wikipedia, [*abc conjecture*](https://en.wikipedia.org/wiki/Abc_conjecture).
+- C. L. Stewart, K. Yu. *On the abc conjecture II*. Duke Math. J. 108 (2001).
+- M. Waldschmidt. *[Perfect Powers: Pillai's works and their developments](https://webusers.imj-prg.fr/~michel.waldschmidt/articles/pdf/PerfectPowers.pdf)*.
 
-Optional external checks can be included with:
+---
 
-```text
-python scripts\run_certificates.py --all
-```
+<div align="center">
 
-Hasclid side-lemma checks live in `prover/`.  They are not a replacement for the
-domain certificate checker; they independently certify exact algebraic
-obligations such as Legendre-threshold inequalities.
+**License: MIT** · See [`LICENSE`](LICENSE).
+**Status:** open research notebook · last active 2026-05.
 
-```text
-cabal run prover-int -- C:\Users\baian\Math_Research\Knuth_124\prover\legendre_thresholds.euclid
-```
-
-Raku-side proof engineering lives in `raku/`:
-
-```text
-raku raku\residue_dsl_certificate.raku
-```
+</div>

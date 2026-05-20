@@ -2,7 +2,7 @@
 
 Tracked note: this handout is an imported project-state snapshot.  Subsequent
 updates are in `notes/22_bibliography.md` through
-`notes/38_quotient_conductor_bridge.md`, especially the \(S\)-unit
+`notes/38_quotient_conductor_bridge.md`, especially the $S$-unit
 exact-critical tail route, the power-saving central conductor target, the
 residue-lift bridge, the unit-base residue-frame construction, the Raku residue
 DSL, the manifest-based certificate architecture, the modular conductor lift,
@@ -41,62 +41,48 @@ The active research target is the second, gcd-conditioned form of Erdős Problem
 
 Let
 
-\[
-A = \{a_1,\dots,a_r\}
-\]
+$$A = \{a_1,\dots,a_r\}$$
 
 be a finite set of integer bases, typically with
 
-\[
-a_i \ge 3.
-\]
+$$a_i \ge 3.$$
 
 For a fixed integer
 
-\[
-k \ge 1,
-\]
+$$k \ge 1,$$
 
 consider the multiset of powers
 
-\[
-\mathcal P_{A,k} = \{a^e : a\in A,\ e\ge k\}.
-\]
+$$\mathcal P_{A,k} = \{a^e : a\in A,\ e\ge k\}.$$
 
 The important point is that this is a **multiset of terms indexed by pairs**
 
-\[
-(a,e),
-\]
+$$(a,e),$$
 
 not merely the set of distinct integer values. For example, if
 
-\[
-A = \{3,4,9,25\},
-\]
+$$A = \{3,4,9,25\},$$
 
 then
 
-\[
-3^2 = 9^1
-\]
+$$3^2 = 9^1$$
 
 as integers, but the two occurrences are distinct available terms if both indices are permitted by the chosen lower exponent threshold.
 
-The central question is whether, under suitable hypotheses on \(A\), all sufficiently large integers can be represented as a finite subset sum of these powers.
+The central question is whether, under suitable hypotheses on $A$, all sufficiently large integers can be represented as a finite subset sum of these powers.
 
 The working theorem statement is:
 
 > **Target Theorem, informal.**
-> If \(A\) is a finite set of integer bases with
-> \[
+> If $A$ is a finite set of integer bases with
+> $$
 > \gcd(A)=1
-> \]
+> $$
 > and
-> \[
+> $$
 > \sum_{a\in A}\frac{1}{a-1}\ge 1,
-> \]
-> then for every \(k\ge 1\), all sufficiently large integers are representable as subset sums of powers \(a^e\), with \(a\in A\), \(e\ge k\).
+> $$
+> then for every $k\ge 1$, all sufficiently large integers are representable as subset sums of powers $a^e$, with $a\in A$, $e\ge k$.
 
 This is the theorem currently audited by the Haskell proof/certificate layer.
 
@@ -106,105 +92,79 @@ This is the theorem currently audited by the Haskell proof/certificate layer.
 
 ### 2.1 Power multiset up to a seed limit
 
-Given a seed limit \(X\), define the finite seed multiset
+Given a seed limit $X$, define the finite seed multiset
 
-\[
-T_{A,k}(X)=\{(a,e): a\in A,
+$$T_{A,k}(X)=\{(a,e): a\in A,
 \ e\ge k,
-\ a^e\le X\}.
-\]
+\ a^e\le X\}.$$
 
 Its value multiset is
 
-\[
-V_{A,k}(X)=\{a^e : (a,e)\in T_{A,k}(X)\}.
-\]
+$$V_{A,k}(X)=\{a^e : (a,e)\in T_{A,k}(X)\}.$$
 
 The finite seed sum is
 
-\[
-S_X = \sum_{(a,e)\in T_{A,k}(X)} a^e.
-\]
+$$S_X = \sum_{(a,e)\in T_{A,k}(X)} a^e.$$
 
 The half-sum is
 
-\[
-H_X = \left\lfloor \frac{S_X}{2}\right\rfloor.
-\]
+$$H_X = \left\lfloor \frac{S_X}{2}\right\rfloor.$$
 
 ### 2.2 Subset-sum set
 
 Let
 
-\[
-R_X = \left\{\sum_{t\in U} t : U\subseteq V_{A,k}(X)\right\}.
-\]
+$$R_X = \left\{\sum_{t\in U} t : U\subseteq V_{A,k}(X)\right\}.$$
 
-Again, multiplicities matter: two equal integer terms arising from different \((a,e)\) pairs may both be used, once each.
+Again, multiplicities matter: two equal integer terms arising from different $(a,e)$ pairs may both be used, once each.
 
 ### 2.3 Central conductor
 
-The finite central-conductor computation checks which integers up to \(H_X\) are represented.
+The finite central-conductor computation checks which integers up to $H_X$ are represented.
 
 Define
 
-\[
-C_X = \max\{n\le H_X : n\notin R_X\},
-\]
+$$C_X = \max\{n\le H_X : n\notin R_X\},$$
 
-if such an integer exists. If no such missing integer exists, set \(C_X=-1\).
+if such an integer exists. If no such missing integer exists, set $C_X=-1$.
 
 If every integer in
 
-\[
-[C_X+1,H_X]
-\]
+$$[C_X+1,H_X]$$
 
 is represented, then by complement symmetry every integer in
 
-\[
-[C_X+1, S_X-C_X-1]
-\]
+$$[C_X+1, S_X-C_X-1]$$
 
 is represented.
 
 This gives the central interval
 
-\[
-I_X = [C_X+1, S_X-C_X-1].
-\]
+$$I_X = [C_X+1, S_X-C_X-1].$$
 
 ### 2.4 Frontier powers
 
-For each base \(a\in A\), let
+For each base $a\in A$, let
 
-\[
-F_a(X)
-\]
+$$F_a(X)$$
 
-be the first power of \(a\) with exponent at least \(k\) that exceeds \(X\). Equivalently, it is the next unused power of \(a\) after the seed block.
+be the first power of $a$ with exponent at least $k$ that exceeds $X$. Equivalently, it is the next unused power of $a$ after the seed block.
 
 The frontier vector is
 
-\[
-F(X)=(F_a(X))_{a\in A}.
-\]
+$$F(X)=(F_a(X))_{a\in A}.$$
 
 ---
 
 ## 3. Reduction to hypothesis-minimal sets
 
-A base set \(A\) satisfies the hypotheses if
+A base set $A$ satisfies the hypotheses if
 
-\[
-\gcd(A)=1
-\]
+$$\gcd(A)=1$$
 
 and
 
-\[
-\sum_{a\in A}\frac{1}{a-1}\ge 1.
-\]
+$$\sum_{a\in A}\frac{1}{a-1}\ge 1.$$
 
 A set is **hypothesis-minimal** if it satisfies the hypotheses, but removing any one base destroys the hypotheses.
 
@@ -221,35 +181,27 @@ Therefore the computational search focuses heavily on hypothesis-minimal and exa
 
 A base set is **exact-critical** if
 
-\[
-\sum_{a\in A}\frac{1}{a-1}=1.
-\]
+$$\sum_{a\in A}\frac{1}{a-1}=1.$$
 
 Exact-critical sets are the delicate boundary cases.
 
-If the reciprocal sum is strictly greater than \(1\), then there is positive slack, and the strict reciprocal-sum tail argument is easier.
+If the reciprocal sum is strictly greater than $1$, then there is positive slack, and the strict reciprocal-sum tail argument is easier.
 
-If the reciprocal sum equals \(1\), then the tail extension requires a more refined invariant and near-collision analysis.
+If the reciprocal sum equals $1$, then the tail extension requires a more refined invariant and near-collision analysis.
 
 ### 4.1 Exact-critical denominator and weights
 
-For exact-critical \(A\), define
+For exact-critical $A$, define
 
-\[
-D = \operatorname{lcm}\{a-1 : a\in A\}.
-\]
+$$D = \operatorname{lcm}\{a-1 : a\in A\}.$$
 
-For each base \(a\), define the denominator-cleared weight
+For each base $a$, define the denominator-cleared weight
 
-\[
-w_a = \frac{D}{a-1}.
-\]
+$$w_a = \frac{D}{a-1}.$$
 
 Exact-criticality becomes
 
-\[
-\sum_{a\in A} w_a = D.
-\]
+$$\sum_{a\in A} w_a = D.$$
 
 These weights are used in the exact-critical tail certificates.
 
@@ -261,23 +213,19 @@ The current proof strategy has three main layers.
 
 ### Layer 1: Finite seed bridge
 
-Find a finite seed limit \(X\) such that the seed subset sums contain a long enough central interval
+Find a finite seed limit $X$ such that the seed subset sums contain a long enough central interval
 
-\[
-[C_X+1, S_X-C_X-1].
-\]
+$$[C_X+1, S_X-C_X-1].$$
 
 This is the finite bridge from small subset-sum behavior to the asymptotic tail.
 
 ### Layer 2: Interval extension / frontier absorption
 
-If a represented interval has span \(L\), and the next unused power \(t\) satisfies
+If a represented interval has span $L$, and the next unused power $t$ satisfies
 
-\[
-t\le L+1,
-\]
+$$t\le L+1,$$
 
-then adding \(t\) extends or preserves interval coverage. This is the Brown-style interval-extension mechanism.
+then adding $t$ extends or preserves interval coverage. This is the Brown-style interval-extension mechanism.
 
 Repeatedly absorbing frontier powers grows the represented interval.
 
@@ -296,9 +244,7 @@ The near-collision scenario is then excluded using continued-fraction and Diopha
 
 If
 
-\[
-\sum_{a\in A}\frac{1}{a-1}>1,
-\]
+$$\sum_{a\in A}\frac{1}{a-1}>1,$$
 
 then the tail has positive slack.
 
@@ -306,17 +252,13 @@ The code contains a strict interval certificate mechanism. Given a seed interval
 
 A verified example is
 
-\[
-A=\{3,4,5\},\quad k=1.
-\]
+$$A=\{3,4,5\},\quad k=1.$$
 
 Here
 
-\[
-\frac12+\frac13+\frac14=\frac{13}{12}>1.
-\]
+$$\frac12+\frac13+\frac14=\frac{13}{12}>1.$$
 
-The certificate proves all sufficiently large integers are represented, with a reported ray start at \(80\) in the local benchmark.
+The certificate proves all sufficiently large integers are represented, with a reported ray start at $80$ in the local benchmark.
 
 ---
 
@@ -324,17 +266,13 @@ The certificate proves all sufficiently large integers are represented, with a r
 
 For exact-critical sets, no positive slack exists. The current tail mechanism uses a frontier invariant.
 
-Let the current interval span be \(H\), and let the frontier vector be \(E=(E_a)_{a\in A}\). Define the weighted frontier quantity
+Let the current interval span be $H$, and let the frontier vector be $E=(E_a)_{a\in A}$. Define the weighted frontier quantity
 
-\[
-C(E)=\sum_{a\in A}\frac{E_a}{a-1}.
-\]
+$$C(E)=\sum_{a\in A}\frac{E_a}{a-1}.$$
 
 The invariant has the form
 
-\[
-K = C(E)-1-H.
-\]
+$$K = C(E)-1-H.$$
 
 Along absorbed tail powers, this quantity remains invariant in the exact-critical case.
 
@@ -352,10 +290,10 @@ Two bases are multiplicatively dependent if they are powers of a common rational
 
 Examples:
 
-- \(4,8,16\) are in one multiplicative class.
-- \(9,27,81\) are in one multiplicative class.
-- \(8\) and \(27\) are independent.
-- \(12\) and \(72\) are independent under the implemented class-key test.
+- $4,8,16$ are in one multiplicative class.
+- $9,27,81$ are in one multiplicative class.
+- $8$ and $27$ are independent.
+- $12$ and $72$ are independent under the implemented class-key test.
 
 The certified local reduction is:
 
@@ -367,7 +305,7 @@ Caution: the current Haskell file verifies this for known exact-critical and san
 
 A simple proof idea:
 
-If all bases lie in one multiplicative class, then all bases are powers of a common integer core, and therefore share a nontrivial common factor. That contradicts \(\gcd(A)=1\).
+If all bases lie in one multiplicative class, then all bases are powers of a common integer core, and therefore share a nontrivial common factor. That contradicts $\gcd(A)=1$.
 
 ---
 
@@ -375,68 +313,54 @@ If all bases lie in one multiplicative class, then all bases are powers of a com
 
 In the exact-critical case, a hypothetical tail failure forces powers from independent classes to remain within a bounded gap.
 
-For a pair of independent bases \(x,y\), the relevant obstruction is of the form
+For a pair of independent bases $x,y$, the relevant obstruction is of the form
 
-\[
-|x^p-y^q|\le B
-\]
+$$|x^p-y^q|\le B$$
 
-for a known bound \(B\) derived from the seed conductor and denominator-cleared weights.
+for a known bound $B$ derived from the seed conductor and denominator-cleared weights.
 
-For the local certified cases, the key pair is \((3,4)\).
+For the local certified cases, the key pair is $(3,4)$.
 
 The continued-fraction machinery certifies that all relevant near-collisions exceed the required gap bound.
 
 ---
 
-## 10. Continued-fraction certification for \(3\) versus \(4\)
+## 10. Continued-fraction certification for $3$ versus $4$
 
 The Haskell certificates avoid floating-point logarithms. They compute rational intervals for logarithms using
 
-\[
-\log x = 2\sum_{j\ge 0}\frac{y^{2j+1}}{2j+1},
+$$\log x = 2\sum_{j\ge 0}\frac{y^{2j+1}}{2j+1},
 \qquad
- y=\frac{x-1}{x+1},
-\]
+ y=\frac{x-1}{x+1},$$
 
 with a rational tail bound.
 
 This gives a certified interval for
 
-\[
-\alpha=\frac{\log 3}{\log 4}.
-\]
+$$\alpha=\frac{\log 3}{\log 4}.$$
 
 The expected continued-fraction prefix is
 
-\[
-[0,1,3,1,4,1,1,11,1,46,1,5,112].
-\]
+$$[0,1,3,1,4,1,1,11,1,46,1,5,112].$$
 
-The relevant convergents for the local \(3/4\) window are recorded as pairs \((p,q)\), corresponding to comparisons of \(4^p\) and \(3^q\):
+The relevant convergents for the local $3/4$ window are recorded as pairs $(p,q)$, corresponding to comparisons of $4^p$ and $3^q$:
 
-\[
-(19,24),
+$$(19,24),
 (23,29),
 (42,53),
 (485,612),
 (527,665),
 (24727,31202),
 (25254,31867),
-(150997,190537).
-\]
+(150997,190537).$$
 
 The next convergent after the imported analytic/Mignotte-Waldschmidt threshold is
 
-\[
-(16936918,21372011).
-\]
+$$(16936918,21372011).$$
 
 For the local certified windows, the minimum exact gap among the relevant convergents is
 
-\[
-7551629537.
-\]
+$$7551629537.$$
 
 This exceeds the needed local gap bounds.
 
@@ -446,47 +370,43 @@ This exceeds the needed local gap bounds.
 
 The current local proof/certificate infrastructure certifies the following important exact-critical cases.
 
-### 11.1 \(A=\{3,4,7\}, k=2\)
+### 11.1 $A=\{3,4,7\}, k=2$
 
-- Seed limit: \(50{,}000{,}000\)
-- Conductor to half: \(3{,}982{,}888\)
-- Exact-critical denominator: \(6\)
-- Weights: \((3,2,1)\)
-- Cleared obstruction bound: \(47{,}794{,}770\)
-- Start exponents: \((17,13,10)\)
-- Continued-fraction gate uses the \(3/4\) window.
+- Seed limit: $50{,}000{,}000$
+- Conductor to half: $3{,}982{,}888$
+- Exact-critical denominator: $6$
+- Weights: $(3,2,1)$
+- Cleared obstruction bound: $47{,}794{,}770$
+- Start exponents: $(17,13,10)$
+- Continued-fraction gate uses the $3/4$ window.
 
-### 11.2 \(A=\{3,4,7\}, k=3\)
+### 11.2 $A=\{3,4,7\}, k=3$
 
-- Seed limit: \(5{,}000{,}000{,}000\)
-- Conductor to half: \(166{,}025{,}260\)
-- Exact-critical denominator: \(6\)
-- Weights: \((3,2,1)\)
-- Cleared obstruction bound: \(1{,}992{,}303{,}678\)
-- Start exponents: \((21,17,12)\)
+- Seed limit: $5{,}000{,}000{,}000$
+- Conductor to half: $166{,}025{,}260$
+- Exact-critical denominator: $6$
+- Weights: $(3,2,1)$
+- Cleared obstruction bound: $1{,}992{,}303{,}678$
+- Start exponents: $(21,17,12)$
 - Tail simulation reaches the imported analytic threshold with positive margin.
 
 The central interval is
 
-\[
-(166025261,13097655510).
-\]
+$$(166025261,13097655510).$$
 
-### 11.3 \(A=\{3,4,9,25\}, k=2\)
+### 11.3 $A=\{3,4,9,25\}, k=2$
 
-- Seed limit: \(10{,}000{,}000\)
-- Conductor to half: \(452{,}099\)
-- Exact-critical denominator: \(24\)
-- Weights: \((12,8,3,1)\)
-- Cleared obstruction bound: \(21{,}701{,}880\)
-- Start exponents: \((15,12,8,6)\)
-- Continued-fraction gate again uses the \(3/4\) window.
+- Seed limit: $10{,}000{,}000$
+- Conductor to half: $452{,}099$
+- Exact-critical denominator: $24$
+- Weights: $(12,8,3,1)$
+- Cleared obstruction bound: $21{,}701{,}880$
+- Start exponents: $(15,12,8,6)$
+- Continued-fraction gate again uses the $3/4$ window.
 
 The central interval is
 
-\[
-(452100,27868079).
-\]
+$$(452100,27868079).$$
 
 ---
 
@@ -500,31 +420,19 @@ There are fourteen exact-critical gcd-one cases in this window.
 
 Important examples include:
 
-\[
-(3,4,7),
-\]
+$$(3,4,7),$$
 
-\[
-(3,4,9,25),
-\]
+$$(3,4,9,25),$$
 
-\[
-(3,4,10,19),
-\]
+$$(3,4,10,19),$$
 
-\[
-(3,4,11,16),
-\]
+$$(3,4,11,16),$$
 
-\[
-(3,5,6,21),
-\]
+$$(3,5,6,21),$$
 
-\[
-(3,5,7,13).
-\]
+$$(3,5,7,13).$$
 
-The hardest \(k=2\) case in this small window is \((3,4,7)\), followed by \((3,4,9,25)\).
+The hardest $k=2$ case in this small window is $(3,4,7)$, followed by $(3,4,9,25)$.
 
 ### 12.2 Max base 100, size up to 6 or 7
 
@@ -532,9 +440,7 @@ An expanded scan found new nuisance cases, especially modular-gate cases involvi
 
 A particularly important example is
 
-\[
-A=(3,6,9,12,21,45,89).
-\]
+$$A=(3,6,9,12,21,45,89).$$
 
 This case changes the understanding of the global seed bridge.
 
@@ -544,89 +450,69 @@ This case changes the understanding of the global seed bridge.
 
 The seed bridge is not only an interval problem. It also has a modular-residue saturation layer.
 
-Let \(T\) be a finite seed multiset and define its subset-sum residues modulo \(q\):
+Let $T$ be a finite seed multiset and define its subset-sum residues modulo $q$:
 
-\[
-R_T(q)=\left\{\sum_{t\in U}t \pmod q : U\subseteq T\right\}.
-\]
+$$R_T(q)=\left\{\sum_{t\in U}t \pmod q : U\subseteq T\right\}.$$
 
 ### 13.1 Residue Gate Lemma
 
 > **Lemma.**
-> If \(R_T(q)\ne \mathbb Z/q\mathbb Z\), then the represented subset sums of \(T\) cannot contain \(q\) consecutive integers.
+> If $R_T(q)\ne \mathbb Z/q\mathbb Z$, then the represented subset sums of $T$ cannot contain $q$ consecutive integers.
 
-Proof: \(q\) consecutive integers cover every residue class modulo \(q\). If one residue class is missing among subset sums modulo \(q\), such an interval cannot exist.
+Proof: $q$ consecutive integers cover every residue class modulo $q$. If one residue class is missing among subset sums modulo $q$, such an interval cannot exist.
 
 ### 13.2 Central-conductor corollary
 
 Let
 
-\[
-H=\left\lfloor \frac{\sum_{t\in T}t}{2}\right\rfloor.
-\]
+$$H=\left\lfloor \frac{\sum_{t\in T}t}{2}\right\rfloor.$$
 
-If subset-sum residues modulo \(q\) are incomplete, then the central conductor \(C_T\) must satisfy
+If subset-sum residues modulo $q$ are incomplete, then the central conductor $C_T$ must satisfy
 
-\[
-C_T\ge H-q+1.
-\]
+$$C_T\ge H-q+1.$$
 
-Otherwise \([C_T+1,H]\) would contain \(q\) consecutive represented integers, impossible by the residue gate.
+Otherwise $[C_T+1,H]$ would contain $q$ consecutive represented integers, impossible by the residue gate.
 
 ---
 
-## 14. The modular-gate example \((3,6,9,12,21,45,89), k=2\)
+## 14. The modular-gate example $(3,6,9,12,21,45,89), k=2$
 
 For
 
-\[
-A=(3,6,9,12,21,45,89)
-\]
+$$A=(3,6,9,12,21,45,89)$$
 
 and
 
-\[
-k=2,
-\]
+$$k=2,$$
 
 consider modulus
 
-\[
-q=9.
-\]
+$$q=9.$$
 
-All bases except \(89\) contribute second and higher powers divisible by \(9\):
+All bases except $89$ contribute second and higher powers divisible by $9$:
 
-\[
-3^2,6^2,9^2,12^2,21^2,45^2 \equiv 0 \pmod 9.
-\]
+$$3^2,6^2,9^2,12^2,21^2,45^2 \equiv 0 \pmod 9.$$
 
-The only base that changes residues modulo \(9\) is \(89\), with
+The only base that changes residues modulo $9$ is $89$, with
 
-\[
-89\equiv -1\pmod 9.
-\]
+$$89\equiv -1\pmod 9.$$
 
 Thus
 
-\[
-89^e\equiv (-1)^e\pmod 9.
-\]
+$$89^e\equiv (-1)^e\pmod 9.$$
 
-Starting at \(e=2\), the available \(89\)-powers alternate residues \(1,-1,1,-1,\dots\) modulo \(9\).
+Starting at $e=2$, the available $89$-powers alternate residues $1,-1,1,-1,\dots$ modulo $9$.
 
 The modular gate does not fully open until the term
 
-\[
-89^9=350356403707485209.
-\]
+$$89^9=350356403707485209.$$
 
 The certificate checks:
 
-- before including \(89^9\), only \(8\) of \(9\) residues are covered;
-- the missing residue is \(5\);
-- after including \(89^9\), all \(9\) residues are covered;
-- the completion point is the 117th seed term, namely \(89^9\).
+- before including $89^9$, only $8$ of $9$ residues are covered;
+- the missing residue is $5$;
+- after including $89^9$, all $9$ residues are covered;
+- the completion point is the 117th seed term, namely $89^9$.
 
 This explains why the central conductor can stay essentially at the half-sum boundary until a very large seed limit.
 
@@ -642,7 +528,7 @@ should now be split into two or three more precise obligations.
 
 ### 15.1 Global residue-saturation theorem
 
-For every admissible exact-critical gcd-one base set \(A\) and lower exponent \(k\), there exists a finite seed limit \(X\) such that the seed powers up to \(X\) saturate all relevant modular obstructions.
+For every admissible exact-critical gcd-one base set $A$ and lower exponent $k$, there exists a finite seed limit $X$ such that the seed powers up to $X$ saturate all relevant modular obstructions.
 
 The relevant moduli are not yet fully characterized. At minimum, they include moduli arising from common divisibility of large subfamilies of bases.
 
@@ -681,11 +567,11 @@ Certified items include:
 - generic pair continued-fraction window;
 - local seed-bridge profiles;
 - local residue-bridge profiles;
-- local \(\{3,4,7\}\) and \(\{3,4,9,25\}\) certificates.
+- local $\{3,4,7\}$ and $\{3,4,9,25\}$ certificates.
 
 Imported item:
 
-- Mignotte-Waldschmidt input for \(3\) versus \(4\).
+- Mignotte-Waldschmidt input for $3$ versus $4$.
 
 Open items:
 
@@ -709,13 +595,13 @@ It recomputes:
 
 It covers:
 
-- \(\{3,4,7\}, k=2\);
-- \(\{3,4,7\}, k=3\);
-- \(\{3,4,9,25\}, k=2\).
+- $\{3,4,7\}, k=2$;
+- $\{3,4,7\}, k=3$;
+- $\{3,4,9,25\}, k=2$.
 
 ### 16.3 `CFTailCertificate.hs`
 
-This certifies the \(3/4\) continued-fraction window.
+This certifies the $3/4$ continued-fraction window.
 
 It computes rational log intervals, derives the continued-fraction prefix, filters relevant convergents, checks the next convergent after the analytic threshold, and verifies exact near-collision gaps.
 
@@ -725,8 +611,8 @@ This generalizes the continued-fraction certificate to an arbitrary base pair.
 
 It includes:
 
-- imported \(3/4\) windows for the local major cases;
-- a sanity finite window for \(5/13\).
+- imported $3/4$ windows for the local major cases;
+- a sanity finite window for $5/13$.
 
 This is the correct direction for the global exact-critical analytic bound, but the arbitrary-pair analytic threshold remains open.
 
@@ -774,12 +660,10 @@ Recommended upgrade: make it recompute the seed powers, subset-sum bitset up to 
 
 A new proposed file certifies the negative modular-gate obstruction for
 
-\[
-(3,6,9,12,21,45,89),\quad k=2,
-\quad q=9.
-\]
+$$(3,6,9,12,21,45,89),\quad k=2,
+\quad q=9.$$
 
-It checks that residue saturation modulo \(9\) fails before \(89^9\) and succeeds after including \(89^9\).
+It checks that residue saturation modulo $9$ fails before $89^9$ and succeeds after including $89^9$.
 
 This should be generalized into a `ResidueGateCertificate.hs` framework.
 
@@ -829,7 +713,7 @@ Computes exact-critical denominator-cleared weights, obstruction bounds, first e
 
 ### 17.5 `cf_near_collision.py`
 
-Computes the continued-fraction near-collision reduction for \(\log 3/\log 4\), using rational log intervals rather than floating-point logarithms.
+Computes the continued-fraction near-collision reduction for $\log 3/\log 4$, using rational log intervals rather than floating-point logarithms.
 
 ### 17.6 `cas_checks.py`
 
@@ -849,7 +733,7 @@ It checks known conductors, exact-critical set counts, continued-fraction conver
 
 A C++ accelerator exists for fast conductor/central-interval search. It gives a large speedup over Python in large finite seed computations.
 
-For example, the \(\{3,4,7\}, k=2\), limit \(50{,}000{,}000\) conductor computation runs roughly fifty times faster in C++ than the Python version in the recorded benchmark.
+For example, the $\{3,4,7\}, k=2$, limit $50{,}000{,}000$ conductor computation runs roughly fifty times faster in C++ than the Python version in the recorded benchmark.
 
 ---
 
@@ -857,17 +741,15 @@ For example, the \(\{3,4,7\}, k=2\), limit \(50{,}000{,}000\) conductor computat
 
 ### 18.1 Do not collapse equal powers
 
-The power sequence is a multiset indexed by \((a,e)\). Collapsing equal integer values is wrong.
+The power sequence is a multiset indexed by $(a,e)$. Collapsing equal integer values is wrong.
 
 Example:
 
-\[
-3^2=9^1,
-\]
+$$3^2=9^1,$$
 
 but these are distinct sequence terms when both are allowed.
 
-This mistake makes \(\{3,4,9,25\}\) appear falsely harder or changes conductor behavior.
+This mistake makes $\{3,4,9,25\}$ appear falsely harder or changes conductor behavior.
 
 ### 18.2 Do not treat residue saturation as automatic
 
@@ -900,7 +782,7 @@ Questions:
 - Which moduli must be considered?
 - Are they generated by common divisibility of subfamilies?
 - Is it enough to consider exact-critical denominators?
-- How does one handle “one escape base” cases like \((3,6,9,12,21,45,89)\) modulo \(9\)?
+- How does one handle “one escape base” cases like $(3,6,9,12,21,45,89)$ modulo $9$?
 
 ### Open Obligation 2: Post-saturation central interval theorem
 
@@ -915,7 +797,7 @@ Possible approaches:
 
 ### Open Obligation 3: Global exact-critical analytic bound
 
-The local \(3/4\) near-collision window uses imported Mignotte-Waldschmidt input.
+The local $3/4$ near-collision window uses imported Mignotte-Waldschmidt input.
 
 For a global proof, one needs explicit thresholds for arbitrary independent base pairs/classes.
 
@@ -951,7 +833,7 @@ Add arbitrary-modulus support.
 It should handle:
 
 - exact-critical denominator modulus;
-- modular-gate obstruction moduli such as \(9\);
+- modular-gate obstruction moduli such as $9$;
 - user-supplied moduli;
 - positive saturation certificates;
 - negative obstruction certificates.
@@ -962,9 +844,9 @@ A good target filename would be:
 
 ### Task 3: Add modular-gate classifier
 
-Given \(A,k\), search for moduli \(q\) such that many seed terms are \(0\mod q\), and only a small escape set controls residue saturation.
+Given $A,k$, search for moduli $q$ such that many seed terms are $0\mod q$, and only a small escape set controls residue saturation.
 
-For each candidate \(q\), compute:
+For each candidate $q$, compute:
 
 - residue coverage before saturation;
 - first completion term;
@@ -975,17 +857,17 @@ For each candidate \(q\), compute:
 
 Prototype lemma:
 
-> Suppose all bases except \(b\) have powers divisible by \(q\) from exponent \(k\) onward. Then residue saturation modulo \(q\) is controlled by subset sums of
-> \[
+> Suppose all bases except $b$ have powers divisible by $q$ from exponent $k$ onward. Then residue saturation modulo $q$ is controlled by subset sums of
+> $$
 > b^k,b^{k+1},\dots,b^m.
-> \]
-> If \(b\) is a unit modulo \(q\), this becomes a finite cyclic subset-sum problem in \((\mathbb Z/q\mathbb Z,+)\).
+> $$
+> If $b$ is a unit modulo $q$, this becomes a finite cyclic subset-sum problem in $(\mathbb Z/q\mathbb Z,+)$.
 
-For \(b\equiv -1\pmod q\), as in \(89\mod 9\), the problem reduces to subset sums of repeated \(1\) and \(-1\).
+For $b\equiv -1\pmod q$, as in $89\mod 9$, the problem reduces to subset sums of repeated $1$ and $-1$.
 
 ### Task 5: Build arbitrary-pair analytic certificates
 
-Extend the pair CF certificate framework so that it can consume a pair \((x,y)\), a gap bound \(B\), and an imported/derived analytic threshold, then produce a certified finite CF window.
+Extend the pair CF certificate framework so that it can consume a pair $(x,y)$, a gap bound $B$, and an imported/derived analytic threshold, then produce a certified finite CF window.
 
 ### Task 6: Formal proof notes
 
@@ -1013,7 +895,7 @@ The following lemma list would make the project easier to audit.
 
 ### Lemma A: Monotonicity
 
-If \(A\subseteq B\), then representability by powers from \(A\) implies representability by powers from \(B\).
+If $A\subseteq B$, then representability by powers from $A$ implies representability by powers from $B$.
 
 ### Lemma B: Hypothesis-minimal reduction
 
@@ -1021,23 +903,21 @@ Any counterexample has a hypothesis-minimal sub-counterexample.
 
 ### Lemma C: Finite complement symmetry
 
-If a finite seed multiset has total sum \(S\), and every integer in \([C+1,\lfloor S/2\rfloor]\) is represented, then every integer in \([C+1,S-C-1]\) is represented.
+If a finite seed multiset has total sum $S$, and every integer in $[C+1,\lfloor S/2\rfloor]$ is represented, then every integer in $[C+1,S-C-1]$ is represented.
 
 ### Lemma D: Interval extension
 
-If \([L,H]\) is represented and a new term \(t\le H-L+1\), then adding \(t\) extends represented coverage to \([L,H+t]\).
+If $[L,H]$ is represented and a new term $t\le H-L+1$, then adding $t$ extends represented coverage to $[L,H+t]$.
 
 ### Lemma E: Strict reciprocal-sum tail
 
-If \(\sum 1/(a-1)>1\), then after a finite bridge, frontier absorption continues forever.
+If $\sum 1/(a-1)>1$, then after a finite bridge, frontier absorption continues forever.
 
 ### Lemma F: Exact-critical frontier invariant
 
 In the exact-critical case, the quantity
 
-\[
-K=C(E)-1-H
-\]
+$$K=C(E)-1-H$$
 
 is invariant under absorbed tail powers.
 
@@ -1051,11 +931,11 @@ A gcd-one base set cannot lie entirely in one multiplicative class.
 
 ### Lemma I: Continued-fraction exclusion
 
-For a given independent pair \((x,y)\) and gap bound \(B\), if all relevant convergents up to an analytic threshold have exact gaps greater than \(B\), and the analytic theorem excludes gaps beyond the threshold, then no near-collision obstruction exists.
+For a given independent pair $(x,y)$ and gap bound $B$, if all relevant convergents up to an analytic threshold have exact gaps greater than $B$, and the analytic theorem excludes gaps beyond the threshold, then no near-collision obstruction exists.
 
 ### Lemma J: Residue Gate Lemma
 
-If finite seed subset sums do not cover all residues modulo \(q\), then they cannot contain \(q\) consecutive integers.
+If finite seed subset sums do not cover all residues modulo $q$, then they cannot contain $q$ consecutive integers.
 
 ### Lemma K: Residue-saturated seed bridge
 
@@ -1082,7 +962,7 @@ Current status summary:
 | Hypothesis-minimal reduction | Certified/proof-note level |
 | Strict reciprocal-sum local certificates | Certified |
 | Exact-critical local tail certificates | Certified |
-| \(3/4\) CF finite windows | Certified with imported analytic threshold |
+| $3/4$ CF finite windows | Certified with imported analytic threshold |
 | Multiplicative class computations | Certified locally; global lemma should be written |
 | Local seed profiles | Partially certified; conductor recomputation needed in Haskell |
 | Local residue profiles | Certified locally |
@@ -1102,7 +982,7 @@ The strongest achievements so far are:
 - a clean reduction to hypothesis-minimal/exact-critical behavior;
 - exact finite seed/conductor computations for key local cases;
 - certified exact-critical tail margins;
-- rational continued-fraction certificates for the key \(3/4\) near-collision windows;
+- rational continued-fraction certificates for the key $3/4$ near-collision windows;
 - multiplicative-class classification machinery;
 - discovery and certification of a modular-gate obstruction mechanism.
 

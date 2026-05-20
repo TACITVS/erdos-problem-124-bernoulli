@@ -15,31 +15,21 @@ linear slack.  The exact-critical case is the real problem.
 For exact-critical sets, once a finite central interval is known, the infinite
 tail is controlled by the invariant
 
-\[
-K=C(E)-1-H,
-\]
+$$K=C(E)-1-H,$$
 
-where \(E_i\) are the first unused powers, \(H\) is the interval span, and
-\(C(E)=\sum_iE_i/(d_i-1)\).  The tail extends whenever
+where $E_i$ are the first unused powers, $H$ is the interval span, and
+$C(E)=\sum_iE_i/(d_i-1)$.  The tail extends whenever
 
-\[
-C(E)-\min_i E_i\ge K.
-\]
+$$C(E)-\min_i E_i\ge K.$$
 
-For \(\{3,4,7\}\), after clearing denominators this is one of the following
+For $\{3,4,7\}$, after clearing denominators this is one of the following
 near-collision exclusions, depending on which frontier power is smallest:
 
-\[
--3\cdot 3^a+2\cdot 4^b+7^c\ge 6K,
-\]
+$$-3\cdot 3^a+2\cdot 4^b+7^c\ge 6K,$$
 
-\[
-3\cdot 3^a-4\cdot 4^b+7^c\ge 6K,
-\]
+$$3\cdot 3^a-4\cdot 4^b+7^c\ge 6K,$$
 
-\[
-3\cdot 3^a+2\cdot 4^b-5\cdot 7^c\ge 6K.
-\]
+$$3\cdot 3^a+2\cdot 4^b-5\cdot 7^c\ge 6K.$$
 
 The next mathematical target is a lower bound for these expressions over all
 future frontier states.  Plausible tools:

@@ -12,48 +12,36 @@ has reduced them to polynomial or integer inequalities.
 The first useful target is the Legendre-threshold step in the continued-fraction
 tail proof.  If a near-collision satisfies
 
-\[
-|3^a-4^b|<B,
-\]
+$$|3^a-4^b|<B,$$
 
 then the proof needs
 
-\[
-{B\over a\log 4(3^a-B)} < {1\over 2a^2}.
-\]
+$${B\over a\log 4(3^a-B)} < {1\over 2a^2}.$$
 
-Since \(\log 4>1\), it is enough to prove
+Since $\log 4>1$, it is enough to prove
 
-\[
-2aB<3^a-B.
-\]
+$$2aB<3^a-B.$$
 
 The file `prover/legendre_thresholds.euclid` asks Hasclid to prove the three
 exact threshold instances now used by the local certificates:
 
-\[
-\begin{array}{c|c|c}
+$$\begin{array}{c|c|c}
 \text{case} & B & a_0\\
 \hline
 \{3,4,7\}, k=2 & 47794770 & 20\\
 \{3,4,7\}, k=3 & 1992303678 & 23\\
 \{3,4,9,25\}, k=2 & 21701880 & 19
-\end{array}
-\]
+\end{array}$$
 
-It also proves the abstract propagation lemma.  With \(p=3^a\), \(B>0\),
-\(a\ge1\), and \(p-B>2aB\), Hasclid proves
+It also proves the abstract propagation lemma.  With $p=3^a$, $B>0$,
+$a\ge1$, and $p-B>2aB$, Hasclid proves
 
-\[
-3p-B>2(a+1)B.
-\]
+$$3p-B>2(a+1)B.$$
 
 This is the induction step because
 
-\[
-3^{a+1}-B-2(a+1)B
-=3(3^a-B-2aB)+4aB.
-\]
+$$3^{a+1}-B-2(a+1)B
+=3(3^a-B-2aB)+4aB.$$
 
 ## Verified run
 

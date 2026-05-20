@@ -7,9 +7,7 @@ The modular conductor route creates quotient blocks.  After dividing a
 divisible pure-power block by a modulus, the result is usually not a pure-power
 block.  It has terms of the form
 
-\[
-q d^n.
-\]
+$$q d^n.$$
 
 So the next additive-combinatorial theorem should be stated for finite unions
 of scaled power progressions, not just for pure powers.
@@ -18,44 +16,32 @@ of scaled power progressions, not just for pure powers.
 
 A scaled power progression is a triple
 
-\[
-(q,d,e_0),\qquad q\ge1,\ d\ge2,\ e_0\ge0,
-\]
+$$(q,d,e_0),\qquad q\ge1,\ d\ge2,\ e_0\ge0,$$
 
 with terms
 
-\[
-q d^n,\qquad n\ge e_0.
-\]
+$$q d^n,\qquad n\ge e_0.$$
 
 A scaled power block is a finite union of such progressions, with multiplicity
 preserved when two progressions contain the same integer.
 
 ## Quotient normalization
 
-Let \(m\ge1\).  If
+Let $m\ge1$.  If
 
-\[
-m\mid d^k,
-\]
+$$m\mid d^k,$$
 
 then the pure-power tail
 
-\[
-d^k,d^{k+1},d^{k+2},\ldots
-\]
+$$d^k,d^{k+1},d^{k+2},\ldots$$
 
-is \(m\)-divisible, and its quotient is the scaled progression
+is $m$-divisible, and its quotient is the scaled progression
 
-\[
-{d^k\over m} d^n,\qquad n\ge0.
-\]
+$${d^k\over m} d^n,\qquad n\ge0.$$
 
 Indeed,
 
-\[
-{d^{k+j}\over m}={d^k\over m}d^j.
-\]
+$${d^{k+j}\over m}={d^k\over m}d^j.$$
 
 This is the exact language produced by quotient-block selection.
 
@@ -63,9 +49,9 @@ This is the exact language produced by quotient-block selection.
 
 The conductor ladder now has the following shape:
 
-1. choose a modulus \(m\) and residue frame \(F\);
-2. put \(m\)-divisible pure-power tails into \(G=mG'\);
-3. normalize \(G'\) as a scaled power block;
+1. choose a modulus $m$ and residue frame $F$;
+2. put $m$-divisible pure-power tails into $G=mG'$;
+3. normalize $G'$ as a scaled power block;
 4. prove a middle interval theorem for that scaled power block;
 5. transfer the conductor bound back with `notes/33_modular_conductor_lift.md`.
 
@@ -74,8 +60,8 @@ middle-interval theorem must be proved.
 
 ## Basic monotonicity
 
-If \(B\subseteq B'\) are finite scaled blocks, then every subset sum of \(B\)
-is a subset sum of \(B'\).  Therefore adding scaled progressions cannot destroy
+If $B\subseteq B'$ are finite scaled blocks, then every subset sum of $B$
+is a subset sum of $B'$.  Therefore adding scaled progressions cannot destroy
 an already represented interval.  It can only improve the conductor.
 
 This lets a proof use a convenient scaled subblock.  Once a subblock has a

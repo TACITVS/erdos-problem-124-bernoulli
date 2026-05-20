@@ -12,8 +12,8 @@ modular conductor bridge as the main route to closure.
 
 Genuine reductions and certified facts:
 
-- finite-seed local certificates for \(\{3,4,7\},k=2\), \(\{3,4,7\},k=3\),
-  \(\{3,4,9,25\},k=2\) (computer-assisted, not closed-form);
+- finite-seed local certificates for $\{3,4,7\},k=2$, $\{3,4,7\},k=3$,
+  $\{3,4,9,25\},k=2$ (computer-assisted, not closed-form);
 - the tail invariant identity in pure-power and scaled forms
   (notes 28, 43);
 - complete-sequence absorption and its single-progression count
@@ -45,13 +45,13 @@ These are real algebraic and combinatorial theorems with typed certificates.
 `notes/40_quotient_reciprocal_sum.md` proved a quiet but important fact:
 
 > For every local hypothesis-minimal exact-critical and strict set
-> (\(\{3,4,7\}\), \(\{3,4,9,25\}\), \(\{3,4,5\}\), \(\{3,5,7,13\}\),
-> \(\{3,6,9,12,21,45,89\}\)), the modular conductor bridge is in the
+> ($\{3,4,7\}$, $\{3,4,9,25\}$, $\{3,4,5\}$, $\{3,5,7,13\}$,
+> $\{3,6,9,12,21,45,89\}$), the modular conductor bridge is in the
 > **deficit one-shot** regime at every nontrivial modulus.
 
 A deficit one-shot bridge can transfer a quotient conductor bound to an
 ordinary conductor bound, but it cannot recursively reduce the conductor
-problem on \(A\) to the same conductor problem on a strictly smaller base
+problem on $A$ to the same conductor problem on a strictly smaller base
 set.  The bridge does not chain.
 
 Consequence: the bridge route cannot, by itself, close the conductor problem
@@ -65,7 +65,7 @@ closure.  That framing is misleading after note 40 and should be retired.
 
 - Transferring a quotient conductor obtained by independent means (direct
   scan, Frobenius reduction, density argument) into an ordinary conductor
-  bound, with the explicit \(m(c'+1)+R-1\) formula.
+  bound, with the explicit $m(c'+1)+R-1$ formula.
 - The half-sum reach lemma in note 39 makes the bridge's "reach" side a pure
   algebraic threshold.
 - The modulus search in note 41 enumerates the finite candidate space.
@@ -86,8 +86,8 @@ Two genuinely open mathematical inputs:
    tail invariant remains open.
 
 2. **Effective analytic bound for arbitrary independent base pairs.**  The
-   local \(\{3,4,7\}\) certificate uses Mignotte-Waldschmidt for
-   \(\log 3/\log 4\).  An effective theorem for arbitrary pairs would be
+   local $\{3,4,7\}$ certificate uses Mignotte-Waldschmidt for
+   $\log 3/\log 4$.  An effective theorem for arbitrary pairs would be
    needed to globalize this.  The Subspace-Theorem strengthening is
    non-effective and only suffices for *some*-frontier-sequence existence,
    not effective conductors.
@@ -112,13 +112,13 @@ extract:
   power sequences;
 - the exact form of BEGL's interval-growth lemmas to see which generalize
   beyond their local cases;
-- Schinzel-Tijdeman and Mihailescu-style direct bounds for \(|x^p-y^q|\)
+- Schinzel-Tijdeman and Mihailescu-style direct bounds for $|x^p-y^q|$
   that could replace the Mignotte-Waldschmidt input in the exact-critical
   near-collision step.
 
 ### (b) Closed-form test case
 
-Try to prove \(c(\{3,4,7\},k=1)\le 581\) from first principles.  The
+Try to prove $c(\{3,4,7\},k=1)\le 581$ from first principles.  The
 finite-seed scan already certifies the value; the question is whether a
 *closed-form* proof exists.  Either we find one (giving a template) or we
 identify the precise missing ingredient.
@@ -129,13 +129,13 @@ informative than another building-block note.
 ### (c) Reconsider the conductor target
 
 Empirically the conductor grows much more slowly than
-\(O(T^{1-\epsilon})\); the data is closer to \(O(\operatorname{polylog} T)\)
-or even \(O(1)\) along the natural frontier sequence.  Aiming for a
+$O(T^{1-\epsilon})$; the data is closer to $O(\operatorname{polylog} T)$
+or even $O(1)$ along the natural frontier sequence.  Aiming for a
 stronger bound might force cleaner additive structure and make the proof
 easier rather than harder.
 
 Conversely, the qualitative goal of "some sequence of frontiers with
-\(c=o(T)\)" (existential rather than universal) suffices for the
+$c=o(T)$" (existential rather than universal) suffices for the
 Subspace-Theorem tail engine and might be reachable by an averaging or
 density argument that the current architecture does not attempt.
 

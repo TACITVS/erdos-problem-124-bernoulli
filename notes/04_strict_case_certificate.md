@@ -1,6 +1,6 @@
-# Strict case certificate: \(\{3,4,5\}, k=1\)
+# Strict case certificate: $\{3,4,5\}, k=1$
 
-The reciprocal sum for \(\{3,4,5\}\) is \(13/12>1\).  The script
+The reciprocal sum for $\{3,4,5\}$ is $13/12>1$.  The script
 `scripts/strict_certificate.py` produces a finite interval certificate.
 
 Command:
@@ -19,5 +19,5 @@ proves all n >= 80
 The bounded exact search in `results/benchmark_2026-05-15.txt` shows 79 is
 missing and every integer from 80 to 100000 is represented.  The interval
 certificate proves that the interval from 80 onward continues indefinitely.
-Therefore the exact largest missing integer for \(\{3,4,5\}, k=1\) is 79.
+Therefore the exact largest missing integer for $\{3,4,5\}, k=1$ is 79.
 

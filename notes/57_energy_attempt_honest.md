@@ -11,70 +11,62 @@ input.**
 
 ## 1. Setup
 
-For seed \(F=\{f_1,\dots,f_N\}=\{a^e:a\in A,\ k\le e<e_a\}\), let
+For seed $F=\{f_1,\dots,f_N\}=\{a^e:a\in A,\ k\le e<e_a\}$, let
 
-\[
-E_2(F)=\sum_n r(n)^2=\int_0^1|F_A(e^{2\pi i\theta})|^2\,d\theta,
-\]
+$$E_2(F)=\sum_n r(n)^2=\int_0^1|F_A(e^{2\pi i\theta})|^2\,d\theta,$$
 
-where \(r(n)\) is the number of subsets summing to \(n\).
+where $r(n)$ is the number of subsets summing to $n$.
 
-By Cauchy–Schwarz, \(|R|\cdot E_2\ge\bigl(\sum r(n)\bigr)^2=4^N\), so
+By Cauchy–Schwarz, $|R|\cdot E_2\ge\bigl(\sum r(n)\bigr)^2=4^N$, so
 
-\[
-|R|\ge\frac{4^N}{E_2}.
-\]
+$$|R|\ge\frac{4^N}{E_2}.$$
 
-The strict conductor theorem says \(|R|\ge S-o(T)\) where \(S\) is the
-seed total.  So we want \(E_2\le 4^N/T\,(1+o(1))\).
+The strict conductor theorem says $|R|\ge S-o(T)$ where $S$ is the
+seed total.  So we want $E_2\le 4^N/T\,(1+o(1))$.
 
 ## 2. The S-unit decomposition
 
-Set \(\delta_i=1_A(i)-1_B(i)\in\{-1,0,+1\}\) for two subsets \(A,B\subseteq F\).  Then
+Set $\delta_i=1_A(i)-1_B(i)\in\{-1,0,+1\}$ for two subsets $A,B\subseteq F$.  Then
 
-\[
-E_2=\sum_{\substack{\delta\in\{-1,0,+1\}^N\\ \sum_i\delta_if_i=0}}
-2^{N-|\operatorname{supp}\delta|}.
-\]
+$$E_2=\sum_{\substack{\delta\in\{-1,0,+1\}^N\\ \sum_i\delta_if_i=0}}
+2^{N-|\operatorname{supp}\delta|}.$$
 
-The trivial \(\delta=0\) contributes \(2^N\).  Non-trivial \(\delta\)
-with \(\sum\delta_i f_i=0\) are signed S-unit equations of support
-\(s=|\operatorname{supp}\delta|\), each contributing \(2^{N-s}\).
+The trivial $\delta=0$ contributes $2^N$.  Non-trivial $\delta$
+with $\sum\delta_i f_i=0$ are signed S-unit equations of support
+$s=|\operatorname{supp}\delta|$, each contributing $2^{N-s}$.
 
 **Naive Evertse–Schlickewei plug-in.** If the number of non-trivial
-S-unit equations of support \(s\) in our seed is bounded by some \(\nu_s\)
-that grows only polylogarithmically in \(K\) (the per-base exponent
+S-unit equations of support $s$ in our seed is bounded by some $\nu_s$
+that grows only polylogarithmically in $K$ (the per-base exponent
 range), then
 
-\[
-E_2\le 2^N+2\sum_{s\ge 3}\nu_s\cdot 2^{N-s}
-=2^N\bigl(1+O(\operatorname{polylog})\bigr),
-\]
+$$E_2\le 2^N+2\sum_{s\ge 3}\nu_s\cdot 2^{N-s}
+=2^N\bigl(1+O(\operatorname{polylog})\bigr),$$
 
-and the energy method would give \(|R|\ge T^{c-1-o(1)}\) (where
-\(c=\sum 1/\log_2 a > 1\)).  For \(c>1\) and large \(T\), this would
-*exceed* \(T\), forcing \(|R|=T-o(T)\) — the strict conductor theorem.
+and the energy method would give $|R|\ge T^{c-1-o(1)}$ (where
+$c=\sum 1/\log_2 a > 1$).  For $c>1$ and large $T$, this would
+*exceed* $T$, forcing $|R|=T-o(T)$ — the strict conductor theorem.
 
 That is the optimistic chain I sketched.  It assumes
-\(E_2/2^N=O(\operatorname{polylog})\).
+$E_2/2^N=O(\operatorname{polylog})$.
 
 ## 3. The empirical check
 
-`scripts/cas_energy_method.py` computes \(E_2\) directly by enumerating
-subset sums for small seeds.  Results for \(\{3,4,5\}\) and \(\{3,4,7\}\)
-at \(k=1\):
+`scripts/cas_energy_method.py` computes $E_2$ directly by enumerating
+subset sums for small seeds.  Results for $\{3,4,5\}$ and $\{3,4,7\}$
+at $k=1$:
 
-| set        | seed limit | \(N\) | \(T\sim S\) | \(2^N\)  | \(E_2\)      | \(E_2/2^N\) | \(4^N/T\)    | ratio to LLT |
+| set        | seed limit | $N$ | $T\sim S$ | $2^N$  | $E_2$      | $E_2/2^N$ | $4^N/T$    | ratio to LLT |
 |------------|-----------:|-----:|-----------:|--------:|------------:|-----------:|------------:|-------------:|
-| \(\{3,4,5\}\) | 50      | 7    | 89          | 128      | 280          | 2.19        | 184          | 1.52         |
-| \(\{3,4,5\}\) | 200     | 10   | 359         | 1,024    | 3,924        | 3.83        | 2,921        | 1.34         |
-| \(\{3,4,5\}\) | 1,000   | 14   | 2,212       | 16,384   | 156,710      | 9.56        | 121,354      | 1.29         |
-| \(\{3,4,5\}\) | 5,000   | 18   | 12,644      | 262,144  | 6,866,218    | 26.19       | 5,434,948    | 1.26         |
-| \(\{3,4,7\}\) | 5,000   | 17   | 11,539      | 131,072  | 1,933,280    | 14.75       | 1,488,853    | 1.30         |
+| $\{3,4,5\}$ | 50      | 7    | 89          | 128      | 280          | 2.19        | 184          | 1.52         |
+| $\{3,4,5\}$ | 200     | 10   | 359         | 1,024    | 3,924        | 3.83        | 2,921        | 1.34         |
+| $\{3,4,5\}$ | 1,000   | 14   | 2,212       | 16,384   | 156,710      | 9.56        | 121,354      | 1.29         |
+| $\{3,4,5\}$ | 5,000   | 18   | 12,644      | 262,144  | 6,866,218    | 26.19       | 5,434,948    | 1.26         |
+| $\{3,4,7\}$ | 5,000   | 17   | 11,539      | 131,072  | 1,933,280    | 14.75       | 1,488,853    | 1.30         |
 
-**The empirical \(E_2/2^N\) grows polynomially in \(T\)**, not
-polylog.  Specifically, fitting the \(\{3,4,5\}\) data,
-\(E_2/2^N\) grows roughly as \(T^{0.4}\).
+**The empirical $E_2/2^N$ grows polynomially in $T$**, not
+polylog.  Specifically, fitting the $\{3,4,5\}$ data,
+$E_2/2^N$ grows roughly as $T^{0.4}$.
 
 So the "naive Evertse plug-in" is *empirically wrong* — there must be
 many more vanishing signed combinations than the naive S-unit count
@@ -86,36 +78,36 @@ The Evertse–Schlickewei theorem bounds the number of *non-degenerate*
 S-unit solutions.  A solution is degenerate if a proper subsum already
 vanishes.  Our seed has many *degenerate* vanishing combinations:
 
-- Any non-trivial vanishing \(\delta_0\) of support \(s_0\) extends to
-  \(\delta\) of support \(s\ge s_0\) by adding zero contributions
-  outside.  But these "extensions" are the *same* \(\delta\) in the
+- Any non-trivial vanishing $\delta_0$ of support $s_0$ extends to
+  $\delta$ of support $s\ge s_0$ by adding zero contributions
+  outside.  But these "extensions" are the *same* $\delta$ in the
   ambient space; they don't multiply the count.
 
 Yet the empirical count *does* multiply.  Where does the multiplicity
 come from?
 
 Direct examination: for our seed, "vanishing signed combinations" are
-much richer than algebraic S-unit equations.  Many \(\delta\) vanish
+much richer than algebraic S-unit equations.  Many $\delta$ vanish
 because of pseudorandom near-cancellations:
-\(\sum_i\delta_i a^{e_i}=0\) holds for *many* combinations once
-\(2^N\gg T\) (pigeonhole forces collisions).
+$\sum_i\delta_i a^{e_i}=0$ holds for *many* combinations once
+$2^N\gg T$ (pigeonhole forces collisions).
 
 The Evertse-Schlickewei theorem is about ALGEBRAIC vanishings — combinations
 that vanish *as integers* via S-unit structure.  But a "collision" can
 also be a *pigeonhole vanishing*: two distinct integer sums in
-\([0,S]\) that happen to be equal.  These are dominated by the
+$[0,S]$ that happen to be equal.  These are dominated by the
 *entropy* of the sum distribution, not by algebraic S-unit structure.
 
 ## 5. So the energy method = LLT
 
 Once we see this, the energy method is no easier than the LLT.  The
-quantity \(E_2 = 4^N\cdot\Pr[X=Y]\) (for independent random subset sums
-\(X,Y\)) is anticoncentration of \(X-Y\), which is *exactly* what the
+quantity $E_2 = 4^N\cdot\Pr[X=Y]$ (for independent random subset sums
+$X,Y$) is anticoncentration of $X-Y$, which is *exactly* what the
 LLT off-resonance bound controls.
 
-Concretely: \(\Pr[X-Y=0]=\int_0^1|F_A(e^{2\pi i\theta})|^2\,d\theta/4^N\),
+Concretely: $\Pr[X-Y=0]=\int_0^1|F_A(e^{2\pi i\theta})|^2\,d\theta/4^N$,
 and bounding this from above is bounding
-\(\int|\varphi_A(\theta)|^2 d\theta\) — the *energy* of the
+$\int|\varphi_A(\theta)|^2 d\theta$ — the *energy* of the
 characteristic function.  This is the same off-resonance bound as the
 LLT integral, just at second moment.
 
@@ -131,9 +123,9 @@ Three corrections relative to my "Tao-style attack" sketch:
    strict conductor theorem is not 1–2 weeks of work via this route.
 
 2. **The "S-unit count is small" intuition is misleading**: Evertse
-   bounds the *algebraic* S-unit count, but \(E_2\) counts *all*
+   bounds the *algebraic* S-unit count, but $E_2$ counts *all*
    anticoncentration events, which is dominated by pigeonhole when
-   \(2^N\gg T\).
+   $2^N\gg T$.
 
 3. **The strict case is not easier than exact-critical via this method**.
    Both need the same off-resonance bound.
@@ -149,7 +141,7 @@ Two pieces of last session's analysis remain valid:
 
 - The strict case might still be more accessible than exact-critical
   *for other reasons* (the bounded-gap CFH argument doesn't need
-  analytic input, and note 26 already closes \(\{3,4,5\}\) k=1
+  analytic input, and note 26 already closes $\{3,4,5\}$ k=1
   unconditionally).  The energy method is not the route, but the
   underlying optimism about strict might survive.
 

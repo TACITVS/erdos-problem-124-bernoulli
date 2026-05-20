@@ -52,8 +52,8 @@ raku raku\residue_dsl_certificate.raku
 It checks the same residue-lift examples currently covered by Haskell and the
 unit-base frame construction for:
 
-- base \(7\) modulo \(6\);
-- base \(3\) modulo \(5\).
+- base $7$ modulo $6$;
+- base $3$ modulo $5$.
 
 ## Mathematical role
 
@@ -61,7 +61,7 @@ The Raku DSL does not change the remaining open theorem.  It strengthens the
 engineering around two certified lemmas:
 
 1. residue frame plus multiple ray/interval lifts to an ordinary ray/interval;
-2. a base that is a unit modulo \(m\) gives an algebraic complete residue
+2. a base that is a unit modulo $m$ gives an algebraic complete residue
    frame.
 
 These are now checked in two independent languages:
@@ -84,7 +84,7 @@ theory for:
 - finite lists and subset sums;
 - integer intervals;
 - monotone interval lifting;
-- multiplicative order modulo \(m\).
+- multiplicative order modulo $m$.
 
 Then the residue-lift bridge and unit-base frame lemma can be expressed as
 kernel-checked theorems rather than executable certificate checks.
