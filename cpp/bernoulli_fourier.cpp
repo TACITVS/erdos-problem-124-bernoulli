@@ -213,6 +213,19 @@ int main(int argc, char** argv) {
         cmd_per_scale(cases, /*k_max=*/22, terms, /*n_pts_per_scale=*/200000);
     } else if (mode == "monte-carlo") {
         cmd_monte_carlo(cases, /*T=*/1e6, /*n_samples=*/10000000, terms);
+    } else if (mode == "verify") {
+        // Focused verification: only hypothesis-meeting cases, T up to 1e7,
+        // with fine sampling.  Tests the L^2 saturation claim at high
+        // resolution.
+        std::vector<TestCase> hyp_only = {
+            {"{3,4,5}", {3, 4, 5}},
+            {"{3,4,7}", {3, 4, 7}},
+            {"{3,4,9,25}", {3, 4, 9, 25}},
+            {"{3,5,7,13}", {3, 5, 7, 13}},
+            {"{3,6,9,12,21,45,89}", {3, 6, 9, 12, 21, 45, 89}}
+        };
+        std::vector<double> Ts = {1e4, 1e5, 1e6, 1e7};
+        cmd_cumulative(hyp_only, Ts, terms, 400000000LL);
     } else {
         std::fprintf(stderr, "unknown mode: %s\n", mode.c_str());
         std::fprintf(stderr, "modes: default, huge, per-scale, monte-carlo\n");
