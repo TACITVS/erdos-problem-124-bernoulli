@@ -2,26 +2,32 @@
 
 # Erdős Problem 124
 
-### Computational research notebook & the multi-base Bernoulli convolution path
+### Computational research notebook: bounded-conductor conjecture & combinatorial framework
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Status: open research](https://img.shields.io/badge/Status-open%20research-blue.svg)](PROOF_STATE.md)
 [![Certificates](https://img.shields.io/badge/Certificates-26%2F26%20passing-brightgreen.svg)](certificates/manifest.json)
-[![Sessions](https://img.shields.io/badge/Sessions-25%2B-informational.svg)](RESEARCH_JOURNAL.md)
+[![Sessions](https://img.shields.io/badge/Sessions-30%2B-informational.svg)](RESEARCH_JOURNAL.md)
 
 </div>
 
 ---
 
-## Headline
+## Headline (2026-05-20)
 
-After ~25 sessions of computational exploration, this project identifies a **new conditional reduction** of Erdős Problem 124 to a single conjecture in fractal geometry:
+After 30+ sessions, the project has converged on a single sharp empirical observation about the combinatorial conductor:
 
-> **Multi-base Bernoulli AC Conjecture.** &nbsp; For finite $A \subseteq \mathbb{Z}_{\ge 3}$ with $\gcd(A) = 1$ and $\sum_{a \in A} \tfrac{1}{a-1} \ge 1$, the multi-base Bernoulli convolution
-> $$\mu_A \;=\; \underset{a \in A}{*}\, B_{1/a}$$
-> is absolutely continuous on $\mathbb{R}$.
+> **Bounded Conductor Conjecture (note 66).** For every hypothesis-meeting $(A, k)$ tested, along balanced frontiers $E_a = a^{\lceil \log_a T \rceil}$, the central conductor $c(E)$ stabilizes to a finite constant $c^*(A, k)$ as $T \to \infty$.
 
-A rigorous chain (Note 59 Theorem 7) shows that **this conjecture implies Erdős 124**. The empirical evidence from a C++ triple-check at $T = 10^7$ is strikingly supportive — see [the result table](#triple-checked-empirical-evidence).
+The asymptotic values **match the previously-proved conductors exactly** for the five certified local cases (e.g.\ $c^*(\{3,4,7\}, 1) = 581$, $c^*(\{3,4,7\}, 3) = 166{,}025{,}260$), and are small for previously-unstudied cases ($c^*(\{4,5,6,7,21\}, 1) = 24$).
+
+This is **stronger than the open obligation** in [`GlobalProofAudit.hs`](haskell/GlobalProofAudit.hs), which only asks $c(E) = o(T(E))$. If the bounded-conductor pattern can be proved as a theorem, **qualitative Erdős 124 closes** for every hypothesis-meeting case (strict via direct slack; exact via the unconditional qualitative S-unit theorem).
+
+See the [conductor stabilization table](#bounded-conductor-empirical-evidence) and [`notes/66_conductor_bounded_empirical.md`](notes/66_conductor_bounded_empirical.md).
+
+### A previously-attempted route, honestly retracted
+
+Notes 58–62 proposed a parallel reduction via fractal-geometric analysis of multi-base Bernoulli convolutions. A hostile audit ([notes 63–65, 2026-05-20](notes/63_note59_audit.md)) found that the Fourier bridge from L² density of $\mu_A$ to combinatorial conductor bounds **does not close** ($\hat\mu_A \notin L^1$ for integer-Pisot parameters, blocking the local limit theorem). The L² density conjecture remains an independently-interesting fractal-geometric problem [(see §The Bernoulli detour below)](#the-bernoulli-convolution-detour-honest-record), but it is **not** a path to Erdős 124. Notes 60–62 stand as a documented empirical exploration of an open question in fractal geometry — the 12th honest negative in [PROOF_STATE.md §6](PROOF_STATE.md).
 
 📚 **For the audited state:** [`PROOF_STATE.md`](PROOF_STATE.md) — what is proved, imported, conjectural, open.
 🧭 **For the next sessions:** [`RESEARCH_JOURNAL.md`](RESEARCH_JOURNAL.md) — forward-looking handoff.
@@ -32,8 +38,8 @@ A rigorous chain (Note 59 Theorem 7) shows that **this conjecture implies Erdős
 
 1. [The problem](#the-problem)
 2. [What this project actually proves](#what-this-project-actually-proves)
-3. [The new conditional reduction](#the-new-conditional-reduction)
-4. [Triple-checked empirical evidence](#triple-checked-empirical-evidence)
+3. [Bounded conductor empirical evidence](#bounded-conductor-empirical-evidence)
+4. [The Bernoulli convolution detour (honest record)](#the-bernoulli-convolution-detour-honest-record)
 5. [Quickstart](#quickstart)
 6. [Documentation map](#documentation-map)
 7. [Citing](#citing)
@@ -99,72 +105,73 @@ Three Imported analytic obligations: Mignotte–Waldschmidt for $\log 3/\log 4$;
 
 ---
 
-## The new conditional reduction
+## Bounded conductor empirical evidence
 
-After eleven timeboxed disparate-area attempts (notes 50–57), the project identified a single conjecture in fractal geometry that, if true, closes Erdős 124.
+The C++ binary [`cpp/conductor_scan.cpp`](cpp/conductor_scan.cpp) computes $c(E)$ for balanced frontiers $E_a = a^{\lceil \log_a T \rceil}$ using a dynamic 64-bit shift-OR bitset.  At $S(E) \approx 2 \cdot 10^8$ a single case takes $\le 0.5$s.
 
-### The reduction chain (Note 59, Theorem 7)
+### Stabilization across $T$, fixed $(A, k)$ — all hypothesis-meeting
 
-For each base $a \in A$, define the single-base Bernoulli measure
+| $A$ | $k$ | $R$ | $c(E)$ at $T = 10^4$ | $10^5$ | $10^6$ | $10^7$ | $10^8$ | $10^9$ | asymptotic $c^*$ |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| $\{3,4,5\}$ | 1 | $\tfrac{13}{12}$ | 79 | 79 | 79 | 79 | 79 | — | **79** |
+| $\{3,4,5\}$ | 2 | $\tfrac{13}{12}$ | — | 77,613 | 77,613 | 77,613 | 77,613 | 77,613 | **77,613** |
+| $\{3,4,7\}$ | 1 | $1$ | 581 | 581 | 581 | 581 | 581 | — | **581** ✓ |
+| $\{3,4,7\}$ | 2 | $1$ | 8,999 → | 79,900 → | 785,743 → | 3,982,888 | 3,982,888 | — | **3,982,888** ✓ |
+| $\{3,4,7\}$ | 3 | $1$ | — | — | — | 9,746,184 → | 57,751,591 → | 166,025,260 | **166,025,260** ✓ |
+| $\{3,4,9,25\}$ | 2 | $1$ | 11,636 → | 129,167 → | 452,099 | 452,099 | 452,099 | — | **452,099** ✓ |
+| $\{3,5,7,13\}$ | 1 | $1$ | 112 | 112 | 112 | 112 | 112 | — | **112** |
+| $\{3,4,11,16\}$ | 1 | $1$ | 69 | 69 | 69 | 69 | 69 | — | **69** |
+| $\{4,5,6,7,21\}$ | 1 | $1$ | 24 | 24 | 24 | 24 | 24 | — | **24** |
+| $\{3,5,8,15,29\}$ | 1 | $1$ | 21 | 21 | 21 | 21 | 21 | — | **21** |
+| $\{3,5,9,13,25\}$ | 1 | $1$ | 110 | 110 | 110 | 110 | 110 | — | **110** |
 
-$$B_{1/a} \;=\; \mathrm{Law}\!\left(\sum_{n=0}^{\infty} \zeta_n\, a^{-n-1}\right),\qquad \zeta_n \stackrel{\text{iid}}{\sim} \operatorname{Unif}\{0, 1\}.$$
+Cells marked **✓** match the previously-proved conductor in [PROOF_STATE.md §2.1](PROOF_STATE.md).  Cells marked **(bold)** without check mark are previously-unstudied hypothesis-meeting cases.
 
-By Erdős (1939), since every integer $a \ge 2$ is Pisot, **each $B_{1/a}$ is singular** (Cantor-like, dimension $1/\log_2 a$).
+### Why it matters
 
-The multi-base convolution $\mu_A = *_{a \in A} B_{1/a}$ may nevertheless be **absolutely continuous** — and the empirics say it is, exactly when Erdős's hypothesis holds.
+The open obligation in [`GlobalProofAudit.hs`](haskell/GlobalProofAudit.hs) asks only $c(E) = o(T(E))$, but **empirically $c(E) = O(1)$ — bounded by an absolute constant** depending only on $(A, k)$.
 
-```
-   Multi-base Bernoulli AC Conjecture (open)
-     ⟹ μ_A has L¹ density
-     ⟹ (Note 59 §3-§4) Fourier convergence ĥX_T(ξ/T) → ĥμ_A(ξ),
-        weak-* convergence, support density ρ_T → 1
-     ⟹ (Note 59 §5) conductor c(T) = o(T)
-     ⟹ (Note 59 §6) Erdős 124 for hypothesis-meeting A
-```
+If the Bounded Conductor Conjecture (note 66 §4) is provable:
 
-### Necessary condition is automatic
+- **Strict case** ($R > 1$): $T \cdot (R-1) > c^*$ holds for $T$ large; the strict-slack tail closure of [Note 28](notes/28_power_saving_central_interval_target.md) §strict-case immediately gives Erdős 124.  **No imported analytic input required.**
+- **Exact-critical case** ($R = 1$): bounded $c$ + qualitative S-unit finiteness (already Imported and *unconditional*) gives Erdős 124 via the [Note 28 §exact-critical](notes/28_power_saving_central_interval_target.md) chain.
 
-By Marstrand–Mattila ([Note 60 §2](notes/60_bernoulli_AC_deep_dive.md)),
+So the Bounded Conductor Conjecture, combined with the existing certified framework, would close qualitative Erdős 124 for every hypothesis-meeting case — with no need for ABC, Mignotte–Waldschmidt for each pair, or any new analytic input beyond unconditional S-unit finiteness.
 
-$$\dim_H(\mu_A) \;=\; \min\!\Bigl(1,\; \sum_{a \in A} \tfrac{1}{\log_2 a}\Bigr).$$
-
-The elementary inequality $\log_2 a < a - 1$ for $a \ge 3$ gives $\sum \tfrac{1}{\log_2 a} > R(A) \ge 1$ **strictly** under the Erdős hypothesis, so $\dim_H(\mu_A) = 1$.
-
-The remaining gap — dimension 1 versus absolute continuity — is exactly the gap that recent breakthroughs by [Hochman](https://annals.math.princeton.edu/2014/180-2/p03), [Shmerkin](https://link.springer.com/article/10.1007/s00039-014-0285-4), and [Varjú](https://www.ams.org/journals/jams/2019-32-02/S0894-0347-2019-00916-1/) attacked for single-base $B_\lambda$ with $\lambda \in (1/2, 1)$. Our setting (multi-base, integer-Pisot $\lambda = 1/a$ for $a \ge 3$) is **not yet covered** by any published theorem.
+The current attack target is detailed in [`notes/66_conductor_bounded_empirical.md`](notes/66_conductor_bounded_empirical.md) §9.
 
 ---
 
-## Triple-checked empirical evidence
+## The Bernoulli convolution detour (honest record)
 
-The L² conjecture (stronger than AC): $\hat\mu_A \in L^2(\mathbb{R})$, equivalently $\mu_A$ has L² density.
+Notes 58–62 proposed a different reduction: if the **multi-base Bernoulli convolution** $\mu_A = *_{a \in A} B_{1/a}$ has L² density, then Erdős 124 would follow via a Fourier convergence chain (Note 59 Theorem 7).  Three C++ binaries triple-checked the empirical L² signature across 38 hypothesis-meeting cases (33 exact-critical + 5 hand-picked), all saturating to 4+ decimal places by $T = 10^7$.
 
-This is equivalent to saturation of
+A hostile audit on **2026-05-20** showed the bridge from the L² density to the combinatorial conductor bound **does not close**:
 
-$$I(T) \;:=\; \int_{-T}^{T} \bigl|\hat\mu_A(\xi)\bigr|^2\, d\xi \quad\text{as }T \to \infty.$$
+| audit note | finding |
+|---|---|
+| [Note 63](notes/63_note59_audit.md) | Lemma 4.1 of Note 59 mis-applies Parseval — $\int_{\mathbb R} \|\hat X_T\|^2$ is infinite; correct Parseval on $[0, 2\pi]$ gives only the trivial bound $\|\mathrm{supp}(X_T)\| \ge T$, **not** an improvement from L² of $\hat \mu_A$ |
+| [Note 64](notes/64_literature_pulse.md) | 2023–2026 literature pulse: no published theorem closes the conjecture for integer-Pisot parameters; Kittle–Kogler 2024 is the closest framework, but its separation hypothesis fails for our overlapping IFS |
+| [Note 65](notes/65_LLT_bridge_attempt.md) | Erdős–Turán / local-limit-theorem bridge attempt: blocked by $\hat\mu_A \notin L^1$ (Erdős 1939: Pisot reciprocal does not decay); L² interpolation does not give L¹ |
 
-The C++ binary [`cpp/bernoulli_fourier.cpp`](cpp/bernoulli_fourier.cpp) computes $I(T)$ by **three independent methods** (trapezoidal, per-scale summation, Monte Carlo) with OpenMP parallelism.
+The L² density conjecture about $\mu_A$ is a **genuinely interesting fractal-geometry question** of independent value (closest to Kittle–Kogler 2024), but it is **not** a reduction of Erdős 124.  The empirical work in [Notes 60–62](notes/61_cpp_triple_check.md) stands as documented evidence for that fractal-geometric conjecture.
 
-### Hypothesis-meeting cases — saturating (L² signature)
+### Empirical L² signature data (still real, just re-labelled)
 
-| set | $R(A)$ | $I(10^4)$ | $I(10^5)$ | $I(10^6)$ | $I(10^7)$ | $\frac{I(10^7)}{I(10^6)}$ |
-|-----|:---:|---:|---:|---:|---:|:---:|
-| $\{3,4,5\}$         | $\tfrac{13}{12}$ | 1.1585 | 1.1628 | 1.1628 | **1.1628** | **1.0000** |
-| $\{3,4,7\}$         | $1$ | 1.2325 | 1.2346 | 1.2348 | **1.2351** | 1.0002 |
-| $\{3,4,9,25\}$      | $1$ | 1.2538 | 1.2599 | 1.2600 | **1.2601** | 1.0001 |
-| $\{3,5,7,13\}$      | $1$ | 1.2341 | 1.2342 | 1.2342 | **1.2342** | **1.0000** |
-| $\{3,6,9,12,21,45,89\}$ | $1$ | 1.2857 | 1.2857 | 1.2857 | **1.2857** | **1.0000** |
+For the fractal-geometric question alone, the C++ triple-check at $T = 10^7$:
 
-The seven-base modular-gate case is **frozen at 1.2857 across six orders of magnitude in $T$** (from $T = 10^2$ to $T = 10^7$).
+| set | $R(A)$ | $I(10^7) = \int_{-10^7}^{10^7} \|\hat\mu_A\|^2$ | saturated? |
+|-----|:---:|---:|:---:|
+| $\{3,4,5\}$         | $\tfrac{13}{12}$ | 1.1628 | ✓ |
+| $\{3,4,7\}$         | $1$ | 1.2351 | ✓ |
+| $\{3,4,9,25\}$      | $1$ | 1.2601 | ✓ |
+| $\{3,5,7,13\}$      | $1$ | 1.2342 | ✓ |
+| $\{3,6,9,12,21,45,89\}$ | $1$ | 1.2857 | ✓ |
+| ...33 more exact-critical sets, all saturate, [note 62](notes/62_exact_critical_sweep.md) | | | ✓ |
 
-### Single-base controls — growing linearly (Cantor singular)
+Single-base $\{a\}$ controls (Cantor-singular, Erdős 1939): $I(T)$ grows linearly. The bounded vs. unbounded distinction is robust across 38 hypothesis-meeting cases tested.
 
-| set | $I(10^4)$ | $I(10^5)$ | $I(10^6)$ | growth/decade |
-|-----|---:|---:|---:|:---:|
-| $\{3\}$ | 36.86 | 83.14 | 188.25 | **2.26×** |
-| $\{4\}$ | 126.34 | 497.02 | 1470.68 | **2.99×** |
-| $\{7\}$ | 531.80 | 2491.10 | 15605.06 | **4.50×** |
-
-Three independent integration methods all agree on the **bounded vs unbounded** distinction. The L² saturation is robust.
+This is interesting *fractal geometry*. It does **not** give a route to Erdős 124. The current project lead is the [Bounded Conductor Conjecture](#bounded-conductor-empirical-evidence) above.
 
 ---
 
@@ -204,12 +211,19 @@ runghc haskell/GlobalProofAudit.hs    # 1 open obligation, 3 imported, rest cert
 runghc haskell/ConductorBossTree.hs   # 23 nodes: 17 Done, 5 Open, 1 Imported
 ```
 
-### Build the exact-arithmetic fast scanner
+### Reproduce the bounded-conductor empirical scan (~30 s for the whole table)
 
 ```bash
-g++ -O3 -std=c++20 -march=native cpp/erdos124_fast.cpp -o cpp/erdos124_fast.exe
-cpp/erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
-# Largest missing = 581
+g++ -O3 -std=c++20 -march=native cpp/conductor_scan.cpp -o cpp/conductor_scan.exe
+
+cpp/conductor_scan.exe --bases=3,4,7 --k=1 --T-list=1e4,1e5,1e6,1e7,1e8
+# Expected: c(E) = 581 stable across all T
+
+cpp/conductor_scan.exe --bases=4,5,6,7,21 --k=1 --T-list=1e4,1e5,1e6,1e7,1e8
+# Expected: c(E) = 24 stable across all T
+
+cpp/conductor_scan.exe --bases=3,4,7 --k=2 --T-list=1e4,1e5,1e6,1e7,1e8
+# Expected: c(E) grows then stabilizes at 3,982,888 by T=1e7
 ```
 
 ---
@@ -221,12 +235,21 @@ cpp/erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
 - [**`PROOF_STATE.md`**](PROOF_STATE.md) — audited summary: what is proved, imported, conjectural, open.
 - [**`RESEARCH_JOURNAL.md`**](RESEARCH_JOURNAL.md) — forward-looking handoff for next sessions, AI models, collaborators.
 
-### The Bernoulli convolution direction (the headline finding)
+### Current lead — bounded-conductor program
 
-- [Note 58](notes/58_bernoulli_convolution_path.md) — proposes the conjecture and identifies the new community connection.
-- [Note 59](notes/59_rigorous_equivalence.md) — rigorous chain: AC ⟹ Erdős 124.
-- [Note 60](notes/60_bernoulli_AC_deep_dive.md) — deep dive: L² strengthening, per-scale reduction, attack lines.
-- [Note 61](notes/61_cpp_triple_check.md) — C++ triple-check methodology and findings.
+- [**Note 66**](notes/66_conductor_bounded_empirical.md) — Bounded Conductor Conjecture, the new sharp target.  Stronger than the open obligation; closes Erdős 124 if provable.
+- [Note 28](notes/28_power_saving_central_interval_target.md) — power-saving central conductor target (the open obligation it supersedes).
+- [Note 34](notes/34_conductor_boss_lemma_ladder.md) — boss tree dependency ladder.
+- [Note 44](notes/44_same_base_frobenius_reduction.md) — same-base sub-case closed via Frobenius.
+
+### The Bernoulli convolution detour — explored, audit found it doesn't bridge
+
+- [Note 58](notes/58_bernoulli_convolution_path.md) — original conjecture statement.
+- [Note 59](notes/59_rigorous_equivalence.md) — claimed reduction AC ⟹ Erdős 124 (**audit notes 63 finds the bridge does not close**).
+- [Note 60](notes/60_bernoulli_AC_deep_dive.md), [Note 61](notes/61_cpp_triple_check.md), [Note 62](notes/62_exact_critical_sweep.md) — empirical L² saturation across 38 cases (still real, just doesn't reduce Erdős 124).
+- [**Note 63**](notes/63_note59_audit.md) — hostile audit of Note 59; finds 3 issues.
+- [**Note 64**](notes/64_literature_pulse.md) — 2023–2026 literature pulse; conjecture remains genuinely open.
+- [**Note 65**](notes/65_LLT_bridge_attempt.md) — Erdős–Turán / LLT bridge attempt; blocked by $\hat\mu_A \notin L^1$.
 
 ### Local certificates (five proved cases)
 
@@ -277,13 +300,14 @@ cpp/erdos124_fast.exe --mode=conductor --bases=3,4,7 --k=1 --limit=100000
 This is a working research notebook; reuse and citation are welcome but not required.
 
 ```bibtex
-@misc{erdos124bernoulli,
-  title  = {{Erd\H{o}s} Problem 124: a computational notebook and the
-            multi-base {Bernoulli} convolution path},
+@misc{erdos124notebook,
+  title  = {{Erd\H{o}s} Problem 124: bounded-conductor conjecture and
+            combinatorial framework (computational notebook)},
   year   = {2026},
   url    = {https://github.com/TACITVS/erdos-problem-124-bernoulli},
-  note   = {Conditional reduction to a fractal-geometry conjecture
-            with computational evidence.}
+  note   = {Empirical Bounded Conductor Conjecture (note 66) and
+            audited disproof of the multi-base Bernoulli convolution
+            reduction (notes 63--65).}
 }
 ```
 
