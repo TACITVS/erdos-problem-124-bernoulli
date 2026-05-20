@@ -7,12 +7,9 @@ prescriptive; for a backward-looking audit of what is proved, see
 
 ## 1. What this project is now
 
-After 25+ sessions, the project is best framed as **a near-complete
-algebraic framework for Erdős 124 plus a new research direction
-(multi-base Bernoulli convolution absolute continuity) that may be the
-path to closure**.
-
-Three layers of result:
+After 30+ sessions including a hostile audit of the Bernoulli
+convolution direction (notes 63–65, 2026-05-20), the project's state
+is:
 
 - **Layer 1 — proved unconditionally** (notes 26, 07, 09, 10, 11, 46):
   Erdős 124 for five specific local cases.  See PROOF_STATE.md §2.1.
@@ -21,126 +18,114 @@ Three layers of result:
   modules, ~20 CAS scripts): clean reductions, dependency tree, residue
   / modular / scaled-power machinery.  See PROOF_STATE.md §2.2.
 
-- **Layer 3 — open conjecture, new direction** (note 58, this journal):
-  the multi-base Bernoulli convolution AC conjecture, which if true
-  closes Erdős 124.
+- **Layer 3 — single combinatorial bottleneck**: the *global
+  power-saving central conductor theorem*
+  (`GlobalProofAudit.hs` Open obligation).  Closing this — combined
+  with imported analytic input (or ABC) — closes Erdős 124.
 
-## 2. The single most important new conjecture
+The **multi-base Bernoulli convolution direction** (notes 58–62) was
+explored as a potential shortcut.  Notes 63–65 hostile audit showed
+the Fourier bridge from L² density of $\mu_A$ to subset-sum
+representability **does not close** (the natural Parseval, Berry-Esseen,
+and LLT routes all fail at the integer-level combinatorial gap).  The
+fractal-geometric L² conjecture remains an independently interesting
+open problem, but it is **not** a route to Erdős 124.
 
-> **Multi-base Bernoulli Absolute Continuity Conjecture** (note 58 §4).
-> Let $A\subseteq\mathbb{Z}_{\ge3}$ be finite with $\gcd(A)=1$ and
-> $\sum_{a\in A}1/(a-1)\ge1$.  Then the multi-base Bernoulli
-> convolution
-> $$\mu_A = *_{a\in A} B_{1/a}$$
-> is absolutely continuous with respect to Lebesgue measure on
-> $\mathbb{R}$.
+## 2. The single combinatorial obligation that closes Erdős 124
 
-This conjecture:
-- Is posable independently of Erdős 124.
-- Connects to active research (Hochman 2014, Shmerkin 2014, Varjú 2019).
-- Has empirical support: hypothesis-meeting multi-base BCs show
-  full-support bounded-density behaviour (see
-  `scripts/cas_bernoulli_density.py`).
-- The dimension sum condition $\sum 1/\log_2 a > 1$ matches the
-  hypothesis exactly via the elementary inequality $\log_2 a < a-1$
-  for $a\ge3$.
+> **Global power-saving central conductor theorem.**  Prove
+> $c(E) = o(T(E))$ in the strict case $R(A) > 1$, and
+> $c(E) = O(T(E)^{1-\epsilon})$ for some $\epsilon > 0$ in the
+> exact-critical case $R(A) = 1$, where $T(E) = \min_i E_i$ is the
+> minimum frontier power.
 
-**If you do nothing else with this project: investigate this conjecture.**
+This is the **one** Open obligation in `haskell/GlobalProofAudit.hs`,
+and the bottleneck for both conditional reductions (§5 of PROOF_STATE).
+
+The next cuts in `haskell/ConductorBossTree.hs` are:
+
+- `scaled-power-middle-interval`: middle interval theorem for scaled
+  power blocks (same-base sub-cut is now reduced to numerical
+  semigroups via `SameBaseFrobenius.hs`; mixed-base case open).
+- `quotient-block-selection`: choose useful modular quotient blocks
+  (modulus search is finite; remaining work is valuation-profile
+  tuning or attacking the conductor on $A$ directly).
+
+**If you do nothing else with this project: attack the mixed-base
+scaled-power-middle-interval theorem.**
 
 ## 3. Concrete next sessions (priority order)
 
-### Session N+1 — Rigorize the equivalence
+After the 2026-05-20 audit (notes 63–65) retracted the BC route, the
+priorities re-centred on the combinatorial conductor program.
 
-Note 59 (next note to be written) should make the §2 equivalence in
-note 58 rigorous:
+### Session N+1 — Audit the mixed-base middle-interval cut
 
-> **Equivalence.**  Along synchronised frontiers $E_M$ with $e_a=M$
-> for all $a\in A$, $c(E_M) = o(T(E_M))$ iff the multi-base BC
-> $\mu_A$ is absolutely continuous on $\mathbb{R}$.
+`scaled-power-middle-interval` (boss tree) is the next cut: the
+same-base sub-case is reduced to numerical-semigroup Frobenius
+(`SameBaseFrobenius.hs`), and the mixed-base case is the open
+remainder.
 
-The "if" direction is the easier one: AC of $\mu_A$ plus weak
-convergence of finite subset-sum distributions implies the discrete
-support density tends to 1, giving conductor $o(T)$.
+Read notes 33, 34, 42, 44 and the Haskell modules
+`ScaledPowerBlock.hs`, `SameBaseFrobenius.hs`,
+`SingleProgressionAbsorption.hs`, `QuotientConductorBridge.hs`,
+`ConductorLift.hs`.  Write the precise mixed-base sub-obligation as a
+standalone claim; this becomes the target for Session N+2.
 
-The "only if" is harder: derive AC from the discrete conductor bound.
-The argument should go through Fourier characterisation of AC
-($\hat\mu_A$ in $L^2$), with the finite-N characteristic functions
-$\hat X_E$ (= our note 48 $\varphi_A$) approximating
-$\hat\mu_A$ under rescaling.
+### Session N+2 — Attack the mixed-base middle-interval theorem
 
-### Session N+2 — Empirical AC sharpening
+Concretely: for $E = (E_a)_{a\in A}$ balanced with $T(E) = \min E_a$,
+show that the union of scaled blocks $\bigcup_a q_a d_a^{\,n}$
+(with $d_a \in A$, multiple $a$'s present) admits a central interval
+with conductor $\le T^{1-\epsilon}$ for some $\epsilon = \epsilon(A,k)>0$.
 
-Extend `scripts/cas_bernoulli_density.py`:
+Approach candidates:
+- Apply `QuotientConductorBridge` recursively across two-base
+  sub-blocks; track how the conductor compounds.
+- Use the modular bridge's deficit-one-shot regime: although
+  individual deficit-one-shot bounds are weak, an "iterated deficit"
+  argument across multiple radicals may yield power saving.
+- Apply Sárközy / Solymosi-style additive combinatorics to the
+  multi-base union (the union is a "structured Sidon-like" set
+  whose representation function has nontrivial density on the
+  central interval).
 
-- Use higher resolution (more samples, more bins) to detect singular
-  behaviour at fine scales.
-- Compute the *modulus of absolute continuity*: how does
-  density(x + h) - density(x) scale with h?  AC implies
-  $\int |\text{density}(x+h) - \text{density}(x)|\,dx \to 0$ as
-  $h\to 0$, with rate depending on regularity.
-- Compute Fourier-side bounds: estimate $\int_{|\xi|\le T}
-  |\hat\mu_A(\xi)|^2\,d\xi$ as $T\to\infty$.  AC iff this is
-  uniformly bounded.
+Document the attempt honestly in note 67; if blocked, identify the
+specific obstacle.
 
-### Session N+3 — Translate Hochman / Varjú machinery
+### Session N+3 — Sharpen `quotient-block-selection` past the deficit regime
 
-The Hochman 2014 entropy framework for self-similar measures and Varjú
-2019 algebraic-parameter machinery were designed for single-base
-$B_\lambda$ with $\lambda$ algebraic in $(1/2,1)$.  Our setting is
-*multi-base* with $\lambda_a = 1/a$ *outside* $(1/2,1)$ for each
-individual base $a\ge3$.
+`ModulusSearch.hs` certifies that local hypothesis-minimal cases land
+in the "deficit one-shot" regime — meaning the modular bridge gives
+only finite (not asymptotic) coverage.  To get sub-linear conductor
+from the modular bridge, we need either:
 
-Key technical questions:
+- a recursive regime (where the quotient block has $R \ge 1$, so the
+  bridge composes with itself), or
+- direct analytic input on the conductor of $A$.
 
-- Does the Hochman entropy formula extend to the multi-base
-  convolution?  Multi-base self-similar IFS = product of single-base
-  IFS with weighted convolution.  The relevant entropy is the *joint*
-  entropy of the multi-base system.
-- Varjú's argument uses transcendence-style bounds on the Mahler
-  measure of $\lambda$.  For our rational $1/a$, Mahler measure is
-  trivial ($=a$).  Does the multi-base version replace single Mahler
-  measure with something joint?
-- The relevant active researchers are: Mike Hochman (HUJI), Pablo
-  Shmerkin (Univ. British Columbia), Péter Varjú (Cambridge), Tom
-  Solomyak (UW), Boris Solomyak (Bar-Ilan), Shigeki Akiyama (Tsukuba).
-  Reach out via MathOverflow or direct email with the conjecture as
-  framed in note 58.
+Investigate: for which non-hypothesis-minimal $A$ does the quotient
+block enter the recursive regime?  This may give a clean sub-family
+where the modular bridge alone closes the conductor theorem.
 
-### Session N+4 — Counterexample hunt  *(completed 2026-05-20, note 62)*
+### Session N+4 — Direct local certificates beyond {3,4,7}
 
-Run a systematic empirical search for hypothesis-meeting
-$A$ where the empirical density shows clear singular structure
-(fractal gaps, high density ratio).  If found: the conjecture is *false*
-and the failure mode needs analysis.  If not found across many cases:
-strengthens the conjecture.
+The five proved cases all use either CF/MW (for $\{3,4,7\}$-type
+sets sharing the 3,4 pair) or CFH for the strict case.  Push the
+local certificate machinery to:
 
-**Result.**  Note 62 reports the sweep of all 33 exact-critical ($R=1$)
-sets with $\max(A)\le 30$, $|A|\le 6$.  All 33 saturate $I(T)$ to 4
-decimal places by $T=10^6$.  No counterexamples.  In addition, a
-striking new pattern emerged: $I(\infty)$ is strongly correlated with
-$\min(A)$ (Pearson 0.94) and essentially uncorrelated with $\max(A)$
-(0.018), suggesting "infinite-base universality in $\min(A)$" as a
-conjectural next observable.
+- $\{3,4,11\}$, $\{3,4,13\}$ (similar 3,4 pair, larger third base).
+- Strict cases beyond $\{3,4,5\}$: $\{3,4,6\}$, $\{3,5,6\}$, etc.
 
-Follow-up directions: extend to $\max(A)\le 100$ (requires distributed
-runs); test $|A|\ge 8$ to probe the $\min$-universality limit; verify
-the small-deviation cases ({3,4,11,16}, {3,5,9,13,25}) at $T=10^7$ to
-rule out grid-noise.
+If the same machinery generalises, this adds unconditional cases.  If
+it breaks, the failure mode is informative.
 
-### Session N+5 — Formalisation in Lean
+### Session N+5 — Formalisation in Lean (deferred)
 
-The algebraic framework (notes 28, 39, 40, 43, 47, 49) is largely
-ready for Lean 4 / Mathlib formalisation.  Key obligations to formalise
-first:
-
-- conductor identity $K(E) = \kappa + 2c + 1$.
-- density growth identity $\log_2 a \le a-1 \Rightarrow
-  \sum 1/\log_2 a \ge R(A)$.
-- half-sum reach threshold.
-
-This is the most "Tao-style next move" (he's been formalizing PFR and
-similar in Mathlib).  It both serves as a credibility marker and
-catches subtle errors.
+The algebraic framework (notes 28, 39, 40, 43, 47) remains
+formalisable in Lean 4 / Mathlib.  Start with the conductor identity
+$K(E) = \kappa + 2c + 1$.  Lower-priority than direct conductor
+attack, but a credibility marker.
 
 ## 4. Things to avoid (lessons from this project's failures)
 
@@ -176,6 +161,19 @@ later.  Future work should avoid the same patterns:
    discovery of the "deficit regime" should have prompted earlier
    pivot.  Watch for "deficit regime"-type signals: a beautifully
    developed framework that fails to apply where needed.
+
+6. **Reductions where the Fourier transform "encodes" subset-sum
+   structure.**  Notes 58–62 tried to bridge L² density of $\mu_A$ to
+   the discrete conductor bound via continuous Fourier inversion.
+   Notes 63–65 hostile audit showed this does NOT work: continuous L²
+   Fourier captures average behaviour, not integer-level
+   representability.  The natural Parseval, Berry-Esseen, and LLT
+   routes all fail at the same obstacle ($\hat\mu_A\notin L^1$).
+   General principle: if your reduction depends on continuous Fourier
+   data certifying discrete combinatorial facts, audit the bridge
+   *before* investing in empirical evidence for the continuous
+   conjecture.  The 6-session investment in BC notes was largely
+   independent-area research, not Erdős 124 progress.
 
 ## 5. Empirical observations worth following up
 
@@ -294,10 +292,20 @@ If you find yourself writing the fourth "this might break the bind"
 note in a row, stop.  Either pivot, write the consolidation, or
 acknowledge the wall.
 
-The Bernoulli convolution direction (note 58) is the most novel and
-the most promising — it's the only direction in 25 sessions that
-opens a *new* door rather than closing one.  If you're going to push
-one direction, push that one.
+The Bernoulli convolution direction (notes 58–62) was the most novel
+exploration, but the 2026-05-20 audit (notes 63–65) showed it does NOT
+close Erdős 124 — the Fourier bridge from L² density to subset-sum
+representability fails ($\hat\mu_A\notin L^1$ for integer-Pisot
+parameters, blocking the LLT).  The BC L² density conjecture stands as
+an independently-interesting fractal-geometric problem but is no
+longer the project's "most promising" Erdős 124 lead.
+
+The actual lead is **the mixed-base scaled-power-middle-interval
+theorem** (the next-cut Open node in `ConductorBossTree.hs`),
+which together with `quotient-block-selection` closes both
+`strict-conductor` and `exact-conductor`, hence closes the single
+remaining `GlobalProofAudit.hs` open obligation, hence closes Erdős
+124 (modulo imported analytic input).  Push that one.
 
 ## 9. License
 

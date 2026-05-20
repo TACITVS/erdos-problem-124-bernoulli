@@ -132,10 +132,12 @@ The boss tree's Open nodes (`scaled-power-middle-interval`,
 
 ## 5. Conditional reductions
 
-The project admits two distinct conditional reductions.  The second
-(post-note 59) is sharper.
+The project's *one* defensible conditional reduction is **5.1**.
+Section **5.2** records an attempted Bernoulli-convolution route that
+**does not work** on hostile audit; it is retained here as a historical
+record of an explored path, not as a current claim.
 
-### 5.1 First reduction (notes 53–56)
+### 5.1 ABC + conductor reduction (notes 53–56)
 
 > **Conditional theorem (ABC + conductor).**  Assume both:
 >
@@ -154,62 +156,49 @@ The project admits two distinct conditional reductions.  The second
 (α) and (β) are **independent** open problems.  See note 56 (corrected
 form after audit) for the full chain.
 
-### 5.2 Second reduction (notes 58–60)
+This is the project's *only* current valid conditional reduction.
 
-Notes 58, 59, 60 identify a *different* conditional reduction, via
-fractal-geometric analysis of Bernoulli convolutions:
+### 5.2 Withdrawn: multi-base Bernoulli convolution route (notes 58–62)
 
-> **Conditional theorem (multi-base Bernoulli AC).**  Assume the
-> **Multi-base Bernoulli AC Conjecture** (note 58 §4): for every
-> hypothesis-meeting finite $A\subseteq\mathbb{Z}_{\ge3}$, the
-> multi-base Bernoulli convolution $\mu_A = *_{a\in A} B_{1/a}$ is
-> absolutely continuous on $\mathbb{R}$.
->
-> Then Erdős 124 holds for every hypothesis-meeting $A,k$.
+**Status: retracted on 2026-05-20 after hostile audit (notes 63–65).**
 
-The reduction chain (note 59 Theorem 7) is: AC of $\mu_A$ implies
-Fourier convergence of $\hat X_T(\xi/T)\to\hat\mu_A(\xi)$ (Lemma 3.1)
-implies support density of $X_T$ tends to 1 (Lemma 4.1) implies
-conductor $c(T)=o(T)$ (Lemma 5.1) implies Erdős 124 (Theorem 6.1).
+Notes 58–62 proposed a parallel reduction via fractal-geometric
+analysis: if the multi-base Bernoulli convolution $\mu_A$ is
+absolutely continuous (or has L² density), then Erdős 124 would
+follow.
 
-**Note 60 sharpens the conjecture** to the stronger:
+The audit (notes 63–65) showed that **the bridge from L² density of
+$\mu_A$ to the combinatorial conductor bound $c(T) = o(T)$ does not
+close**.  Specifically:
 
-> **L² Conjecture.**  For hypothesis-meeting $A$,
-> $\hat\mu_A\in L^2(\mathbb R)$, equivalently $\mu_A$ has density
-> in $L^2$.
+- **Note 63** finds that the Parseval/energy argument in
+  `notes/59_rigorous_equivalence.md` Lemma 4.1 invokes a wrong identity
+  ($\int_{\mathbb R}|\hat X_T|^2 d\xi$ is infinite; correct Parseval
+  lives on $[0,2\pi]$ and yields only the trivial bound
+  $|\mathrm{supp}(X_T)|\ge T$ without using the L² hypothesis).
+- **Note 63** also finds Lemma 5.1's "$\rho_T\to 1 \iff c(T)/S(T)\to 0$"
+  is wrong in the "$\Rightarrow$" direction (single missing point
+  counterexample).
+- **Note 64** (literature pulse 2023–2026) confirms no published
+  theorem closes the AC conjecture for our integer-Pisot case; closest
+  framework is Kittle-Kogler 2024 with a separation hypothesis that
+  fails for our overlapping IFS.
+- **Note 65** attempts the natural Erdős-Turán / local-limit-theorem
+  fix and shows it does not work: the LLT needs $\hat\mu_A\in L^1$,
+  but for integer-Pisot $1/a$ ($a\ge 3$), $\hat\mu_A$ does not decay
+  to 0 (Erdős 1939: Pisot reciprocal), so $\hat\mu_A\notin L^1$.  L²
+  control alone is insufficient.
 
-This is strictly stronger than AC.  Empirical Fourier-side test
-(`scripts/cas_bernoulli_AC_deep.py`): the integral $\int_{-T}^T
-|\hat\mu_A|^2\,d\xi$ **saturates** as $T\to\infty$ for every
-hypothesis-meeting case tested, signature of L².  Single-base
-$B_{1/a}$ for integer $a$ gives linearly growing integral
-(signature of singular Cantor measure).
+**Net effect:** the empirical work in notes 60–62 (L² saturation
+across 38 hypothesis-meeting cases) provides genuine evidence for a
+**fractal-geometric conjecture about $\mu_A$** of independent
+interest, related to Kittle-Kogler 2024.  It does **not** provide a
+shortcut to Erdős 124.  The combinatorial conductor obligation in §4
+remains the actual bottleneck and is not bypassed by the BC route.
 
-**Rigorous partial result (note 60 §2):** For hypothesis-meeting
-$A$ with multiplicatively independent bases,
-$\dim_H(\mu_A) = 1$, by Marstrand-Mattila.  This is the necessary
-condition for AC; sufficiency is open.
-
-**Why 5.2 is sharper than 5.1.**
-
-- 5.1 needs *two* independently-open conjectures from two different
-  research areas.
-- 5.2 needs *one* conjecture, in a different research area than 5.1
-  (fractal geometry / Bernoulli convolutions, with active progress:
-  Solomyak 1995, Hochman 2014, Shmerkin 2014, Varjú 2019).
-- The dimension-sum condition $\sum 1/\log_2 a > 1$ is *exactly*
-  the hypothesis condition (note 47), giving the necessary condition
-  for AC for free.  Marstrand-Mattila is the rigorous form (note 60 §2).
-- Empirical evidence supports both the AC and the stronger L²
-  conjecture for every hypothesis-meeting case tested.
-
-5.1 and 5.2 are *parallel* reductions, not nested.  Either would close
-Erdős 124 independently.
-
-**The cleanest sub-problem (note 60 §7):** is $B_{1/3} * B_{1/4}$
-absolutely continuous?  This is the smallest non-trivial case
-($\dim = 1.13$) and is directly attackable by Solomyak transversality,
-Marstrand projection, Hochman entropy, or direct Fourier estimate.
+Notes 58, 59, 60, 61, 62 should be read as a documented attempt at a
+disparate-area approach that did not close.  This is the project's
+twelfth such honest negative result (see §6).
 
 ## 6. Disparate areas attempted
 
@@ -235,6 +224,8 @@ method (subsumed by our LLT framing), Gowers norms / higher-order
 Fourier (detects APs not gaps), Tao–Vu entropy (recovers note 47
 identity).
 
+| **fractal-geometric / multi-base Bernoulli convolution** | **no** | **L² density of $\mu_A$ is interesting but does not bridge to subset-sum representability; LLT path blocked by $\hat\mu_A\notin L^1$** (Erdős 1939); see notes 63–65 |
+
 ## 7. Honest summary
 
 What the project *does*:
@@ -248,14 +239,20 @@ What the project *does*:
 - Identifies the analytic obligation as effective Pillai = ABC-strength.
 - Identifies the combinatorial obligation as the power-saving central
   conductor theorem (independent of ABC).
-- Documents eleven disparate-area attempts with honest negative results,
-  showing the two obstacles are not artifacts of one route but are
-  genuinely at the frontier.
+- Documents **twelve** disparate-area attempts with honest negative
+  results, showing the two obstacles are not artifacts of one route
+  but are genuinely at the frontier.
+- Produces an independently-interesting fractal-geometric L² density
+  conjecture about multi-base Bernoulli convolutions (notes 58–62),
+  with strong empirical support, even though that route does **not**
+  close Erdős 124 (notes 63–65 audit).
 
 What the project *does not* do:
 
 - Prove Erdős 124 unconditionally for any $A$ outside the five cases.
 - Reduce Erdős 124 to ABC alone (the combinatorial obligation remains).
+- Reduce Erdős 124 to multi-base Bernoulli AC (the Fourier bridge does
+  not close; see §5.2).
 - Provide a uniform algorithm with explicit $N_0(A,k)$ bound.
 - Close the power-saving central conductor theorem.
 - Close ABC.
