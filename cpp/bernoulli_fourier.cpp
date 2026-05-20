@@ -196,12 +196,61 @@ void print_header() {
     std::printf("\n");
 }
 
+// Parse --bases=3,4,7 from argv.
+std::vector<int> parse_bases(const std::string& arg) {
+    std::vector<int> bases;
+    size_t pos = 0;
+    while (pos < arg.size()) {
+        size_t next = arg.find(',', pos);
+        std::string token = arg.substr(pos, next - pos);
+        if (!token.empty()) bases.push_back(std::stoi(token));
+        if (next == std::string::npos) break;
+        pos = next + 1;
+    }
+    return bases;
+}
+
+void cmd_single(const std::vector<int>& bases, double T, int terms, long long max_pts) {
+    TestCase tc{"{" + ([&](){
+        std::string s;
+        for (size_t i = 0; i < bases.size(); i++) {
+            s += std::to_string(bases[i]);
+            if (i + 1 < bases.size()) s += ",";
+        }
+        return s;
+    })() + "}", bases};
+    auto inv_powers = precompute_inv_powers(bases, terms);
+    long long n_pts = choose_n_pts(-T, T, 10000LL, max_pts);
+    auto start = std::chrono::high_resolution_clock::now();
+    double I = integrate_trapezoidal(inv_powers, -T, T, n_pts);
+    auto end = std::chrono::high_resolution_clock::now();
+    double secs = std::chrono::duration<double>(end - start).count();
+    std::printf("%s  T=%.0e  I(T)=%.6f  time=%.2fs\n", tc.label.c_str(), T, I, secs);
+}
+
 int main(int argc, char** argv) {
     print_header();
 
     std::string mode = (argc >= 2) ? argv[1] : "default";
     auto cases = default_cases();
     int terms = 60;
+
+    // Check for --bases= and --T= flags (for batch use from Python).
+    std::vector<int> custom_bases;
+    double custom_T = 1e6;
+    for (int i = 1; i < argc; i++) {
+        std::string a = argv[i];
+        if (a.rfind("--bases=", 0) == 0) {
+            custom_bases = parse_bases(a.substr(8));
+        } else if (a.rfind("--T=", 0) == 0) {
+            custom_T = std::stod(a.substr(4));
+        }
+    }
+
+    if (!custom_bases.empty()) {
+        cmd_single(custom_bases, custom_T, terms, 200000000LL);
+        return 0;
+    }
 
     if (mode == "default") {
         std::vector<double> Ts = {1e2, 1e3, 1e4, 1e5, 1e6};

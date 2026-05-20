@@ -106,7 +106,7 @@ Key technical questions:
   Reach out via MathOverflow or direct email with the conjecture as
   framed in note 58.
 
-### Session N+4 — Counterexample hunt
+### Session N+4 — Counterexample hunt  *(completed 2026-05-20, note 62)*
 
 Run a systematic empirical search for hypothesis-meeting
 $A$ where the empirical density shows clear singular structure
@@ -114,9 +114,18 @@ $A$ where the empirical density shows clear singular structure
 and the failure mode needs analysis.  If not found across many cases:
 strengthens the conjecture.
 
-Suggested test grid: all hypothesis-meeting $A$ with maximum base
-$\le 30$ and $|A| \le 5$ (14 known cases per BEGL).  Plus
-multiplicative-class variations ($\{3,9,27\}$ etc.).
+**Result.**  Note 62 reports the sweep of all 33 exact-critical ($R=1$)
+sets with $\max(A)\le 30$, $|A|\le 6$.  All 33 saturate $I(T)$ to 4
+decimal places by $T=10^6$.  No counterexamples.  In addition, a
+striking new pattern emerged: $I(\infty)$ is strongly correlated with
+$\min(A)$ (Pearson 0.94) and essentially uncorrelated with $\max(A)$
+(0.018), suggesting "infinite-base universality in $\min(A)$" as a
+conjectural next observable.
+
+Follow-up directions: extend to $\max(A)\le 100$ (requires distributed
+runs); test $|A|\ge 8$ to probe the $\min$-universality limit; verify
+the small-deviation cases ({3,4,11,16}, {3,5,9,13,25}) at $T=10^7$ to
+rule out grid-noise.
 
 ### Session N+5 — Formalisation in Lean
 
