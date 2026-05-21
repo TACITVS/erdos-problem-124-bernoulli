@@ -17,15 +17,19 @@
 
 After 30+ sessions and a focused Phase B push, the project has produced:
 
-> **870 strict hypothesis-meeting $(A, k)$ certified — Erdős 124 holds unconditionally for each.**
+> **~969 hypothesis-meeting $(A, k)$ certified — Erdős 124 holds unconditionally for each.**
 
-The generalized CFH-strict verifier ([`cpp/cfh_batch.cpp`](cpp/cfh_batch.cpp), [note 67](notes/67_cfh_generalized_proof.md), [note 69](notes/69_cfh_batch_results.md)) certifies every strict hypothesis-meeting case in the enumeration window $A \subseteq \{3, \ldots, 15\}$, $|A| \in \{3, 4, 5\}$, $k \in \{1, 2\}$ — **870 of 872** strict cases verified in 16 seconds, each with explicit conductor bound $c^*(A, k)$ and frontier threshold $T^*(A, k)$.
+| family | count | route | analytic input | effectivity |
+|---|---:|---|---|---|
+| Strict CFH ($A \subseteq \{3,\ldots,15\}$, $\|A\| \in \{3,4,5\}$, $k \le 2$) | **870** | [`cpp/cfh_batch.cpp`](cpp/cfh_batch.cpp), notes [67](notes/67_cfh_generalized_proof.md), [69](notes/69_cfh_batch_results.md) | **none** | effective $(c^*, T^*)$ |
+| Exact-critical CF/MW ($\{3,4,7\}$ k=1,2,3; $\{3,4,9,25\}$ k=2) | 4 | finite CF + frontier check, [note 46](notes/46_347_k1_certificate.md) etc. | Mignotte–Waldschmidt | effective explicit $N_0$ |
+| Exact-critical qualitative S-unit ($A \subseteq \{3,\ldots,30\}$, $\|A\| \le 6$, $k \le 3$) | **99** (95 new) | [`cpp/sunit_general.cpp`](cpp/sunit_general.cpp), [note 70](notes/70_sunit_exact_critical_batch.md) | qualitative S-unit finiteness (unconditional) | qualitative $N_0$ non-effective |
 
-This expands the project's unconditionally certified set from 5 specific cases (the original PROOF_STATE.md table) to **875+**, with **no imported analytic input** required for the 870 new strict cases (only the existing CF/MW for the 4 exact-critical cases).
+This expands the project's unconditionally certified set from 5 specific cases (the original PROOF_STATE.md table) to **~969**, spanning both strict and exact-critical regimes.
 
-The 2 failures within scope are structurally identical (4 of 5 bases divisible by 3 — the modular-deficit regime of [note 40](notes/40_quotient_reciprocal_sum.md)).  For these, the conductor empirically grows linearly with $T$, so the bounded-conductor structure simply does not hold; a different proof technique is needed.
+The 2 strict failures within the CFH scope are structurally identical (4 of 5 bases divisible by 3 — the modular-deficit regime of [note 40](notes/40_quotient_reciprocal_sum.md)) and need a different technique; the multiplicative-class reduction of [note 17](notes/17_multiplicative_class_reduction.md) is the candidate.
 
-The empirical observation underlying this advance — the [Bounded Conductor pattern](notes/66_conductor_bounded_empirical.md) along balanced frontiers — is **stronger than the open obligation** in [`GlobalProofAudit.hs`](haskell/GlobalProofAudit.hs), which only asks $c(E) = o(T(E))$.  For strict cases without modular deficit, the bound is now a *certified theorem* via finite computation; for exact-critical cases, the bound is conjectural pending Mignotte–Waldschmidt or S-unit input.
+The empirical observation underlying this advance — the [Bounded Conductor pattern](notes/66_conductor_bounded_empirical.md) along balanced frontiers — combined with the generalized CFH-strict route (note 67) for strict cases, and qualitative S-unit (note 27) for exact-critical cases, gives a uniform per-case certification machinery.  A *uniform* (not per-case) proof of the [open obligation](haskell/GlobalProofAudit.hs) $c(E) = o(T(E))$ remains open.
 
 ### A previously-attempted route, honestly retracted
 

@@ -35,10 +35,11 @@ project certifies **870+ strict hypothesis-meeting cases**
 unconditionally via the generalized CFH-strict route, plus 4 specific
 exact-critical cases via CF/MW with imported Mignotte-Waldschmidt.
 
-| family | scope | count | route | imported analytic input |
-|---|---|---:|---|---|
-| **strict CFH** (no large modular deficit) | $A \subseteq \{3,\ldots,15\}$, $|A| \in \{3,4,5\}$, $k \in \{1,2\}$ | **870** | `cpp/cfh_batch.exe` (note 67) | **none** |
-| exact-critical CF/MW | 4 specific cases below | 4 | CF/MW finite bitscan + frontier check | Mignotte–Waldschmidt for $\log 3/\log 4$ |
+| family | scope | count | route | imported analytic input | effectivity |
+|---|---|---:|---|---|---|
+| **strict CFH** (no large modular deficit) | $A \subseteq \{3,\ldots,15\}$, $|A| \in \{3,4,5\}$, $k \in \{1,2\}$ | **870** | `cpp/cfh_batch.exe` (notes 67, 69) | **none** | effective $(c^*, T^*)$ |
+| exact-critical CF/MW | 4 specific (3,4)-pair cases | 4 | CF/MW finite bitscan + frontier check | Mignotte–Waldschmidt for $\log 3/\log 4$ | effective explicit $N_0$ |
+| **exact-critical qualitative S-unit** | $A \subseteq \{3,\ldots,30\}$, $|A| \le 6$, $k \le 3$, $R = 1$ | **99** (95 new) | `cpp/sunit_general.exe` (note 70) | qualitative S-unit finiteness (unconditional) | **qualitative** $N_0$ non-effective |
 
 #### Strict batch (note 69)
 

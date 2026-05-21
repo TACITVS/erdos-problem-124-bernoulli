@@ -1,0 +1,12 @@
+# sunit_general (batch): exact-critical hypothesis-meeting (A,k)
+# max_base=15, sizes [2, 5], k in [1, 2]
+# A                              k   R        c*           T*           mult-pair   
+  {3,4,7}                        1   1        8            16           (3,4)       
+  {3,4,7}                        2   1        371          343          (3,4)       
+  {3,5,7,13}                     1   1        11           25           (3,5)       
+  {3,5,7,13}                     2   1        241          243          (3,5)       
+
+# summary: 4 exact-critical hypothesis-meeting cases
+#          4 verified qualitatively (Erdős 124 via S-unit)
+#          0 failed (no seed interval found within T <= 1e9)
+#          0.00s elapsed
