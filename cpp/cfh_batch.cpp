@@ -254,7 +254,9 @@ int main(int argc, char** argv) {
     for (const auto& A : candidates) {
         if (gcd_list(A) != 1) continue;
         long double R = reciprocal_sum(A);
-        if (R <= 1.0L) continue;
+        // Strict means R > 1 with margin > 1e-9 to avoid floating-point
+        // edge cases where exact-critical R = 1 numerically rounds above 1.
+        if (R <= 1.0L + 1e-9L) continue;
         for (int k = k_min; k <= k_max; ++k) {
             ++total_strict;
             CfhCert cert = try_verify(A, k, Ts, max_cfh);
