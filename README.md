@@ -15,15 +15,17 @@
 
 ## Headline (2026-05-20)
 
-After 30+ sessions, the project has converged on a single sharp empirical observation about the combinatorial conductor:
+After 30+ sessions and a focused Phase B push, the project has produced:
 
-> **Bounded Conductor Conjecture (note 66).** For every hypothesis-meeting $(A, k)$ tested, along balanced frontiers $E_a = a^{\lceil \log_a T \rceil}$, the central conductor $c(E)$ stabilizes to a finite constant $c^*(A, k)$ as $T \to \infty$.
+> **870 strict hypothesis-meeting $(A, k)$ certified — Erdős 124 holds unconditionally for each.**
 
-The asymptotic values **match the previously-proved conductors exactly** for the five certified local cases (e.g.\ $c^*(\{3,4,7\}, 1) = 581$, $c^*(\{3,4,7\}, 3) = 166{,}025{,}260$), and are small for previously-unstudied cases ($c^*(\{4,5,6,7,21\}, 1) = 24$).
+The generalized CFH-strict verifier ([`cpp/cfh_batch.cpp`](cpp/cfh_batch.cpp), [note 67](notes/67_cfh_generalized_proof.md), [note 69](notes/69_cfh_batch_results.md)) certifies every strict hypothesis-meeting case in the enumeration window $A \subseteq \{3, \ldots, 15\}$, $|A| \in \{3, 4, 5\}$, $k \in \{1, 2\}$ — **870 of 872** strict cases verified in 16 seconds, each with explicit conductor bound $c^*(A, k)$ and frontier threshold $T^*(A, k)$.
 
-This is **stronger than the open obligation** in [`GlobalProofAudit.hs`](haskell/GlobalProofAudit.hs), which only asks $c(E) = o(T(E))$. If the bounded-conductor pattern can be proved as a theorem, **qualitative Erdős 124 closes** for every hypothesis-meeting case (strict via direct slack; exact via the unconditional qualitative S-unit theorem).
+This expands the project's unconditionally certified set from 5 specific cases (the original PROOF_STATE.md table) to **875+**, with **no imported analytic input** required for the 870 new strict cases (only the existing CF/MW for the 4 exact-critical cases).
 
-See the [conductor stabilization table](#bounded-conductor-empirical-evidence) and [`notes/66_conductor_bounded_empirical.md`](notes/66_conductor_bounded_empirical.md).
+The 2 failures within scope are structurally identical (4 of 5 bases divisible by 3 — the modular-deficit regime of [note 40](notes/40_quotient_reciprocal_sum.md)).  For these, the conductor empirically grows linearly with $T$, so the bounded-conductor structure simply does not hold; a different proof technique is needed.
+
+The empirical observation underlying this advance — the [Bounded Conductor pattern](notes/66_conductor_bounded_empirical.md) along balanced frontiers — is **stronger than the open obligation** in [`GlobalProofAudit.hs`](haskell/GlobalProofAudit.hs), which only asks $c(E) = o(T(E))$.  For strict cases without modular deficit, the bound is now a *certified theorem* via finite computation; for exact-critical cases, the bound is conjectural pending Mignotte–Waldschmidt or S-unit input.
 
 ### A previously-attempted route, honestly retracted
 

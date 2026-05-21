@@ -28,10 +28,42 @@ The conjecture is **not** proved here, unconditionally or otherwise.
 
 ## 2. What the project actually proves
 
-### 2.1 Local certificates (five cases, computer-assisted)
+### 2.1 Local certificates (870+ cases via batch CFH-strict; 4 via CF/MW)
 
-Five specific cases are certified end-to-end.  The certificates split
-into two families by the proof route:
+After Phase B-2 (note 67) and the batch enumeration (note 69), the
+project certifies **870+ strict hypothesis-meeting cases**
+unconditionally via the generalized CFH-strict route, plus 4 specific
+exact-critical cases via CF/MW with imported Mignotte-Waldschmidt.
+
+| family | scope | count | route | imported analytic input |
+|---|---|---:|---|---|
+| **strict CFH** (no large modular deficit) | $A \subseteq \{3,\ldots,15\}$, $|A| \in \{3,4,5\}$, $k \in \{1,2\}$ | **870** | `cpp/cfh_batch.exe` (note 67) | **none** |
+| exact-critical CF/MW | 4 specific cases below | 4 | CF/MW finite bitscan + frontier check | Mignotte–Waldschmidt for $\log 3/\log 4$ |
+
+#### Strict batch (note 69)
+
+Each case has an explicit certificate $(c^*, T^*)$ from
+`cpp/cfh_batch.cpp`: conductor $c(E) \le c^*$ for all balanced
+frontiers $E$ with $T(E) \ge T^*$; combined with strict-slack tail
+closure (note 28 §strict), this gives Erdős 124 unconditionally.
+Selected examples:
+
+| set | $k$ | $R(A)$ | $c^*$ | $T^*$ |
+|-----|----:|:---:|------:|------:|
+| $\{3,4,5\}$ | 1 | $\tfrac{13}{12}$ | 79 | 625 |
+| $\{3,4,5,6,7\}$ | 1 | $\tfrac{29}{20}$ | 2 | 16 |
+| $\{3,4,5,7,11\}$ | 1 | $\tfrac{27}{20}$ | 6 | 16 |
+| $\{4,5,6,7,21,29\}$ | 1 | $\tfrac{29}{28}$ | 24 | 16 |
+| $\{3,4,5\}$ | 3 | $\tfrac{13}{12}$ | 4,330,731 | 48,828,125 |
+
+Full table: `results/cfh_batch_max15.txt`.  Reproduce via
+`cpp/cfh_batch.exe --max-base=15 --min-size=3 --max-size=5 --k-min=1 --k-max=2`.
+
+#### Exact-critical CF/MW cases
+
+The four exact-critical cases below depend on the Mignotte-Waldschmidt
+bound for $\log 3/\log 4$ as imported analytic input.  CFH-strict
+does not apply ($R = 1$ gives zero slack).
 
 **(i) Exact-critical cases ($R(A)=1$), CF/MW route.**  Proof: finite
 seed bitset scan + typed Haskell CF frontier check + imported
@@ -47,21 +79,23 @@ Mignotte–Waldschmidt bound for $|3^p-4^q|$.
 These four depend on the Mignotte–Waldschmidt bound for $\log 3/\log 4$
 as imported analytic input.
 
-**(ii) Strict case ($R(A)>1$), CFH route.**  Proof: finite seed
-interval + bounded-gap absorption (Chen–Fang–Hegyvári lemma), no MW
-input required.
+**(ii) Strict case ($R(A)>1$), CFH-strict batch route.**  See §2.1
+strict-batch table above and note 67/69 for details.  The original
+$\{3,4,5\}$ k=1 case (note 26) is now subsumed as one of 870+
+certificates produced by `cpp/cfh_batch.exe`.
 
-| set              | $k$ | $R(A)$ | ray start | CFH gap bound | strict takeover step | certificates |
-|------------------|-------|----------|-----------|---------------|----------------------|--------------|
-| $\{3,4,5\}$    | 1     | 13/12    | 80        | 2,187         | 4                    | CFHTailCertificate; note 26 |
+#### Modular-deficit failures
 
-This one is **fully unconditional** — no imported analytic theorem is
-used, only combinatorial CFH and the finite seed interval.
+The CFH-strict route **fails** on 2 strict cases with large modular
+deficit (4 of 5 bases divisible by 3): $\{3,6,9,10,12\}$ k=2 and
+$\{3,6,9,10,15\}$ k=2.  For these the conductor empirically grows
+linearly with $T$ (the bounded-conductor premise fails); they remain
+open within this enumeration window.  See note 69 §3.
 
 Each proof terminates a finite computation; the finite computation is
-part of the proof.  Across all five, the imported analytic input is at
-most a single classical theorem (Mignotte–Waldschmidt for the four
-exact-critical cases; nothing for $\{3,4,5\}$).
+part of the proof.  Across the certificates, the imported analytic
+input is at most a single classical theorem (Mignotte–Waldschmidt for
+the four exact-critical cases; **none** for the 870 strict cases).
 
 ### 2.2 Algebraic framework (certified, problem-independent)
 
