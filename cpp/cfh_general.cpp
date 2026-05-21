@@ -63,14 +63,15 @@ inline void set_bit(std::vector<uint64_t>& bits, uint64_t b) {
 }
 
 // Compute conductor c(F) = largest n in [0, S/2] not representable
-// as a subset sum of F.
+// as a subset sum of F.  Uses half-bitset (size S/2 + 1) since subset
+// sums in [0, S/2] cannot include any element > S/2.
 int64_t compute_conductor(const std::vector<uint64_t>& F, uint64_t S) {
     const uint64_t half = S / 2;
-    const size_t n_words = (S + 64) / 64 + 1;
+    const size_t n_words = (half + 64) / 64 + 1;
     std::vector<uint64_t> bits(n_words, 0);
     set_bit(bits, 0);
     for (uint64_t t : F) {
-        shift_or(bits, t);
+        if (t <= half) shift_or(bits, t);
     }
     int64_t c = -1;
     for (int64_t pos = static_cast<int64_t>(half); pos >= 0; --pos) {
@@ -262,7 +263,7 @@ int main(int argc, char** argv) {
     // Geometrically increasing T values: 10, 30, 100, 300, ...
     for (double T = T_start; T <= T_max * 1.001; T *= 3.0) {
         SeedSetup setup = build_setup_balanced(bases, k, T);
-        if (setup.S > (uint64_t)1 << 33) {
+        if (setup.S > (uint64_t)1 << 37) {
             std::printf("  %-10.2e  (S=%llu too big — stopping)\n", T, (unsigned long long)setup.S);
             break;
         }

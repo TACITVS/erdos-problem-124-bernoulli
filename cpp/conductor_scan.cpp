@@ -107,17 +107,25 @@ Seed build_balanced_seed(const std::vector<int>& bases, int k, double T_target) 
 }
 
 // Compute conductor c(E) = largest n in [0, S/2] not representable.
-int64_t compute_conductor(const Seed& seed, uint64_t max_S_bits = (uint64_t)1 << 33) {
+// Uses half-bitset (only stores bits up to S/2) to halve memory for large S.
+int64_t compute_conductor(const Seed& seed, uint64_t max_S_bits = (uint64_t)1 << 36) {
     if (seed.S > max_S_bits) {
         return -2;  // too big
     }
     const uint64_t half = seed.S / 2;
-    const size_t n_words = (seed.S + 64) / 64 + 1;
+    // Bitset of size half+1 (just enough for [0, half]).
+    const size_t n_words = (half + 64) / 64 + 1;
     std::vector<uint64_t> bits(n_words, 0);
     set_bit(bits, 0);
 
+    // Note: for the half-bitset shift-OR, bits shifted past `half` are
+    // dropped automatically by the bitset size.  This is correct for
+    // computing the conductor in [0, half] but loses info about [half, S].
     for (uint64_t t : seed.terms) {
-        shift_or(bits, t);
+        if (t <= half) shift_or(bits, t);
+        // Terms > half contribute via single shifts that overflow the bitset
+        // and don't help for conductor in [0, half] (they only add bits
+        // above `half`).  Drop them.
     }
 
     // Find largest position in [0, half] with bit = 0.

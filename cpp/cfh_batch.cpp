@@ -54,11 +54,13 @@ inline bool test_bit(const std::vector<uint64_t>& bits, uint64_t b) {
 
 int64_t compute_conductor(const std::vector<uint64_t>& F, uint64_t S) {
     const uint64_t half = S / 2;
-    const size_t n_words = (S + 64) / 64 + 1;
+    // Half-bitset: only need bits for [0, half] since subset sums >= S/2
+    // require an element > S/2 (impossible if all elements <= S/2).
+    const size_t n_words = (half + 64) / 64 + 1;
     std::vector<uint64_t> bits(n_words, 0);
     bits[0] = 1;
     for (uint64_t t : F) {
-        shift_or(bits, t);
+        if (t <= half) shift_or(bits, t);
     }
     int64_t c = -1;
     for (int64_t pos = static_cast<int64_t>(half); pos >= 0; --pos) {
@@ -143,7 +145,7 @@ CfhCert try_verify(const std::vector<int>& bases, int k,
 
     for (double T : Ts) {
         Seed seed = build_balanced_seed(bases, k, T);
-        if (seed.S > (uint64_t)1 << 31) continue;  // 2GB cap per case
+        if (seed.S > (uint64_t)1 << 37) continue;  // up to ~17GB half-bitset per case
         int64_t c = compute_conductor(seed.F, seed.S);
         uint64_t T0 = min_frontier(seed.tail_frontier);
         // Preconditions (a) and (b)
@@ -238,7 +240,7 @@ int main(int argc, char** argv) {
     enumerate_subsets(max_base, min_size, max_size, candidates);
 
     std::vector<double> Ts;
-    for (double T = 10.0; T <= 1e10; T *= 2.0) Ts.push_back(T);
+    for (double T = 10.0; T <= 1e11; T *= 2.0) Ts.push_back(T);
 
     int total_strict = 0, verified = 0, failed = 0;
     auto t0 = std::chrono::high_resolution_clock::now();

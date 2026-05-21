@@ -37,7 +37,7 @@ exact-critical cases via CF/MW with imported Mignotte-Waldschmidt.
 
 | family | scope | count | route | imported analytic input | effectivity |
 |---|---|---:|---|---|---|
-| **strict CFH** (no large modular deficit) | $A \subseteq \{3,\ldots,15\}$, $|A| \in \{3,4,5\}$, $k \in \{1,2\}$ | **870** | `cpp/cfh_batch.exe` (notes 67, 69) | **none** | effective $(c^*, T^*)$ |
+| **strict CFH** | $A \subseteq \{3,\ldots,15\}$, $|A| \in \{3,4,5\}$, $k \in \{1,2\}$ | **872** | `cpp/cfh_batch.exe` (notes 67, 69, 71) | **none** | effective $(c^*, T^*)$ |
 | exact-critical CF/MW | 4 specific (3,4)-pair cases | 4 | CF/MW finite bitscan + frontier check | Mignotte–Waldschmidt for $\log 3/\log 4$ | effective explicit $N_0$ |
 | **exact-critical qualitative S-unit** | $A \subseteq \{3,\ldots,30\}$, $|A| \le 6$, $k \le 3$, $R = 1$ | **99** (95 new) | `cpp/sunit_general.exe` (note 70) | qualitative S-unit finiteness (unconditional) | **qualitative** $N_0$ non-effective |
 
@@ -85,18 +85,28 @@ strict-batch table above and note 67/69 for details.  The original
 $\{3,4,5\}$ k=1 case (note 26) is now subsumed as one of 870+
 certificates produced by `cpp/cfh_batch.exe`.
 
-#### Modular-deficit failures
+#### Modular-deficit "failures" — RESOLVED in note 71
 
-The CFH-strict route **fails** on 2 strict cases with large modular
-deficit (4 of 5 bases divisible by 3): $\{3,6,9,10,12\}$ k=2 and
-$\{3,6,9,10,15\}$ k=2.  For these the conductor empirically grows
-linearly with $T$ (the bounded-conductor premise fails); they remain
-open within this enumeration window.  See note 69 §3.
+In note 69, 2 strict cases were flagged as failing CFH-strict
+certification: $\{3, 6, 9, 10, 12\}$ k=2 and $\{3, 6, 9, 10, 15\}$ k=2.
+Both have 4 of 5 bases divisible by 3, and the conductor stays
+$\approx S/2$ throughout $T \le 10^9$.
+
+**Note 71 resolves this:** at $T \ge 10^{10}$, the mod-9 obstruction
+(only base 10 is coprime to 3, and $10^j \equiv 1 \pmod 9$ for all $j$,
+so all 9 residue classes are hit only when $e_{10} \ge 10$) breaks.
+Conductor stabilizes at $T \approx 3 \times 10^{10}$:
+- $c^*(\{3,6,9,10,12\}, 2) = 1{,}473{,}914{,}231$ at $T^* = 10^{10}$;
+- $c^*(\{3,6,9,10,15\}, 2) = 1{,}111{,}111{,}964$ at $T^* = 3.5 \times 10^9$.
+
+With the bigger $T$ range and the half-bitset optimization
+(`cpp/cfh_batch.cpp` updated), **872/872 strict cases verify** — no
+failures.
 
 Each proof terminates a finite computation; the finite computation is
 part of the proof.  Across the certificates, the imported analytic
 input is at most a single classical theorem (Mignotte–Waldschmidt for
-the four exact-critical cases; **none** for the 870 strict cases).
+the four exact-critical cases; **none** for the 872 strict cases).
 
 ### 2.2 Algebraic framework (certified, problem-independent)
 
