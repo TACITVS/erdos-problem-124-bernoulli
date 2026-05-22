@@ -28,18 +28,20 @@ The conjecture is **not** proved here, unconditionally or otherwise.
 
 ## 2. What the project actually proves
 
-### 2.1 Local certificates (870+ cases via batch CFH-strict; 4 via CF/MW)
+### 2.1 Local certificates — 12,226+ cases unconditionally certified
 
-After Phase B-2 (note 67) and the batch enumeration (note 69), the
-project certifies **870+ strict hypothesis-meeting cases**
-unconditionally via the generalized CFH-strict route, plus 4 specific
-exact-critical cases via CF/MW with imported Mignotte-Waldschmidt.
+After the erdos124 C++23 library (note 80) + unified batch driver
+(note 81), the project certifies **12,226+ hypothesis-meeting cases**
+unconditionally via combined CFH-strict + S-unit qualitative routes,
+plus 4 specific exact-critical cases via CF/MW (Mignotte-Waldschmidt).
 
 | family | scope | count | route | imported analytic input | effectivity |
 |---|---|---:|---|---|---|
-| **strict CFH** | $A \subseteq \{3,\ldots,15\}$, $|A| \in \{3,4,5\}$, $k \in \{1,2\}$ | **872** | `cpp/cfh_batch.exe` (notes 67, 69, 71) | **none** | effective $(c^*, T^*)$ |
+| **strict CFH** | $A \subseteq \{3,\ldots,20\}$, $|A| \in \{3,\ldots,6\}$, $k \in \{1,2\}$ | **12,208** | `cpp/build/unified_batch` (note 81) | **none** | effective $(c^*, T^*)$ |
+| **exact-critical qualitative S-unit** | $A \subseteq \{3,\ldots,20\}$, $|A| \le 6$, $k \le 2$, $R = 1$ | **18** in this window (99 at max_base=30) | `cpp/build/unified_batch` (notes 70, 72, 81) | qualitative S-unit finiteness (unconditional) | **qualitative** $N_0$ non-effective |
 | exact-critical CF/MW | 4 specific (3,4)-pair cases | 4 | CF/MW finite bitscan + frontier check | Mignotte–Waldschmidt for $\log 3/\log 4$ | effective explicit $N_0$ |
-| **exact-critical qualitative S-unit** | $A \subseteq \{3,\ldots,30\}$, $|A| \le 6$, $k \le 3$, $R = 1$ | **99** (95 new) | `cpp/sunit_general.exe` (note 70) | qualitative S-unit finiteness (unconditional) | **qualitative** $N_0$ non-effective |
+
+Reproduce: `cd cpp && mkdir build && cd build && cmake .. && cmake --build . -j && ./unified_batch.exe --max-base=20 --min-size=3 --max-size=6 --k-min=1 --k-max=2`.
 
 #### Strict batch (note 69)
 

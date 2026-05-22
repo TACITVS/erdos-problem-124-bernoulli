@@ -1,0 +1,4 @@
+- [End-of-session meta-review](feedback_meta_review.md) — at session end, explicitly ask "are we on the right track / are our methods best / can we do better / would I change anything?" and surface the answer.
+- [Delegate mechanical verification to CAS](feedback_cas_delegation.md) — use SymPy for algebraic identities and numerical sweeps; reserve human reasoning for framing, choice of disparate-area technique, and where the analytic input enters.
+- [Use C++ instead of Python for heavy numerical computation](feedback_cpp_over_python.md) — 50-100× speedup observed; default to C++ for bitscans, Fourier integrals, hot inner loops; Python only for orchestration or exclusive libraries.
+- [Use the erdos124 C++23 library, don't write scattered standalone code](feedback_use_library_not_standalone.md) — there is now a header-only library at cpp/include/erdos124/; add new capabilities as new modules there, not as standalone .cpp files.

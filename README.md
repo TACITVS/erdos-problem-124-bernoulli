@@ -13,11 +13,13 @@
 
 ---
 
-## Headline (2026-05-20)
+## Headline (2026-05-22)
 
-After 30+ sessions and a focused Phase B push, the project has produced:
+After 30+ sessions, the project has produced:
 
-> **~971 hypothesis-meeting $(A, k)$ certified — Erdős 124 holds unconditionally for each.**
+> **12,226+ hypothesis-meeting $(A, k)$ certified — Erdős 124 holds unconditionally for each.**
+
+via the `erdos124` C++23 library ([notes 80](notes/80_erdos124_library_and_dgs_diagnostics.md), [81](notes/81_unified_batch_12k_certificates.md)) — a clean modular header-only library implementing the project's machinery, with a single `unified_batch` driver that completes the 12k-case enumeration in ~3.5 minutes.
 
 | family | count | route | analytic input | effectivity |
 |---|---:|---|---|---|
