@@ -156,6 +156,9 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | Theorem 87.1 (combined closure via $\min(M_L', M_L'')$) | (H4') = intermediate CF check + tighter of Prop 84.1 / 84.2 | note 87 |
 | $\mathcal P_{23}$ pair class | all $(2^a, 3^b)$ pairs share $\mu_0 \le 5.117$ (Rhin 1987) | note 87 |
 | **Audit of Theorems E, F (note 88)** | Theorem E is a max-gap bound (not conductor); Theorem F is **withdrawn** (proof gap + empirical refutation: $r(10) = 0$ in $\{3,4,5\}$ k=1) | note 88 |
+| **Theorem 92.1 + Conjecture 92.2** | Multi-pair joint near-collision: failure forces $e_y \in \mathcal D_{xy} \cap \mathcal N_{yz}$; conjecturally empty | note 92 |
+| **Theorem 93.1 (combined closure)** | Charge γ + Theorem B'' close hypothesis-meeting $(A, k)$ with $|A| \ge 3$ and $\ge 3$ mult classes via combinatorial route, bypassing Lang | note 93 |
+| **CFIntersection.hs empirical** | 754 triples in $[3, 20]$ tested; **86–94% closed by Charge γ alone**; remaining have small candidates with gaps verified astronomical | note 92, 93 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 

@@ -194,109 +194,107 @@ cfDenominators x y depth = map snd (convergents (cfLogRatio y x depth))
 cfNumerators :: Integer -> Integer -> Int -> [Integer]
 cfNumerators y z depth = map fst (convergents (cfLogRatio z y depth))
 
--- | Multiplicatively independent? (Same logic as cpp/include/erdos124/mw.hpp)
-multIndep :: Integer -> Integer -> Bool
-multIndep a b = a /= b && primitiveRoot a /= primitiveRoot b
+-- | Prime factorization with exponents: returns [(p, e)] for each prime p with
+--   multiplicity e in n.
+primeFactorsExp :: Integer -> [(Integer, Integer)]
+primeFactorsExp n0 = go n0 2 []
   where
-    primitiveRoot n =
-      let pf = primeFactors n
-       in if length pf == 1 then head pf else 0 -- 0 = "composite multi-prime"
-    primeFactors n = go n 2
-      where
-        go m p
-          | m == 1 = []
-          | m `mod` p == 0 = p : go (m `div` p) p
-          | p * p > m = [m]
-          | otherwise = go m (p + 1)
+    go n p acc
+      | n == 1 = reverse acc
+      | n `mod` p == 0 = go (n `div` p) p (incrementExp p acc)
+      | p * p > n = reverse ((n, 1) : acc)
+      | otherwise = go n (p + 1) acc
+    incrementExp p [] = [(p, 1)]
+    incrementExp p ((q, e) : rest)
+      | q == p = (q, e + 1) : rest
+      | otherwise = (q, e) : incrementExp p rest
+
+-- | Primitive power of n: the smallest base c such that n = c^k.
+--   Equivalently, n^(1/gcd of exponents in prime factorization).
+primitivePower :: Integer -> Integer
+primitivePower n =
+  let factors = primeFactorsExp n
+      g = foldr1 gcd (map snd factors)
+   in product [p ^ (e `div` g) | (p, e) <- factors]
+
+-- | Multiplicatively independent: a^m != b^n for all positive integers m, n.
+--   Equivalent to: a and b have different primitive powers.
+multIndep :: Integer -> Integer -> Bool
+multIndep a b = a /= b && primitivePower a /= primitivePower b
 
 -- | Approximate Legendre threshold: smallest p with x^p log y > 4 p B*.
 --   (Matches RegimeThresholds.hs.)
 legendreThreshold :: Double -> Double -> Double -> Integer
 legendreThreshold x y bStar = head [p | p <- [1 ..], x ** fromInteger p * log y > 4 * fromInteger p * bStar]
 
--- | Analyze a triple (x, y, z) for Charge gamma applicability,
---   filtering by Legendre thresholds at a given B*.
-analyzeTriple :: Double -> Integer -> Integer -> Integer -> IO ()
-analyzeTriple bStar x y z = do
-  putStrLn $ "Triple (x, y, z) = (" ++ show x ++ ", " ++ show y ++ ", " ++ show z ++ "), B* = " ++ show bStar ++ ":"
-  let depth = 30
-      dxy = cfDenominators x y depth
-      nyz = cfNumerators y z depth
-      -- Legendre thresholds for the two pairs at threshold B*.
-      mLxy = legendreThreshold (fromInteger x) (fromInteger y) bStar
-      mLyz = legendreThreshold (fromInteger y) (fromInteger z) bStar
-      -- e_y must be in BOTH lists.  In the (x, y) CF, e_y = denominator.
-      -- For Legendre, we need min(e_x, e_y) >= M_L^{(xy)}, which for
-      -- pair (x, y) with x < y means e_y >= M_L (since e_y is the
-      -- smaller exponent).
-      -- For (y, z) CF, e_y = numerator (larger exponent), so e_z >= M_L^{(yz)}.
-      sharedAll = sort (filter (`elem` nyz) dxy)
-      sharedInWindow = filter (\ey -> ey >= mLxy) sharedAll
-  putStrLn $ "  D_{xy} (first 10) = " ++ show (take 10 dxy)
-  putStrLn $ "  N_{yz} (first 10) = " ++ show (take 10 nyz)
-  putStrLn $ "  M_L^{(xy)} = " ++ show mLxy ++ ", M_L^{(yz)} = " ++ show mLyz
-  putStrLn $ "  Intersection (all): " ++ show (take 10 sharedAll)
-  putStrLn $ "  Intersection in window (e_y >= M_L^{(xy)} = " ++ show mLxy ++ "): " ++ show sharedInWindow
-  putStrLn $
-    if null sharedInWindow
-      then "  STATUS: Charge gamma CLOSES this triple in the window."
-      else "  STATUS: " ++ show (length sharedInWindow) ++ " candidates in window - verify joint gaps exceed B*."
-  putStrLn ""
+-- | Test result for a single triple at a given B*.
+data TripleResult = TripleResult
+  { trX :: Integer,
+    trY :: Integer,
+    trZ :: Integer,
+    trCandidates :: [Integer]
+  }
+  deriving stock (Eq, Show)
 
--- | A set of triples to analyze, drawn from hypothesis-meeting cases.
+-- | Analyze a triple silently, returning the candidates in the Legendre window.
+analyzeTripleSilent :: Double -> Integer -> Integer -> Integer -> TripleResult
+analyzeTripleSilent bStar x y z =
+  TripleResult x y z sharedInWindow
+  where
+    depth = 30
+    dxy = cfDenominators x y depth
+    nyz = cfNumerators y z depth
+    mLxy = legendreThreshold (fromInteger x) (fromInteger y) bStar
+    sharedAll = sort (filter (`elem` nyz) dxy)
+    sharedInWindow = filter (\ey -> ey >= mLxy) sharedAll
+
+-- | Enumerate all pairwise mult-indep triples with x < y < z in [3, maxBase].
+allTriplesInRange :: Integer -> [(Integer, Integer, Integer)]
+allTriplesInRange maxBase =
+  [ (x, y, z)
+    | x <- [3 .. maxBase],
+      y <- [x + 1 .. maxBase],
+      z <- [y + 1 .. maxBase],
+      multIndep x y,
+      multIndep y z,
+      multIndep x z
+  ]
+
 testTriples :: [(Integer, Integer, Integer)]
-testTriples =
-  filter (\(x, y, z) -> x < y && y < z && multIndep x y && multIndep y z && multIndep x z)
-    [ -- Triples from {3, 4, 7}, {3, 4, 5}, {3, 4, 9, 25}:
-      (3, 4, 5),
-      (3, 4, 7),
-      (3, 4, 11),
-      (3, 4, 13),
-      (3, 5, 7),
-      (3, 4, 25),
-      (4, 5, 7),
-      (4, 5, 11),
-      (4, 7, 11),
-      (5, 7, 11),
-      (3, 5, 11),
-      (3, 5, 13),
-      (3, 7, 11),
-      (3, 7, 13),
-      (5, 7, 13),
-      (5, 11, 13),
-      (7, 11, 13),
-      (3, 4, 17),
-      (3, 4, 19),
-      (4, 5, 9), -- 4, 5, 9 = 3^2: 4 vs 9 mult-indep, 5 vs 9 mult-indep, but 4 vs 5 mult-indep
-      (4, 9, 25)
-    ]
+testTriples = allTriplesInRange 20
 
 main :: IO ()
 main = do
   putStrLn "# CF Intersection analysis for Conjecture 92.2"
+  putStrLn "# Enumeration of all pairwise mult-indep triples in [3, 20]"
   putStrLn ""
-  putStrLn "For each pairwise mult-indep triple (x, y, z), compute"
-  putStrLn "  D_{xy} = denominators of CF convergents of log y / log x"
-  putStrLn "  N_{yz} = numerators   of CF convergents of log z / log y"
-  putStrLn "Both up to depth 20.  Report intersection."
-  putStrLn ""
-  putStrLn "Charge gamma applies (closes the triple) iff intersection"
-  putStrLn "for e_y >= 2 is empty."
-  putStrLn ""
-  putStrLn "=================================================="
-  putStrLn ""
-  -- Use B* = 5835 (the {3,4,7} k=1 value) as a representative threshold.
-  -- For each triple, compute Legendre thresholds and report.
-  mapM_ (\(x, y, z) -> analyzeTriple 5835.0 x y z) testTriples
-  putStrLn ""
-  let totalTriples = length testTriples
-  putStrLn $ "Analyzed " ++ show totalTriples ++ " pairwise mult-indep triples at B* = 5835."
+  let triples = testTriples
+      totalTriples = length triples
 
-  -- Repeat with larger B* (= 10^9) representative of higher-k cases.
+  putStrLn $ "Total pairwise mult-indep triples: " ++ show totalTriples
   putStrLn ""
-  putStrLn "==================================================="
-  putStrLn "Repeat with B* = 10^9 (representative of high-k cases)"
-  putStrLn "==================================================="
-  putStrLn ""
-  mapM_ (\(x, y, z) -> analyzeTriple 1e9 x y z) testTriples
-  putStrLn $ "Analyzed " ++ show totalTriples ++ " triples at B* = 10^9."
+
+  -- Run at two B* levels.
+  mapM_
+    ( \bStar -> do
+        putStrLn $ "## B* = " ++ show bStar
+        let results = map (\(x, y, z) -> analyzeTripleSilent bStar x y z) triples
+            closed = filter (\r -> null (trCandidates r)) results
+            withCands = filter (\r -> not (null (trCandidates r))) results
+            nClosed = length closed
+            nCands = length withCands
+            pctClosed = fromIntegral nClosed / fromIntegral totalTriples * 100 :: Double
+        putStrLn $ "  Triples fully closed by Charge gamma: " ++ show nClosed ++ " / " ++ show totalTriples ++ " (" ++ show (round pctClosed :: Int) ++ "%)"
+        putStrLn $ "  Triples with candidates to check: " ++ show nCands
+        putStrLn $ "  Triples that need check:"
+        mapM_
+          ( \r ->
+              putStrLn $
+                "    (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
+                  ++ "): candidates "
+                  ++ show (trCandidates r)
+          )
+          withCands
+        putStrLn ""
+    )
+    [5835.0, 1e9, 1e15]
