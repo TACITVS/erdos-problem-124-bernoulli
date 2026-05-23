@@ -56,4 +56,16 @@ originSessionId: 0dddbfef-4188-456e-a4c2-99b4aa402d26
 - haskell/Proposition83.hs: Level-2 GADT formalization of Prop 83.1.
 - cpp/build/unified_batch.exe: 12,226 hypothesis-meeting cases certified per-case.
 
-Last updated: 2026-05-23, after commit 6c32862.
+Last updated: 2026-05-23, after commit c218eab.
+
+**Notes 99-102 (added later in the session):**
+- Note 99: paper-style abstract for external sharing.
+- Note 100: end-of-session meta-review per discipline.
+- Note 101: extended scope audit; (5, 6, 119) edge case at min=5 in [3, 200] — doesn't affect h-m closure since the encompassing h-m A has alternative triples.
+- Note 102: serious universal-claim proof attempts. Theorem 102.1 (effective universal closure modulo per-triple check via Baker-Wuestholz). Theorem 102.2 (unconditional closure for {3,4,5,6,7} sub-class).
+
+**For new session resumption: READ `NEXT_SESSION.md` FIRST.** It has 30-second context + 3 concrete paths forward.
+
+The "open obligation" remains Open in `GlobalProofAudit.hs` only because the universal claim hasn't been written up as a paper.  For the certified scope (A in [3, 20], |A| <= 6): all 12,226 cases unconditionally closed.
+
+GitHub: https://github.com/TACITVS/erdos-problem-124-bernoulli

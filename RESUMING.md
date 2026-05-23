@@ -2,12 +2,24 @@
 
 **Last updated: 2026-05-23, after the Charge γ session (commit ~6c32862).**
 
-> **MAJOR UPDATE 2026-05-23:** The session of 2026-05-22/23 produced
-> notes 82-98 establishing **uniform closure** for the project's
-> certified scope.  The open obligation is now EMPTY for hypothesis-
-> meeting $(A, k)$ with $|A| \le 7$.  See `notes/98_session_synthesis.md`
-> for the synthesis, and `notes/97_structural_closure_min_7.md` for
-> Theorem 97.4 (the uniform closure result).
+> **MAJOR UPDATE 2026-05-23 (commit `c218eab`):** The session of
+> 2026-05-22/23 produced notes 82-102 establishing **uniform closure**
+> for the project's certified scope.  The open obligation is now
+> EMPTY for hypothesis-meeting $(A, k)$ with $|A| \le 7$.  The
+> Lang's conjecture dependency has been REMOVED.
+>
+> **For next-session resumption, read `NEXT_SESSION.md` FIRST.**
+> It contains:
+> - 30-second context.
+> - Three closure routes (Theorems A, B'', 97.4).
+> - Three concrete next-session paths (paper / Lean / extended empirical).
+> - Audit discipline reminders.
+> - Single recommended next move.
+>
+> Companion documents:
+> - `notes/98_session_synthesis.md` — full session summary.
+> - `notes/102_universal_gap_proof_attempts.md` — universal proof attempts.
+> - `notes/97_structural_closure_min_7.md` — uniform closure theorem.
 
 This document is a one-page resumption guide.  After cloning the repo
 fresh, read this + `PROOF_STATE.md` + `RESEARCH_JOURNAL.md` and you
