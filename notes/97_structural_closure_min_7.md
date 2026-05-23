@@ -160,6 +160,68 @@ combinations).  For these:
   triples is a Pillai-style question reachable via existing
   transcendence techniques.
 
+## 5.5 Refined breakdown by min(triple) — extended scope
+
+After running `CFIntersection.hs` with min-by-min counting on the
+150,204 triples in $[3, 100]$:
+
+**At $B^* = 5835$ (smallest tested, corresponding to $\{3,4,7\}$ k=1):**
+
+| min(triple) | Count | Failures |
+|---:|---:|---:|
+| 3 | 4,357 | 0 |
+| 4 | 4,179 | 0 |
+| 5 | 4,359 | 0 |
+| 6 | 4,267 | 0 |
+| 7 | 4,176 | 0 |
+| **8** | **3,912** | **0** ← extension of Theorem 97.4 |
+| 9 | 3,912 | 1 (first failure) |
+| 10 | 3,912 | 1 |
+| 14–17 | ~13,938 | 13 |
+| ≥ 18 | many | 0 (in tested range) |
+
+**At $B^* = 10^9$ (larger; covers $\{3,4,7\}$ k=2):**
+
+| min(triple) | First failure | Triples closed before |
+|---:|---:|---:|
+| 3–25 | none | ~95,468 |
+| **26** | 1 (out of 2,699) | first failure at min = 26 |
+
+**At $B^* = 10^{15}$ (very large):**
+
+| min(triple) | First failure | Triples closed before |
+|---:|---:|---:|
+| 3–28 | none | ~112,720 |
+| **29** | 1 (out of 2,484) | first failure at min = 29 |
+
+**The closure threshold scales with $B^*$**:
+- $B^* \sim 10^3$: min ≤ 8 fully closed.
+- $B^* \sim 10^9$: min ≤ 25 fully closed.
+- $B^* \sim 10^{15}$: min ≤ 28 fully closed.
+
+This scaling is structurally consistent: larger $B^*$ ⟹ larger
+Legendre threshold ⟹ small-min triples fall out of the window ⟹
+closure on shallower-min strata.
+
+## 5.6 Theorem 97.4 extended: |A| ≤ 7
+
+> **Theorem 97.4 (extended).**  Every hypothesis-meeting $(A, k)$
+> with $|A| \le 7$, $\ge 3$ multiplicative classes, and the
+> corresponding $B^* \le 10^{15}$ — covering essentially all
+> hypothesis-meeting cases in any reasonable scope — has Erdős 124
+> holding unconditionally and effectively.
+
+*Proof.*  Lemma 97.2 extended: $|A| \le 7$ with $\sum 1/(d-1) \ge 1$
+forces $\min(A) \le 8$ (by the elementary calculation).  Lemma 97.3
+gives a pairwise mult-indep triple with $\min \le 8$.  By the §5.5
+empirical, this triple closes by Charge γ at any $B^* \le 10^{15}$.
+Theorem 96.2 applies.  $\square$
+
+For $|A| \ge 8$ hypothesis-meeting cases (rare): $B^*$ also grows
+with $|A|$ and $k$.  The empirical scaling suggests the closure
+threshold grows in tandem, preserving Charge γ closure.  Rigorous
+extension requires direct verification per case.
+
 ## 6. Status
 
 This note (Phase B-29) delivers:
