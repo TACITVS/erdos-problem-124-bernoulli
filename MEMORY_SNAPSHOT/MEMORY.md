@@ -3,3 +3,4 @@
 - [Use C++ instead of Python for heavy numerical computation](feedback_cpp_over_python.md) — 50-100× speedup observed; default to C++ for bitscans, Fourier integrals, hot inner loops; Python only for orchestration or exclusive libraries.
 - [Use the erdos124 C++23 library, don't write scattered standalone code](feedback_use_library_not_standalone.md) — add new C++ capabilities as header-only modules in cpp/include/erdos124/, not duplicate standalone .cpp files.
 - [Clean algebraic proofs, not more certificates](feedback_algebraic_proofs_over_certificates.md) — primary deliverable is a note with a precise theorem and pen-and-paper proof; computation only as hypothesis-check companion.
+- [Project state post-2026-05-23](project_state_post_session_2026_05_23.md) — Erdős 124 algebraic chain closes the certified scope unconditionally via three independent routes (Theorem A, B'', 97.4). Open obligation is no longer Lang's conjecture.
