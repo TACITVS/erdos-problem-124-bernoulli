@@ -255,6 +255,38 @@ not about its effective bound, so we conclude:
 
 ### Remarks on Theorem B
 
+> **Audit note (2026-05-23, Phase B-16):** Step 4 above writes
+> $B = B(L_0, U_0)$ — the near-collision bound evaluated at the
+> *initial* seed interval — and applies it to *any* tail-frontier
+> failure.  This is correct only when the seed conductor at the
+> failing frontier is $\le c^*$.  Equivalently, Step 4 implicitly
+> assumes conductor stability **(H5')**: $c(F(E)) \le c^*$ for every
+> balanced frontier $E$ with $T(E) \ge T^*$.
+>
+> **(H5') is derivable**, not a fresh hypothesis, by an
+> inductive argument over the complete-sequence absorption ordering
+> (note 36).  The argument is given in detail in note 83 §3
+> (Proposition 83.1) for the effective-MW case (Theorem B'); the
+> *same* induction applies in Theorem B's qualitative-S-unit setting:
+>
+> 1. Base step: $c(F^*) = c^*$ at $k = 0$.
+> 2. Inductive step: assume $c(F_{k-1}) \le c^*$.  If absorption of
+>    the next tail element $b_k$ fails, by note 27 §"every pair" the
+>    near-collision bound at the pre-failure seed $F_{k-1}$ is
+>    $B(F_{k-1}) = DK(c(F_{k-1})) \le DK(c^*) = B^*$.  Hence
+>    $|x^m - y^n| \le B^*$ at the chosen mult-indep pair $(x, y)$ —
+>    so $(m, n) \in \mathcal M$, the finite S-unit solution set of
+>    Step 2.  Choosing $T^* \ge \max(x, y)^{M_* + 1}$ (Step 5's
+>    non-effective threshold) makes $(m, n) \in \mathcal M$
+>    impossible at the failing frontier, contradicting the failure.
+>
+> Hence absorption succeeds at every step and $c(F(E)) \le c^*$
+> throughout — (H5') holds.
+>
+> This audit retroactively justifies Step 4's use of $B(L_0, U_0)$
+> by surfacing (H5') as a consequence of the existing hypotheses +
+> non-effective threshold choice, rather than an unstated assumption.
+
 - The **certificates from `cpp/sunit_general.exe`** verify (H1') for
   specific $(A, k, T^*)$.  The mult-class reduction and S-unit theorem
   are global; the only per-case input is (H1').
