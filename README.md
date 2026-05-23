@@ -21,6 +21,15 @@ After 30+ sessions, the project has produced:
 
 via the `erdos124` C++23 library ([notes 80](notes/80_erdos124_library_and_dgs_diagnostics.md), [81](notes/81_unified_batch_12k_certificates.md)) — a clean modular header-only library implementing the project's machinery, with a single `unified_batch` driver that completes the 12k-case enumeration in ~3.5 minutes.
 
+Each per-case certification verifies the hypotheses of one of the project's algebraic theorems:
+- **Theorem A** (strict CFH-reduction, [note 72](notes/72_algebraic_reduction_theorems.md)) — no analytic input.
+- **Theorem B** (qualitative S-unit reduction, [note 72](notes/72_algebraic_reduction_theorems.md)) — qualitative S-unit finiteness, non-effective $N_0$.
+- **Theorem B'** (effective MW form of Theorem B, [note 82](notes/82_theorem_b_prime_effective_mw.md), 2026-05-22) — replaces qualitative S-unit by Mignotte–Waldschmidt (LMN 1995 / Laurent 2008); effective $N_0$ for the four CF/MW cases.
+- **Theorem C** (recursively-reducible bounded conductor, [note 73](notes/73_open_obligation_attack.md)) — for the recursive sub-class.
+- **Proposition D** (conductor-growth dichotomy, [note 73](notes/73_open_obligation_attack.md)) — modulo Subspace, $c$ is bounded or grows linearly.
+
+The theorems are proved pen-and-paper; the certificates verify their per-case hypotheses.
+
 | family | count | route | analytic input | effectivity |
 |---|---:|---|---|---|
 | Strict CFH ($A \subseteq \{3,\ldots,15\}$, $\|A\| \in \{3,4,5\}$, $k \le 2$) | **872** | [`cpp/cfh_batch.cpp`](cpp/cfh_batch.cpp), notes [67](notes/67_cfh_generalized_proof.md), [69](notes/69_cfh_batch_results.md), [71](notes/71_modular_deficit_resolved.md) | **none** | effective $(c^*, T^*)$ |

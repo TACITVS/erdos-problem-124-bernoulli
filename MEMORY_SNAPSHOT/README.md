@@ -14,7 +14,8 @@ directory to that location:
 - `feedback_meta_review.md`
 - `feedback_cas_delegation.md`
 - `feedback_cpp_over_python.md`
-- `feedback_use_library_not_standalone.md` (NEW from session ending 2026-05-22)
+- `feedback_use_library_not_standalone.md` (added 2026-05-22)
+- `feedback_algebraic_proofs_over_certificates.md` (added 2026-05-22, Theorem B' session)
 
 After re-installation, future Claude Code sessions will auto-load these
 on every turn, restoring the project-specific feedback context.

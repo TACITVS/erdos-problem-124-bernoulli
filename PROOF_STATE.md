@@ -35,6 +35,11 @@ After the erdos124 C++23 library (note 80) + unified batch driver
 unconditionally via combined CFH-strict + S-unit qualitative routes,
 plus 4 specific exact-critical cases via CF/MW (Mignotte-Waldschmidt).
 
+The algebraic backbone is Theorems A, B, B', C and Proposition D
+(notes 72, 73, 82).  Each per-case "certificate" verifies the
+hypotheses of one of these algebraic theorems; the theorems
+themselves are proved pen-and-paper without computational appeal.
+
 | family | scope | count | route | imported analytic input | effectivity |
 |---|---|---:|---|---|---|
 | **strict CFH** | $A \subseteq \{3,\ldots,20\}$, $|A| \in \{3,\ldots,6\}$, $k \in \{1,2\}$ | **12,208** | `cpp/build/unified_batch` (note 81) | **none** | effective $(c^*, T^*)$ |
@@ -72,15 +77,20 @@ does not apply ($R = 1$ gives zero slack).
 seed bitset scan + typed Haskell CF frontier check + imported
 Mignotte–Waldschmidt bound for $|3^p-4^q|$.
 
-| set                 | $k$ | $R(A)$ | conductor (last missing) | bound $6K$ (or $24K$) | states scanned | min margin       | certificates |
+| set                 | $k$ | $R(A)$ | conductor (last missing) | bound $DK = D\kappa + 2Dc + D$ | states scanned | min margin       | certificates |
 |---------------------|-------|----------|--------------------------|---------------------------|----------------|------------------|--------------|
 | $\{3,4,7\}$       | 1     | 1        | 581                      | 7,002                     | 2              | 460,482          | TailCertificate, CFTailCertificate; note 46 |
 | $\{3,4,7\}$       | 2     | 1        | 3,982,888                | 47,794,770                | 7              | 323,200,122      | TailCertificate, CFTailCertificate; notes 07, 09 |
 | $\{3,4,7\}$       | 3     | 1        | 166,025,260              | 1,992,303,678             | 4              | 14,827,662,282   | TailCertificate, CFTailCertificate; note 10 |
 | $\{3,4,9,25\}$    | 2     | 1        | 452,099                  | 21,701,880                | 8              | 313,609,752      | TailCertificate, CFTailCertificate; note 11 |
 
-These four depend on the Mignotte–Waldschmidt bound for $\log 3/\log 4$
-as imported analytic input.
+These four depend on the Mignotte–Waldschmidt bound (LMN 1995 /
+Laurent 2008) for $|3^p - 4^q|$ as the only imported analytic input.
+As of note 82 (Theorem B'), the four cases are now witnesses of one
+algebraic theorem: each verifies hypothesis (H4') of Theorem B' for
+its specific $(A, k)$, with the algebraic content (single-term
+absorption, complete-sequence closure, conductor identity, etc.)
+shared and proved once.
 
 **(ii) Strict case ($R(A)>1$), CFH-strict batch route.**  See §2.1
 strict-batch table above and note 67/69 for details.  The original
@@ -133,6 +143,11 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | bounded-gap bridge                      | seed interval + bounded-gap tail $\Rightarrow$ cofinite ray   | note 24            |
 | multiplicative-class reduction          | gcd-one base set has $\ge 2$ multiplicative classes          | note 17            |
 | CFH strict tail (specific instance)     | $\{3,4,5\}$ k=1                                             | note 26, CFHTail   |
+| Theorem A (algebraic CFH-strict reduction) | strict case, replaces 872 per-case CFH certificates       | note 72            |
+| Theorem B (algebraic qualitative S-unit reduction) | exact-critical, qualitative $N_0$                  | note 72            |
+| Theorem B' (effective MW form of Theorem B) | exact-critical with CF/MW (H4'), **effective** $N_0$       | note 82            |
+| Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
+| Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
 Each is checked by a Haskell certificate in `haskell/`; the CAS scripts
 in `scripts/` mechanically verify the relevant algebraic identities.
@@ -147,13 +162,17 @@ The `erdos-124` root remains Open.
 
 ## 3. What the project imports (analytic Diophantine input)
 
-`haskell/GlobalProofAudit.hs` records three Imported obligations:
+`haskell/GlobalProofAudit.hs` records three Imported obligations.
+After note 82 (Theorem B'), the qualitative S-unit input is no
+longer load-bearing for the four CF/MW cases — it has been replaced
+by effective MW (LMN 1995 / Laurent 2008).  The obligation list
+remains as recorded, but the *usage* contracts:
 
-| imported obligation                          | source                          | role                                          |
-|----------------------------------------------|----------------------------------|-----------------------------------------------|
-| Mignotte–Waldschmidt for $\log 3/\log 4$   | classical                       | tail closure for local $\{3,4,7\}$ certificates |
-| qualitative S-unit exact-critical tail       | S-unit finiteness theorem       | rules out bounded near-collisions             |
-| Subspace-Theorem power-saving S-unit gap     | Evertse–Schlickewei–Schmidt etc | upgrades to sublinear near-collision exclusion |
+| imported obligation                          | source                          | role                                          | now used by |
+|----------------------------------------------|----------------------------------|-----------------------------------------------|--------------|
+| Mignotte–Waldschmidt / Laurent–Mignotte–Nesterenko (LMN 1995, Laurent 2008) | classical | effective near-collision exclusion | Theorem B' (note 82); the four CF/MW cases |
+| qualitative S-unit exact-critical tail       | S-unit finiteness theorem       | rules out bounded near-collisions (non-effective) | Theorem B (note 72); the 18–99 S-unit-batch cases not covered by Theorem B' |
+| Subspace-Theorem power-saving S-unit gap     | Evertse–Schlickewei–Schmidt etc | upgrades to sublinear near-collision exclusion | Proposition D (note 73) only — the conductor-growth dichotomy |
 
 These are the inputs that would be replaced by **effective Pillai**
 (itself a consequence of ABC); see §5 below.
