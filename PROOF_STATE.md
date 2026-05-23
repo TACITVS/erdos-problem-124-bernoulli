@@ -159,6 +159,10 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | **Theorem 92.1 + Conjecture 92.2** | Multi-pair joint near-collision: failure forces $e_y \in \mathcal D_{xy} \cap \mathcal N_{yz}$; conjecturally empty | note 92 |
 | **Theorem 93.1 (combined closure)** | Charge γ + Theorem B'' close hypothesis-meeting $(A, k)$ with $|A| \ge 3$ and $\ge 3$ mult classes via combinatorial route, bypassing Lang | note 93 |
 | **CFIntersection.hs empirical** | 754 triples in $[3, 20]$ tested; **86–94% closed by Charge γ alone**; remaining have small candidates with gaps verified astronomical | note 92, 93 |
+| **Theorem 94.1 (ESS qualitative)** | Conjecture 92.2 (qualitative) is a consequence of ESS 2002 (proved) | note 94 |
+| **Theorem 94.2 (combined closure)** | Charge γ + ESS-finite exceptional set + per-case gap verification closes all hypothesis-meeting $(A, k)$ with $\ge 3$ mult classes | note 94 |
+| **Theorem 95.1 (complete closure chain)** | Three routes (Theorem A, Theorem B'', Theorem 94.2) cover every hypothesis-meeting $(A, k)$ | note 95 |
+| **Massive empirical at $[3, 100]$, depth 60** | 150,204 mult-indep triples; ALL 3 hypothesis-meeting |A|=3 triples close vacuously; "failures" only at non-h-m triples with $\sum 1/(d-1) < 0.23$ | note 95 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
