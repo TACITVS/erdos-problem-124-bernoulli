@@ -320,49 +320,83 @@ allTriplesInRange maxBase =
       multIndep x z
   ]
 
+-- | Reciprocal sum 1/(d-1).
+reciprocalSum :: Integer -> Rational
+reciprocalSum d = 1 / fromInteger (d - 1)
+
+-- | Is a triple hypothesis-meeting as a singleton |A| = 3 set?
+isHypothesisMeetingTriple :: Integer -> Integer -> Integer -> Bool
+isHypothesisMeetingTriple x y z =
+  reciprocalSum x + reciprocalSum y + reciprocalSum z >= 1
+
 testTriples :: [(Integer, Integer, Integer)]
-testTriples = allTriplesInRange 50
+testTriples = allTriplesInRange 100
 
 main :: IO ()
 main = do
   putStrLn "# CF Intersection analysis for Conjecture 92.2"
-  putStrLn "# Enumeration of all pairwise mult-indep triples in [3, 50] at depth 60"
+  putStrLn "# Enumeration of all pairwise mult-indep triples in [3, 100] at depth 60"
+  putStrLn "# (Hypothesis-meeting filter applied to focus on Erdos 124 scope)"
   putStrLn ""
-  let triples = testTriples
+  -- Filter to hypothesis-meeting triples first (the actual project scope).
+  let hmTriples = filter (\(x, y, z) -> isHypothesisMeetingTriple x y z) testTriples
+      nonHmTriples = length testTriples - length hmTriples
+      triples = testTriples
       totalTriples = length triples
+  putStrLn $ "Total pairwise mult-indep triples: " ++ show totalTriples
+  putStrLn $ "  -- hypothesis-meeting as |A|=3 set: " ++ show (length hmTriples)
+  putStrLn $ "  -- not hypothesis-meeting alone (could be in larger A): " ++ show nonHmTriples
+  putStrLn ""
 
   putStrLn $ "Total pairwise mult-indep triples: " ++ show totalTriples
   putStrLn ""
 
-  -- Run at three B* levels.
+  -- Run at three B* levels on TWO scopes: all mult-indep triples,
+  -- and only hypothesis-meeting triples.
   mapM_
     ( \bStar -> do
         putStrLn $ "## B* = " ++ show bStar
         let results = map (\(x, y, z) -> analyzeTripleSilent bStar x y z) triples
-            closedNoCands = filter (\r -> null (trCandidates r)) results
-            withCands = filter (\r -> not (null (trCandidates r))) results
-            -- For each "with candidates" triple, verify gaps exceed B*.
-            gapVerifiedAll = filter (\r -> verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r)) withCands
-            gapFailed = filter (\r -> not (verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r))) withCands
-            nClosedNoCands = length closedNoCands
-            nGapVerified = length gapVerifiedAll
-            nFailed = length gapFailed
-            totalClosed = nClosedNoCands + nGapVerified
-            pctClosedNoCands = fromIntegral nClosedNoCands / fromIntegral totalTriples * 100 :: Double
-            pctTotalClosed = fromIntegral totalClosed / fromIntegral totalTriples * 100 :: Double
-        putStrLn $ "  Triples with empty intersection: " ++ show nClosedNoCands ++ " / " ++ show totalTriples ++ " (" ++ show (round pctClosedNoCands :: Int) ++ "%)"
-        putStrLn $ "  Triples with candidates, ALL gaps verified > B*: " ++ show nGapVerified
-        putStrLn $ "  Triples with at least one gap <= B*: " ++ show nFailed
-        putStrLn $ "  TOTAL closed: " ++ show totalClosed ++ " / " ++ show totalTriples ++ " (" ++ show (round pctTotalClosed :: Int) ++ "%)"
-        when (nFailed > 0) $ do
-          putStrLn "  Triples with failed gap verification:"
+            -- All triples
+            allClosedNoCands = length $ filter (\r -> null (trCandidates r)) results
+            allGapVerified = length $ filter (\r -> not (null (trCandidates r)) && verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r)) results
+            allGapFailed = filter (\r -> not (null (trCandidates r)) && not (verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r))) results
+            -- Hypothesis-meeting triples only
+            hmResults = filter (\r -> isHypothesisMeetingTriple (trX r) (trY r) (trZ r)) results
+            hmClosedNoCands = length $ filter (\r -> null (trCandidates r)) hmResults
+            hmGapVerified = length $ filter (\r -> not (null (trCandidates r)) && verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r)) hmResults
+            hmGapFailed = filter (\r -> not (null (trCandidates r)) && not (verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r))) hmResults
+        putStrLn $ "  ALL triples (" ++ show totalTriples ++ "):"
+        putStrLn $ "    Empty intersection: " ++ show allClosedNoCands
+        putStrLn $ "    Gaps verified: " ++ show allGapVerified
+        putStrLn $ "    Gap failures: " ++ show (length allGapFailed)
+        putStrLn $ "    Total closed: " ++ show (allClosedNoCands + allGapVerified) ++ " / " ++ show totalTriples
+        when (not (null allGapFailed)) $ do
+          putStrLn "    Failing triples (first 20):"
           mapM_
             ( \r ->
                 putStrLn $
-                  "    (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
-                    ++ "): candidates " ++ show (trCandidates r)
+                  "      (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
+                    ++ ") candidates " ++ show (trCandidates r)
+                    ++ " | reciprocal sum = "
+                    ++ show (fromRational (reciprocalSum (trX r) + reciprocalSum (trY r) + reciprocalSum (trZ r)) :: Double)
             )
-            (take 20 gapFailed)
+            (take 20 allGapFailed)
+        let hmTotal = length hmResults
+        putStrLn $ "  HYPOTHESIS-MEETING triples only (" ++ show hmTotal ++ "):"
+        putStrLn $ "    Empty intersection: " ++ show hmClosedNoCands
+        putStrLn $ "    Gaps verified: " ++ show hmGapVerified
+        putStrLn $ "    Gap failures: " ++ show (length hmGapFailed)
+        putStrLn $ "    Total closed: " ++ show (hmClosedNoCands + hmGapVerified) ++ " / " ++ show hmTotal
+        when (not (null hmGapFailed)) $ do
+          putStrLn "    Failing HM triples:"
+          mapM_
+            ( \r ->
+                putStrLn $
+                  "      (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
+                    ++ ") candidates " ++ show (trCandidates r)
+            )
+            hmGapFailed
         putStrLn ""
     )
     [5835.0, 1e9, 1e15]
