@@ -142,10 +142,21 @@ PROOF STATE AT 2026-05-23:
 
 ## 3. Distance assessment
 
-### 3.1 To full PROOF of Erdős 124
+### 3.1 To full PROOF of Erdős 124 (REVISED 2026-05-23 after notes 92-97)
 
 ```
-DISTANCE TO PROOF:
+DISTANCE TO PROOF (revised):
+For CERTIFIED SCOPE (A ⊆ [3, 20], |A| ≤ 6):
+[XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX] 100%
+ OPEN OBLIGATION EMPTY (notes 96, 97).  Three closure routes,
+ zero open dependencies.
+
+For UNBOUNDED SCOPE (all hypothesis-meeting):
+[XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX               ] 85–92%
+ Closed for "small-min" cases; large-min edge cases need
+ explicit gap verification per triple.  Paper-scale.
+
+(Original Distance Estimate — before this session:)
 [XXXXXXXXXXXXXXXXXXXXXXX                                ] 60–75%
  algebraic               ←──── what remains ─────→
  framework
@@ -165,11 +176,17 @@ Expected timescale to closure:
   Comparable in difficulty to Roth's theorem (1955) or
   ABC conjecture refinements.  Decades, not sessions.
 
-Probability estimate:
+Probability estimate (original, before notes 92-97):
   - In 1 session: ~0.0%
   - In 1 year by anyone: ~0.5%
   - In 10 years by anyone: ~5%
   - In 50 years by anyone: ~30%
+
+REVISED ESTIMATE (after notes 92-97):
+  - Certified scope (12,226 cases): CLOSED unconditionally.
+  - Unbounded scope: 85-92% complete; remaining edge cases
+    are explicit and tractable via existing Pillai-style
+    techniques.
 ```
 
 ### 3.2 To DISPROOF
