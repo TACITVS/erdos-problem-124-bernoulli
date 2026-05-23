@@ -178,9 +178,10 @@ finite, verifiable hypothesis.
 ## 3. Theorem B', precise statement
 
 > **Theorem B' (effective MW form of Theorem B).**  Let $A, k, T^*,
-> F^*, c^*, B^*, x, y$ be as in §1.  Suppose (H1'), (H4'.SS), and
-> (H4').  Then every $N \ge c^* + 1$ is a subset sum of
-> $\{a^e : a \in A,\ e \ge k\}$.
+> F^*, c^*, B^*, x, y$ be as in §1.  Suppose (H1'), (H4'.SS), (H4'),
+> and (H5') conductor stability beyond $T^*$ (i.e., $c(F(E)) \le c^*$
+> for every balanced frontier $E$ with $T(E) \ge T^*$).  Then every
+> $N \ge c^* + 1$ is a subset sum of $\{a^e : a \in A,\ e \ge k\}$.
 >
 > *Effective form.*  Set $E^\dagger := \max(x, y)^{M_{\mathrm{MW}} + 1}$
 > with $M_{\mathrm{MW}}$ from §2.2.  For every $N$ in the cofinite ray
@@ -209,11 +210,29 @@ $m, n$ — the exponents of the frontier elements $E_x = x^m, E_y = y^n$
 participating in the failure — with
 $$|x^m - y^n| \;\le\; B_{xy}(E) \;=\; DK(E) \cdot (1/w_x + 1/w_y).$$
 
-The conductor $c(F)$ is **monotone non-increasing** under set inclusion:
-adding elements to $F$ cannot increase its largest missing value
-(note 36 §completeness lemma; this is the elementary direction of the
-subset-sum semigroup structure).  Since $F(E) \supseteq F^*$ for
-$T(E) \ge T^*$, we have $c(E) \le c^*$, hence
+To bound the right-hand side by $B^*$, we invoke **Theorem B's
+conductor-stability assumption**:
+
+> *(Conductor stability beyond $T^*$.)*  For every balanced frontier
+> $E$ with $T(E) \ge T^*$, $c(F(E)) \le c^*$.
+
+This is the same assumption implicit in Theorem B (note 72 §Theorem B
+proof, Step 4): the bound $B(L_0, U_0)$ used there is $B$ evaluated at
+the *initial* seed interval $[L_0, U_0] = [c^*+1, S^* - c^* - 1]$,
+which makes sense only under conductor stability.  Without it,
+$B(E)$ varies with $c(F(E))$ and the bound $\le B^*$ does not hold
+directly; the variable-$c$ regime is treated by Proposition D
+(note 73) instead.
+
+**Status of conductor stability.**  Conductor stability is not
+*proved* algebraically; it is the per-case empirical fact that
+underlies the Bounded Conductor Conjecture (note 66 / note 71) and
+is verified by bitscan for the four certified $(A, k)$ in §6 below.
+For Theorem B' to apply, conductor stability is therefore an
+*additional* per-case hypothesis (call it (H5')), checked by the
+same bitscan that produces $c^*$.
+
+Under conductor stability ((H5')): $c(F(E)) \le c^*$, hence
 $DK(E) \le DK(E^*)$ and $B_{xy}(E) \le B_{xy}(E^*) = B^*$.  Therefore
 $$|x^m - y^n| \;\le\; B^*. \quad\square$$
 
@@ -258,6 +277,42 @@ $F(E) \subseteq \{a^e : a \in A,\ e \ge k\}$.  $\square$
 \prod_i d_i$ in §3 follows directly: $E^\dagger = T^*$ from (H4'.SS),
 and for $N \ge T^*$ the representing $T(E)$ is bounded by
 $N \cdot \prod_i d_i$.  $\square$
+
+## 4.5 On the conductor-stability assumption (H5')
+
+(H5') asserts that the seed conductor $c(F(E))$ stays $\le c^*$ as
+the frontier $E$ advances beyond $T^*$.  This is the *Bounded
+Conductor Conjecture* of note 66 specialized to a fixed initial
+threshold $c^*$, i.e., a per-case bounded-conductor claim.
+
+(H5') is the substantive structural input that Theorem B (note 72)
+left implicit and that Theorem B' makes explicit.  Two observations:
+
+1. **(H5') is verifiable per case by bitscan.**  For each of the
+   four certified $(A, k)$ in §6, the bitscan in
+   `cpp/conductor_scan_v2.exe` extends beyond $T^*$ and checks that
+   $c(F(T)) \le c^*$ across the tail range.  Bounded conductor is
+   uniformly observed empirically for all 12,226+ certified cases
+   (notes 66, 71, 81).
+
+2. **(H5') is *not* derivable from (H1'), (H4'), or MW input alone.**
+   The near-collision reduction of note 27 §Consequence gives a
+   *conditional* implication: failure of (H5') implies a
+   near-collision.  Ruling out the near-collision via (H4') closes
+   the implication but cannot rule out (H5') failing for other
+   reasons.
+
+The honest reading: Theorem B' is **conditional on (H5')**, just as
+Theorem B is.  The per-case bitscan verifying (H5') is the substantive
+algebraic input.
+
+If conductor stability fails — i.e., $c(F(E))$ grows with $T$ for
+some $(A, k)$ — Theorem B' does not apply, and the analysis falls
+under Proposition D (note 73): then $c(F(E))$ is either bounded
+(contradicting our supposition) or grows essentially linearly in $T$
+(empirically not observed for any of the 12,226+ certified cases).
+The "uniformly bounded conductor" conjecture (note 66) asserts the
+former universally.
 
 ## 5. Where the qualitative S-unit input has gone
 
@@ -420,8 +475,16 @@ Theorem power-saving gap} (Theorem B's imports) to {Mignotte–Waldschmidt
 specific cases are now witnesses of one algebraic theorem.
 
 **Still open:** the global power-saving central conductor theorem
-(`GlobalProofAudit.hs`).  Theorem B' requires (H1') and (H4') per
-case; the uniform algebraic bound on $c(T)$ remains.
+(`GlobalProofAudit.hs`).  Theorem B' requires (H1'), (H4'.SS), (H4'),
+**and (H5')** per case; the uniform algebraic bounds on $c(T)$
+(driving both (H5') and the open obligation) remain.
+
+**Made explicit:**  Theorem B' surfaces the conductor-stability
+hypothesis (H5') that Theorem B (note 72) had left implicit.  This
+is the substantive structural input — verifiable per case by bitscan
+but not derivable from the algebraic theorems alone.  Recognizing
+(H5') as a hypothesis (rather than a consequence) is itself a
+correctness improvement.
 
 **Not addressed:** any case where the only multiplicatively-independent
 pair $(x, y)$ has (H4'.2.3) failing — i.e., where the CF window

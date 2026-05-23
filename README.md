@@ -24,7 +24,7 @@ via the `erdos124` C++23 library ([notes 80](notes/80_erdos124_library_and_dgs_d
 Each per-case certification verifies the hypotheses of one of the project's algebraic theorems:
 - **Theorem A** (strict CFH-reduction, [note 72](notes/72_algebraic_reduction_theorems.md)) — no analytic input.
 - **Theorem B** (qualitative S-unit reduction, [note 72](notes/72_algebraic_reduction_theorems.md)) — qualitative S-unit finiteness, non-effective $N_0$.
-- **Theorem B'** (effective MW form of Theorem B, [note 82](notes/82_theorem_b_prime_effective_mw.md), 2026-05-22) — replaces qualitative S-unit by Mignotte–Waldschmidt (LMN 1995 / Laurent 2008); effective $N_0$ for the four CF/MW cases.
+- **Theorem B'** (effective MW form of Theorem B, [note 82](notes/82_theorem_b_prime_effective_mw.md), 2026-05-22) — replaces qualitative S-unit by Mignotte–Waldschmidt (LMN 1995 / Laurent 2008); effective $N_0$ for the four CF/MW cases. Surfaces a per-case conductor-stability hypothesis (H5') that Theorem B had left implicit.
 - **Theorem C** (recursively-reducible bounded conductor, [note 73](notes/73_open_obligation_attack.md)) — for the recursive sub-class.
 - **Proposition D** (conductor-growth dichotomy, [note 73](notes/73_open_obligation_attack.md)) — modulo Subspace, $c$ is bounded or grows linearly.
 

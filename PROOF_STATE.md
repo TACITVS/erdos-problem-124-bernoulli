@@ -145,7 +145,7 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | CFH strict tail (specific instance)     | $\{3,4,5\}$ k=1                                             | note 26, CFHTail   |
 | Theorem A (algebraic CFH-strict reduction) | strict case, replaces 872 per-case CFH certificates       | note 72            |
 | Theorem B (algebraic qualitative S-unit reduction) | exact-critical, qualitative $N_0$                  | note 72            |
-| Theorem B' (effective MW form of Theorem B) | exact-critical with CF/MW (H4'), **effective** $N_0$       | note 82            |
+| Theorem B' (effective MW form of Theorem B) | exact-critical with CF/MW (H4') + conductor stability (H5'), **effective** $N_0$ | note 82 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
