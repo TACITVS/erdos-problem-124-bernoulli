@@ -241,7 +241,7 @@ analyzeTripleSilent :: Double -> Integer -> Integer -> Integer -> TripleResult
 analyzeTripleSilent bStar x y z =
   TripleResult x y z sharedInWindow
   where
-    depth = 60
+    depth = 80
     dxy = cfDenominators x y depth
     nyz = cfNumerators y z depth
     mLxy = legendreThreshold (fromInteger x) (fromInteger y) bStar
@@ -330,7 +330,7 @@ isHypothesisMeetingTriple x y z =
   reciprocalSum x + reciprocalSum y + reciprocalSum z >= 1
 
 testTriples :: [(Integer, Integer, Integer)]
-testTriples = allTriplesInRange 100
+testTriples = filter (\(x, _, _) -> x <= 10) (allTriplesInRange 200)
 
 main :: IO ()
 main = do
@@ -351,7 +351,7 @@ main = do
   putStrLn $ "Total pairwise mult-indep triples: " ++ show totalTriples
   putStrLn ""
 
-  -- Structural analysis: for each min value m, count triples and failures.
+  -- Structural analysis: for each min value m, count triples and PRINT failures.
   putStrLn "## Structural analysis: failures by min(x, y, z) value"
   mapM_
     ( \bStar -> do
@@ -363,9 +363,19 @@ main = do
                   failures = filter (\r -> not (null (trCandidates r)) && not (verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r))) results
                   nTriples = length triplesWithMin
                   nFailures = length failures
-              if nFailures > 0 || (m <= 20 && nTriples > 0)
-                then putStrLn $ "    min = " ++ show m ++ ": " ++ show nTriples ++ " triples, " ++ show nFailures ++ " failures"
-                else return ()
+              when (m <= 10 && nTriples > 0) $
+                putStrLn $ "    min = " ++ show m ++ ": " ++ show nTriples ++ " triples, " ++ show nFailures ++ " failures"
+              when (nFailures > 0 && m <= 10) $ do
+                mapM_
+                  ( \r -> do
+                      let gaps = candidateGapsLog10 (trX r) (trY r) (trZ r) (head (trCandidates r)) 80
+                      putStrLn $
+                        "      FAILURE: (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
+                          ++ ") cands " ++ show (trCandidates r)
+                          ++ " | log10gap1, log10gap2 = " ++ show gaps
+                          ++ " | log10 B* = " ++ show (log bStar / log 10)
+                  )
+                  failures
           )
           [3 .. 30]
     )
