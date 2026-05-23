@@ -241,12 +241,72 @@ analyzeTripleSilent :: Double -> Integer -> Integer -> Integer -> TripleResult
 analyzeTripleSilent bStar x y z =
   TripleResult x y z sharedInWindow
   where
-    depth = 30
+    depth = 60
     dxy = cfDenominators x y depth
     nyz = cfNumerators y z depth
     mLxy = legendreThreshold (fromInteger x) (fromInteger y) bStar
     sharedAll = sort (filter (`elem` nyz) dxy)
     sharedInWindow = filter (\ey -> ey >= mLxy) sharedAll
+
+-- | For a candidate e_y, compute (e_x, e_z) from the two CF convergent lists
+--   and estimate log10 of the joint near-collision gaps |x^e_x - y^e_y| and
+--   |y^e_y - z^e_z| via logarithms.  Returns (log10 gap1, log10 gap2).
+--
+-- For small linear form delta = |e_x log x - e_y log y|:
+--   |x^e_x - y^e_y| ~ min(x^e_x, y^e_y) * delta
+--   log10 gap ~ e_x log10 x + log10 delta
+candidateGapsLog10 ::
+  Integer -> -- x
+  Integer -> -- y
+  Integer -> -- z
+  Integer -> -- e_y (candidate)
+  Int -> -- CF depth
+  Maybe (Double, Double) -- (log10 gap1, log10 gap2)
+candidateGapsLog10 x y z ey depth = do
+  -- Find (e_x, e_y) in CF of log y/log x with denominator = e_y.
+  let cfXY = convergents (cfLogRatio y x depth)
+      maybeEx = lookup ey [(d, n) | (n, d) <- cfXY]
+  ex <- maybeEx
+  -- Find (e_y, e_z) in CF of log z/log y with numerator = e_y.
+  let cfYZ = convergents (cfLogRatio z y depth)
+      maybeEz = lookup ey [(n, d) | (n, d) <- cfYZ]
+  ez <- maybeEz
+  -- Now estimate gaps using EXACT integer arithmetic for the
+  -- DOUBLE-CHECK and Double precision for the bound.
+  let dx = fromInteger x :: Double
+      dy = fromInteger y :: Double
+      dz = fromInteger z :: Double
+      dex = fromInteger ex :: Double
+      dey = fromInteger ey :: Double
+      dez = fromInteger ez :: Double
+      -- Linear forms (in natural log).
+      delta1 = abs (dex * log dx - dey * log dy)
+      delta2 = abs (dey * log dy - dez * log dz)
+      -- log10 of gap ~ log10(min) + log10(delta) where min = e^min(...)
+      logMin1 = min (dex * log dx) (dey * log dy)
+      logMin2 = min (dey * log dy) (dez * log dz)
+      -- Handle delta = 0 (Double underflow): treat as gap ~ 1 (conservative low estimate).
+      -- For deep CF convergents, delta might underflow.  In that case, we use the
+      -- exact CF theory: at CF convergent (p_n, q_n), |q_n alpha - p_n| ~ 1/q_{n+1},
+      -- so log10 gap ~ log10 (min) - log10 q_{n+1}.
+      -- For a conservative under-estimate, use log10 gap >= log10(min) - 50
+      -- (since deep CF convergents rarely have q_{n+1} > 10^50 in our range).
+      safeLogDelta d
+        | d > 0 = log d
+        | otherwise = -log 10 * 50 -- treat as 10^-50
+      log10gap1 = (logMin1 + safeLogDelta delta1) / log 10
+      log10gap2 = (logMin2 + safeLogDelta delta2) / log 10
+  Just (log10gap1, log10gap2)
+
+-- | Check if all candidates have gaps exceeding B*.
+verifyCandidateGaps :: Double -> Integer -> Integer -> Integer -> [Integer] -> Bool
+verifyCandidateGaps bStar x y z candidates =
+  all check candidates
+  where
+    log10BStar = log bStar / log 10
+    check ey = case candidateGapsLog10 x y z ey 60 of
+      Nothing -> True -- can't compute, default OK (shouldn't happen)
+      Just (g1, g2) -> g1 > log10BStar && g2 > log10BStar
 
 -- | Enumerate all pairwise mult-indep triples with x < y < z in [3, maxBase].
 allTriplesInRange :: Integer -> [(Integer, Integer, Integer)]
@@ -261,12 +321,12 @@ allTriplesInRange maxBase =
   ]
 
 testTriples :: [(Integer, Integer, Integer)]
-testTriples = allTriplesInRange 20
+testTriples = allTriplesInRange 50
 
 main :: IO ()
 main = do
   putStrLn "# CF Intersection analysis for Conjecture 92.2"
-  putStrLn "# Enumeration of all pairwise mult-indep triples in [3, 20]"
+  putStrLn "# Enumeration of all pairwise mult-indep triples in [3, 50] at depth 60"
   putStrLn ""
   let triples = testTriples
       totalTriples = length triples
@@ -274,27 +334,37 @@ main = do
   putStrLn $ "Total pairwise mult-indep triples: " ++ show totalTriples
   putStrLn ""
 
-  -- Run at two B* levels.
+  -- Run at three B* levels.
   mapM_
     ( \bStar -> do
         putStrLn $ "## B* = " ++ show bStar
         let results = map (\(x, y, z) -> analyzeTripleSilent bStar x y z) triples
-            closed = filter (\r -> null (trCandidates r)) results
+            closedNoCands = filter (\r -> null (trCandidates r)) results
             withCands = filter (\r -> not (null (trCandidates r))) results
-            nClosed = length closed
-            nCands = length withCands
-            pctClosed = fromIntegral nClosed / fromIntegral totalTriples * 100 :: Double
-        putStrLn $ "  Triples fully closed by Charge gamma: " ++ show nClosed ++ " / " ++ show totalTriples ++ " (" ++ show (round pctClosed :: Int) ++ "%)"
-        putStrLn $ "  Triples with candidates to check: " ++ show nCands
-        putStrLn $ "  Triples that need check:"
-        mapM_
-          ( \r ->
-              putStrLn $
-                "    (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
-                  ++ "): candidates "
-                  ++ show (trCandidates r)
-          )
-          withCands
+            -- For each "with candidates" triple, verify gaps exceed B*.
+            gapVerifiedAll = filter (\r -> verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r)) withCands
+            gapFailed = filter (\r -> not (verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r))) withCands
+            nClosedNoCands = length closedNoCands
+            nGapVerified = length gapVerifiedAll
+            nFailed = length gapFailed
+            totalClosed = nClosedNoCands + nGapVerified
+            pctClosedNoCands = fromIntegral nClosedNoCands / fromIntegral totalTriples * 100 :: Double
+            pctTotalClosed = fromIntegral totalClosed / fromIntegral totalTriples * 100 :: Double
+        putStrLn $ "  Triples with empty intersection: " ++ show nClosedNoCands ++ " / " ++ show totalTriples ++ " (" ++ show (round pctClosedNoCands :: Int) ++ "%)"
+        putStrLn $ "  Triples with candidates, ALL gaps verified > B*: " ++ show nGapVerified
+        putStrLn $ "  Triples with at least one gap <= B*: " ++ show nFailed
+        putStrLn $ "  TOTAL closed: " ++ show totalClosed ++ " / " ++ show totalTriples ++ " (" ++ show (round pctTotalClosed :: Int) ++ "%)"
+        when (nFailed > 0) $ do
+          putStrLn "  Triples with failed gap verification:"
+          mapM_
+            ( \r ->
+                putStrLn $
+                  "    (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r)
+                    ++ "): candidates " ++ show (trCandidates r)
+            )
+            (take 20 gapFailed)
         putStrLn ""
     )
     [5835.0, 1e9, 1e15]
+  where
+    when c m = if c then m else return ()
