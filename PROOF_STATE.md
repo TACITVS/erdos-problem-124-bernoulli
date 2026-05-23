@@ -163,6 +163,8 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | **Theorem 94.2 (combined closure)** | Charge γ + ESS-finite exceptional set + per-case gap verification closes all hypothesis-meeting $(A, k)$ with $\ge 3$ mult classes | note 94 |
 | **Theorem 95.1 (complete closure chain)** | Three routes (Theorem A, Theorem B'', Theorem 94.2) cover every hypothesis-meeting $(A, k)$ | note 95 |
 | **Massive empirical at $[3, 100]$, depth 60** | 150,204 mult-indep triples; ALL 3 hypothesis-meeting |A|=3 triples close vacuously; "failures" only at non-h-m triples with $\sum 1/(d-1) < 0.23$ | note 95 |
+| **Theorem 96.1/96.2 (fully effective via MW)** | Charge γ's effective bound on joint exceptional set via per-pair MW threshold (no open problem dependency) | note 96 |
+| **Theorem 97.4 (uniform closure for certified scope)** | hypothesis-meeting $\|A\| \le 6$ ⇒ $\min(A) \le 7$ ⇒ small-min triple ⇒ Charge γ closes; **all 21,338 triples with $\min \le 7$ verified empirically** | note 97 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
