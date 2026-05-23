@@ -148,6 +148,8 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | Theorem B' (effective MW form of Theorem B) | exact-critical with CF/MW (H4') + conductor stability (H5'), **effective** $N_0$ | note 82 |
 | Proposition 83.1 (H5' from H1' + H4'.SS + H4') | conductor stability is derivable, not a separate hypothesis | note 83 |
 | Theorem B'' (= B' with H5' removed) | exact-critical with three hypotheses (H1'), (H4'.SS), (H4'); effective $N_0$ | note 83 §4 |
+| Lemma 84.1 (CF gap from PQ bound) | $|x^{p_n} - y^{q_n}| \ge x^{p_n}\log x/(4(K+1) q_n)$ under PQ bound $K$ | note 84 |
+| Proposition 84.1 (bounded PQ ⟹ (H4')) | (H4') automatic on shifted window $[M_L', M_{\mathrm{MW}})$; $M_L' - M_L = O(\log K)$ | note 84 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
@@ -197,6 +199,22 @@ partial reductions.
 The boss tree's Open nodes (`scaled-power-middle-interval`,
 `quotient-block-selection`, `strict-conductor`, `exact-conductor`,
 `erdos-124`) all flow from this single combinatorial obligation.
+
+**Refined reformulation (note 84, 2026-05-23):**  In the
+exact-critical case, the open obligation is equivalent (via the
+algebraic chain Theorem B'' + Proposition 83.1 + Proposition 84.1)
+to a *concrete Diophantine question*:
+
+> For every hypothesis-meeting $(A, k)$, does there exist a
+> multiplicatively independent pair $(x, y) \in A^2$ such that the
+> CF expansion of $\log y/\log x$ has partial quotients bounded by
+> some $K = K(B^*(A, k, x, y))$ in the window of interest?
+
+This is a special case of Lang's conjecture on irrationality measures
+of transcendental numbers ($\mu(\log y/\log x) = 2$ uniformly across
+mult-indep integer pairs).  It is open in transcendence theory but is
+a *concrete, well-studied question* in that field — sharper than the
+original "uniform conductor bound" formulation.
 
 ## 5. Conditional reductions
 
