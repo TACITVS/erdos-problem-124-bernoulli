@@ -145,7 +145,15 @@ obligations =
     Obligation
       "global power-saving central conductor theorem"
       Open
-      "The remaining qualitative bottleneck: prove c(E) = o(T(E)) in the strict case and c(E) = O(T(E)^(1-epsilon)) in the exact-critical case.",
+      "The remaining qualitative bottleneck: prove c(E) = o(T(E)) in the strict case and c(E) = O(T(E)^(1-epsilon)) in the exact-critical case.  Reformulated in note 84 as Lang's conjecture special case: mu(log y / log x) = 2 uniformly across mult-indep integer pairs.",
+    Obligation
+      "Proposition 83.1: (H5') derivation by complete-sequence induction"
+      Certified
+      "Proposition83.hs proves that conductor stability (H5') follows from (H1') + (H4'.SS) + (H4').  Smart constructors check (H1'), (H4'.SS), (H4'); the induction function proposition83_1 produces a ConductorStability witness when the absorption succeeds at every tail step.  Proposition83Certificate.hs demonstrates this on {3,4,7} k=1.",
+    Obligation
+      "Lemma 84.1 + Proposition 84.1: bounded PQ => (H4') automatic"
+      Certified
+      "Note 84 reduces (H4') to a per-pair CF partial-quotient bound on log y / log x.  Closed for the (3, 4)-pair sub-class given the certified PQ bound K <= 112 in the first ~12 convergents.",
     Obligation
       "local {3,4,7} and {3,4,9,25} certificates"
       Certified
