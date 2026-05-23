@@ -146,6 +146,8 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | Theorem A (algebraic CFH-strict reduction) | strict case, replaces 872 per-case CFH certificates       | note 72            |
 | Theorem B (algebraic qualitative S-unit reduction) | exact-critical, qualitative $N_0$                  | note 72            |
 | Theorem B' (effective MW form of Theorem B) | exact-critical with CF/MW (H4') + conductor stability (H5'), **effective** $N_0$ | note 82 |
+| Proposition 83.1 (H5' from H1' + H4'.SS + H4') | conductor stability is derivable, not a separate hypothesis | note 83 |
+| Theorem B'' (= B' with H5' removed) | exact-critical with three hypotheses (H1'), (H4'.SS), (H4'); effective $N_0$ | note 83 §4 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 

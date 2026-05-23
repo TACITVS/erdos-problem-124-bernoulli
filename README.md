@@ -25,6 +25,7 @@ Each per-case certification verifies the hypotheses of one of the project's alge
 - **Theorem A** (strict CFH-reduction, [note 72](notes/72_algebraic_reduction_theorems.md)) — no analytic input.
 - **Theorem B** (qualitative S-unit reduction, [note 72](notes/72_algebraic_reduction_theorems.md)) — qualitative S-unit finiteness, non-effective $N_0$.
 - **Theorem B'** (effective MW form of Theorem B, [note 82](notes/82_theorem_b_prime_effective_mw.md), 2026-05-22) — replaces qualitative S-unit by Mignotte–Waldschmidt (LMN 1995 / Laurent 2008); effective $N_0$ for the four CF/MW cases. Surfaces a per-case conductor-stability hypothesis (H5') that Theorem B had left implicit.
+- **Proposition 83.1 + Theorem B''** ([note 83](notes/83_h5_derivation_via_induction.md), 2026-05-23) — derives (H5') from (H1') + (H4'.SS) + (H4') by complete-sequence induction, so Theorem B'' has only three hypotheses (none of which is "conductor stays bounded"). Resolves the implicit assumption flagged in Theorem B' and retroactively closes the same gap in Theorem B (note 72).
 - **Theorem C** (recursively-reducible bounded conductor, [note 73](notes/73_open_obligation_attack.md)) — for the recursive sub-class.
 - **Proposition D** (conductor-growth dichotomy, [note 73](notes/73_open_obligation_attack.md)) — modulo Subspace, $c$ is bounded or grows linearly.
 

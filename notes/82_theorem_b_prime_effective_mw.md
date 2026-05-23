@@ -1,5 +1,13 @@
 # Theorem B' — effective MW replacement of qualitative S-unit
 
+> **Update (note 83, Phase B-16):** the conductor-stability hypothesis
+> (H5') below is no longer a separate hypothesis — it is **derivable**
+> from (H1') + (H4'.SS) + (H4') by complete-sequence induction.  The
+> cleaner statement of this theorem is **Theorem B''** in note 83.
+> This note (Phase B-15) is retained for the algebraic content of (H4')
+> and the LMN-effective near-collision exclusion; see note 83 §3-§4 for
+> the derivation that obviates (H5').
+
 Phase B-15: convert Theorem B (note 72, qualitative S-unit input) into
 **Theorem B'**, which uses the effective Mignotte–Waldschmidt /
 Laurent–Mignotte–Nesterenko lower bound as its only imported analytic
