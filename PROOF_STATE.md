@@ -150,6 +150,9 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | Theorem B'' (= B' with H5' removed) | exact-critical with three hypotheses (H1'), (H4'.SS), (H4'); effective $N_0$ | note 83 §4 |
 | Lemma 84.1 (CF gap from PQ bound) | $|x^{p_n} - y^{q_n}| \ge x^{p_n}\log x/(4(K+1) q_n)$ under PQ bound $K$ | note 84 |
 | Proposition 84.1 (bounded PQ ⟹ (H4')) | (H4') automatic on shifted window $[M_L', M_{\mathrm{MW}})$; $M_L' - M_L = O(\log K)$ | note 84 |
+| Proposition 84.2 (bounded $\mu$ ⟹ (H4')) | (H4') automatic on window $[M_L'', M_{\mathrm{MW}})$; $M_L'' - M_L = O((\mu_0-1)\log\log B^*)$ | note 86 |
+| Lemma 86.1 (CF gap from $\mu$) | $|x^{p_n} - y^{q_n}| \ge x^{p_n}\log x/(4 q_n^{\mu_0 - 1 + \epsilon})$ under $\mu \le \mu_0$ | note 86 |
+| Corollary 86.2 (uniform (H4') for (3,4) class) | (H4') reduces to bounded-window arithmetic check + Prop 84.2 | note 86 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
