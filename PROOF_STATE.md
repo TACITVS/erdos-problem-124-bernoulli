@@ -153,6 +153,8 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | Proposition 84.2 (bounded $\mu$ ⟹ (H4')) | (H4') automatic on window $[M_L'', M_{\mathrm{MW}})$; $M_L'' - M_L = O((\mu_0-1)\log\log B^*)$ | note 86 |
 | Lemma 86.1 (CF gap from $\mu$) | $|x^{p_n} - y^{q_n}| \ge x^{p_n}\log x/(4 q_n^{\mu_0 - 1 + \epsilon})$ under $\mu \le \mu_0$ | note 86 |
 | Corollary 86.2 (uniform (H4') for (3,4) class) | (H4') reduces to bounded-window arithmetic check + Prop 84.2 | note 86 |
+| Theorem 87.1 (combined closure via $\min(M_L', M_L'')$) | (H4') = intermediate CF check + tighter of Prop 84.1 / 84.2 | note 87 |
+| $\mathcal P_{23}$ pair class | all $(2^a, 3^b)$ pairs share $\mu_0 \le 5.117$ (Rhin 1987) | note 87 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 
