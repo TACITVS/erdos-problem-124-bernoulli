@@ -351,6 +351,30 @@ main = do
   putStrLn $ "Total pairwise mult-indep triples: " ++ show totalTriples
   putStrLn ""
 
+  -- Additional structural analysis: triples with min(x, y, z) <= 7.
+  putStrLn "## Structural analysis: triples with min(x, y, z) <= 7"
+  let smallMinTriples = filter (\(x, _, _) -> x <= 7) testTriples
+  putStrLn $ "Triples with min <= 7: " ++ show (length smallMinTriples)
+  mapM_
+    ( \bStar -> do
+        let results = map (\(x, y, z) -> analyzeTripleSilent bStar x y z) smallMinTriples
+            closedNoCands = length $ filter (\r -> null (trCandidates r)) results
+            gapVerified = length $ filter (\r -> not (null (trCandidates r)) && verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r)) results
+            gapFailed = filter (\r -> not (null (trCandidates r)) && not (verifyCandidateGaps bStar (trX r) (trY r) (trZ r) (trCandidates r))) results
+            total = length smallMinTriples
+        putStrLn $ "  At B* = " ++ show bStar ++ ":"
+        putStrLn $ "    Empty: " ++ show closedNoCands ++ ", verified: " ++ show gapVerified ++ ", failed: " ++ show (length gapFailed) ++ " / " ++ show total
+        when (not (null gapFailed)) $ do
+          putStrLn "    Failures with min <= 7:"
+          mapM_
+            ( \r ->
+                putStrLn $ "      (" ++ show (trX r) ++ ", " ++ show (trY r) ++ ", " ++ show (trZ r) ++ ") candidates " ++ show (trCandidates r)
+            )
+            (take 5 gapFailed)
+    )
+    [5835.0, 1e9, 1e15]
+  putStrLn ""
+
   -- Run at three B* levels on TWO scopes: all mult-indep triples,
   -- and only hypothesis-meeting triples.
   mapM_
