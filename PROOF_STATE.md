@@ -155,6 +155,7 @@ Haskell certificates and (where relevant) SymPy CAS verification:
 | Corollary 86.2 (uniform (H4') for (3,4) class) | (H4') reduces to bounded-window arithmetic check + Prop 84.2 | note 86 |
 | Theorem 87.1 (combined closure via $\min(M_L', M_L'')$) | (H4') = intermediate CF check + tighter of Prop 84.1 / 84.2 | note 87 |
 | $\mathcal P_{23}$ pair class | all $(2^a, 3^b)$ pairs share $\mu_0 \le 5.117$ (Rhin 1987) | note 87 |
+| **Audit of Theorems E, F (note 88)** | Theorem E is a max-gap bound (not conductor); Theorem F is **withdrawn** (proof gap + empirical refutation: $r(10) = 0$ in $\{3,4,5\}$ k=1) | note 88 |
 | Theorem C (recursively-reducible bounded conductor) | sub-class with modular reduction chain             | note 73            |
 | Proposition D (conductor-growth dichotomy) | modulo Subspace, $c$ bounded or linear in $T$               | note 73            |
 

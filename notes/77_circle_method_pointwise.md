@@ -1,5 +1,22 @@
 # Circle method + Theorem E for pointwise representability
 
+> **AUDIT BANNER (note 88, 2026-05-23):  THEOREM F IS WITHDRAWN.**
+>
+> Theorem F as stated in §5 is **false**.  The proof in §2 uses
+> Taylor expansion $\hat X_T(\xi) \approx 1$ outside its range of
+> validity (Taylor is valid only for $|\xi| \ll 1/T$, while the
+> proof picks $\delta \sim T^{-1/2}$, much larger).  Direct
+> numerical refutation: $r_T(10) = 0$ in $\{3,4,5\}$ k=1 for all
+> $T$, contradicting Theorem F's claim that $r_T(10) > 0$ for $T$
+> sufficiently large.
+>
+> A corrected version (note 88 §2.4) would require a uniform
+> Fourier-decay estimate $|\hat X_T(\xi)|^2 \le C'/T$ on the minor
+> arc — a sharper hypothesis than BC L², currently open.
+>
+> The discussion below is retained as a historical record of the
+> attempted approach; it should NOT be cited as a closed reduction.
+
 Building on note 76, this note attempts the Hardy-Littlewood circle
 method to bridge from the L² collision bound to **pointwise**
 representability $r(n) > 0$, not just max-gap bounds.

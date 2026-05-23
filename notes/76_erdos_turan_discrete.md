@@ -1,5 +1,14 @@
 # Effective discrete Erdős–Turán for the conductor
 
+> **AUDIT BANNER (note 88, 2026-05-23):**  The notation $c(T)$ in
+> §2–4 below denotes **max gap** (longest run of consecutive missing
+> values), NOT conductor (largest missing value).  Note 76 §0
+> acknowledges this distinction explicitly, but §2–4 use $c$
+> ambiguously.  Read $c(T)$ in §2–4 as $g(T)$ = max gap.  Theorem E
+> as a *max-gap* bound is correct; as a conductor bound it is
+> misstated.  The conductor open obligation is NOT closed by
+> Theorem E even under BC L².  See note 88 §1 for details.
+
 Phase B-9: attempt the integer-discrete Erdős–Turán framework for
 bounding the conductor.  This is the most specifically targeted attack
 on the open obligation that hasn't been ruled out by the prior negative
