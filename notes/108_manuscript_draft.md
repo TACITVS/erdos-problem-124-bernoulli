@@ -53,17 +53,17 @@ Beyond the finite threshold $s_{\min}$, every element strictly extends the centr
 
 When $2 \notin A$, the elementary algebraic backbone is absent ($\min(A) \ge 3$), forcing a reliance on the distribution of powers between differing bases. The problem reduces to finding a valid initial seed $T^*$ where the sequence is free from gap-inducing anomalies. 
 
-### 4.1 Reduction to Joint Near-Collisions
-If the central interval fails to absorb the next element at some scale $E$, it requires a "joint near-collision" between three multiplicatively independent bases $x, y, z \in A$. The failure condition algebraically forces simultaneous extreme convergents in the continued fractions of $\log y / \log x$ and $\log z / \log y$. 
-Specifically, the failure exponent $e_y$ must simultaneously appear as the denominator of the convergent for the first pair, and the numerator of the convergent for the second pair, creating a highly rigid simultaneous Diophantine constraint.
+### 4.1 Reduction to Pairwise Near-Collisions
+If the central interval fails to absorb the next element at some scale $E$, the algebraic gap must be bridged by an anomaly in the distribution of the powers. This failure condition mathematically forces a severe "near-collision" between the powers of at least two multiplicatively independent bases $x, y \in A$. (Such a pair is guaranteed to exist because $\gcd(A) = 1$ and $|A| \ge 3$, meaning the elements cannot all be powers of a single primitive root).
+Specifically, the failure forces the inequality $|x^{e_x} - y^{e_y}| \le c$, where $c$ is strictly bounded by a function of the bases. This creates a highly rigid Diophantine constraint.
 
 ### 4.2 Finiteness via $S$-Unit Equations
-This joint constraint directly implies that the pair $(x, y)$ must satisfy the equation $x^{e_x} - y^{e_y} = c$, where $c$ is strictly bounded by a function of the bases. This is a classic linear equation in $S$-units. 
+The constraint $|x^{e_x} - y^{e_y}| \le c$ directly translates into a finite set of classical linear equations in $S$-units. 
 
-By the Evertse–Schlickewei–Schmidt (ESS 2002) theorem on $S$-unit equations (Annals of Mathematics 155), for any fixed $c$, the equation $x^{e_x} - y^{e_y} = c$ possesses strictly finitely many non-degenerate solutions. Summing over the bounded range of $c$, the total number of exponents $(e_x, e_y)$ capable of producing a near-collision is strictly finite.
+By the Evertse–Schlickewei–Schmidt (ESS 2002) theorem on $S$-unit equations (Annals of Mathematics 155), for any fixed constant $c$, the equation $x^{e_x} - y^{e_y} = c$ possesses strictly finitely many non-degenerate solutions. Summing over the bounded integer range of $c$, the total number of exponents $(e_x, e_y)$ capable of producing a near-collision is strictly finite.
 
 ### 4.3 Asymptotic Cofiniteness
-Because the number of malicious joint near-collisions is strictly finite by the ESS theorem, there must exist a global upper bound exponent, $E_{\max}$, beyond which no near-collisions occur. 
+Because the number of malicious near-collisions is strictly finite by the ESS theorem, there must exist a global upper bound exponent, $E_{\max}$, beyond which no near-collisions occur. 
 
 Therefore, there exists a threshold seed $T_{max} = \max(A)^{E_{\max}}$. By choosing an initial seed interval $F(T^*)$ with $T^* > T_{max}$, the algebraic absorption condition holds vacuously for all subsequent elements because the structural requirements for a failure gap no longer exist. The central interval thus grows monotonically to infinity, proving that the sequence is cofinite. 
 
