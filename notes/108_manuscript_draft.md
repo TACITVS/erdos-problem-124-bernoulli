@@ -93,32 +93,30 @@ For exact-critical sets, the threshold $T_C$ diverges.
 
 *Proof.* If central absorption fails, then $t > \sigma - 2C + 1$, so $\sigma - t < 2C - 1$. Substituting the mass equality $\sigma - t = \sum_{a \in A} \frac{E_a - t}{a-1} - C_0(A,k)$, we derive:
 $$\sum_{a \in A} \frac{E_a - t}{a-1} < 2C - 1 + C_0(A,k)$$
-Thus each next power $E_a$ must satisfy $0 \le E_a - t < (a-1)(2C - 1 + C_0(A,k))$. $\square$
-
-**Theorem E (Critical Diophantine Closure).** For specific critical sets, Baker-type lower bounds plus finite checking can eliminate all post-seed failures.
+Thus each next power $E_a$ must satisfy $0 \le E_a - t < (a-1)(2C - 1 + C_0(A,k))$. $\square**Theorem 5.2 (Fixed-Radius Critical Closure Theorem).** *Let $B$ be a critical base set with $R(B)=1$. Suppose a finite prefix $F$ has central radius $C$. Define the exact bad-cluster function:*
+$$G_B(t) = \sum_{b \in B} \frac{\Pi_b(t) - t}{b-1}$$
+*where $\Pi_b(t) = \min \{b^e : b^e \ge t, e \ge 1\}$. If $G_B(t) \ge 2C - 1 + C_0(B,1)$ for every future channel power $t$, then $\mathcal{P}_B(1)$ is cofinite.*
 
 **Example: The Four Critical Equality Cores over $\{3,4\}$**
-The strict classification in Theorem 4.1 leaves exactly four critical equality cores ($R=1$) over $\{3,4\}$. Their failures can be parameterized precisely. Let $\Pi_b(t) = \min \{b^e : b^e \ge t, e \ge 1\}$, and define the bad-cluster function:
-$$G_B(t) = \sum_{b \in B} \frac{\Pi_b(t) - t}{b-1}$$
+The strict classification in Theorem 4.1 leaves exactly four critical equality cores ($R=1$) over $\{3,4\}$. For these four cores, $C_0(B,1) = 5$, so the safety condition is simply $G_B(t) \ge 2C + 4$.
 
-For $R(B)=1$, $C_0(B,1) = \sum \frac{b}{b-1} = R(B) + 4 = 5$. By Theorem D, any post-seed failure strictly forces $G_B(t) < 2C - 1 + 5 = 2C + 4$. 
+For all four critical equality cores, exact subset-sum computations verify the existence of a central seed. A 100,000-step algorithmic tail simulation confirms that the central interval survives, with the weakest tail events occurring extremely early, after which the slack grows:
 
-For all four critical equality cores, exact subset-sum computations verify the existence of a central seed, and a 100,000-step algorithmic tail simulation confirms that the central interval survives, with the weakest tail events occurring extremely early:
+| Critical core $B$ | Seed cutoff | $\sigma$ at seed | $C$ | Weakest tail event | $G_B(t)$ there | Required $K_B$ | Min slack |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| $\{3,4,8,43\}$ | $243$ | $562$ | $70$ | $t=256$ | $311$ | $144$ | $167$ |
+| $\{3,4,9,25\}$ | $729$ | $2901$ | $659$ | $t=2187$ | $1743$ | $1322$ | $421$ |
+| $\{3,4,10,19\}$ | $729$ | $1922$ | $252$ | $t=1000$ | $927$ | $508$ | $419$ |
+| $\{3,4,11,16\}$ | $256$ | $1107$ | $70$ | $t=729$ | $383$ | $144$ | $239$ |
 
-| Critical core $B$ | Seed cutoff | $\sigma$ at seed | $C$ | Required $G_B(t) \ge$ | Min slack | Weakest tail event |
-| :--- | ---: | ---: | ---: | ---: | ---: | :--- |
-| $\{3,4,8,43\}$ | $243$ | $562$ | $70$ | $144$ | $167$ | first append ($t=256$) |
-| $\{3,4,9,25\}$ | $729$ | $2901$ | $659$ | $1322$ | $421$ | second append ($t=2187$) |
-| $\{3,4,10,19\}$ | $729$ | $1922$ | $252$ | $508$ | $419$ | first append ($t=1000$) |
-| $\{3,4,11,16\}$ | $256$ | $1107$ | $70$ | $144$ | $239$ | first append ($t=729$) |
+If a failure were to occur at some future power $t$, it would force an explicit, bounded exponential cluster $0 \le \Pi_b(t) - t < (b-1)K_B$ across all bases simultaneously. This reduces the remaining frontier to four explicit Pillai/Baker-style finite-exception problems:
 
-If a failure were to occur, it would force an explicit, bounded exponential cluster. For example, for $B = \{3,4,8,43\}$ with $C = 70$, failure requires $G_B(t) < 144$, which independently bounds all exponential differences:
-- $0 \le \Pi_3(t) - t < 288$
-- $0 \le \Pi_4(t) - t < 432$
-- $0 \le \Pi_8(t) - t < 1008$
-- $0 \le \Pi_{43}(t) - t < 6048$
+*   **Core $\{3,4,8,43\}$, $K_B = 144$**: Failure requires $0 \le \Pi_3(t) - t < 288$, $0 \le \Pi_4(t) - t < 432$, $0 \le \Pi_8(t) - t < 1008$, and $0 \le \Pi_{43}(t) - t < 6048$.
+*   **Core $\{3,4,9,25\}$, $K_B = 1322$**: Failure requires $0 \le \Pi_3(t) - t < 2644$, $0 \le \Pi_4(t) - t < 3966$, $0 \le \Pi_9(t) - t < 10576$, and $0 \le \Pi_{25}(t) - t < 31728$.
+*   **Core $\{3,4,10,19\}$, $K_B = 508$**: Failure requires $0 \le \Pi_3(t) - t < 1016$, $0 \le \Pi_4(t) - t < 1524$, $0 \le \Pi_{10}(t) - t < 4572$, and $0 \le \Pi_{19}(t) - t < 9144$.
+*   **Core $\{3,4,11,16\}$, $K_B = 144$**: Failure requires $0 \le \Pi_3(t) - t < 288$, $0 \le \Pi_4(t) - t < 432$, $0 \le \Pi_{11}(t) - t < 1440$, and $0 \le \Pi_{16}(t) - t < 2160$.
 
-This converts the remaining open cases from combinatorial subset-sum problems into four exact Pillai/Baker-style Diophantine bounding equations, perfectly suited for effective lower bounds in linear forms of logarithms \cite{BEGL}.
+This converts the remaining open cases from combinatorial subset-sum problems into four exact Diophantine bounding equations, perfectly suited for effective lower bounds in linear forms of logarithms \cite{BEGL}.
 
 ## 6. Conclusion: The Central Seed Problem
 
