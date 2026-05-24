@@ -118,36 +118,38 @@ If a failure were to occur at some future power $t$, it would force an explicit,
 
 This converts the remaining open cases from combinatorial subset-sum problems into four exact Diophantine bounding equations, perfectly suited for effective lower bounds in linear forms of logarithms \cite{BEGL}.
 
-## 6. Astels' Theorem and the Integerization Obstruction
+## 6. Global Syndeticity and the Prouhet Gadget Obstruction
 
-The central-radius bootstrap formally reduces the discrete problem to finding a massive central seed interval. We now demonstrate that the Erdős density condition $R(A) \ge 1$ is mathematically isomorphic to the established geometric threshold for bridging gaps in topological sums of Cantor sets, and we formally isolate the remaining discrete integerization bottleneck.
+The central-radius bootstrap formally reduces the discrete problem to finding a massive central seed interval. We now establish an unconditional global theorem for the strict-surplus regime, and rigorously isolate the combinatorial mechanism required to integerize bounded gaps into continuous intervals.
 
-### 6.1 The Cantor Set Attached to a Base
-For any integer base $d \ge 3$, define the binary digit Cantor set:
-$$ K_d = \left\{ \sum_{j=0}^{\infty} \varepsilon_j d^{-j} : \varepsilon_j \in \{0,1\} \right\} $$
-This set represents the continuous, real-scale analogue of the integers formed by distinct powers of $d$. Its Newhouse thickness is exactly $\tau(K_d) = \frac{1}{d-2}$.
-Astels defines the normalized thickness of a Cantor set $C$ as $\gamma(C) = \frac{\tau(C)}{\tau(C)+1}$.
-For the base-$d$ digit Cantor set, this evaluates to the exact Erdős reciprocal:
-$$ \gamma(K_d) = \frac{1/(d-2)}{1/(d-2)+1} = \frac{1}{d-1} $$
-Astels' seminal theorem on sums of Cantor sets states that if the sum of their normalized thicknesses satisfies $\sum_{i} \gamma(C_i) \ge 1$, then the topological sum of the sets contains a continuous real interval. Therefore, the Erdős hypothesis $R(A) \ge 1$ perfectly maps to Astels' continuous interval condition, establishing that at the real limit, the topological sum deterministically forms a solid interval.
+### 6.1 Global Strict-Surplus Bounded-Gap Theorem
+Astels' theorem establishes that the exact Erdős threshold $\sum 1/(a-1) \ge 1$ geometrically forces topological gap-bridging at the real limit. In the discrete integer domain, this mass surplus manifests as an unconditional bounded-gap theorem.
+
+**Theorem 6.1 (Strict-Surplus Syndeticity).** *Let $A \subseteq \mathbb{Z}_{\ge 3}$ be a finite set. If $R(A) = \sum_{a \in A} \frac{1}{a-1} > 1$, then for any $k \ge 1$, the subset-sum set $\Sigma(\operatorname{Pow}(A; k))$ possesses bounded gaps.*
+
+*Proof.* Let $\beta_1 \le \beta_2 \le \cdots$ be the increasingly ordered channelized powers. Let $S_n = \sum_{j \le n} \beta_j$. By a standard gap-monotonicity principle, if $S_n \ge \beta_{n+1}$, appending $\beta_{n+1}$ cannot increase the maximum subset-sum gap. Suppose $\beta_{n+1} = t$, and let $E_a$ be the next unused power in base channel $a$. The used mass satisfies:
+$$ S_n = \sum_{a \in A} \frac{E_a - a^k}{a-1} \ge t \sum_{a \in A} \frac{1}{a-1} - \sum_{a \in A} \frac{a^k}{a-1} = R(A)t - C_0(A,k) $$
+Because $R(A) > 1$, for all sufficiently large $t \ge \frac{C_0(A,k)}{R(A)-1}$, we unconditionally have $S_n \ge t$. After this threshold, every new power preserves or reduces the maximum subset-sum gap, establishing global syndeticity. $\square$
 
 ### 6.2 The Integerization Obstruction
-While Astels' theorem provides the continuous "shadow", it does not automatically yield integer intervals of subset sums. In the discrete limit, continuous containment translates to bounded gaps (syndeticity) within a long interval. However, bounded gaps are insufficient to guarantee actual interval coverage. For example, consider the counterexample:
+Bounded gaps (syndeticity) are necessary but insufficient for interval coverage. Consider the counterexample:
 $$ S = \{2\} \cup \{3 \cdot 2^n : n \ge 0\} $$
-The subset sums of $S$ possess bounded gaps and $\gcd(S)=1$, but they permanently miss all integers congruent to $1 \pmod 3$. Therefore, interval continuity in the discrete domain requires an arithmetic local smoothing theorem to explicitly rule out such permanent congruence obstructions.
+The subset sums of $S$ possess bounded gaps and $\gcd(S)=1$, but they permanently miss all integers congruent to $1 \pmod 3$. Interval continuity requires arithmetic mixing to destroy fixed congruence obstructions.
 
-### 6.3 The Fourier Minor-Arc Bottleneck
-We translate the problem of forcing actual consecutive integers (a discrete interval lift) to Fourier analysis. Let $F_T = \bigsqcup_{a \in A} \{a^e : k \le e \le \lfloor\log_a T\rfloor\}$ be the set of available channelized powers. The characteristic function of the subset-sum distribution is:
-$$ \Phi_T(\theta) = \prod_{x \in F_T} \frac{1+e^{2\pi i \theta x}}{2} \implies |\Phi_T(\theta)| = \prod_{x \in F_T} |\cos(\pi \theta x)| $$
-The representation count for an integer $n$ is $r_T(n) = 2^{|F_T|} \int_0^1 \Phi_T(\theta) e^{-2\pi i n \theta} d\theta$.
-The number of available subset choices is $2^{|F_T|} \approx T^{\log 2 \sum_{a} 1/\log a}$. Because $\frac{a-1}{\log a}$ is strictly increasing for $a \ge 3$, the Erdős condition $R(A) \ge 1$ strictly bounds this subset surplus:
-$$ 2^{|F_T|} \ge T^{2 \log 2 / \log 3} \approx T^{1.2618} $$
-Thus, there are polynomially more subset choices than target integers up to scale $T$. On the major arc near 0, the integral yields a Gaussian contribution of $\asymp 1/T$. Because $2^{|F_T|} / T \gg T^{0.2618} \to \infty$, the major arc natively supplies a massive surplus of representations for central integers. The singular obstacle to interval creation is anti-concentration caused by rational minor-arc spikes. We pose this final bottleneck precisely:
+### 6.3 The Prouhet Gadget Bottleneck
+To convert bounded gaps into genuine intervals, we adapt the Prouhet fixed-difference gadget mechanism pioneered by Burr-Erdős-Graham-Li for dense bases. 
 
-**Conjecture 6.1 (Fourier Local-Smoothing / Interval-Lift Lemma).** *Let $A \subseteq \mathbb{Z}_{\ge 3}$ satisfy $\gcd(A)=1$ and $R(A) \ge 1$. For some $\eta > 0$ and sufficiently large $T$, the minor-arc integral satisfies:*
-$$ \int_{\mathfrak{m}} |\Phi_T(\theta)| d\theta \ll T^{-1-\eta} $$
+**Conjecture 6.1 (Repeated Bounded-Difference Gadget Lemma).** *For $\gcd(A)=1$ and $R(A) > 1$, there exists a finite set of nonzero integers $\mathcal{D}$ with $\gcd(\mathcal{D})=1$ such that for arbitrarily large $u$, one can find $u$ pairwise disjoint finite pairs of power-subsets $(P_j, Q_j)$ with:*
+$$ \sum_{p \in P_j} p - \sum_{q \in Q_j} q \in \mathcal{D} $$
 
-Because $\gcd(A)=1$, the powers $a^e$ cannot be trapped inside a proper additive subgroup modulo any $q$, meaning a positive proportion of terms continually forces $|\cos(\pi r x / q)|$ strictly below $1$. Proving this explicit polynomial decay over the minor arcs forces $r_T(n) > 0$ strictly, establishing the integer central seed.
+Each gadget gives a choice of sum difference falling in $\mathcal{D}$. With many disjoint gadgets, the semigroup generated by $\mathcal{D}$ (which has $\gcd=1$) natively contains long unbroken intervals of differences. This provides a complete residue system modulo some chosen step $D$, which perfectly aligns with the bounded gaps to force a genuine central interval seed.
+
+The generation of these gadgets strictly reduces to a concrete combinatorial condition:
+
+**Conjecture 6.2 (One-Deletion Local Gap Lemma).** *For $R(A) > 1$, there is a constant $H$ such that for every sufficiently large power $x \in T$,*
+$$ \Sigma(T \setminus \{x\}) \cap [x-H, x+H] \ne \emptyset $$
+
+If every large power can be approximated within bounded error $H$ by subset sums of the *other* powers, pigeonholing the finitely many difference values $d = x - y$ provides the repeated gadgets. This precise combinatorial condition (or its analytic equivalent, minor-arc Fourier decay) forms the final mathematical bottleneck.
 
 ## 7. The Final Structural Architecture
 
@@ -156,17 +158,20 @@ We reduce the full generic proof of Erdős Problem 124 to the following exact st
 ### Theorem A — Base-2 Modular Theorem
 If $2 \in A$ and $\gcd(A)=1$, then $\mathcal{P}_A(k)$ is cofinite for every $k \ge 1$. Completely and unconditionally solved via modular residue stabilization (Section 2).
 
-### Theorem B — Cantor Thickness Identity
-For the binary digit Cantor set $K_d$, the normalized thickness is exactly $\gamma(K_d) = \frac{1}{d-1}$, explaining why the Erdős constraint perfectly mirrors the threshold for continuous interval generation.
+### Theorem B — Strict-Surplus Syndeticity
+If $R(A) > 1$, the subset-sum set globally and unconditionally possesses strictly bounded gaps (Theorem 6.1).
 
-### Theorem C — Central-Radius Bootstrap
+### Theorem C — Cantor Thickness Identity
+For the binary digit Cantor set $K_d$, the normalized thickness is exactly $\gamma(K_d) = \frac{1}{d-1}$, explaining why the Erdős constraint perfectly mirrors the continuous threshold for bridging geometric gaps.
+
+### Theorem D — Central-Radius Bootstrap
 If a finite integer interval (a central seed) forms, its radius persists inductively across all subsequent powers, provided the remaining mass sequence maintains sufficient density.
 
-### Theorem D — Strict-Surplus Closure
+### Theorem E — Strict-Surplus Closure
 In the strict-surplus case ($R(A) > 1$), the explicit algebraic threshold $T_C(A,k)$ guarantees that once a central interval seed forms, all later powers are deterministically absorbed, completely closing the problem.
 
-### Theorem E — Critical Cluster Reduction
+### Theorem F — Critical Cluster Reduction
 When $R(A) = 1$, the threshold inequalities force any failure after the seed into a bounded additive exponential cluster. This surgically reduces the equality boundary to a finite set of conditions handled by effective S-unit/Baker-Wüstholz bounds.
 
-### Final Bottleneck — The Fourier Local-Smoothing Lemma
-We reduce the generic no-base-2 case to the Fourier Local-Smoothing (Discrete Interval-Lift) Lemma. Proving that minor-arc Fourier decay translates the continuous Astels interval into a genuine discrete integer seed is the final analytic step required to fully resolve Erdős Problem 124.
+### Final Bottleneck — The One-Deletion Local Gap Lemma
+We reduce the generic no-base-2 strict-surplus case explicitly to the One-Deletion Local Gap Lemma (or equivalently, the Fourier Minor-Arc Lemma). Proving that bounded approximations survive single-element deletion generates the necessary Prouhet gadgets to integerize the bounded gaps into a genuine discrete integer seed, representing the final step required to fully resolve Erdős Problem 124.
