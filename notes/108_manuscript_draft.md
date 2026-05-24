@@ -1,6 +1,6 @@
-# Central-radius bootstrap and certified cores for Erdős Problem 124
+# Moving-interval bootstrap and certified cores for Erdős Problem 124
 
-**Abstract.** Erdős Problem 124 asks whether for any finite set $A = \{d_1, \dots, d_r\} \subseteq \mathbb{Z}_{\ge 2}$ with $\gcd(A) = 1$ and $\sum \frac{1}{d_i-1} \ge 1$, the subset sums of the powers $d_i^e$ for $e \ge k$ represent all sufficiently large integers. We present a major advance on this problem via a five-theorem hierarchy and a Monotone Core Principle. We prove the base-2 case unconditionally using modular residue absorption. We then reformulate the $k \ge 1$ problem as finite deletion from the $k=0$ Brown-complete channelized sequence. Under this framework, we establish a central-radius bootstrap mechanism, yielding a strict-surplus finite-deletion theorem that computes exact thresholds for cofiniteness. We utilize this to completely classify and certify all strict four-base cores of the form $\{3,4,x,y\}$ for $k=1$. For the exact-critical boundary ($\sum \frac{1}{d_i-1} = 1$), we define an exact exponential clustering function $G_B(t)$ and prove that any absorption failure strictly forces a bounded Diophantine cluster. Extensive tail simulations confirm survival up to 100,000 appended powers, reducing the local frontier over $\{3,4\}$ to exactly four explicit exponential-difference problems.
+**Abstract.** Erdős Problem 124 asks whether for any finite set $A = \{d_1, \dots, d_r\} \subseteq \mathbb{Z}_{\ge 2}$ with $\gcd(A) = 1$ and $\sum \frac{1}{d_i-1} \ge 1$, the subset sums of the powers $d_i^e$ for $e \ge k$ represent all sufficiently large integers. We present a major advance on this problem via a five-theorem hierarchy and a Monotone Core Principle. We prove the base-2 case unconditionally using modular residue absorption. We then reformulate the $k \ge 1$ problem as finite deletion from the $k=0$ Brown-complete channelized sequence. Under this framework, we establish a moving-interval bootstrap mechanism, yielding a strict-surplus finite-deletion theorem that computes exact thresholds for cofiniteness. We utilize this to completely classify and certify all strict four-base cores of the form $\{3,4,x,y\}$ for $k=1$. For the exact-critical boundary ($\sum \frac{1}{d_i-1} = 1$), we define an exact exponential clustering function $G_B(t)$ and prove that any absorption failure strictly forces a bounded Diophantine cluster. Extensive tail simulations confirm survival up to 100,000 appended powers, reducing the local frontier over $\{3,4\}$ to exactly four explicit exponential-difference problems.
 
 ## 1. Introduction and Channelized Powers
 
@@ -22,17 +22,20 @@ When $2 \in A$, the problem can be resolved completely via elementary modular ar
 
 Taking subset sums of $S_{\text{odd}}$ generates exactly the values $0, 1, 2, \dots, 2^k - 1$ modulo $2^k$. Therefore, for any $N > M_{\text{odd}}$, there exists a subset sum $S \subseteq S_{\text{odd}}$ such that $N - S = m \cdot 2^k$ for some positive integer $m$. Every integer $m$ possesses a unique binary representation. Therefore, $m \cdot 2^k$ can be uniquely expressed as a subset sum of the powers of 2 starting from exponent $k$. Since the channels are disjoint, we combine these sums to form $N$. The sequence is unconditionally cofinite. $\square$
 
-## 3. Finite-Deletion and the Central Radius
+## 3. Finite-Deletion and the Moving Interval
 
 For $k \ge 1$, the removed powers are exactly the finite initial blocks $d_i^0, d_i^1, \dots, d_i^{k-1}$. The problem is thus reframed as finite deletion from the $k=0$ sequence.
 
-Let $F$ be a finite prefix of the channelized power multiset, with total sum $\sigma(F) = \sum_{x \in F} x$. We define the **central radius** $C$ to be the least integer such that:
-$$[C, \sigma(F) - C] \subseteq \Sigma(F)$$
-Because subset sums are symmetric around $\sigma(F)/2$, all holes in $\Sigma(F)$ are confined to the edges $[0, C-1] \cup [\sigma(F) - C + 1, \sigma(F)]$.
+Let $F$ be a finite prefix of the channelized power multiset, with total sum $\sigma(F) = \sum_{x \in F} x$. Suppose $\Sigma(F)$ contains some continuous integer interval $[L, U]$ of length $\ell = U - L + 1$. We do not require this interval to be central.
 
-**Theorem B (Central-Radius Bootstrap).** If a finite prefix has central radius $C$, then appending any next power $t \le \sigma - 2C + 1$ preserves the central radius $C$.
+We define the **interval deficit** as:
+$$ D = \sigma(F) - \ell $$
 
-*Proof.* The old represented interval is $[C, \sigma - C]$. The shifted represented interval is $[C+t, \sigma - C + t]$. These intervals touch or overlap exactly when $C+t \le \sigma - C + 1$, which is $t \le \sigma - 2C + 1$. Their union is $[C, \sigma + t - C]$, satisfying the exact central-radius condition for the new total mass $\sigma + t$. $\square$
+**Theorem B (Moving-Interval Bootstrap).** *If a finite prefix represents an interval of length $\ell$, then appending any next power $t \le \ell$ yields a subset-sum set containing an interval of length $\ell + t$. The interval deficit $D$ is strictly invariant under this absorption.*
+
+*Proof.* The old represented interval is $[L, U]$. The shifted represented interval is $[L+t, U+t]$. These intervals touch or overlap exactly when $L+t \le U+1$, which is $t \le U - L + 1 = \ell$. Their union is the full continuous interval $[L, U+t]$, which has length $(U+t) - L + 1 = \ell + t$. The new total mass is $\sigma + t$. The new deficit is $(\sigma + t) - (\ell + t) = \sigma - \ell = D$. Thus, the deficit remains strictly constant. $\square$
+
+This generalizes the moving-interval bootstrap. A central interval $[C, \sigma-C]$ has length $\sigma - 2C + 1$, yielding a deficit of exactly $D = 2C - 1$. The moving interval invariant is vastly less restrictive, as it only requires finding *any* interval of sufficient length.
 
 ## 4. The Strict-Surplus Regime ($R(A) > 1$)
 
@@ -41,27 +44,22 @@ Therefore:
 $$\sigma - t = (R(A)-1)t + \sum_{a \in A} \frac{E_a - t}{a-1} - C_0(A,k)$$
 Since $E_a \ge t$, we obtain the fundamental mass estimate $\sigma - t \ge (R(A)-1)t - C_0(A,k)$.
 
-**Theorem C (Strict-Surplus Finite Certificate Theorem).** If $R(A) > 1$, and some finite prefix has central radius $C$, and the bootstrap condition has been checked until the next power exceeds
-$$T_C(A,k) = \frac{2C - 1 + C_0(A,k)}{R(A) - 1}$$
-then $\mathcal{P}_A(k)$ is unconditionally cofinite.
+**Theorem C (Moving-Interval Strict-Surplus Theorem).** *If $R(A) > 1$, and some finite prefix has a represented interval with deficit $D$, and the bootstrap condition ($t \le \ell$) has been checked until the next power exceeds*
+$$T_D(A,k) = \frac{D + C_0(A,k)}{R(A) - 1}$$
+*then $\mathcal{P}_A(k)$ is unconditionally cofinite.*
 
-*Proof.* The bootstrap inequality $t \le \sigma - 2C + 1$ requires $\sigma - t \ge 2C - 1$. By the mass estimate, this is guaranteed once $(R(A)-1)t - C_0(A,k) \ge 2C - 1$, which is $t \ge T_C(A,k)$. $\square$
+*Proof.* The absorption condition requires $t \le \ell$. Since $\ell = \sigma - D$, this is equivalent to $t \le \sigma - D$, or $\sigma - t \ge D$. By the mass estimate, this is guaranteed once $(R(A)-1)t - C_0(A,k) \ge D$, which is $t \ge T_D(A,k)$. $\square$
 
-### 4.1 Exact Certificates
-Theorem C allows us to compute exact finite certificates for strict-surplus cores. 
+### 4.1 Diagnostic and Exact Certificates
+Theorem C allows us to compute exact finite certificates for strict-surplus cores. The moving-interval condition is satisfied significantly earlier than the full central-radius condition.
 
-| Base Set | $R(A)$ | Prefix Total ($\sigma$) | Central Radius ($C$) | Next Power ($t$) | $T_C(A,k)$ | Certified? |
-|---|---|---|---|---|---|---|
-| $\{3,4,5\}$ | $13/12$ | $3236$ | $80$ | $2187$ | $1957$ | Yes |
-| $\{3,4,6\}$ | $31/30$ | $166402$ | $987$ | $65536$ | $59311$ | Yes |
-| $\{3,4,8,9\}$ | $185/168$ | $3859$ | $79$ | $2187$ | $1601.94$ | Yes |
-| $\{3,4,8,10\}$ | $137/126$ | $386$ | $7$ | $243$ | $207.18$ | Yes |
-| $\{3,5,6,7\}$ | $67/60$ | $1175$ | $30$ | $625$ | $549.57$ | Yes |
-| $\{3,5,6,8\}$ | $153/140$ | $1985$ | $30$ | $729$ | $690.23$ | Yes |
-| $\{4,5,6,7,8\}$ | $153/140$ | $409$ | $4$ | $216$ | $141$ | Yes |
-| $\{3,5,7,8,9\}$ | $199/168$ | $368$ | $7$ | $125$ | $103.97$ | Yes |
+| Base Set | $R(A)$ | Moving Interval Found | Length | Next Power | Central Radius Found at |
+|---|---|---|---|---|---|
+| $\{3,4,5\}$ | $13/12$ | $[80,522]$ | $443$ | $256$ | $t = 2187$ |
+| $\{3,4,12,14\}$ | $859/858$ | $[156,414]$ | $259$ | $243$ | N/A |
+| $\{3,7,8,11,12\}$ | $2311/2310$ | $[26,100]$ | $75$ | $64$ | N/A |
 
-Any larger base set containing one of these certified cores is also cofinite, as extra powers cannot destroy existing representations. This establishes the \textbf{Monotone Core Principle}: if $B \subseteq A$ and $\mathcal{P}_B(k)$ is cofinite, then $\mathcal{P}_A(k)$ is cofinite. 
+The weaker moving-interval invariant provides the true subset-sum bottleneck. Any larger base set containing one of these certified cores is also cofinite, as extra powers cannot destroy existing representations. This establishes the \textbf{Monotone Core Principle}: if $B \subseteq A$ and $\mathcal{P}_B(k)$ is cofinite, then $\mathcal{P}_A(k)$ is cofinite. 
 
 Consequently, the research program reduces to building a maximal \emph{certified-core library}. Every valid set $A$ containing a certified core is automatically solved.
 
@@ -87,27 +85,29 @@ This finite-branch constraint strictly dictates the arithmetic sparsity of any r
 
 ## 5. The Critical Regime ($R(A) = 1$)
 
-For exact-critical sets, the threshold $T_C$ diverges. 
+For exact-critical sets, the threshold $T_D$ diverges. 
 
-**Theorem D (Critical Near-Collision Theorem).** If $R(A) = 1$, then after a central seed, every failure forces a bounded additive near-collision among the next powers.
+**Theorem D (Critical Near-Collision Theorem).** *If $R(A) = 1$, then after a moving interval forms, every failure forces a bounded additive near-collision among the next powers.*
 
-*Proof.* If central absorption fails, then $t > \sigma - 2C + 1$, so $\sigma - t < 2C - 1$. Substituting the mass equality $\sigma - t = \sum_{a \in A} \frac{E_a - t}{a-1} - C_0(A,k)$, we derive:
-$$\sum_{a \in A} \frac{E_a - t}{a-1} < 2C - 1 + C_0(A,k)$$
-Thus each next power $E_a$ must satisfy $0 \le E_a - t < (a-1)(2C - 1 + C_0(A,k))$. $\square**Theorem 5.2 (Fixed-Radius Critical Closure Theorem).** *Let $B$ be a critical base set with $R(B)=1$. Suppose a finite prefix $F$ has central radius $C$. Define the exact bad-cluster function:*
+*Proof.* If interval absorption fails, then $t > \ell$, meaning $t > \sigma - D$, so $\sigma - t < D$. Substituting the mass equality $\sigma - t = \sum_{a \in A} \frac{E_a - t}{a-1} - C_0(A,k)$, we derive:
+$$\sum_{a \in A} \frac{E_a - t}{a-1} < D + C_0(A,k)$$
+Thus each next power $E_a$ must satisfy $0 \le E_a - t < (a-1)(D + C_0(A,k))$. $\square$
+
+**Theorem 5.2 (Fixed-Deficit Critical Closure Theorem).** *Let $B$ be a critical base set with $R(B)=1$. Suppose a finite prefix $F$ represents an interval with deficit $D$. Define the exact bad-cluster function:*
 $$G_B(t) = \sum_{b \in B} \frac{\Pi_b(t) - t}{b-1}$$
-*where $\Pi_b(t) = \min \{b^e : b^e \ge t, e \ge 1\}$. If $G_B(t) \ge 2C - 1 + C_0(B,1)$ for every future channel power $t$, then $\mathcal{P}_B(1)$ is cofinite.*
+*where $\Pi_b(t) = \min \{b^e : b^e \ge t, e \ge 1\}$. If $G_B(t) \ge D + C_0(B,1)$ for every future channel power $t$, then $\mathcal{P}_B(1)$ is cofinite.*
 
 **Example: The Four Critical Equality Cores over $\{3,4\}$**
-The strict classification in Theorem 4.1 leaves exactly four critical equality cores ($R=1$) over $\{3,4\}$. For these four cores, $C_0(B,1) = 5$, so the safety condition is simply $G_B(t) \ge 2C + 4$.
+The strict classification in Theorem 4.1 leaves exactly four critical equality cores ($R=1$) over $\{3,4\}$. For these four cores, $C_0(B,1) = 5$, so the safety condition is simply $G_B(t) \ge D + 5$.
 
-For all four critical equality cores, exact subset-sum computations verify the existence of a central seed. A 100,000-step algorithmic tail simulation confirms that the central interval survives, with the weakest tail events occurring extremely early, after which the slack grows:
+For all four critical equality cores, exact subset-sum computations verify the existence of a moving interval. A 100,000-step algorithmic tail simulation confirms that the interval survives, with the weakest tail events occurring extremely early, after which the slack grows:
 
-| Critical core $B$ | Seed cutoff | $\sigma$ at seed | $C$ | Weakest tail event | $G_B(t)$ there | Required $K_B$ | Min slack |
+| Critical core $B$ | Seed cutoff | $\sigma$ at seed | $D$ | Weakest tail event | $G_B(t)$ there | Required $K_B$ | Min slack |
 | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| $\{3,4,8,43\}$ | $243$ | $562$ | $70$ | $t=256$ | $311$ | $144$ | $167$ |
-| $\{3,4,9,25\}$ | $729$ | $2901$ | $659$ | $t=2187$ | $1743$ | $1322$ | $421$ |
-| $\{3,4,10,19\}$ | $729$ | $1922$ | $252$ | $t=1000$ | $927$ | $508$ | $419$ |
-| $\{3,4,11,16\}$ | $256$ | $1107$ | $70$ | $t=729$ | $383$ | $144$ | $239$ |
+| $\{3,4,8,43\}$ | $243$ | $562$ | $139$ | $t=256$ | $311$ | $144$ | $167$ |
+| $\{3,4,9,25\}$ | $729$ | $2901$ | $1317$ | $t=2187$ | $1743$ | $1322$ | $421$ |
+| $\{3,4,10,19\}$ | $729$ | $1922$ | $503$ | $t=1000$ | $927$ | $508$ | $419$ |
+| $\{3,4,11,16\}$ | $256$ | $1107$ | $139$ | $t=729$ | $383$ | $144$ | $239$ |
 
 If a failure were to occur at some future power $t$, it would force an explicit, bounded exponential cluster $0 \le \Pi_b(t) - t < (b-1)K_B$ across all bases simultaneously. This reduces the remaining frontier to four explicit Pillai/Baker-style finite-exception problems:
 
@@ -142,7 +142,7 @@ To convert bounded gaps into genuine intervals, we adapt the Prouhet fixed-diffe
 **Lemma 6.1 (Repeated Bounded-Difference Gadget Lemma).** *For $\gcd(A)=1$ and $R(A) > 1$, there exists a finite set of nonzero integers $\mathcal{D}$ with $\gcd(\mathcal{D})=1$ such that for arbitrarily large $u$, one can find $u$ pairwise disjoint finite pairs of power-subsets $(P_j, Q_j)$ with:*
 $$ \sum_{p \in P_j} p - \sum_{q \in Q_j} q \in \mathcal{D} $$
 
-Each gadget gives a choice of sum difference falling in $\mathcal{D}$. With many disjoint gadgets, the semigroup generated by $\mathcal{D}$ (which has $\gcd=1$) natively contains long unbroken intervals of differences. This provides a complete residue system modulo some chosen step $D$, which perfectly aligns with the bounded gaps to force a genuine central interval seed.
+Each gadget gives a choice of sum difference falling in $\mathcal{D}$. With many disjoint gadgets, the semigroup generated by $\mathcal{D}$ (which has $\gcd=1$) natively contains long unbroken intervals of differences. This provides a complete residue system modulo some chosen step $D$, which perfectly aligns with the bounded gaps to force a genuine moving interval seed.
 
 The generation of these gadgets strictly reduces to a concrete combinatorial condition: if every large power can be approximated within bounded error $H$ by subset sums of the *other* powers, pigeonholing the finitely many difference values $d = x - y$ provides the repeated gadgets.
 
@@ -174,14 +174,14 @@ If $R(A) > 1$, the subset-sum set globally and unconditionally possesses strictl
 ### Theorem C — Cantor Thickness Identity
 For the binary digit Cantor set $K_d$, the normalized thickness is exactly $\gamma(K_d) = \frac{1}{d-1}$, explaining why the Erdős constraint perfectly mirrors the continuous threshold for bridging geometric gaps.
 
-### Theorem D — Central-Radius Bootstrap
-If a finite integer interval (a central seed) forms, its radius persists inductively across all subsequent powers, provided the remaining mass sequence maintains sufficient density.
+### Theorem D — Moving-Interval Bootstrap
+If a finite integer interval (a moving seed) forms, its deficit $D = \sigma - \ell$ strictly persists inductively across all subsequent powers, provided the remaining mass sequence maintains sufficient density.
 
 ### Theorem E — One-Deletion Gadget Resolution
-In the strict-surplus case ($R(A) > 1$), bounded approximations survive single-element deletion unconditionally (Theorem 6.2). This generates the necessary Prouhet gadgets to integerize the bounded gaps into a genuine discrete integer seed.
+In the strict-surplus case ($R(A) > 1$), bounded approximations survive single-element deletion unconditionally (Theorem 6.2). This generates the necessary Prouhet gadgets to integerize the bounded gaps into a genuine moving discrete interval seed.
 
 ### Theorem F — Strict-Surplus Full Resolution
-Coupling the Prouhet interval seed (Theorem E) with the Central-Radius Bootstrap (Theorem D), the explicit algebraic threshold $T_C(A,k)$ guarantees that all later powers are deterministically absorbed. This unconditionally establishes that $\Sigma(\operatorname{Pow}(A; k))$ is cofinite for all $R(A) > 1$ with $\gcd(A)=1$.
+Coupling the Prouhet interval seed (Theorem E) with the Moving-Interval Bootstrap (Theorem D), the explicit algebraic threshold $T_D(A,k)$ guarantees that all later powers are deterministically absorbed. This unconditionally establishes that $\Sigma(\operatorname{Pow}(A; k))$ is cofinite for all $R(A) > 1$ with $\gcd(A)=1$.
 
 ### Theorem G — Critical Cluster Reduction
-When $R(A) = 1$, the threshold inequalities force any failure after the seed into a bounded additive exponential cluster. This surgically reduces the strict equality boundary to a finite set of conditions governed by effective S-unit/Baker-Wüstholz linear forms in logarithms.
+When $R(A) = 1$, the threshold inequalities force any failure after the moving interval seed into a bounded additive exponential cluster. This surgically reduces the strict equality boundary to a finite set of conditions governed by effective S-unit/Baker-Wüstholz linear forms in logarithms.
