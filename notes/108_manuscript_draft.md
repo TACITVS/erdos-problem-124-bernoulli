@@ -118,54 +118,55 @@ If a failure were to occur at some future power $t$, it would force an explicit,
 
 This converts the remaining open cases from combinatorial subset-sum problems into four exact Diophantine bounding equations, perfectly suited for effective lower bounds in linear forms of logarithms \cite{BEGL}.
 
-## 6. Astels' Theorem and Cantor Thickness
+## 6. Astels' Theorem and the Integerization Obstruction
 
-The central-radius bootstrap formally reduces the discrete problem to finding a massive central seed interval. We now demonstrate that the Erdős density condition $R(A) \ge 1$ is mathematically isomorphic to the established geometric threshold for bridging gaps in topological sums of Cantor sets.
+The central-radius bootstrap formally reduces the discrete problem to finding a massive central seed interval. We now demonstrate that the Erdős density condition $R(A) \ge 1$ is mathematically isomorphic to the established geometric threshold for bridging gaps in topological sums of Cantor sets, and we formally isolate the remaining discrete integerization bottleneck.
 
 ### 6.1 The Cantor Set Attached to a Base
 For any integer base $d \ge 3$, define the binary digit Cantor set:
 $$ K_d = \left\{ \sum_{j=0}^{\infty} \varepsilon_j d^{-j} : \varepsilon_j \in \{0,1\} \right\} $$
-This set represents the continuous, real-scale analogue of the integers formed by distinct powers of $d$. Its convex hull is the interval $I_d = \left[0, \frac{d}{d-1}\right]$. At the first split, $K_d$ consists of a left copy and a right copy. The length of each bridge (interval) is proportional to $\frac{1}{d-1}$, while the length of the middle gap is proportional to $\frac{d-2}{d-1}$.
-
-The Newhouse thickness of this Cantor set is the ratio of the bridge to the gap:
-$$ \tau(K_d) = \frac{1/(d-1)}{(d-2)/(d-1)} = \frac{1}{d-2} $$
-
-### 6.2 Astels' Normalized Thickness
-Astels defines the normalized thickness of a Cantor set $C$ as:
-$$ \gamma(C) = \frac{\tau(C)}{\tau(C)+1} $$
-For the base-$d$ digit Cantor set, this yields:
+This set represents the continuous, real-scale analogue of the integers formed by distinct powers of $d$. Its Newhouse thickness is exactly $\tau(K_d) = \frac{1}{d-2}$.
+Astels defines the normalized thickness of a Cantor set $C$ as $\gamma(C) = \frac{\tau(C)}{\tau(C)+1}$.
+For the base-$d$ digit Cantor set, this evaluates to the exact Erdős reciprocal:
 $$ \gamma(K_d) = \frac{1/(d-2)}{1/(d-2)+1} = \frac{1}{d-1} $$
-Astels' seminal theorem on the sums of Cantor sets states that if the sum of their normalized thicknesses satisfies $\sum_{i} \gamma(C_i) \ge 1$, then the topological sum of the sets $C_1 + \cdots + C_k$ contains a continuous real interval (and under mild boundary conditions, covers its entire convex hull).
+Astels' seminal theorem on sums of Cantor sets states that if the sum of their normalized thicknesses satisfies $\sum_{i} \gamma(C_i) \ge 1$, then the topological sum of the sets contains a continuous real interval. Therefore, the Erdős hypothesis $R(A) \ge 1$ perfectly maps to Astels' continuous interval condition, establishing that at the real limit, the topological sum deterministically forms a solid interval.
 
-Therefore, the Erdős #124 hypothesis $\sum_{a \in A} \frac{1}{a-1} \ge 1$ is not merely a heuristic measure of representation density. It is exactly Astels' continuous interval condition:
-$$ \sum_{a \in A} \gamma(K_a) \ge 1 $$
-This guarantees that in the real limit, the topological sum of the corresponding Cantor sets deterministically forms a solid interval. 
+### 6.2 The Integerization Obstruction
+While Astels' theorem provides the continuous "shadow", it does not automatically yield integer intervals of subset sums. In the discrete limit, continuous containment translates to bounded gaps (syndeticity) within a long interval. However, bounded gaps are insufficient to guarantee actual interval coverage. For example, consider the counterexample:
+$$ S = \{2\} \cup \{3 \cdot 2^n : n \ge 0\} $$
+The subset sums of $S$ possess bounded gaps and $\gcd(S)=1$, but they permanently miss all integers congruent to $1 \pmod 3$. Therefore, interval continuity in the discrete domain requires an arithmetic local smoothing theorem to explicitly rule out such permanent congruence obstructions.
 
-### 6.3 The Discrete Astels Lemma
-Because Astels' proof relies on a Cantor construction tree bounding gap sizes at every scale, and our finite channelized discrete power systems $\mathcal{P}_A(k)$ share the exact same branching geometry (simply truncated at a finite depth), the remaining global bottleneck is surgically reduced to a finite-level integerization of Astels' Theorem.
+### 6.3 The Fourier Minor-Arc Bottleneck
+We translate the problem of forcing actual consecutive integers (a discrete interval lift) to Fourier analysis. Let $F_T = \bigsqcup_{a \in A} \{a^e : k \le e \le \lfloor\log_a T\rfloor\}$ be the set of available channelized powers. The characteristic function of the subset-sum distribution is:
+$$ \Phi_T(\theta) = \prod_{x \in F_T} \frac{1+e^{2\pi i \theta x}}{2} \implies |\Phi_T(\theta)| = \prod_{x \in F_T} |\cos(\pi \theta x)| $$
+The representation count for an integer $n$ is $r_T(n) = 2^{|F_T|} \int_0^1 \Phi_T(\theta) e^{-2\pi i n \theta} d\theta$.
+The number of available subset choices is $2^{|F_T|} \approx T^{\log 2 \sum_{a} 1/\log a}$. Because $\frac{a-1}{\log a}$ is strictly increasing for $a \ge 3$, the Erdős condition $R(A) \ge 1$ strictly bounds this subset surplus:
+$$ 2^{|F_T|} \ge T^{2 \log 2 / \log 3} \approx T^{1.2618} $$
+Thus, there are polynomially more subset choices than target integers up to scale $T$. On the major arc near 0, the integral yields a Gaussian contribution of $\asymp 1/T$. Because $2^{|F_T|} / T \gg T^{0.2618} \to \infty$, the major arc natively supplies a massive surplus of representations for central integers. The singular obstacle to interval creation is anti-concentration caused by rational minor-arc spikes. We pose this final bottleneck precisely:
 
-**Conjecture 6.1 (Discrete Astels Lemma).** *Let $d_1, \dots, d_r \ge 3$ satisfy $\sum \frac{1}{d_i-1} \ge 1$. Then for every $k \ge 1$, there exists a finite prefix of the channelized power system $\bigsqcup_{i} \{d_i^e : e \ge k\}$ whose subset sums contain a nontrivial discrete integer interval.*
+**Conjecture 6.1 (Fourier Local-Smoothing / Interval-Lift Lemma).** *Let $A \subseteq \mathbb{Z}_{\ge 3}$ satisfy $\gcd(A)=1$ and $R(A) \ge 1$. For some $\eta > 0$ and sufficiently large $T$, the minor-arc integral satisfies:*
+$$ \int_{\mathfrak{m}} |\Phi_T(\theta)| d\theta \ll T^{-1-\eta} $$
 
-Once this finite-level discrete interval is manufactured via Astels' tree geometry, it serves as the finite seed required to trigger the central-radius bootstrap.
+Because $\gcd(A)=1$, the powers $a^e$ cannot be trapped inside a proper additive subgroup modulo any $q$, meaning a positive proportion of terms continually forces $|\cos(\pi r x / q)|$ strictly below $1$. Proving this explicit polynomial decay over the minor arcs forces $r_T(n) > 0$ strictly, establishing the integer central seed.
 
-## 7. The 6-Part Final Proof Architecture
+## 7. The Final Structural Architecture
 
-The exact alignment of the Erdős reciprocal condition with Astels' normalized thickness separates the problem into a definitive 6-part theoretical spine:
+We reduce the full generic proof of Erdős Problem 124 to the following exact structural spine:
 
 ### Theorem A — Base-2 Modular Theorem
-If $2 \in A$ and $\gcd(A)=1$, then $\mathcal{P}_A(k)$ is cofinite for every $k \ge 1$. Completely and unconditionally solved via modular residue argument (Section 2).
+If $2 \in A$ and $\gcd(A)=1$, then $\mathcal{P}_A(k)$ is cofinite for every $k \ge 1$. Completely and unconditionally solved via modular residue stabilization (Section 2).
 
 ### Theorem B — Cantor Thickness Identity
-For the binary digit Cantor set $K_d$, the normalized thickness is identically $\gamma(K_d) = \frac{1}{d-1}$.
+For the binary digit Cantor set $K_d$, the normalized thickness is exactly $\gamma(K_d) = \frac{1}{d-1}$, explaining why the Erdős constraint perfectly mirrors the threshold for continuous interval generation.
 
-### Theorem C — Astels' Continuous Interval Theorem
-If $\sum \frac{1}{d_i-1} \ge 1$, then the continuous sum of Cantor sets $\sum K_{d_i}$ contains a real interval by normalized-thickness gap-bridging.
+### Theorem C — Central-Radius Bootstrap
+If a finite integer interval (a central seed) forms, its radius persists inductively across all subsequent powers, provided the remaining mass sequence maintains sufficient density.
 
-### Theorem D — Discrete Astels Lemma
-A finite-level integer version of Theorem C produces an actual finite subset-sum interval (Conjecture 6.1). This is the sole remaining combinatorial bottleneck.
+### Theorem D — Strict-Surplus Closure
+In the strict-surplus case ($R(A) > 1$), the explicit algebraic threshold $T_C(A,k)$ guarantees that once a central interval seed forms, all later powers are deterministically absorbed, completely closing the problem.
 
-### Theorem E — Central-Radius Bootstrap
-Once a finite central interval exists, all later powers are deterministically absorbed in the strict-surplus case ($R(A) > 1$) via the explicit algebraic threshold $T_C(A,k)$ (Section 4).
+### Theorem E — Critical Cluster Reduction
+When $R(A) = 1$, the threshold inequalities force any failure after the seed into a bounded additive exponential cluster. This surgically reduces the equality boundary to a finite set of conditions handled by effective S-unit/Baker-Wüstholz bounds.
 
-### Theorem F — Critical Cluster Closure
-When $R(A) = 1$, every later failure after the seed explicitly forces a bounded exponential cluster (Section 5). This strictly isolates the equality boundary, reducing it to effective S-unit/Baker methods and finite explicit verification, identical to the strategy pioneered by Burr-Erdős-Graham-Li for $\{3,4,7\}$.
+### Final Bottleneck — The Fourier Local-Smoothing Lemma
+We reduce the generic no-base-2 case to the Fourier Local-Smoothing (Discrete Interval-Lift) Lemma. Proving that minor-arc Fourier decay translates the continuous Astels interval into a genuine discrete integer seed is the final analytic step required to fully resolve Erdős Problem 124.
