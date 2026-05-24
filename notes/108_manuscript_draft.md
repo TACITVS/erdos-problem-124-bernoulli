@@ -118,16 +118,32 @@ If a failure were to occur at some future power $t$, it would force an explicit,
 
 This converts the remaining open cases from combinatorial subset-sum problems into four exact Diophantine bounding equations, perfectly suited for effective lower bounds in linear forms of logarithms \cite{BEGL}.
 
-## 6. Towards the Unconditional Generic Proof
+## 6. Subset-Sum Entropy and the Local-Limit Path
 
-The Monotone Core Principle provides a clear architectural pathway to resolving Erdős Problem 124 in complete generality for any $k \ge 1$. To prove that *any* valid generic set $A$ is cofinite, one must only show that $A$ contains at least one cofinite sub-core $B$ satisfying $R(B) \ge 1$. 
+The sole remaining mathematical obstacle to an unconditional generic proof is the theoretical guarantee that the central seed interval always forms, eliminating the need for per-case exact computation. We formalize this as the global bottleneck:
 
-The preceding sections demonstrate that if a finite central seed interval $[C, \sigma - C]$ can be found for $B$, the problem is deterministically closed:
-1. If $B$ is a strict core ($R(B) > 1$), Theorem C guarantees unconditional cofiniteness.
-2. If $B$ is an equality core ($R(B) = 1$), Theorem 5.2 forces any post-seed failure into a simultaneous Pillai/Baker-style bounded exponential cluster across all bases $b \in B$. Since no two elements $x, y \ge 3$ can satisfy $\frac{1}{x-1} + \frac{1}{y-1} = 1$, any equality core must contain $|B| \ge 3$ bases. Thus, a failure universally forces a simultaneous near-collision of 3 or more independent exponential sequences. This maps the generic critical boundary unconditionally into the domain of effective lower bounds in linear forms of logarithms \cite{BEGL}.
+**Conjecture 6.1 (The Universal Central-Seed Lemma).** *Let $A \subseteq \mathbb{Z}_{\ge 3}$ be finite with $\gcd(A)=1$ and $R(A) \ge 1$. For every $k \ge 1$, there exists a finite prefix $F \subset \mathcal{P}_A(k)$ and a finite $C$ such that $[C, \sigma(F)-C] \subseteq \Sigma(F)$.*
 
-The sole remaining obstacle to an unconditional generic proof is the theoretical guarantee that the central seed interval always forms, eliminating the need for per-case exact computation. We formalize this as the final open obligation:
+To rigorously attack this lemma, we observe that the Erdős density condition $R(A) \ge 1$ forces the subset choices to grow polynomially faster than the interval size $T$. Let $F_T$ be the channelized powers up to size $T$. The number of available powers is roughly $N(T) = \sum_{a \in A} \frac{\log T}{\log a} + O_A(1)$. The total number of formal subset choices is therefore $2^{N(T)} = T^{\log 2 \sum_{a \in A} 1/\log a + o(1)}$.
 
-**Conjecture 6.1 (The Uniform Central Seed Lemma).** *For any finite set $B \subset \mathbb{Z}_{\ge 2}$ with $\gcd(B)=1$ and $R(B) \ge 1$, there exists a finite prefix $F$ of the channelized sequence $\mathcal{P}_B(k)$ such that its subset sums $\Sigma(F)$ contain a central interval $[C, \sigma(F)-C]$, where $C$ is large enough to satisfy the respective takeover conditions ($C \ge C_{min}(B)$).*
+Because $\frac{a-1}{\log a}$ is strictly increasing for $a \ge 3$, we have $\frac{1}{\log a} \ge \frac{2}{\log 3} \frac{1}{a-1}$. Thus, under the Erdős condition $R(A) \ge 1$:
+$$ \log 2 \sum_{a \in A} \frac{1}{\log a} \ge \frac{2 \log 2}{\log 3} \sum_{a \in A} \frac{1}{a-1} \ge \frac{2 \log 2}{\log 3} \approx 1.2618 > 1 $$
+So the number of subset choices below scale $T$ grows strictly faster than $T$, specifically $2^{N(T)} \gg T^{1.2618}$.
 
-If Conjecture 6.1 is proven—likely via analytic density methods, Fourier analysis on subset sums, or probabilistic partition models—the central-radius bootstrap mechanism will unconditionally close Erdős Problem 124 for all generic sets.
+This surplus entropy dictates that the missing piece is not a lack of representation density, but a rigorous anti-concentration/local-smoothing theorem. A power-system local smoothing lemma—proving adequate decay of the Fourier transform $\Phi_T(\theta) = \prod_{x \in F_T} \frac{1+e^{2\pi i \theta x}}{2}$ away from $\theta=0$—would definitively force every central integer to have a positive representation count, proving the Central-Seed Lemma.
+
+## 7. The 4-Part Full-Proof Architecture
+
+By cleanly separating the subset-sum geometry from the analytic Diophantine tail, the problem of finding a generic unconditional proof of Erdős Problem 124 is reduced to the following four definitive pillars:
+
+### Theorem A — Base-2 Theorem
+If $2 \in A$ and $\gcd(A)=1$, then $\mathcal{P}_A(k)$ is cofinite for every $k \ge 1$. This is completely and unconditionally solved via the modular residue argument (Section 2).
+
+### Theorem B — Universal Central-Seed Lemma
+For $A \subseteq \mathbb{Z}_{\ge 3}$ with $\gcd(A)=1$ and $R(A) \ge 1$, some finite prefix contains a central interval. This is the main missing lemma (Conjecture 6.1), requiring a Fourier local-limit proof supported by the $T^{1.2618}$ entropy bound.
+
+### Theorem C — Strict-Surplus Closure
+If $R(A) > 1$, a central seed implies immediate unconditional cofiniteness via the explicit threshold $T_C(A,k) = \frac{2C-1+C_0(A,k)}{R(A)-1}$. This is completely proven (Section 4).
+
+### Theorem D — Critical Cluster Closure
+If $R(A) = 1$, a central seed reduces all future obstructions to bounded exponential clusters (Theorem 5.2). Because no two bases $\ge 3$ can satisfy $\frac{1}{x-1} + \frac{1}{y-1} = 1$, any equality core must contain at least 3 bases. A failure thus universally forces a simultaneous near-collision of 3 or more independent exponential sequences. This maps the critical boundary into the domain of effective Baker-Wüstholz bounds, requiring finite S-unit verification over the bounded explicit window to completely close the problem.
